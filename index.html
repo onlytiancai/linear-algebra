@@ -25,7 +25,8 @@
 Algebra</h1>
 <p>线性代数小册子</p>
 <p>A concise, beginner-friendly introduction to the core ideas of linear
-algebra. 简洁、适合初学者的线性代数核心思想介绍。</p>
+algebra.</p>
+<p>简洁、适合初学者的线性代数核心思想介绍。</p>
 <h1 id="chapter-1.-vectors">Chapter 1. Vectors</h1>
 <p>第 1 章 向量</p>
 <h2 id="scalars-and-vectors">1.1 Scalars and Vectors</h2>
@@ -41,7 +42,8 @@ by which more complex objects are measured and combined. A vector is an
 ordered collection of scalars, arranged either in a row or a column.
 When the scalars are real numbers, the vector is said to belong to
 <em>real</em> <span class="math inline">\(n\)</span>-dimensional space,
-written 标量是一个单一的数值，通常取自实数，用 <span
+written</p>
+<p>标量是一个单一的数值，通常取自实数，用 <span
 class="math inline">\(\mathbb{R}\)</span>
 表示。标量是算术的基本组成部分：它们可以进行加、减、乘和除（零除外）。在线性代数中，标量充当系数、比例因子以及向量和矩阵等更大结构中的元素。它们提供权重，用于测量和组合更复杂的对象。向量是按行或列排列的标量的有序集合。当标量为实数时，该向量被称为属于<em>实</em>
 <span class="math inline">\(n\)</span> 维空间，写为</p>
@@ -54,35 +56,38 @@ an <em>n</em>-vector. The number <span class="math inline">\(n\)</span>
 is called the dimension of the vector space. Thus <span
 class="math inline">\(\mathbb{R}^2\)</span> is the space of all ordered
 pairs of real numbers, <span class="math inline">\(\mathbb{R}^3\)</span>
-the space of all ordered triples, and so on. <span
-class="math inline">\(\mathbb{R}^n\)</span> 中的一个元素称为维度为 <span
-class="math inline">\(n\)</span> 的向量或 <em>n</em> 向量。数字 <span
-class="math inline">\(n\)</span> 称为向量空间的维数。因此， <span
+the space of all ordered triples, and so on.</p>
+<p><span class="math inline">\(\mathbb{R}^n\)</span>
+中的一个元素称为维度为 <span class="math inline">\(n\)</span> 的向量或
+<em>n</em> 向量。数字 <span class="math inline">\(n\)</span>
+称为向量空间的维数。因此， <span
 class="math inline">\(\mathbb{R}^2\)</span> 是所有有序实数对的空间，
 <span class="math inline">\(\mathbb{R}^3\)</span>
 是所有有序三元组的空间，等等。</p>
 <p>Example 1.1.1. 例 1.1.1。</p>
 <ul>
-<li>A 2-dimensional vector: <span class="math inline">\((3, -1) \in
-\mathbb{R}^2\)</span>. 二维向量： <span class="math inline">\((3, -1)
-\in \mathbb{R}^2\)</span> 。</li>
-<li>A 3-dimensional vector: <span class="math inline">\((2, 0, 5) \in
-\mathbb{R}^3\)</span>. 三维向量： <span class="math inline">\((2, 0, 5)
-\in \mathbb{R}^3\)</span> 。</li>
-<li>A 1-dimensional vector: <span class="math inline">\((7) \in
-\mathbb{R}^1\)</span>, which corresponds to the scalar 7 itself.
-一维向量： <span class="math inline">\((7) \in \mathbb{R}^1\)</span>
-，对应于标量 7 本身。</li>
+<li><p>A 2-dimensional vector: <span class="math inline">\((3, -1) \in
+\mathbb{R}^2\)</span>.</p>
+<p>二维向量： <span class="math inline">\((3, -1) \in
+\mathbb{R}^2\)</span> 。</p></li>
+<li><p>A 3-dimensional vector: <span class="math inline">\((2, 0, 5) \in
+\mathbb{R}^3\)</span>.</p>
+<p>三维向量： <span class="math inline">\((2, 0, 5) \in
+\mathbb{R}^3\)</span> 。</p></li>
+<li><p>A 1-dimensional vector: <span class="math inline">\((7) \in
+\mathbb{R}^1\)</span>, which corresponds to the scalar 7 itself.</p>
+<p>一维向量： <span class="math inline">\((7) \in \mathbb{R}^1\)</span>
+，对应于标量 7 本身。</p></li>
 </ul>
 <p>Vectors are often written vertically in column form, which emphasizes
-their role in matrix multiplication:
-向量通常以列的形式垂直书写，这强调了它们在矩阵乘法中的作用：</p>
+their role in matrix multiplication:</p>
+<p>向量通常以列的形式垂直书写，这强调了它们在矩阵乘法中的作用：</p>
 <p><span class="math display">\[
 \mathbf{v} = \begin{bmatrix}2 \\0 \\5 \end{bmatrix} \in \mathbb{R}^3.
 \]</span></p>
 <p>The vertical layout makes the structure clearer when we consider
-linear combinations or multiply matrices by vectors.
-当我们考虑线性组合或矩阵乘以向量时，垂直布局使结构更加清晰。</p>
+linear combinations or multiply matrices by vectors.</p>
+<p>当我们考虑线性组合或矩阵乘以向量时，垂直布局使结构更加清晰。</p>
 <h3 id="geometric-interpretation">Geometric Interpretation</h3>
 <p>几何解释</p>
 <p>In <span class="math inline">\(\mathbb{R}^2\)</span>, a vector <span
@@ -101,8 +106,8 @@ addition, scaling, and transformation exactly as a 2- or 3-dimensional
 vector does. This abstract point of view is what allows linear algebra
 to apply to data science, physics, and machine learning, where data
 often lives in very high-dimensional spaces. Thus a vector may be
-regarded in three complementary ways: 在 <span
-class="math inline">\(\mathbb{R}^2\)</span> 中，向量 <span
+regarded in three complementary ways:</p>
+<p>在 <span class="math inline">\(\mathbb{R}^2\)</span> 中，向量 <span
 class="math inline">\((x_1, x_2)\)</span> 可以可视化为一个从原点 <span
 class="math inline">\((0,0)\)</span> 开始到点 <span
 class="math inline">\((x_1, x_2)\)</span>
@@ -114,34 +119,36 @@ class="math inline">\((x_1, x_2, x_3)\)</span>
 <span class="math inline">\(\mathbb{R}^{10}\)</span>
 中绘制向量，它在加法、缩放和变换下的行为与二维或三维向量完全相同。这种抽象的观点使得线性代数能够应用于数据科学、物理学和机器学习，这些领域的数据通常存在于非​​常高维的空间中。因此，向量可以从三个互补的角度来看待：</p>
 <ol type="1">
-<li>As a point in space, described by its coordinates.
-作为空间中的一个点，由其坐标描述。</li>
-<li>As a displacement or arrow, described by a direction and a length.
-作为位移或箭头，由方向和长度描述。</li>
-<li>As an abstract element of a vector space, whose properties follow
-algebraic rules independent of geometry.
-作为向量空间的抽象元素，其属性遵循与几何无关的代数规则。</li>
+<li><p>As a point in space, described by its coordinates.</p>
+<p>作为空间中的一个点，由其坐标描述。</p></li>
+<li><p>As a displacement or arrow, described by a direction and a
+length.</p>
+<p>作为位移或箭头，由方向和长度描述。</p></li>
+<li><p>As an abstract element of a vector space, whose properties follow
+algebraic rules independent of geometry.</p>
+<p>作为向量空间的抽象元素，其属性遵循与几何无关的代数规则。</p></li>
 </ol>
 <h3 id="notation">Notation</h3>
 <p>符号</p>
 <ul>
-<li>Vectors are written in boldface lowercase letters: <span
-class="math inline">\(\mathbf{v}, \mathbf{w}, \mathbf{x}\)</span>.
-向量以粗体小写字母表示： <span class="math inline">\(\mathbf{v},
-\mathbf{w}, \mathbf{x}\)</span> 。</li>
-<li>The <em>i</em>-th entry of a vector <span
+<li><p>Vectors are written in boldface lowercase letters: <span
+class="math inline">\(\mathbf{v}, \mathbf{w}, \mathbf{x}\)</span>.</p>
+<p>向量以粗体小写字母表示： <span class="math inline">\(\mathbf{v},
+\mathbf{w}, \mathbf{x}\)</span> 。</p></li>
+<li><p>The <em>i</em>-th entry of a vector <span
 class="math inline">\(\mathbf{v}\)</span> is written <span
-class="math inline">\(v_i\)</span>, where indices begin at 1. 向量 <span
-class="math inline">\(\mathbf{v}\)</span> 的第 - 个元素写为 𝑣 𝑖 v i ​
-，其中索引从 1 开始。</li>
-<li>The set of all <em>n</em>-dimensional vectors over <span
+class="math inline">\(v_i\)</span>, where indices begin at 1.</p>
+<p>向量 <span class="math inline">\(\mathbf{v}\)</span> 的第 -
+个元素写为 𝑣 𝑖 v i ​ ，其中索引从 1 开始。</p></li>
+<li><p>The set of all <em>n</em>-dimensional vectors over <span
 class="math inline">\(\mathbb{R}\)</span> is denoted <span
-class="math inline">\(\mathbb{R}^n\)</span>. <span
-class="math inline">\(\mathbb{R}\)</span> 上的所有 <em>n</em>
+class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<p><span class="math inline">\(\mathbb{R}\)</span> 上的所有 <em>n</em>
 维向量的集合记为 <span class="math inline">\(\mathbb{R}^n\)</span>
-。</li>
-<li>Column vectors will be the default form unless otherwise stated.
-除非另有说明，列向量将是默认形式。</li>
+。</p></li>
+<li><p>Column vectors will be the default form unless otherwise
+stated.</p>
+<p>除非另有说明，列向量将是默认形式。</p></li>
 </ul>
 <h3 id="why-begin-here">Why begin here?</h3>
 <p>为什么从这里开始？</p>
@@ -152,39 +159,39 @@ of numbers. Once vectors are understood, we can define operations such
 as addition and scalar multiplication, then generalize to subspaces,
 bases, and coordinate systems. Eventually, this framework grows into the
 full theory of linear algebra, with powerful applications to geometry,
-computation, and data.
-标量和向量构成了线性代数的原子。我们将要构建的每一个结构——向量空间、线性变换、矩阵、特征值——都依赖于数和有序数集的基本概念。一旦理解了向量，我们就可以定义诸如加法和标量乘法之类的运算，然后推广到子空间、基和坐标系。最终，这个框架将发展成为完整的线性代数理论，并在几何、计算和数据领域拥有强大的应用。</p>
+computation, and data.</p>
+<p>标量和向量构成了线性代数的原子。我们将要构建的每一个结构——向量空间、线性变换、矩阵、特征值——都依赖于数和有序数集的基本概念。一旦理解了向量，我们就可以定义诸如加法和标量乘法之类的运算，然后推广到子空间、基和坐标系。最终，这个框架将发展成为完整的线性代数理论，并在几何、计算和数据领域拥有强大的应用。</p>
 <h3 id="exercises-1.1">Exercises 1.1</h3>
 <p>练习 1.1</p>
 <ol type="1">
-<li>Write three different vectors in <span
+<li><p>Write three different vectors in <span
 class="math inline">\(\mathbb{R}^2\)</span> and sketch them as arrows
-from the origin. Identify their coordinates explicitly. 在 <span
-class="math inline">\(\mathbb{R}^2\)</span>
-中写出三个不同的向量，并将它们画成从原点出发的箭头。明确指出它们的坐标。</li>
-<li>Give an example of a vector in <span
+from the origin. Identify their coordinates explicitly.</p>
+<p>在 <span class="math inline">\(\mathbb{R}^2\)</span>
+中写出三个不同的向量，并将它们画成从原点出发的箭头。明确指出它们的坐标。</p></li>
+<li><p>Give an example of a vector in <span
 class="math inline">\(\mathbb{R}^4\)</span>. Can you visualize it
-directly? Explain why high-dimensional visualization is challenging.
-给出 <span class="math inline">\(\mathbb{R}^4\)</span>
-中一个向量的例子。你能直接将其可视化吗？解释为什么高维可视化具有挑战性。</li>
-<li>Let <span class="math inline">\(\mathbf{v} = (4, -3, 2)\)</span>.
+directly? Explain why high-dimensional visualization is challenging.</p>
+<p>给出 <span class="math inline">\(\mathbb{R}^4\)</span>
+中一个向量的例子。你能直接将其可视化吗？解释为什么高维可视化具有挑战性。</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{v} = (4, -3, 2)\)</span>.
 Write <span class="math inline">\(\mathbf{v}\)</span> in column form and
-state <span class="math inline">\(v_1, v_2, v_3\)</span>. 令 <span
-class="math inline">\(\mathbf{v} = (4, -3, 2)\)</span> 。将 <span
-class="math inline">\(\mathbf{v}\)</span> 写成列形式，并说明 𝑣 1 , 𝑣 2 ,
-𝑣 3 v 1 ​ ，v 2 ​ ，v 3 ​ .</li>
-<li>In what sense is the set <span
+state <span class="math inline">\(v_1, v_2, v_3\)</span>.</p>
+<p>令 <span class="math inline">\(\mathbf{v} = (4, -3, 2)\)</span> 。将
+<span class="math inline">\(\mathbf{v}\)</span> 写成列形式，并说明 𝑣 1 ,
+𝑣 2 , 𝑣 3 v 1 ​ ，v 2 ​ ，v 3 ​ .</p></li>
+<li><p>In what sense is the set <span
 class="math inline">\(\mathbb{R}^1\)</span> both a line and a vector
-space? Illustrate with examples. 在什么意义上集合 <span
-class="math inline">\(\mathbb{R}^1\)</span>
-既是线空间又是向量空间？请举例说明。</li>
-<li>Consider the vector <span class="math inline">\(\mathbf{u} =
+space? Illustrate with examples.</p>
+<p>在什么意义上集合 <span class="math inline">\(\mathbb{R}^1\)</span>
+既是线空间又是向量空间？请举例说明。</p></li>
+<li><p>Consider the vector <span class="math inline">\(\mathbf{u} =
 (1,1,\dots,1) \in \mathbb{R}^n\)</span>. What is special about this
 vector when <span class="math inline">\(n\)</span> is large? What might
-it represent in applications? 考虑向量 <span
-class="math inline">\(\mathbf{u} = (1,1,\dots,1) \in
+it represent in applications?</p>
+<p>考虑向量 <span class="math inline">\(\mathbf{u} = (1,1,\dots,1) \in
 \mathbb{R}^n\)</span> 。当 <span class="math inline">\(n\)</span>
-很大时，这个向量有什么特殊之处？它在应用中可能代表什么？</li>
+很大时，这个向量有什么特殊之处？它在应用中可能代表什么？</p></li>
 </ol>
 <h2 id="vector-addition-and-scalar-multiplication">1.2 Vector Addition
 and Scalar Multiplication</h2>
@@ -193,25 +200,27 @@ and Scalar Multiplication</h2>
 from the operations we can perform on them. Two fundamental operations
 define the structure of vector spaces: addition and scalar
 multiplication. These operations satisfy simple but far-reaching rules
-that underpin the entire subject.
-线性代数中的向量并非静态对象；它们的力量源于我们可以对它们执行的运算。两个基本运算定义了向量空间的结构：加法和标量乘法。这两个运算满足一些简单却影响深远的规则，这些规则构成了整个线性代数学科的基础。</p>
+that underpin the entire subject.</p>
+<p>线性代数中的向量并非静态对象；它们的力量源于我们可以对它们执行的运算。两个基本运算定义了向量空间的结构：加法和标量乘法。这两个运算满足一些简单却影响深远的规则，这些规则构成了整个线性代数学科的基础。</p>
 <h3 id="vector-addition">Vector Addition</h3>
 <p>向量加法</p>
 <p>Given two vectors of the same dimension, their sum is obtained by
-adding corresponding entries. Formally, if
-给定两个相同维度的向量，它们的和可以通过添加相应的元素来获得。形式上，如果</p>
+adding corresponding entries. Formally, if</p>
+<p>给定两个相同维度的向量，它们的和可以通过添加相应的元素来获得。形式上，如果</p>
 <p><span class="math display">\[
 \mathbf{u} = (u_1, u_2, \dots, u_n), \quad\mathbf{v} = (v_1, v_2, \dots,
 v_n),
 \]</span></p>
-<p>then their sum is 那么它们的总和是</p>
+<p>then their sum is</p>
+<p>那么它们的总和是</p>
 <p><span class="math display">\[
 \mathbf{u} + \mathbf{v} = (u_1+v_1, u_2+v_2, \dots, u_n+v_n).
 \]</span></p>
 <p>Example 1.2.1. Let <span class="math inline">\(\mathbf{u} = (2, -1,
 3)\)</span> and <span class="math inline">\(\mathbf{v} = (4, 0,
--5)\)</span>. Then 例 1.2.1。 设 <span class="math inline">\(\mathbf{u}
-= (2, -1, 3)\)</span> 和 <span class="math inline">\(\mathbf{v} = (4, 0,
+-5)\)</span>. Then</p>
+<p>例 1.2.1。 设 <span class="math inline">\(\mathbf{u} = (2, -1,
+3)\)</span> 和 <span class="math inline">\(\mathbf{v} = (4, 0,
 -5)\)</span> 。则</p>
 <p><span class="math display">\[
 \mathbf{u} + \mathbf{v} = (2+4, -1+0, 3+(-5)) = (6, -1, -2).
@@ -220,40 +229,43 @@ v_n),
 rule</em>. If we draw both vectors as arrows from the origin, then
 placing the tail of one vector at the head of the other produces the
 sum. The diagonal of the parallelogram they form represents the
-resulting vector. 从几何学上讲，向量加法对应于<em>平行四边形法则</em>
+resulting vector.</p>
+<p>从几何学上讲，向量加法对应于<em>平行四边形法则</em>
 。如果我们将两个向量都画成从原点出发的箭头，那么将一个向量的尾部放在另一个向量的头部，就能得到向量的和。它们构成的平行四边形的对角线代表最终的向量。</p>
 <h3 id="scalar-multiplication">Scalar Multiplication</h3>
 <p>标量乘法</p>
 <p>Multiplying a vector by a scalar stretches or shrinks the vector
 while preserving its direction, unless the scalar is negative, in which
 case the vector is also reversed. If <span class="math inline">\(c \in
-\mathbb{R}\)</span> and
-将矢量乘以标量会拉伸或收缩矢量，同时保持其方向，除非标量
+\mathbb{R}\)</span> and</p>
+<p>将矢量乘以标量会拉伸或收缩矢量，同时保持其方向，除非标量
 负数，在这种情况下向量也会反转。如果 <span class="math inline">\(c \in
 \mathbb{R}\)</span> 和</p>
 <p><span class="math display">\[
 \mathbf{v} = (v_1, v_2, \dots, v_n),
 \]</span></p>
-<p>then 然后</p>
+<p>then</p>
+<p>然后</p>
 <p><span class="math display">\[
 c \mathbf{v} = (c v_1, c v_2, \dots, c v_n).
 \]</span></p>
 <p>Example 1.2.2. Let <span class="math inline">\(\mathbf{v} = (3,
--2)\)</span> and <span class="math inline">\(c = -2\)</span>. Then 例
-1.2.2。 设 <span class="math inline">\(\mathbf{v} = (3, -2)\)</span> 和
-<span class="math inline">\(c = -2\)</span> 。则</p>
+-2)\)</span> and <span class="math inline">\(c = -2\)</span>. Then</p>
+<p>例 1.2.2。 设 <span class="math inline">\(\mathbf{v} = (3,
+-2)\)</span> 和 <span class="math inline">\(c = -2\)</span> 。则</p>
 <p><span class="math display">\[
 c\mathbf{v} = -2(3, -2) = (-6, 4).
 \]</span></p>
 <p>This corresponds to flipping the vector through the origin and
-doubling its length. 这相当于通过原点翻转向量并使其长度加倍。</p>
+doubling its length.</p>
+<p>这相当于通过原点翻转向量并使其长度加倍。</p>
 <h3 id="linear-combinations">Linear Combinations</h3>
 <p>线性组合</p>
 <p>The interaction of addition and scalar multiplication allows us to
 form <em>linear combinations</em>. A linear combination of vectors <span
 class="math inline">\(\mathbf{v}_1, \mathbf{v}_2, \dots,
-\mathbf{v}_k\)</span> is any vector of the form
-加法和标量乘法的相互作用使我们能够形成<em>线性组合</em>
+\mathbf{v}_k\)</span> is any vector of the form</p>
+<p>加法和标量乘法的相互作用使我们能够形成<em>线性组合</em>
 。向量𝑣的线性组合 1 , 𝑣 2 , … , 𝑣 𝑘 v 1 ​ ，v 2 ​ ，…，v k ​
 是任意形式的向量</p>
 <p><span class="math display">\[
@@ -263,41 +275,44 @@ c_i \in \mathbb{R}.
 <p>Linear combinations are the mechanism by which we generate new
 vectors from existing ones. The span of a set of vectors-the collection
 of all their linear combinations-will later lead us to the idea of a
-subspace.
-线性组合是一种从现有向量生成新向量的机制。一组向量的跨度——它们所有线性组合的集合——稍后会引出子空间的概念。</p>
+subspace.</p>
+<p>线性组合是一种从现有向量生成新向量的机制。一组向量的跨度——它们所有线性组合的集合——稍后会引出子空间的概念。</p>
 <p>Example 1.2.3. Let <span class="math inline">\(\mathbf{v}_1 =
 (1,0)\)</span> and <span class="math inline">\(\mathbf{v}_2 =
 (0,1)\)</span>. Then any vector <span
-class="math inline">\((a,b)\in\mathbb{R}^2\)</span> can be expressed as
-例 1.2.3。 设 <span class="math inline">\(\mathbf{v}_1 = (1,0)\)</span>
-和 <span class="math inline">\(\mathbf{v}_2 = (0,1)\)</span>
-。则任意向量 <span class="math inline">\((a,b)\in\mathbb{R}^2\)</span>
-可以表示为</p>
+class="math inline">\((a,b)\in\mathbb{R}^2\)</span> can be expressed
+as</p>
+<p>例 1.2.3。 设 <span class="math inline">\(\mathbf{v}_1 =
+(1,0)\)</span> 和 <span class="math inline">\(\mathbf{v}_2 =
+(0,1)\)</span> 。则任意向量 <span
+class="math inline">\((a,b)\in\mathbb{R}^2\)</span> 可以表示为</p>
 <p><span class="math display">\[
 a\mathbf{v}_1 + b\mathbf{v}_2.
 \]</span></p>
 <p>Thus <span class="math inline">\((1,0)\)</span> and <span
 class="math inline">\((0,1)\)</span> form the basic building blocks of
-the plane. 因此 <span class="math inline">\((1,0)\)</span> 和 <span
+the plane.</p>
+<p>因此 <span class="math inline">\((1,0)\)</span> 和 <span
 class="math inline">\((0,1)\)</span> 构成了平面的基本构造块。</p>
 <h3 id="notation-1">Notation</h3>
 <p>符号</p>
 <ul>
-<li>Addition: <span class="math inline">\(\mathbf{u} +
-\mathbf{v}\)</span> means component-wise addition. 加法： <span
-class="math inline">\(\mathbf{u} + \mathbf{v}\)</span>
-表示逐个组件的加法。</li>
-<li>Scalar multiplication: <span
+<li><p>Addition: <span class="math inline">\(\mathbf{u} +
+\mathbf{v}\)</span> means component-wise addition.</p>
+<p>加法： <span class="math inline">\(\mathbf{u} + \mathbf{v}\)</span>
+表示逐个组件的加法。</p></li>
+<li><p>Scalar multiplication: <span
 class="math inline">\(c\mathbf{v}\)</span> scales each entry of <span
 class="math inline">\(\mathbf{v}\)</span> by <span
-class="math inline">\(c\)</span>. 标量乘法： <span
-class="math inline">\(c\mathbf{v}\)</span> 将 <span
+class="math inline">\(c\)</span>.</p>
+<p>标量乘法： <span class="math inline">\(c\mathbf{v}\)</span> 将 <span
 class="math inline">\(\mathbf{v}\)</span> 的每个条目乘以 <span
-class="math inline">\(c\)</span> 。</li>
-<li>Linear combination: a sum of the form <span
+class="math inline">\(c\)</span> 。</p></li>
+<li><p>Linear combination: a sum of the form <span
 class="math inline">\(c_1 \mathbf{v}_1 + \cdots + c_k
-\mathbf{v}_k\)</span>. 线性组合：𝑐 形式的和 1 𝑣 1 + ⋯ + 𝑐 𝑘 𝑣 𝑘 c 1 ​ v 1
-​+⋯+c k ​ v k ​ .</li>
+\mathbf{v}_k\)</span>.</p>
+<p>线性组合：𝑐 形式的和 1 𝑣 1 + ⋯ + 𝑐 𝑘 𝑣 𝑘 c 1 ​ v 1 ​ +⋯+c k ​ v k ​
+.</p></li>
 </ul>
 <h3 id="why-this-matters">Why this matters</h3>
 <p>为什么这很重要</p>
@@ -306,43 +321,46 @@ of linear algebra. They give structure to vector spaces, allow us to
 describe geometric phenomena like translation and scaling, and provide
 the foundation for solving systems of equations. Everything that
 follows-basis, dimension, transformations-builds on these simple but
-profound rules.
-向量加法和标量乘法是线性代数的定义运算。它们赋予向量空间结构，使我们能够描述平移和缩放等几何现象，并为方程组的求解奠定基础。之后的一切——基、维度、变换——都建立在这些简单而深刻的规则之上。</p>
+profound rules.</p>
+<p>向量加法和标量乘法是线性代数的定义运算。它们赋予向量空间结构，使我们能够描述平移和缩放等几何现象，并为方程组的求解奠定基础。之后的一切——基、维度、变换——都建立在这些简单而深刻的规则之上。</p>
 <h3 id="exercises-1.2">Exercises 1.2</h3>
 <p>练习 1.2</p>
 <ol type="1">
-<li>Compute <span class="math inline">\(\mathbf{u} + \mathbf{v}\)</span>
-where <span class="math inline">\(\mathbf{u} = (1,2,3)\)</span> and
-<span class="math inline">\(\mathbf{v} = (4, -1, 0)\)</span>. 计算 <span
-class="math inline">\(\mathbf{u} + \mathbf{v}\)</span> ，其中 <span
-class="math inline">\(\mathbf{u} = (1,2,3)\)</span> 和 <span
-class="math inline">\(\mathbf{v} = (4, -1, 0)\)</span> 。</li>
-<li>Find <span class="math inline">\(3\\mathbf{v}\)</span>where<span
-class="math inline">\(\\mathbf{v} = (-2,5)\)</span>. Sketch both vectors
-to illustrate the scaling. 求 $3\mathbf{v} <span
-class="math inline">\(where\)</span> \mathbf{v} =
-(-2,5)$。画出两个向量的示意图，以说明缩放关系。</li>
-<li>Show that <span class="math inline">\((5,7)\)</span> can be written
-as a linear combination of <span class="math inline">\((1,0)\)</span>
-and <span class="math inline">\((0,1)\)</span>. 证明 <span
-class="math inline">\((5,7)\)</span> 可以写成 <span
+<li><p>Compute <span class="math inline">\(\mathbf{u} +
+\mathbf{v}\)</span> where <span class="math inline">\(\mathbf{u} =
+(1,2,3)\)</span> and <span class="math inline">\(\mathbf{v} = (4, -1,
+0)\)</span>.</p>
+<p>计算 <span class="math inline">\(\mathbf{u} + \mathbf{v}\)</span>
+，其中 <span class="math inline">\(\mathbf{u} = (1,2,3)\)</span> 和
+<span class="math inline">\(\mathbf{v} = (4, -1, 0)\)</span> 。</p></li>
+<li><p>Find <span class="math inline">\(3\mathbf{v}\)</span> where <span
+class="math inline">\(\mathbf{v} = (-2,5)\)</span>. Sketch both vectors
+to illustrate the scaling.</p>
+<p>求 $3 $ 其中 $ =
+(-2,5)$。画出两个向量的示意图，以说明缩放关系。</p></li>
+<li><p>Show that <span class="math inline">\((5,7)\)</span> can be
+written as a linear combination of <span
+class="math inline">\((1,0)\)</span> and <span
+class="math inline">\((0,1)\)</span>.</p>
+<p>证明 <span class="math inline">\((5,7)\)</span> 可以写成 <span
 class="math inline">\((1,0)\)</span> 和 <span
-class="math inline">\((0,1)\)</span> 的线性组合。</li>
-<li>Write <span class="math inline">\((4,4)\)</span> as a linear
+class="math inline">\((0,1)\)</span> 的线性组合。</p></li>
+<li><p>Write <span class="math inline">\((4,4)\)</span> as a linear
 combination of <span class="math inline">\((1,1)\)</span> and <span
 class="math inline">\((1,-1)\)</span>. 将 <span
 class="math inline">\((4,4)\)</span> 写为 <span
 class="math inline">\((1,1)\)</span> 和 <span
-class="math inline">\((1,-1)\)</span> 的线性组合。</li>
-<li>Prove that if <span class="math inline">\(\mathbf{u}, \mathbf{v} \in
-\mathbb{R}^n\)</span>, then <span
+class="math inline">\((1,-1)\)</span> 的线性组合。</p></li>
+<li><p>Prove that if <span class="math inline">\(\mathbf{u}, \mathbf{v}
+\in \mathbb{R}^n\)</span>, then <span
 class="math inline">\((c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} +
 c\mathbf{v} + d\mathbf{u} + d\mathbf{v}\)</span> for scalars <span
-class="math inline">\(c,d \in \mathbb{R}\)</span>. 证明如果 <span
-class="math inline">\(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\)</span>
-，则对于标量 <span class="math inline">\(c,d \in \mathbb{R}\)</span> 有
-<span class="math inline">\((c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} +
-c\mathbf{v} + d\mathbf{u} + d\mathbf{v}\)</span> 。</li>
+class="math inline">\(c,d \in \mathbb{R}\)</span>.</p>
+<p>证明如果 <span class="math inline">\(\mathbf{u}, \mathbf{v} \in
+\mathbb{R}^n\)</span> ，则对于标量 <span class="math inline">\(c,d \in
+\mathbb{R}\)</span> 有 <span
+class="math inline">\((c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} +
+c\mathbf{v} + d\mathbf{u} + d\mathbf{v}\)</span> 。</p></li>
 </ol>
 <h2 id="dot-product-norms-and-angles">1.3 Dot Product, Norms, and
 Angles</h2>
@@ -351,64 +369,70 @@ Angles</h2>
 geometry in vector spaces. It allows us to measure lengths, compute
 angles, and determine orthogonality. From this single definition flow
 the notions of <em>norm</em> and <em>angle</em>, which give geometry to
-abstract vector spaces.
-点积是向量空间中连接代数和几何的基本运算。它使我们能够测量长度、计算角度并确定正交性。从这个单一定义中衍生出<em>范</em>数和
+abstract vector spaces.</p>
+<p>点积是向量空间中连接代数和几何的基本运算。它使我们能够测量长度、计算角度并确定正交性。从这个单一定义中衍生出<em>范</em>数和
 <em>角度</em> ，它为抽象向量空间提供几何形状。</p>
 <h3 id="the-dot-product">The Dot Product</h3>
 <p>点积</p>
 <p>For two vectors in <span class="math inline">\(\mathbb{R}^n\)</span>,
-the dot product (also called the inner product) is defined by 对于 <span
-class="math inline">\(\mathbb{R}^n\)</span>
+the dot product (also called the inner product) is defined by</p>
+<p>对于 <span class="math inline">\(\mathbb{R}^n\)</span>
 中的两个向量，点积（也称为内积）定义为</p>
 <p><span class="math display">\[
 \mathbf{u} \cdot \mathbf{v} = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n.
 \]</span></p>
-<p>Equivalently, in matrix notation: 等效地，用矩阵表示法表示：</p>
+<p>Equivalently, in matrix notation:</p>
+<p>等效地，用矩阵表示法表示：</p>
 <p><span class="math display">\[
 \mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v}.
 \]</span></p>
 <p>Example 1.3.1. Let <span class="math inline">\(\mathbf{u} = (2, -1,
 3)\)</span> and <span class="math inline">\(\mathbf{v} = (4, 0,
--2)\)</span>. Then 例 1.3.1。 设 <span class="math inline">\(\mathbf{u}
-= (2, -1, 3)\)</span> 和 <span class="math inline">\(\mathbf{v} = (4, 0,
+-2)\)</span>. Then</p>
+<p>例 1.3.1。 设 <span class="math inline">\(\mathbf{u} = (2, -1,
+3)\)</span> 和 <span class="math inline">\(\mathbf{v} = (4, 0,
 -2)\)</span> 。则</p>
 <p><span class="math display">\[
 \mathbf{u} \cdot \mathbf{v} = 2\cdot 4 + (-1)\cdot 0 + 3\cdot (-2) = 8 -
 6 = 2.
 \]</span></p>
-<p>The dot product outputs a single scalar, not another vector.
-点积输出单个标量，而不是另一个向量。</p>
+<p>The dot product outputs a single scalar, not another vector.</p>
+<p>点积输出单个标量，而不是另一个向量。</p>
 <h3 id="norms-length-of-a-vector">Norms (Length of a Vector)</h3>
 <p>范数（向量的长度）</p>
 <p>The <em>Euclidean norm</em> of a vector is the square root of its dot
-product with itself:
-向量的<em>欧几里得范数</em>是其与自身的点积的平方根：</p>
+product with itself:</p>
+<p>向量的<em>欧几里得范数</em>是其与自身的点积的平方根：</p>
 <p><span class="math display">\[
 \|\mathbf{v}\| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{v_1^2 +
 v_2^2 + \cdots + v_n^2}.
 \]</span></p>
-<p>This generalizes the Pythagorean theorem to arbitrary dimensions.
-这将勾股定理推广到任意维度。</p>
+<p>This generalizes the Pythagorean theorem to arbitrary dimensions.</p>
+<p>这将勾股定理推广到任意维度。</p>
 <p>Example 1.3.2. For <span class="math inline">\(\mathbf{v} = (3,
-4)\)</span>, 例 1.3.2。 对于 <span class="math inline">\(\mathbf{v} =
-(3, 4)\)</span> ，</p>
+4)\)</span>,</p>
+<p>例 1.3.2。 对于 <span class="math inline">\(\mathbf{v} = (3,
+4)\)</span> ，</p>
 <p><span class="math display">\[
 \|\mathbf{v}\| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5.
 \]</span></p>
-<p>This is exactly the length of the vector as an arrow in the plane.
-这正是平面中箭头所指的矢量的长度。</p>
+<p>This is exactly the length of the vector as an arrow in the
+plane.</p>
+<p>这正是平面中箭头所指的矢量的长度。</p>
 <h3 id="angles-between-vectors">Angles Between Vectors</h3>
 <p>向量之间的角度</p>
 <p>The dot product also encodes the angle between two vectors. For
 nonzero vectors <span class="math inline">\(\mathbf{u},
-\mathbf{v}\)</span>, 点积也编码了两个向量之间的角度。对于非零向量 <span
+\mathbf{v}\)</span>,</p>
+<p>点积也编码了两个向量之间的角度。对于非零向量 <span
 class="math inline">\(\mathbf{u}, \mathbf{v}\)</span> ，</p>
 <p><span class="math display">\[
 \mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\| \, \|\mathbf{v}\| \cos
 \theta,
 \]</span></p>
 <p>where <span class="math inline">\(\theta\)</span> is the angle
-between them. Thus, 其中 <span class="math inline">\(\theta\)</span>
+between them. Thus,</p>
+<p>其中 <span class="math inline">\(\theta\)</span>
 是它们之间的角度。因此，</p>
 <p><span class="math display">\[
 \cos \theta = \frac{\mathbf{u} \cdot
@@ -416,104 +440,117 @@ between them. Thus, 其中 <span class="math inline">\(\theta\)</span>
 \]</span></p>
 <p>Example 1.3.3. Let <span class="math inline">\(\mathbf{u} =
 (1,0)\)</span> and <span class="math inline">\(\mathbf{v} =
-(0,1)\)</span>. Then 例 1.3.3。 设 <span
-class="math inline">\(\mathbf{u} = (1,0)\)</span> 和 <span
-class="math inline">\(\mathbf{v} = (0,1)\)</span> 。则</p>
+(0,1)\)</span>. Then</p>
+<p>例 1.3.3。 设 <span class="math inline">\(\mathbf{u} = (1,0)\)</span>
+和 <span class="math inline">\(\mathbf{v} = (0,1)\)</span> 。则</p>
 <p><span class="math display">\[
 \mathbf{u} \cdot \mathbf{v} = 0, \quad \|\mathbf{u}\| = 1, \quad
 \|\mathbf{v}\| = 1.
 \]</span></p>
-<p>Hence 因此</p>
+<p>Hence</p>
+<p>因此</p>
 <p><span class="math display">\[
 \cos \theta = \frac{0}{1\cdot 1} = 0 \quad \Rightarrow \quad \theta =
 \frac{\pi}{2}.
 \]</span></p>
-<p>The vectors are perpendicular. 这些向量是垂直的。</p>
+<p>The vectors are perpendicular.</p>
+<p>这些向量是垂直的。</p>
 <h3 id="orthogonality">Orthogonality</h3>
 <p>正交性</p>
-<p>Two vectors are said to be orthogonal if their dot product is zero:
-如果两个向量的点积为零，则称它们正交：</p>
+<p>Two vectors are said to be orthogonal if their dot product is
+zero:</p>
+<p>如果两个向量的点积为零，则称它们正交：</p>
 <p><span class="math display">\[
 \mathbf{u} \cdot \mathbf{v} = 0.
 \]</span></p>
 <p>Orthogonality generalizes the idea of perpendicularity from geometry
-to higher dimensions. 正交性将垂直性的概念从几何学推广到更高维度。</p>
+to higher dimensions.</p>
+<p>正交性将垂直性的概念从几何学推广到更高维度。</p>
 <h3 id="notation-2">Notation</h3>
 <p>符号</p>
 <ul>
-<li>Dot product: <span class="math inline">\(\mathbf{u} \cdot
-\mathbf{v}\)</span>. 点积： <span class="math inline">\(\mathbf{u} \cdot
-\mathbf{v}\)</span> 。</li>
-<li>Norm (length): <span class="math inline">\(|\mathbf{v}|\)</span>.
-规范（长度）： <span class="math inline">\(|\mathbf{v}|\)</span> 。</li>
-<li>Orthogonality: <span class="math inline">\(\mathbf{u} \perp
+<li><p>Dot product: <span class="math inline">\(\mathbf{u} \cdot
+\mathbf{v}\)</span>.</p>
+<p>点积： <span class="math inline">\(\mathbf{u} \cdot
+\mathbf{v}\)</span> 。</p></li>
+<li><p>Norm (length): <span
+class="math inline">\(|\mathbf{v}|\)</span>.</p>
+<p>规范（长度）： <span class="math inline">\(|\mathbf{v}|\)</span>
+。</p></li>
+<li><p>Orthogonality: <span class="math inline">\(\mathbf{u} \perp
 \mathbf{v}\)</span> if <span class="math inline">\(\mathbf{u} \cdot
-\mathbf{v} = 0\)</span>. 正交性：如果为 <span
-class="math inline">\(\mathbf{u} \cdot \mathbf{v} = 0\)</span> ，则为
-<span class="math inline">\(\mathbf{u} \perp \mathbf{v}\)</span> 。</li>
+\mathbf{v} = 0\)</span>.</p>
+<p>正交性：如果为 <span class="math inline">\(\mathbf{u} \cdot
+\mathbf{v} = 0\)</span> ，则为 <span class="math inline">\(\mathbf{u}
+\perp \mathbf{v}\)</span> 。</p></li>
 </ul>
 <h3 id="why-this-matters-1">Why this matters</h3>
 <p>为什么这很重要</p>
 <p>The dot product turns vector spaces into geometric objects: vectors
 gain lengths, angles, and notions of perpendicularity. This foundation
 will later support the study of orthogonal projections, Gram–Schmidt
-orthogonalization, eigenvectors, and least squares problems.
-点积将向量空间转化为几何对象：向量获得长度、角度和垂直度的概念。这一基础将为后续的正交投影、格拉姆-施密特正交化、特征向量和最小二乘问题的研究奠定基础。</p>
+orthogonalization, eigenvectors, and least squares problems.</p>
+<p>点积将向量空间转化为几何对象：向量获得长度、角度和垂直度的概念。这一基础将为后续的正交投影、格拉姆-施密特正交化、特征向量和最小二乘问题的研究奠定基础。</p>
 <h3 id="exercises-1.3">Exercises 1.3</h3>
 <p>练习 1.3</p>
 <ol type="1">
-<li>Compute <span class="math inline">\(\mathbf{u} \cdot
+<li><p>Compute <span class="math inline">\(\mathbf{u} \cdot
 \mathbf{v}\)</span> for <span class="math inline">\(\mathbf{u} =
 (1,2,3)\)</span>, <span class="math inline">\(\mathbf{v} =
-(4,5,6)\)</span>. 计算 <span class="math inline">\(\mathbf{u} =
-(1,2,3)\)</span> 、 <span class="math inline">\(\mathbf{v} =
-(4,5,6)\)</span> 的 <span class="math inline">\(\mathbf{u} \cdot
-\mathbf{v}\)</span> 。</li>
-<li>Find the norm of <span class="math inline">\(\mathbf{v} = (2, -2,
-1)\)</span>. 求出 <span class="math inline">\(\mathbf{v} = (2, -2,
-1)\)</span> 的范数。</li>
-<li>Determine whether <span class="math inline">\(\mathbf{u} =
+(4,5,6)\)</span>.</p>
+<p>计算 <span class="math inline">\(\mathbf{u} = (1,2,3)\)</span> 、
+<span class="math inline">\(\mathbf{v} = (4,5,6)\)</span> 的 <span
+class="math inline">\(\mathbf{u} \cdot \mathbf{v}\)</span> 。</p></li>
+<li><p>Find the norm of <span class="math inline">\(\mathbf{v} = (2, -2,
+1)\)</span>.</p>
+<p>求出 <span class="math inline">\(\mathbf{v} = (2, -2, 1)\)</span>
+的范数。</p></li>
+<li><p>Determine whether <span class="math inline">\(\mathbf{u} =
 (1,1,0)\)</span> and <span class="math inline">\(\mathbf{v} =
-(1,-1,2)\)</span> are orthogonal. 确定 <span
-class="math inline">\(\mathbf{u} = (1,1,0)\)</span> 和 <span
-class="math inline">\(\mathbf{v} = (1,-1,2)\)</span> 是否正交。</li>
-<li>Let <span class="math inline">\(\mathbf{u} = (3,4)\)</span>, <span
-class="math inline">\(\mathbf{v} = (4,3)\)</span>. Compute the angle
-between them. 令 <span class="math inline">\(\mathbf{u} = (3,4)\)</span>
-, <span class="math inline">\(\mathbf{v} = (4,3)\)</span>
-。计算它们之间的角度。</li>
-<li>Prove that <span class="math inline">\(|\mathbf{u} + \mathbf{v}|^2 =
-|\mathbf{u}|^2 + |\mathbf{v}|^2 + 2\mathbf{u}\cdot \mathbf{v}\)</span>.
-This identity is the algebraic version of the Law of Cosines. 证明 <span
-class="math inline">\(|\mathbf{u} + \mathbf{v}|^2 = |\mathbf{u}|^2 +
-|\mathbf{v}|^2 + 2\mathbf{u}\cdot \mathbf{v}\)</span>
-。这个恒等式是余弦定理的代数形式。</li>
+(1,-1,2)\)</span> are orthogonal.</p>
+<p>确定 <span class="math inline">\(\mathbf{u} = (1,1,0)\)</span> 和
+<span class="math inline">\(\mathbf{v} = (1,-1,2)\)</span>
+是否正交。</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{u} = (3,4)\)</span>,
+<span class="math inline">\(\mathbf{v} = (4,3)\)</span>. Compute the
+angle between them.</p>
+<p>令 <span class="math inline">\(\mathbf{u} = (3,4)\)</span> , <span
+class="math inline">\(\mathbf{v} = (4,3)\)</span>
+。计算它们之间的角度。</p></li>
+<li><p>Prove that <span class="math inline">\(|\mathbf{u} +
+\mathbf{v}|^2 = |\mathbf{u}|^2 + |\mathbf{v}|^2 + 2\mathbf{u}\cdot
+\mathbf{v}\)</span>. This identity is the algebraic version of the Law
+of Cosines.</p>
+<p>证明 <span class="math inline">\(|\mathbf{u} + \mathbf{v}|^2 =
+|\mathbf{u}|^2 + |\mathbf{v}|^2 + 2\mathbf{u}\cdot \mathbf{v}\)</span>
+。这个恒等式是余弦定理的代数形式。</p></li>
 </ol>
 <h2 id="orthogonality-1">1.4 Orthogonality</h2>
 <p>1.4 正交性</p>
 <p>Orthogonality captures the notion of perpendicularity in vector
 spaces. It is one of the most important geometric ideas in linear
 algebra, allowing us to decompose vectors, define projections, and
-construct special bases with elegant properties.
-正交性捕捉了向量空间中垂直性的概念。它是线性代数中最重要的几何概念之一，它使我们能够分解向量、定义投影，并构造具有优雅性质的特殊基。</p>
+construct special bases with elegant properties.</p>
+<p>正交性捕捉了向量空间中垂直性的概念。它是线性代数中最重要的几何概念之一，它使我们能够分解向量、定义投影，并构造具有优雅性质的特殊基。</p>
 <h3 id="definition">Definition</h3>
 <p>定义</p>
 <p>Two vectors <span class="math inline">\(\mathbf{u}, \mathbf{v} \in
 \mathbb{R}^n\)</span> are said to be orthogonal if their dot product is
-zero: 如果两个向量 <span class="math inline">\(\mathbf{u}, \mathbf{v}
-\in \mathbb{R}^n\)</span> 的点积为零，则称它们正交：</p>
+zero:</p>
+<p>如果两个向量 <span class="math inline">\(\mathbf{u}, \mathbf{v} \in
+\mathbb{R}^n\)</span> 的点积为零，则称它们正交：</p>
 <p><span class="math display">\[
 \mathbf{u} \cdot \mathbf{v} = 0.
 \]</span></p>
 <p>This condition ensures that the angle between them is <span
-class="math inline">\(\pi/2\)</span> radians (90 degrees).
-此条件确保它们之间的角度为 <span class="math inline">\(\pi/2\)</span>
+class="math inline">\(\pi/2\)</span> radians (90 degrees).</p>
+<p>此条件确保它们之间的角度为 <span class="math inline">\(\pi/2\)</span>
 弧度（90 度）。</p>
 <p>Example 1.4.1. In <span class="math inline">\(\mathbb{R}^2\)</span>,
 the vectors <span class="math inline">\((1,2)\)</span> and <span
-class="math inline">\((2,-1)\)</span> are orthogonal since 例 1.4.1。 在
-<span class="math inline">\(\mathbb{R}^2\)</span> 中，向量 <span
-class="math inline">\((1,2)\)</span> 和 <span
+class="math inline">\((2,-1)\)</span> are orthogonal since</p>
+<p>例 1.4.1。 在 <span class="math inline">\(\mathbb{R}^2\)</span>
+中，向量 <span class="math inline">\((1,2)\)</span> 和 <span
 class="math inline">\((2,-1)\)</span> 是正交的，因为</p>
 <p><span class="math display">\[
 (1,2) \cdot (2,-1) = 1\cdot 2 + 2\cdot (-1) = 0.
@@ -522,18 +559,20 @@ class="math inline">\((2,-1)\)</span> 是正交的，因为</p>
 <p>正交集</p>
 <p>A collection of vectors is called orthogonal if every distinct pair
 of vectors in the set is orthogonal. If, in addition, each vector has
-norm 1, the set is called orthonormal.
-如果一组向量中每对不同的向量都是正交的，则称该集合为正交向量。此外，如果每个向量的范数均为
+norm 1, the set is called orthonormal.</p>
+<p>如果一组向量中每对不同的向量都是正交的，则称该集合为正交向量。此外，如果每个向量的范数均为
 1，则该集合称为标准正交向量集。</p>
 <p>Example 1.4.2. In <span class="math inline">\(\mathbb{R}^3\)</span>,
-the standard basis vectors 例 1.4.2。 在 <span
-class="math inline">\(\mathbb{R}^3\)</span> 中，标准基向量</p>
+the standard basis vectors</p>
+<p>例 1.4.2。 在 <span class="math inline">\(\mathbb{R}^3\)</span>
+中，标准基向量</p>
 <p><span class="math display">\[
 \mathbf{e}_1 = (1,0,0), \quad \mathbf{e}_2 = (0,1,0), \quad \mathbf{e}_3
 = (0,0,1)
 \]</span></p>
 <p>form an orthonormal set: each has length 1, and their dot products
-vanish when the indices differ. 形成一个正交集：每个集的长度为
+vanish when the indices differ.</p>
+<p>形成一个正交集：每个集的长度为
 1，并且当索引不同时，它们的点积消失。</p>
 <h3 id="projections">Projections</h3>
 <p>预测</p>
@@ -542,8 +581,8 @@ components: one parallel to another vector, and one orthogonal to it.
 Given a nonzero vector <span class="math inline">\(\mathbf{u}\)</span>
 and any vector <span class="math inline">\(\mathbf{v}\)</span>, the
 projection of <span class="math inline">\(\mathbf{v}\)</span> onto <span
-class="math inline">\(\mathbf{u}\)</span> is
-正交性使得将一个向量分解为两个分量成为可能：一个与另一个向量平行，另一个
+class="math inline">\(\mathbf{u}\)</span> is</p>
+<p>正交性使得将一个向量分解为两个分量成为可能：一个与另一个向量平行，另一个
 与其正交。给定一个非零向量 <span
 class="math inline">\(\mathbf{u}\)</span> 和任意向量 <span
 class="math inline">\(\mathbf{v}\)</span> ，则 <span
@@ -553,20 +592,21 @@ class="math inline">\(\mathbf{u}\)</span> 是</p>
 \text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\mathbf{u} \cdot
 \mathbf{v}}{\mathbf{u} \cdot \mathbf{u}} \mathbf{u}.
 \]</span></p>
-<p>The difference 区别</p>
+<p>The difference</p>
+<p>区别</p>
 <p><span class="math display">\[
 \mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})
 \]</span></p>
 <p>is orthogonal to <span class="math inline">\(\mathbf{u}\)</span>.
 Thus every vector can be decomposed uniquely into a parallel and
-perpendicular part with respect to another vector. 与 <span
-class="math inline">\(\mathbf{u}\)</span>
+perpendicular part with respect to another vector.</p>
+<p>与 <span class="math inline">\(\mathbf{u}\)</span>
 正交。因此，每个向量都可以唯一地分解为相对于另一个向量平行和垂直的部分。</p>
 <p>Example 1.4.3. Let <span class="math inline">\(\mathbf{u} =
 (1,0)\)</span>, <span class="math inline">\(\mathbf{v} = (2,3)\)</span>.
-Then 例 1.4.3。 令 <span class="math inline">\(\mathbf{u} =
-(1,0)\)</span> ， <span class="math inline">\(\mathbf{v} =
-(2,3)\)</span> 。然后</p>
+Then</p>
+<p>例 1.4.3。 令 <span class="math inline">\(\mathbf{u} = (1,0)\)</span>
+， <span class="math inline">\(\mathbf{v} = (2,3)\)</span> 。然后</p>
 <p><span class="math display">\[
 \text{proj}_{\mathbf{u}}(\mathbf{v}) =
 \frac{(1,0)\cdot(2,3)}{(1,0)\cdot(1,0)} (1,0)= \frac{2}{1}(1,0) = (2,0).
@@ -577,8 +617,8 @@ Then 例 1.4.3。 令 <span class="math inline">\(\mathbf{u} =
 \]</span></p>
 <p>where <span class="math inline">\((2,0)\)</span> is parallel to <span
 class="math inline">\((1,0)\)</span> and <span
-class="math inline">\((0,3)\)</span> is orthogonal to it. 其中 <span
-class="math inline">\((2,0)\)</span> 与 <span
+class="math inline">\((0,3)\)</span> is orthogonal to it.</p>
+<p>其中 <span class="math inline">\((2,0)\)</span> 与 <span
 class="math inline">\((1,0)\)</span> 平行， <span
 class="math inline">\((0,3)\)</span> 与 <span
 class="math inline">\((1,0)\)</span> 正交。</p>
@@ -586,9 +626,10 @@ class="math inline">\((1,0)\)</span> 正交。</p>
 <p>正交分解</p>
 <p>In general, if <span class="math inline">\(\mathbf{u} \neq
 \mathbf{0}\)</span> and <span class="math inline">\(\mathbf{v} \in
-\mathbb{R}^n\)</span>, then 一般来说，如果 <span
-class="math inline">\(\mathbf{u} \neq \mathbf{0}\)</span> 和 <span
-class="math inline">\(\mathbf{v} \in \mathbb{R}^n\)</span> ，那么</p>
+\mathbb{R}^n\)</span>, then</p>
+<p>一般来说，如果 <span class="math inline">\(\mathbf{u} \neq
+\mathbf{0}\)</span> 和 <span class="math inline">\(\mathbf{v} \in
+\mathbb{R}^n\)</span> ，那么</p>
 <p><span class="math display">\[
 \mathbf{v} = \text{proj}\_{\mathbf{u}}(\mathbf{v}) + \big(\mathbf{v} -
 \text{proj}\_{\mathbf{u}}(\mathbf{v})\big),
@@ -596,22 +637,22 @@ class="math inline">\(\mathbf{v} \in \mathbb{R}^n\)</span> ，那么</p>
 <p>where the first term is parallel to <span
 class="math inline">\(\mathbf{u}\)</span> and the second term is
 orthogonal. This decomposition underlies methods such as least squares
-approximation and the Gram–Schmidt process. 其中第一项平行于 <span
-class="math inline">\(\mathbf{u}\)</span>
+approximation and the Gram–Schmidt process.</p>
+<p>其中第一项平行于 <span class="math inline">\(\mathbf{u}\)</span>
 ，第二项正交。这种分解是最小二乘近似和格拉姆-施密特过程等方法的基础。</p>
 <h3 id="notation-3">Notation</h3>
 <p>符号</p>
 <ul>
-<li><span class="math inline">\(\mathbf{u} \perp \mathbf{v}\)</span>:
+<li><p><span class="math inline">\(\mathbf{u} \perp \mathbf{v}\)</span>:
 vectors <span class="math inline">\(\mathbf{u}\)</span> and <span
-class="math inline">\(\mathbf{v}\)</span> are orthogonal. <span
-class="math inline">\(\mathbf{u} \perp \mathbf{v}\)</span> ：向量 <span
-class="math inline">\(\mathbf{u}\)</span> 和 <span
-class="math inline">\(\mathbf{v}\)</span> 正交。</li>
-<li>An orthogonal set: vectors pairwise orthogonal.
-正交集：向量两两正交。</li>
-<li>An orthonormal set: pairwise orthogonal, each of norm 1.
-正交集：两两正交，每组范数为 1。</li>
+class="math inline">\(\mathbf{v}\)</span> are orthogonal.</p>
+<p><span class="math inline">\(\mathbf{u} \perp \mathbf{v}\)</span>
+：向量 <span class="math inline">\(\mathbf{u}\)</span> 和 <span
+class="math inline">\(\mathbf{v}\)</span> 正交。</p></li>
+<li><p>An orthogonal set: vectors pairwise orthogonal.</p>
+<p>正交集：向量两两正交。</p></li>
+<li><p>An orthonormal set: pairwise orthogonal, each of norm 1.</p>
+<p>正交集：两两正交，每组范数为 1。</p></li>
 </ul>
 <h3 id="why-this-matters-2">Why this matters</h3>
 <p>为什么这很重要</p>
@@ -619,42 +660,46 @@ class="math inline">\(\mathbf{v}\)</span> 正交。</li>
 separate independent directions cleanly, simplify computations, and
 minimize errors in approximations. Many powerful algorithms in numerical
 linear algebra and data science (QR decomposition, least squares
-regression, PCA) rely on orthogonality.
-正交性赋予向量空间结构。它提供了一种清晰地分离独立方向、简化计算并最小化近似误差的方法。数值线性代数和数据科学中许多强大的算法（例如
+regression, PCA) rely on orthogonality.</p>
+<p>正交性赋予向量空间结构。它提供了一种清晰地分离独立方向、简化计算并最小化近似误差的方法。数值线性代数和数据科学中许多强大的算法（例如
 QR 分解、最小二乘回归、主成分分析）都依赖于正交性。</p>
 <h3 id="exercises-1.4">Exercises 1.4</h3>
 <p>练习 1.4</p>
 <ol type="1">
-<li>Verify that the vectors <span class="math inline">\((1,2,2)\)</span>
-and <span class="math inline">\((2,0,-1)\)</span> are orthogonal.
-验证向量 <span class="math inline">\((1,2,2)\)</span> 和 <span
-class="math inline">\((2,0,-1)\)</span> 是否正交。</li>
-<li>Find the projection of <span class="math inline">\((3,4)\)</span>
-onto <span class="math inline">\((1,1)\)</span>. 找到 <span
-class="math inline">\((3,4)\)</span> 到 <span
-class="math inline">\((1,1)\)</span> 的投影。</li>
-<li>Show that any two distinct standard basis vectors in <span
-class="math inline">\(\mathbb{R}^n\)</span> are orthogonal. 证明 <span
-class="math inline">\(\mathbb{R}^n\)</span>
-中的任意两个不同的标准基向量都是正交的。</li>
-<li>Decompose <span class="math inline">\((5,2)\)</span> into components
-parallel and orthogonal to <span class="math inline">\((2,1)\)</span>.
-将 <span class="math inline">\((5,2)\)</span> 分解为与 <span
-class="math inline">\((2,1)\)</span> 平行且正交的分量。</li>
-<li>Let <span class="math inline">\(\mathbf{u}, \mathbf{v}\)</span> be
-orthogonal nonzero vectors. (a) Show that <span
+<li><p>Verify that the vectors <span
+class="math inline">\((1,2,2)\)</span> and <span
+class="math inline">\((2,0,-1)\)</span> are orthogonal.</p>
+<p>验证向量 <span class="math inline">\((1,2,2)\)</span> 和 <span
+class="math inline">\((2,0,-1)\)</span> 是否正交。</p></li>
+<li><p>Find the projection of <span class="math inline">\((3,4)\)</span>
+onto <span class="math inline">\((1,1)\)</span>.</p>
+<p>找到 <span class="math inline">\((3,4)\)</span> 到 <span
+class="math inline">\((1,1)\)</span> 的投影。</p></li>
+<li><p>Show that any two distinct standard basis vectors in <span
+class="math inline">\(\mathbb{R}^n\)</span> are orthogonal.</p>
+<p>证明 <span class="math inline">\(\mathbb{R}^n\)</span>
+中的任意两个不同的标准基向量都是正交的。</p></li>
+<li><p>Decompose <span class="math inline">\((5,2)\)</span> into
+components parallel and orthogonal to <span
+class="math inline">\((2,1)\)</span>.</p>
+<p>将 <span class="math inline">\((5,2)\)</span> 分解为与 <span
+class="math inline">\((2,1)\)</span> 平行且正交的分量。</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{u}, \mathbf{v}\)</span>
+be orthogonal nonzero vectors. (a) Show that <span
 class="math inline">\((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=\lVert
 \mathbf{u}\rVert^2-\lVert \mathbf{v}\rVert^2.\)</span> (b) For what
 condition on <span class="math inline">\(\mathbf{u}\)</span> and <span
 class="math inline">\(\mathbf{v}\)</span> does <span
-class="math inline">\((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=0\)</span>?
-令 <span class="math inline">\(\mathbf{u}, \mathbf{v}\)</span>
-为正交非零向量。（a）证明 <span
+class="math inline">\((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=0\)</span>?</p>
+<p>令 <span class="math inline">\(\mathbf{u}, \mathbf{v}\)</span>
+为正交非零向量。</p>
+<p>（a）证明 <span
 class="math inline">\((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=\lVert
-\mathbf{u}\rVert^2-\lVert \mathbf{v}\rVert^2.\)</span> （b） <span
+\mathbf{u}\rVert^2-\lVert \mathbf{v}\rVert^2.\)</span></p>
+<p>（b） <span
 class="math inline">\((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=0\)</span>
 对 <span class="math inline">\(\mathbf{u}\)</span> 和 <span
-class="math inline">\(\mathbf{v}\)</span> 满足什么条件？</li>
+class="math inline">\(\mathbf{v}\)</span> 满足什么条件？</p></li>
 </ol>
 <h1 id="chapter-2.-matrices">Chapter 2. Matrices</h1>
 <p>第 2 章矩阵</p>
