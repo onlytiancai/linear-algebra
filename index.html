@@ -139,7 +139,8 @@ class="math inline">\(\mathbf{v}, \mathbf{w}, \mathbf{x}\)</span>.</p>
 class="math inline">\(\mathbf{v}\)</span> is written <span
 class="math inline">\(v_i\)</span>, where indices begin at 1.</p>
 <p>向量 <span class="math inline">\(\mathbf{v}\)</span> 的第 -
-个元素写为 𝑣 𝑖 v i ​ ，其中索引从 1 开始。</p></li>
+个元素写为 <span class="math inline">\(v_i\)</span>​ ，其中索引从 1
+开始。</p></li>
 <li><p>The set of all <em>n</em>-dimensional vectors over <span
 class="math inline">\(\mathbb{R}\)</span> is denoted <span
 class="math inline">\(\mathbb{R}^n\)</span>.</p>
@@ -178,8 +179,8 @@ directly? Explain why high-dimensional visualization is challenging.</p>
 Write <span class="math inline">\(\mathbf{v}\)</span> in column form and
 state <span class="math inline">\(v_1, v_2, v_3\)</span>.</p>
 <p>令 <span class="math inline">\(\mathbf{v} = (4, -3, 2)\)</span> 。将
-<span class="math inline">\(\mathbf{v}\)</span> 写成列形式，并说明 𝑣 1 ,
-𝑣 2 , 𝑣 3 v 1 ​ ，v 2 ​ ，v 3 ​ .</p></li>
+<span class="math inline">\(\mathbf{v}\)</span> 写成列形式，并说明 <span
+class="math inline">\(v_1, v_2, v_3\)</span>.</p></li>
 <li><p>In what sense is the set <span
 class="math inline">\(\mathbb{R}^1\)</span> both a line and a vector
 space? Illustrate with examples.</p>
@@ -708,14 +709,14 @@ class="math inline">\(\mathbf{v}\)</span> 满足什么条件？</p></li>
 <p>Matrices are the central objects of linear algebra, providing a
 compact way to represent and manipulate linear transformations, systems
 of equations, and structured data. A matrix is a rectangular array of
-numbers arranged in rows and columns.
-矩阵是线性代数的核心对象，它提供了一种简洁的方式来表示和操作线性变换、方程组和结构化数据。矩阵是由按行和列排列的数字组成的矩形阵列。</p>
+numbers arranged in rows and columns.</p>
+<p>矩阵是线性代数的核心对象，它提供了一种简洁的方式来表示和操作线性变换、方程组和结构化数据。矩阵是由按行和列排列的数字组成的矩形阵列。</p>
 <h3 id="formal-definition">Formal Definition</h3>
 <p>正式定义</p>
 <p>An <span class="math inline">\(m \times n\)</span> matrix is an array
 with <span class="math inline">\(m\)</span> rows and <span
-class="math inline">\(n\)</span> columns, written <span
-class="math inline">\(m \times n\)</span> 矩阵是具有 <span
+class="math inline">\(n\)</span> columns, written</p>
+<p><span class="math inline">\(m \times n\)</span> 矩阵是具有 <span
 class="math inline">\(m\)</span> 行和 <span
 class="math inline">\(n\)</span> 列的数组，写为</p>
 <p><span class="math display">\[
@@ -727,126 +728,147 @@ a_{mn}\end{bmatrix}.
 <p>Each entry <span class="math inline">\(a_{ij}\)</span> is a scalar,
 located in the <em>i</em>-th row and <em>j</em>-th column. The size (or
 dimension) of the matrix is denoted by <span class="math inline">\(m
-\times n\)</span>. 每个条目𝑎 𝑖 𝑗 a 伊奇 ​ 是一个标量，位于第 - 行和第 -
+\times n\)</span>.</p>
+<p>每个条目<span class="math inline">\(a_{ij}\)</span>
+是一个标量，位于第 <em>i</em> 行和第 <em>j</em>
 列。矩阵的大小（或维度）用 <span class="math inline">\(m \times
 n\)</span> 表示。</p>
 <ul>
-<li>If <span class="math inline">\(m = n\)</span>, the matrix is square.
-如果为 <span class="math inline">\(m = n\)</span> ，则矩阵为方阵。</li>
-<li>If <span class="math inline">\(m = 1\)</span>, the matrix is a row
-vector. 如果为 <span class="math inline">\(m = 1\)</span>
-，则该矩阵为行向量。</li>
-<li>If <span class="math inline">\(n = 1\)</span>, the matrix is a
-column vector. 如果为 <span class="math inline">\(n = 1\)</span>
-，则矩阵为列向量。</li>
+<li><p>If <span class="math inline">\(m = n\)</span>, the matrix is
+square.</p>
+<p>如果为 <span class="math inline">\(m = n\)</span>
+，则矩阵为方阵。</p></li>
+<li><p>If <span class="math inline">\(m = 1\)</span>, the matrix is a
+row vector.</p>
+<p>如果为 <span class="math inline">\(m = 1\)</span>
+，则该矩阵为行向量。</p></li>
+<li><p>If <span class="math inline">\(n = 1\)</span>, the matrix is a
+column vector.</p>
+<p>如果为 <span class="math inline">\(n = 1\)</span>
+，则矩阵为列向量。</p></li>
 </ul>
 <p>Thus, vectors are simply special cases of matrices.
 因此，向量只是矩阵的特殊情况。</p>
 <h3 id="examples">Examples</h3>
 <p>示例</p>
-<p>Example 2.1.1. A 2×3 matrix: 例 2.1.1. 2×3 矩阵：</p>
+<p>Example 2.1.1. A 2×3 matrix:</p>
+<p>例 2.1.1. 2×3 矩阵：</p>
 <p><span class="math display">\[
 A = \begin{bmatrix}1 &amp; -2 &amp; 4 \\0 &amp; 3 &amp; 5\end{bmatrix}.
 \]</span></p>
 <p>Here, <span class="math inline">\(a_{12} = -2\)</span>, <span
 class="math inline">\(a_{23} = 5\)</span>, and the matrix has 2 rows, 3
-columns. 这里， <span class="math inline">\(a_{12} = -2\)</span> ，
-<span class="math inline">\(a_{23} = 5\)</span> ，矩阵有 2 行，3
-列。</p>
-<p>Example 2.1.2. A 3×3 square matrix: 例 2.1.2. 3×3 方阵：</p>
+columns.</p>
+<p>这里， <span class="math inline">\(a_{12} = -2\)</span> ， <span
+class="math inline">\(a_{23} = 5\)</span> ，矩阵有 2 行，3 列。</p>
+<p>Example 2.1.2. A 3×3 square matrix:</p>
+<p>例 2.1.2. 3×3 方阵：</p>
 <p><span class="math display">\[
 B = \begin{bmatrix}2 &amp; 0 &amp; 1 \\-1 &amp; 3 &amp; 4 \\0 &amp; 5
 &amp; -2\end{bmatrix}.
 \]</span></p>
 <p>This will later serve as the representation of a linear
-transformation on <span class="math inline">\(\mathbb{R}^3\)</span>.
-这稍后将作为 <span class="math inline">\(\mathbb{R}^3\)</span>
+transformation on <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+<p>这稍后将作为 <span class="math inline">\(\mathbb{R}^3\)</span>
 的线性变换的表示。</p>
 <h3 id="indexing-and-notation">Indexing and Notation</h3>
 <p>索引和符号</p>
 <ul>
-<li>Matrices are denoted by uppercase bold letters: <span
-class="math inline">\(A, B, C\)</span>. 矩阵用大写粗体字母表示： <span
-class="math inline">\(A, B, C\)</span> 。</li>
-<li>Entries are written as <span class="math inline">\(a_{ij}\)</span>,
-with the row index first, column index second. 条目写为𝑎 𝑖 𝑗 a 伊奇 ​
-，其中行索引在前，列索引在后。</li>
-<li>The set of all real <span class="math inline">\(m \times n\)</span>
-matrices is denoted <span class="math inline">\(\mathbb{R}^{m \times
-n}\)</span>. 所有实数 <span class="math inline">\(m \times n\)</span>
+<li><p>Matrices are denoted by uppercase bold letters: <span
+class="math inline">\(A, B, C\)</span>.</p>
+<p>矩阵用大写粗体字母表示： <span class="math inline">\(A, B, C\)</span>
+。</p></li>
+<li><p>Entries are written as <span
+class="math inline">\(a_{ij}\)</span>, with the row index first, column
+index second.</p>
+<p>条目写为<span class="math inline">\(a_{ij}\)</span> ​
+，其中行索引在前，列索引在后。</p></li>
+<li><p>The set of all real <span class="math inline">\(m \times
+n\)</span> matrices is denoted <span class="math inline">\(\mathbb{R}^{m
+\times n}\)</span>.</p>
+<p>所有实数 <span class="math inline">\(m \times n\)</span>
 矩阵的集合表示为 <span class="math inline">\(\mathbb{R}^{m \times
-n}\)</span> 。</li>
+n}\)</span> 。</p></li>
 </ul>
 <p>Thus, a matrix is a function <span class="math inline">\(A:
 {1,\dots,m} \times {1,\dots,n} \to \mathbb{R}\)</span>, assigning a
-scalar to each row-column position. 因此，矩阵是一个函数 <span
-class="math inline">\(A: {1,\dots,m} \times {1,\dots,n} \to
-\mathbb{R}\)</span> ，为每个行列位置分配一个标量。</p>
+scalar to each row-column position.</p>
+<p>因此，矩阵是一个函数 <span class="math inline">\(A: {1,\dots,m}
+\times {1,\dots,n} \to \mathbb{R}\)</span>
+，为每个行列位置分配一个标量。</p>
 <h3 id="why-this-matters-3">Why this matters</h3>
 <p>为什么这很重要</p>
 <p>Matrices generalize vectors and give us a language for describing
 linear operations systematically. They encode systems of equations,
 rotations, projections, and transformations of data. With matrices,
 algebra and geometry come together: a single compact object can
-represent both numerical data and functional rules.
-矩阵推广了向量，并为我们提供了一种系统地描述线性运算的语言。它们对方程组、旋转、投影和数据变换进行编码。矩阵将代数和几何结合在一起：一个紧凑的对象既可以表示数值数据，又可以表示函数规则。</p>
+represent both numerical data and functional rules.</p>
+<p>矩阵推广了向量，并为我们提供了一种系统地描述线性运算的语言。它们对方程组、旋转、投影和数据变换进行编码。矩阵将代数和几何结合在一起：一个紧凑的对象既可以表示数值数据，又可以表示函数规则。</p>
 <h3 id="exercises-2.1">Exercises 2.1</h3>
 <p>练习 2.1</p>
 <ol type="1">
-<li>Write a <span class="math inline">\(3 \\times 2\)</span>matrix of
-your choice and identify its entries<span
-class="math inline">\(a\_{ij}\)</span>. 写出 $3 \times 2 <span
-class="math inline">\(matrix of your choice and identify its
-entries\)</span> a_{ij}$。</li>
-<li>Is every vector a matrix? Is every matrix a vector? Explain.
-每个向量都是矩阵吗？每个矩阵都是向量吗？请解释。</li>
-<li>Which of the following are square matrices: <span
+<li><p>Write a <span class="math inline">\(3 \times 2\)</span> matrix of
+your choice and identify its entries <span
+class="math inline">\(a_{ij}\)</span>.</p>
+<p>写一个你选定的 <span class="math inline">\(3 \times 2\)</span>
+行方阵，并确定其各元素 <span
+class="math inline">\(a_{ij}\)</span>。</p></li>
+<li><p>Is every vector a matrix? Is every matrix a vector? Explain.
+每个向量都是矩阵吗？每个矩阵都是向量吗？请解释。</p></li>
+<li><p>Which of the following are square matrices: <span
 class="math inline">\(A \in \mathbb{R}^{4\times4}\)</span>, <span
 class="math inline">\(B \in \mathbb{R}^{3\times5}\)</span>, <span
-class="math inline">\(C \in \mathbb{R}^{1\times1}\)</span>?
-下列哪些是正方形 矩阵： <span class="math inline">\(A \in
+class="math inline">\(C \in \mathbb{R}^{1\times1}\)</span>?</p>
+<p>下列哪些是正方形 矩阵： <span class="math inline">\(A \in
 \mathbb{R}^{4\times4}\)</span> ， <span class="math inline">\(B \in
 \mathbb{R}^{3\times5}\)</span> ， <span class="math inline">\(C \in
-\mathbb{R}^{1\times1}\)</span> ？</li>
-<li>Let 让</li>
+\mathbb{R}^{1\times1}\)</span> ？</p></li>
+<li><p>Let 让</p></li>
 </ol>
 <p><span class="math display">\[
 D = \begin{bmatrix} 1 &amp; 0 \\\\ 0 &amp; 1 \end{bmatrix}
 \]</span></p>
-<p>What kind of matrix is this? 5. Consider the matrix
-这是什么类型的矩阵？5. 考虑矩阵</p>
+<p>What kind of matrix is this?</p>
+<p>这是什么类型的矩阵？</p>
+<ol start="5" type="1">
+<li>Consider the matrix</li>
+</ol>
+<p>考虑矩阵</p>
 <p><span class="math display">\[
 E = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}
 \]</span></p>
 <p>Express <span class="math inline">\(e_{11}, e_{12}, e_{21},
-e_{22}\)</span> explicitly. 快递𝑒 11 , 𝑒 12 , 𝑒 21 , 𝑒 22 e 11 ​ ，e 12 ​
-，e 21 ​ ，e 22 ​ 明确地。</p>
+e_{22}\)</span> explicitly.</p>
+<p>明确表示<span class="math inline">\(e_{11}, e_{12}, e_{21},
+e_{22}\)</span>。</p>
 <h2 id="matrix-addition-and-multiplication">2.2 Matrix Addition and
 Multiplication</h2>
 <p>2.2 矩阵加法和乘法</p>
 <p>Once matrices are defined, the next step is to understand how they
 combine. Just as vectors gain meaning through addition and scalar
 multiplication, matrices become powerful through two operations:
-addition and multiplication.
-定义好矩阵后，下一步就是理解它们是如何组合的。正如向量通过加法和标量乘法获得意义一样，矩阵也通过两种运算变得强大：加法和乘法。</p>
+addition and multiplication.</p>
+<p>定义好矩阵后，下一步就是理解它们是如何组合的。正如向量通过加法和标量乘法获得意义一样，矩阵也通过两种运算变得强大：加法和乘法。</p>
 <h3 id="matrix-addition">Matrix Addition</h3>
 <p>矩阵加法</p>
 <p>Two matrices of the same size are added by adding corresponding
-entries. If 两个大小相同的矩阵可以通过添加相应的元素来相加。如果</p>
+entries. If</p>
+<p>两个大小相同的矩阵可以通过添加相应的元素来相加。如果</p>
 <p><span class="math display">\[
 A = [a_{ij}] \in \mathbb{R}^{m \times n}, \quad B = [b_{ij}] \in
 \mathbb{R}^{m \times n},
 \]</span></p>
-<p>then 然后</p>
+<p>then 则</p>
 <p><span class="math display">\[
 A + B = [a_{ij} + b_{ij}] \in \mathbb{R}^{m \times n}.
 \]</span></p>
-<p>Example 2.2.1. Let 例 2.2.1. 设</p>
+<p>Example 2.2.1. Let</p>
+<p>例 2.2.1. 设</p>
 <p><span class="math display">\[
 A = \begin{bmatrix}1 &amp; 2 \\3 &amp; 4\end{bmatrix}, \quad B =
 \begin{bmatrix}-1 &amp; 0 \\5 &amp; 2\end{bmatrix}.
 \]</span></p>
-<p>Then 然后</p>
+<p>Then 则</p>
 <p><span class="math display">\[
 A + B = \begin{bmatrix}1 + (-1) &amp; 2 + 0 \\3 + 5 &amp; 4 +
 2\end{bmatrix} =\begin{bmatrix}0 &amp; 2 \\8 &amp; 6\end{bmatrix}.
@@ -854,38 +876,43 @@ A + B = \begin{bmatrix}1 + (-1) &amp; 2 + 0 \\3 + 5 &amp; 4 +
 <p>Matrix addition is commutative (<span class="math inline">\(A+B =
 B+A\)</span>) and associative (<span class="math inline">\((A+B)+C =
 A+(B+C)\)</span>). The zero matrix, with all entries 0, acts as the
-additive identity. 矩阵加法满足交换律 ( <span class="math inline">\(A+B
-= B+A\)</span> ) 和结合律 ( <span class="math inline">\((A+B)+C =
-A+(B+C)\)</span> )。零矩阵（所有元素均为 0）充当加法恒等式。</p>
+additive identity.</p>
+<p>矩阵加法满足交换律 ( <span class="math inline">\(A+B = B+A\)</span> )
+和结合律 ( <span class="math inline">\((A+B)+C = A+(B+C)\)</span>
+)。零矩阵（所有元素均为 0）充当加法恒等式。</p>
 <h3 id="scalar-multiplication-1">Scalar Multiplication</h3>
 <p>标量乘法</p>
 <p>For a scalar <span class="math inline">\(c \in \mathbb{R}\)</span>
 and a matrix <span class="math inline">\(A = [[a_{ij}]\)</span>, we
-define 对于标量 <span class="math inline">\(c \in \mathbb{R}\)</span>
-和矩阵 <span class="math inline">\(A = [[a_{ij}]\)</span> ，我们定义</p>
+define</p>
+<p>对于标量 <span class="math inline">\(c \in \mathbb{R}\)</span> 和矩阵
+<span class="math inline">\(A = [[a_{ij}]\)</span> ，我们定义</p>
 <p><span class="math display">\[
 cA = [c \cdot a_{ij}].
 \]</span></p>
-<p>This stretches or shrinks all entries of the matrix uniformly.
-这会均匀地拉伸或收缩矩阵的所有条目。</p>
-<p>Example 2.2.2. If 例 2.2.2. 如果</p>
+<p>This stretches or shrinks all entries of the matrix uniformly.</p>
+<p>这会均匀地拉伸或收缩矩阵的所有条目。</p>
+<p>Example 2.2.2. If</p>
+<p>例 2.2.2. 如果</p>
 <p><span class="math display">\[
 A = \begin{bmatrix}2 &amp; -1 \\0 &amp; 3\end{bmatrix}, \quad c = -2,
 \]</span></p>
-<p>then 然后</p>
+<p>then</p>
+<p>则</p>
 <p><span class="math display">\[
 cA = \begin{bmatrix}-4 &amp; 2 \\0 &amp; -6\end{bmatrix}.
 \]</span></p>
 <h3 id="matrix-multiplication">Matrix Multiplication</h3>
 <p>矩阵乘法</p>
-<p>The defining operation of matrices is multiplication. If
-矩阵的定义运算是乘法。如果</p>
+<p>The defining operation of matrices is multiplication. If</p>
+<p>矩阵的定义运算是乘法。如果</p>
 <p><span class="math display">\[
 A \in \mathbb{R}^{m \times n}, \quad B \in \mathbb{R}^{n \times p},
 \]</span></p>
 <p>then their product is the <span class="math inline">\(m \times
-p\)</span> matrix 那么它们的乘积就是 <span class="math inline">\(m
-\times p\)</span> 矩阵</p>
+p\)</span> matrix</p>
+<p>那么它们的乘积就是 <span class="math inline">\(m \times p\)</span>
+矩阵</p>
 <p><span class="math display">\[
 AB = C = [c_{ij}], \quad c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}.
 \]</span></p>
@@ -895,20 +922,22 @@ class="math inline">\(AB\)</span> is the dot product of the <span
 class="math inline">\(i\)</span>-th row of <span
 class="math inline">\(A\)</span> with the <span
 class="math inline">\(j\)</span>-th column of <span
-class="math inline">\(B\)</span>. 因此， <span
-class="math inline">\(AB\)</span> 第 <span
+class="math inline">\(B\)</span>.</p>
+<p>因此， <span class="math inline">\(AB\)</span> 第 <span
 class="math inline">\(i\)</span> 行、第 <span
 class="math inline">\(j\)</span> 列的条目是 <span
 class="math inline">\(A\)</span> 第 <span
 class="math inline">\(i\)</span> 行与 <span
 class="math inline">\(B\)</span> 第 <span
 class="math inline">\(j\)</span> 列的点积。</p>
-<p>Example 2.2.3. Let 例 2.2.3. 设</p>
+<p>Example 2.2.3. Let</p>
+<p>例 2.2.3. 设</p>
 <p><span class="math display">\[
 A = \begin{bmatrix}1 &amp; 2 \\0 &amp; 3\end{bmatrix}, \quad B =
 \begin{bmatrix}4 &amp; -1 \\2 &amp; 5\end{bmatrix}.
 \]</span></p>
-<p>Then 然后</p>
+<p>Then</p>
+<p>则</p>
 <p><span class="math display">\[
 AB = \begin{bmatrix}1\cdot4 + 2\cdot2 &amp; 1\cdot(-1) + 2\cdot5
 \\0\cdot4 + 3\cdot2 &amp; 0\cdot(-1) + 3\cdot5\end{bmatrix}
@@ -917,9 +946,9 @@ AB = \begin{bmatrix}1\cdot4 + 2\cdot2 &amp; 1\cdot(-1) + 2\cdot5
 <p>Notice that matrix multiplication is not commutative in general:
 <span class="math inline">\(AB \neq BA\)</span>. Sometimes <span
 class="math inline">\(BA\)</span> may not even be defined if dimensions
-do not align. 请注意，矩阵乘法通常不满足交换律： <span
-class="math inline">\(AB \neq BA\)</span>
-。如果维度不一致，有时甚至可能无法定义 <span
+do not align.</p>
+<p>请注意，矩阵乘法通常不满足交换律： <span class="math inline">\(AB
+\neq BA\)</span> 。如果维度不一致，有时甚至可能无法定义 <span
 class="math inline">\(BA\)</span> 。</p>
 <h3 id="geometric-meaning">Geometric Meaning</h3>
 <p>几何意义</p>
@@ -931,7 +960,8 @@ class="math inline">\(\mathbb{R}^p\)</span>, then <span
 class="math inline">\(AB\)</span> represents applying <span
 class="math inline">\(B\)</span> first, then <span
 class="math inline">\(A\)</span>. This makes matrices the algebraic
-language of transformations. 矩阵乘法对应于线性变换的复合。如果 <span
+language of transformations.</p>
+<p>矩阵乘法对应于线性变换的复合。如果 <span
 class="math inline">\(A\)</span> 变换 <span
 class="math inline">\(\mathbb{R}^n\)</span> 中的向量， <span
 class="math inline">\(B\)</span> 变换 <span
@@ -942,16 +972,16 @@ class="math inline">\(A\)</span> 。这使得矩阵成为变换的代数语言�
 <h3 id="notation-4">Notation</h3>
 <p>符号</p>
 <ul>
-<li>Matrix sum: <span class="math inline">\(A+B\)</span>. 矩阵和： <span
-class="math inline">\(A+B\)</span> 。</li>
-<li>Scalar multiple: <span class="math inline">\(cA\)</span>. 标量倍数：
-<span class="math inline">\(cA\)</span> 。</li>
-<li>Product: <span class="math inline">\(AB\)</span>, defined only when
-the number of columns of <span class="math inline">\(A\)</span> equals
-the number of rows of <span class="math inline">\(B\)</span>. 乘积：
-<span class="math inline">\(AB\)</span> ，仅当 <span
+<li><p>Matrix sum: <span class="math inline">\(A+B\)</span>.</p>
+<p>矩阵和： <span class="math inline">\(A+B\)</span> 。</p></li>
+<li><p>Scalar multiple: <span class="math inline">\(cA\)</span>.</p>
+<p>标量倍数： <span class="math inline">\(cA\)</span> 。</p></li>
+<li><p>Product: <span class="math inline">\(AB\)</span>, defined only
+when the number of columns of <span class="math inline">\(A\)</span>
+equals the number of rows of <span class="math inline">\(B\)</span>.</p>
+<p>乘积： <span class="math inline">\(AB\)</span> ，仅当 <span
 class="math inline">\(A\)</span> 的列数等于 <span
-class="math inline">\(B\)</span> 的行数时才定义。</li>
+class="math inline">\(B\)</span> 的行数时才定义。</p></li>
 </ul>
 <h3 id="why-this-matters-4">Why this matters</h3>
 <p>为什么这很重要</p>
@@ -960,26 +990,28 @@ encodes how transformations combine, how systems of equations are
 solved, and how data flows in modern algorithms. Addition and scalar
 multiplication make matrices into a vector space, while multiplication
 gives them an algebraic structure rich enough to model geometry,
-computation, and networks.
-矩阵乘法是线性代数的核心机制：它编码了变换的组合方式、方程组的求解方式以及现代算法中数据流动的方式。加法和标量乘法将矩阵转化为向量空间，而乘法则赋予矩阵丰富的代数结构，使其能够对几何、计算和网络进行建模。</p>
+computation, and networks.</p>
+<p>矩阵乘法是线性代数的核心机制：它编码了变换的组合方式、方程组的求解方式以及现代算法中数据流动的方式。加法和标量乘法将矩阵转化为向量空间，而乘法则赋予矩阵丰富的代数结构，使其能够对几何、计算和网络进行建模。</p>
 <h3 id="exercises-2.2">Exercises 2.2</h3>
 <p>练习 2.2</p>
 <ol type="1">
-<li>Compute <span class="math inline">\(A+B\)</span> for 计算 <span
-class="math inline">\(A+B\)</span></li>
+<li><p>Compute <span class="math inline">\(A+B\)</span> for</p>
+<p>计算 <span class="math inline">\(A+B\)</span></p></li>
 </ol>
 <p><span class="math display">\[
 A = \begin{bmatrix} 2 &amp; 3 \\-1 &amp; 0 \end{bmatrix}, \quad B =
 \begin{bmatrix} 4 &amp; -2 \\5 &amp; 7 \end{bmatrix}.
 \]</span></p>
 <ol start="2" type="1">
-<li>Find 3A where 查找 3A</li>
+<li><p>Find 3A where</p>
+<p>查找 3A</p></li>
 </ol>
 <p><span class="math display">\[
 A = \begin{bmatrix} 1 &amp; -4 \\2 &amp; 6 \end{bmatrix}.
 \]</span></p>
 <ol start="3" type="1">
-<li>Multiply 乘</li>
+<li><p>Multiply</p>
+<p>乘</p></li>
 </ol>
 <p><span class="math display">\[
 A = \begin{bmatrix} 1 &amp; 0 &amp; 2 \\-1 &amp; 3 &amp; 1
@@ -987,12 +1019,14 @@ A = \begin{bmatrix} 1 &amp; 0 &amp; 2 \\-1 &amp; 3 &amp; 1
 &amp; 4 \end{bmatrix}.
 \]</span></p>
 <ol start="4" type="1">
-<li>Verify with an explicit example that <span class="math inline">\(AB
-\neq BA\)</span>. 通过明确的例子来验证 <span class="math inline">\(AB
-\neq BA\)</span> 。</li>
-<li>Prove that matrix multiplication is distributive: <span
-class="math inline">\(A(B+C) = AB + AC\)</span>. 证明矩阵乘法是分配的：
-<span class="math inline">\(A(B+C) = AB + AC\)</span> 。</li>
+<li><p>Verify with an explicit example that <span
+class="math inline">\(AB \neq BA\)</span>.</p>
+<p>通过明确的例子来验证 <span class="math inline">\(AB \neq BA\)</span>
+。</p></li>
+<li><p>Prove that matrix multiplication is distributive: <span
+class="math inline">\(A(B+C) = AB + AC\)</span>.</p>
+<p>证明矩阵乘法是分配的： <span class="math inline">\(A(B+C) = AB +
+AC\)</span> 。</p></li>
 </ol>
 <h2 id="transpose-and-inverse">2.3 Transpose and Inverse</h2>
 <p>2.3 转置和逆</p>
@@ -1000,47 +1034,55 @@ class="math inline">\(A(B+C) = AB + AC\)</span>. 证明矩阵乘法是分配的�
 rise to deep algebraic and geometric properties. The transpose
 rearranges a matrix by flipping it across its main diagonal, while the
 inverse, when it exists, acts as the undo operation for matrix
-multiplication.
-矩阵的两种特殊运算——转置和逆——引出了深刻的代数和几何性质。转置通过沿矩阵主对角线翻转来重新排列矩阵，而逆（如果存在）则充当矩阵乘法的撤消操作。</p>
+multiplication.</p>
+<p>矩阵的两种特殊运算——转置和逆——引出了深刻的代数和几何性质。转置通过沿矩阵主对角线翻转来重新排列矩阵，而逆（如果存在）则充当矩阵乘法的撤消操作。</p>
 <h3 id="the-transpose">The Transpose</h3>
 <p>转置</p>
 <p>The transpose of an <span class="math inline">\(m \times n\)</span>
 matrix <span class="math inline">\(A = [a_{ij}]\)</span> is the <span
 class="math inline">\(n \times m\)</span> matrix <span
 class="math inline">\(A^T = [a_{ji}]\)</span>, obtained by swapping rows
-and columns. <span class="math inline">\(m \times n\)</span> 矩阵 <span
+and columns.</p>
+<p><span class="math inline">\(m \times n\)</span> 矩阵 <span
 class="math inline">\(A = [a_{ij}]\)</span> 的转置是通过交换行和列获得的
 <span class="math inline">\(n \times m\)</span> 矩阵 <span
 class="math inline">\(A^T = [a_{ji}]\)</span> 。</p>
-<p>Formally, 正式地，</p>
+<p>Formally,</p>
+<p>正式地，</p>
 <p><span class="math display">\[
 (A^T)\_{ij} = a\_{ji}.
 \]</span></p>
-<p>Example 2.3.1. If 例 2.3.1. 如果</p>
+<p>Example 2.3.1. If</p>
+<p>例 2.3.1. 如果</p>
 <p><span class="math display">\[
 A = \begin{bmatrix}1 &amp; 4 &amp; -2 \\0 &amp; 3 &amp; 5\end{bmatrix},
 \]</span></p>
-<p>then 然后</p>
+<p>then</p>
+<p>然后</p>
 <p><span class="math display">\[
 A^T = \begin{bmatrix}1 &amp; 0 \\4 &amp; 3 \\-2 &amp; 5\end{bmatrix}.
 \]</span></p>
-<p>Properties of the Transpose. 转置的属性。</p>
+<p>Properties of the Transpose.</p>
+<p>转置的属性。</p>
 <ol type="1">
-<li><span class="math inline">\((A^T)^T = A\)</span>.</li>
-<li><span class="math inline">\((A+B)^T = A^T + B^T\)</span>.</li>
-<li><span class="math inline">\((cA)^T = cA^T\)</span>, for scalar <span
-class="math inline">\(c\)</span>. <span class="math inline">\((cA)^T =
-cA^T\)</span> ，对于标量 <span class="math inline">\(c\)</span> 。</li>
-<li><span class="math inline">\((AB)^T = B^T A^T\)</span>.</li>
+<li><p><span class="math inline">\((A^T)^T = A\)</span>.</p></li>
+<li><p><span class="math inline">\((A+B)^T = A^T +
+B^T\)</span>.</p></li>
+<li><p><span class="math inline">\((cA)^T = cA^T\)</span>, for scalar
+<span class="math inline">\(c\)</span>.</p>
+<p><span class="math inline">\((cA)^T = cA^T\)</span> ，对于标量 <span
+class="math inline">\(c\)</span> 。</p></li>
+<li><p><span class="math inline">\((AB)^T = B^T A^T\)</span>.</p></li>
 </ol>
-<p>The last rule is crucial: the order reverses.
-最后一条规则至关重要：顺序反转。</p>
+<p>The last rule is crucial: the order reverses.</p>
+<p>最后一条规则至关重要：顺序反转。</p>
 <h3 id="the-inverse">The Inverse</h3>
-<p>逆向</p>
+<p>逆</p>
 <p>A square matrix <span class="math inline">\(A \in \mathbb{R}^{n
 \times n}\)</span> is said to be invertible (or nonsingular) if there
 exists another matrix <span class="math inline">\(A^{-1}\)</span> such
-that 如果存在另一个矩阵 <span class="math inline">\(A^{-1}\)</span>
+that</p>
+<p>如果存在另一个矩阵 <span class="math inline">\(A^{-1}\)</span>
 满足以下条件，则称方阵 <span class="math inline">\(A \in \mathbb{R}^{n
 \times n}\)</span> 可逆（或非奇异）</p>
 <p><span class="math display">\[
@@ -1049,28 +1091,32 @@ AA^{-1} = A^{-1}A = I_n,
 <p>where <span class="math inline">\(I_n\)</span> is the <span
 class="math inline">\(n \times n\)</span> identity matrix. In this case,
 <span class="math inline">\(A^{-1}\)</span> is called the inverse of
-<span class="math inline">\(A\)</span>. 其中𝐼 𝑛 I n ​ 是 <span
+<span class="math inline">\(A\)</span>.</p>
+<p>其中 <span class="math inline">\(I_n\)</span> ​ 是 <span
 class="math inline">\(n \times n\)</span> 单位矩阵。在这种情况下， <span
 class="math inline">\(A^{-1}\)</span> 被称为 <span
 class="math inline">\(A\)</span> 的逆。</p>
 <p>Not every matrix is invertible. A necessary condition is that <span
 class="math inline">\(\det(A) \neq 0\)</span>, a fact that will be
-developed in Chapter 6. 并非所有矩阵都是可逆的。必要条件是 <span
+developed in Chapter 6.</p>
+<p>并非所有矩阵都是可逆的。必要条件是 <span
 class="math inline">\(\det(A) \neq 0\)</span> ，我们将在第 6
 章中进一步阐述。</p>
-<p>Example 2.3.2. Let 例 2.3.2. 设</p>
+<p>Example 2.3.2. Let</p>
+<p>例 2.3.2. 设</p>
 <p><span class="math display">\[
 A = \begin{bmatrix}1 &amp; 2 \\3 &amp; 4\end{bmatrix}.
 \]</span></p>
 <p>Its determinant is <span class="math inline">\(\det(A) = (1)(4) -
-(2)(3) = -2 \neq 0\)</span>. The inverse is 它的行列式是 <span
-class="math inline">\(\det(A) = (1)(4) - (2)(3) = -2 \neq 0\)</span>
-。逆是</p>
+(2)(3) = -2 \neq 0\)</span>. The inverse is</p>
+<p>它的行列式是 <span class="math inline">\(\det(A) = (1)(4) - (2)(3) =
+-2 \neq 0\)</span> 。逆是</p>
 <p><span class="math display">\[
 A^{-1} = \frac{1}{\det(A)} \begin{bmatrix}4 &amp; -2 \\-3 &amp;
 1\end{bmatrix} =\begin{bmatrix}-2 &amp; 1 \\1.5 &amp; -0.5\end{bmatrix}.
 \]</span></p>
-<p>Verification: 确认：</p>
+<p>Verification:</p>
+<p>确认：</p>
 <p><span class="math display">\[
 AA^{-1} = \begin{bmatrix}1 &amp; 2 \\3 &amp;
 4\end{bmatrix}\begin{bmatrix}-2 &amp; 1 \\1.5 &amp; -0.5\end{bmatrix}
@@ -1079,28 +1125,32 @@ AA^{-1} = \begin{bmatrix}1 &amp; 2 \\3 &amp;
 <h3 id="geometric-meaning-1">Geometric Meaning</h3>
 <p>几何意义</p>
 <ul>
-<li>The transpose corresponds to reflecting a linear transformation
+<li><p>The transpose corresponds to reflecting a linear transformation
 across the diagonal. For vectors, it switches between row and column
-forms.
-转置对应于沿对角线反映线性变换。对于向量，它在行和列形式之间切换。</li>
-<li>The inverse, when it exists, corresponds to reversing a linear
+forms.</p>
+<p>转置对应于沿对角线反映线性变换。对于向量，它在行和列形式之间切换。</p></li>
+<li><p>The inverse, when it exists, corresponds to reversing a linear
 transformation. For example, if <span class="math inline">\(A\)</span>
 scales and rotates vectors, <span class="math inline">\(A^{-1}\)</span>
-rescales and rotates them back.
-如果存在逆变换，则它对应于线性变换的逆变换。例如，如果 <span
+rescales and rotates them back.</p>
+<p>如果存在逆变换，则它对应于线性变换的逆变换。例如，如果 <span
 class="math inline">\(A\)</span> 缩放并旋转了矢量，则 <span
-class="math inline">\(A^{-1}\)</span> 会将其重新缩放并旋转回去。</li>
+class="math inline">\(A^{-1}\)</span>
+会将其重新缩放并旋转回去。</p></li>
 </ul>
 <h3 id="notation-5">Notation</h3>
 <p>符号</p>
 <ul>
-<li>Transpose: <span class="math inline">\(A^T\)</span>. 转置： <span
-class="math inline">\(A^T\)</span> 。</li>
-<li>Inverse: <span class="math inline">\(A^{-1}\)</span>, defined only
-for invertible square matrices. 逆： <span
-class="math inline">\(A^{-1}\)</span> ，仅为可逆方阵定义。</li>
-<li>Identity: <span class="math inline">\(I_n\)</span>, acts as the
-multiplicative identity. 身份：𝐼 𝑛 I n ​ ，充当乘法恒等式。</li>
+<li><p>Transpose: <span class="math inline">\(A^T\)</span>.</p>
+<p>转置： <span class="math inline">\(A^T\)</span> 。</p></li>
+<li><p>Inverse: <span class="math inline">\(A^{-1}\)</span>, defined
+only for invertible square matrices.</p>
+<p>逆： <span class="math inline">\(A^{-1}\)</span>
+，仅为可逆方阵定义。</p></li>
+<li><p>Identity: <span class="math inline">\(I_n\)</span>, acts as the
+multiplicative identity.</p>
+<p>身份：<span class="math inline">\(I_n\)</span> ​
+，充当乘法恒等式。</p></li>
 </ul>
 <h3 id="why-this-matters-5">Why this matters</h3>
 <p>为什么这很重要</p>
@@ -1108,27 +1158,30 @@ multiplicative identity. 身份：𝐼 𝑛 I n ​ ，充当乘法恒等式。<
 central to geometry and numerical methods. The inverse underlies the
 solution of linear systems, encoding the idea of undoing a
 transformation. Together, these operations set the stage for
-determinants, eigenvalues, and orthogonalization.
-转置使我们能够定义对称矩阵和正交矩阵，这是几何和数值方法的核心。逆矩阵是线性系统解的基础，它蕴含着撤销变换的思想。这些运算共同为行列式、特征值和正交化奠定了基础。</p>
+determinants, eigenvalues, and orthogonalization.</p>
+<p>转置使我们能够定义对称矩阵和正交矩阵，这是几何和数值方法的核心。逆矩阵是线性系统解的基础，它蕴含着撤销变换的思想。这些运算共同为行列式、特征值和正交化奠定了基础。</p>
 <h3 id="exercises-2.3">Exercises 2.3</h3>
 <p>练习 2.3</p>
 <ol type="1">
-<li>Compute the transpose of 计算转置</li>
+<li><p>Compute the transpose of</p>
+<p>计算转置</p></li>
 </ol>
 <p><span class="math display">\[
 A = \begin{bmatrix} 2 &amp; -1 &amp; 3 \\ 0 &amp; 4 &amp; 5
 \end{bmatrix}.
 \]</span></p>
 <ol start="2" type="1">
-<li>Verify that <span class="math inline">\((AB)^T = B^T A^T\)</span>
-for 验证 <span class="math inline">\((AB)^T = B^T A^T\)</span></li>
+<li><p>Verify that <span class="math inline">\((AB)^T = B^T A^T\)</span>
+for</p>
+<p>验证 <span class="math inline">\((AB)^T = B^T A^T\)</span></p></li>
 </ol>
 <p><span class="math display">\[
 A = \begin{bmatrix}1 &amp; 2 \\0 &amp; 1 \end{bmatrix}, \quad B =
 \begin{bmatrix}3 &amp; 4 \\5 &amp; 6 \end{bmatrix}.
 \]</span></p>
 <ol start="3" type="1">
-<li>Determine whether 确定是否</li>
+<li><p>Determine whether</p>
+<p>确定是否</p></li>
 </ol>
 <p><span class="math display">\[
 C = \begin{bmatrix}2 &amp; 1 \\4 &amp; 2 \end{bmatrix}
@@ -1142,28 +1195,29 @@ class="math inline">\(C^{-1}\)</span> 。</p>
 <p><span class="math display">\[
 D = \begin{bmatrix}0 &amp; 1 \\-1 &amp; 0 \end{bmatrix},
 \]</span></p>
-<p>and explain its geometric action on vectors in the plane.
-并解释其对平面向量的几何作用。</p>
+<p>and explain its geometric action on vectors in the plane.</p>
+<p>并解释其对平面向量的几何作用。</p>
 <ol start="5" type="1">
-<li>Prove that if <span class="math inline">\(A\)</span> is invertible,
-then so is <span class="math inline">\(A^T\)</span>, and <span
-class="math inline">\((A^T)^{-1} = (A^{-1})^T\)</span>. 证明如果 <span
-class="math inline">\(A\)</span> 可逆，则 <span
+<li><p>Prove that if <span class="math inline">\(A\)</span> is
+invertible, then so is <span class="math inline">\(A^T\)</span>, and
+<span class="math inline">\((A^T)^{-1} = (A^{-1})^T\)</span>.</p>
+<p>证明如果 <span class="math inline">\(A\)</span> 可逆，则 <span
 class="math inline">\(A^T\)</span> 和 <span
-class="math inline">\((A^T)^{-1} = (A^{-1})^T\)</span> 也可逆。</li>
+class="math inline">\((A^T)^{-1} = (A^{-1})^T\)</span> 也可逆。</p></li>
 </ol>
 <h2 id="special-matrices">2.4 Special Matrices</h2>
 <p>2.4 特殊矩阵</p>
 <p>Certain matrices occur so frequently in theory and applications that
 they are given special names. Recognizing their properties allows us to
 simplify computations and understand the structure of linear
-transformations more clearly.
-某些矩阵在理论和应用中出现频率很高，因此被赋予了特殊的名称。了解它们的性质可以简化计算，并更清楚地理解线性变换的结构。</p>
+transformations more clearly.</p>
+<p>某些矩阵在理论和应用中出现频率很高，因此被赋予了特殊的名称。了解它们的性质可以简化计算，并更清楚地理解线性变换的结构。</p>
 <h3 id="the-identity-matrix">The Identity Matrix</h3>
-<p>身份矩阵</p>
+<p>单位矩阵</p>
 <p>The identity matrix <span class="math inline">\(I_n\)</span> is the
 <span class="math inline">\(n \times n\)</span> matrix with ones on the
-diagonal and zeros elsewhere: 单位矩阵𝐼 𝑛 I n ​ 是 <span
+diagonal and zeros elsewhere:</p>
+<p>单位矩阵<span class="math inline">\(I_n\)</span>​ 是 <span
 class="math inline">\(n \times n\)</span> 矩阵，对角线上为 1，其他位置为
 0：</p>
 <p><span class="math display">\[
@@ -1171,34 +1225,39 @@ I_n = \begin{bmatrix}1 &amp; 0 &amp; \cdots &amp; 0 \\0 &amp; 1 &amp;
 \cdots &amp; 0 \\\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\0 &amp;
 0 &amp; \cdots &amp; 1\end{bmatrix}.
 \]</span></p>
-<p>It acts as the multiplicative identity: 它充当乘法恒等式：</p>
+<p>It acts as the multiplicative identity:</p>
+<p>它充当乘法恒等式：</p>
 <p><span class="math display">\[
 AI_n = I_nA = A, \quad \text{for all } A \in \mathbb{R}^{n \times n}.
 \]</span></p>
 <p>Geometrically, <span class="math inline">\(I_n\)</span> represents
-the transformation that leaves every vector unchanged. 从几何学上讲，𝐼 𝑛
-I n ​ 表示保持每个向量不变的变换。</p>
+the transformation that leaves every vector unchanged.</p>
+<p>从几何学上讲，<span class="math inline">\(I_n\)</span>
+表示保持每个向量不变的变换。</p>
 <h3 id="diagonal-matrices">Diagonal Matrices</h3>
 <p>对角矩阵</p>
-<p>A diagonal matrix has all off-diagonal entries zero:
-对角矩阵的所有非对角元素均为零：</p>
+<p>A diagonal matrix has all off-diagonal entries zero:</p>
+<p>对角矩阵的所有非对角元素均为零：</p>
 <p><span class="math display">\[
 D = \begin{bmatrix}d_{11} &amp; 0 &amp; \cdots &amp; 0 \\0 &amp; d_{22}
 &amp; \cdots &amp; 0 \\\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\0
 &amp; 0 &amp; \cdots &amp; d_{nn}\end{bmatrix}.
 \]</span></p>
 <p>Multiplication by a diagonal matrix scales each coordinate
-independently: 与对角矩阵相乘可独立缩放每个坐标：</p>
+independently:</p>
+<p>与对角矩阵相乘可独立缩放每个坐标：</p>
 <p><span class="math display">\[
 D\mathbf{x} = (d_{11}x_1, d_{22}x_2, \dots, d_{nn}x_n).
 \]</span></p>
-<p>Example 2.4.1. Let 例 2.4.1. 设</p>
+<p>Example 2.4.1. Let</p>
+<p>例 2.4.1. 设</p>
 <p><span class="math display">\[
 D = \begin{bmatrix} 2 &amp; 0 &amp; 0 \\0 &amp; 3 &amp; 0 \\0 &amp; 0
 &amp; -1 \end{bmatrix}, \quad\mathbf{x} = \begin{bmatrix}1 \\4 \\-2
 \end{bmatrix}.
 \]</span></p>
-<p>Then 然后</p>
+<p>Then</p>
+<p>则</p>
 <p><span class="math display">\[
 D\mathbf{x} = \begin{bmatrix}2 \\12 \\2 \end{bmatrix}.
 \]</span></p>
@@ -1206,56 +1265,101 @@ D\mathbf{x} = \begin{bmatrix}2 \\12 \\2 \end{bmatrix}.
 <p>置换矩阵</p>
 <p>A permutation matrix is obtained by permuting the rows of the
 identity matrix. Multiplying a vector by a permutation matrix reorders
-its coordinates.
-置换矩阵是通过对单位矩阵的行进行置换而得到的。将向量乘以置换矩阵会重新排序其坐标。</p>
+its coordinates.</p>
+<p>置换矩阵是通过对单位矩阵的行进行置换而得到的。将向量乘以置换矩阵会重新排序其坐标。</p>
 <p>Example 2.4.2. Let 例 2.4.2. 设</p>
 <p><span class="math display">\[
 P = \begin{bmatrix}0 &amp; 1 &amp; 0 \\1 &amp; 0 &amp; 0 \\0 &amp; 0
 &amp; 1\end{bmatrix}.
 \]</span></p>
-<p>Then 然后</p>
+<p>Then</p>
+<p>则</p>
 <p><span class="math display">\[
 P\begin{bmatrix}a \\b \\c \end{bmatrix} =\begin{bmatrix} b \\a \\c
 \end{bmatrix}.
 \]</span></p>
 <p>Thus, <span class="math inline">\(P\)</span> swaps the first two
-coordinates. 因此， <span class="math inline">\(P\)</span>
-交换前两个坐标。</p>
+coordinates.</p>
+<p>因此， <span class="math inline">\(P\)</span> 交换前两个坐标。</p>
 <p>Permutation matrices are always invertible; their inverses are simply
-their transposes. 置换矩阵总是可逆的；它们的逆只是它们的转置。</p>
+their transposes.</p>
+<p>置换矩阵总是可逆的；它们的逆只是它们的转置。</p>
 <h3 id="symmetric-and-skew-symmetric-matrices">Symmetric and
 Skew-Symmetric Matrices</h3>
 <p>对称矩阵和斜对称矩阵</p>
-<p>A matrix is symmetric if 如果矩阵是对称的</p>
+<p>A matrix is symmetric if</p>
+<p>如果矩阵是对称的</p>
 <p><span class="math display">\[
 A^T = A,
 \]</span></p>
 <p>and skew-symmetric if Symmetric matrices appear in quadratic forms
 and optimization, while skew-symmetric matrices describe rotations and
-cross products in geometry.
-如果对称矩阵出现在二次形式和优化中，则为斜对称，而斜对称矩阵描述几何中的旋转和叉积。</p>
+cross products in geometry.</p>
+<p>如果对称矩阵出现在二次形式和优化中，则为斜对称，而斜对称矩阵描述几何中的旋转和叉积。</p>
 <h3 id="orthogonal-matrices">Orthogonal Matrices</h3>
 <p>正交矩阵</p>
 <p>A square matrix <span class="math inline">\(Q\)</span> is orthogonal
-if 方阵 <span class="math inline">\(Q\)</span> 是正交的，如果</p>
+if</p>
+<p>方阵 <span class="math inline">\(Q\)</span> 是正交的，如果</p>
 <p><span class="math display">\[
 Q^T Q = QQ^T = I.
 \]</span></p>
 <p>Equivalently, the rows (and columns) of <span
 class="math inline">\(Q\)</span> form an orthonormal set. Orthogonal
 matrices preserve lengths and angles; they represent rotations and
-reflections. 等价地， <span class="math inline">\(Q\)</span>
+reflections.</p>
+<p>等价地， <span class="math inline">\(Q\)</span>
 的行（和列）构成一个正交集。正交矩阵保留长度和角度；它们表示旋转和反射。</p>
-<p>Example 2.4.3. The rotation matrix in the plane: 例2.4.3.
-平面内的旋转矩阵:</p>
+<p>Example 2.4.3. The rotation matrix in the plane:</p>
+<p>例2.4.3. 平面内的旋转矩阵:</p>
 <p><span class="math display">\[
 R(\theta) = \begin{bmatrix}\cos\theta &amp; -\sin\theta \\\sin\theta
 &amp; \cos\theta\end{bmatrix}
 \]</span></p>
-<p>is orthogonal, since 是正交的，因为</p>
+<p>is orthogonal, since</p>
+<p>是正交的，因为</p>
 <p><span class="math display">\[
 R(\theta)^T R(\theta) = I_2.
 \]</span></p>
+<hr />
+<p>把</p>
+<p><span class="math display">\[
+R(\theta)=\begin{bmatrix}\cos\theta &amp; -\sin\theta\\[4pt]\sin\theta
+&amp; \cos\theta\end{bmatrix}
+\]</span></p>
+<p>先求转置</p>
+<p><span class="math display">\[
+R(\theta)^T=\begin{bmatrix}\cos\theta &amp; \sin\theta\\[4pt]-\sin\theta
+&amp; \cos\theta\end{bmatrix}.
+\]</span></p>
+<p>现在相乘（逐项计算）：</p>
+<ul>
+<li><p>第一行第一列：</p>
+<p><span class="math display">\[
+(\cos\theta)(\cos\theta)+(\sin\theta)(-\sin\theta)=\cos^2\theta+\sin^2\theta=1.
+\]</span></p></li>
+<li><p>第一行第二列：</p>
+<p><span class="math display">\[
+(\cos\theta)(-\sin\theta)+(\sin\theta)(\cos\theta)=-\cos\theta\sin\theta+\sin\theta\cos\theta=0.
+\]</span></p></li>
+<li><p>第二行第一列：</p>
+<p><span class="math display">\[
+(-\sin\theta)(\cos\theta)+(\cos\theta)(-\sin\theta)=-\sin\theta\cos\theta+\cos\theta(-\sin\theta)=0.
+\]</span></p>
+<p>（同上，等于 0）</p></li>
+<li><p>第二行第二列：</p>
+<p><span class="math display">\[
+(-\sin\theta)(-\sin\theta)+(\cos\theta)(\cos\theta)=\sin^2\theta+\cos^2\theta=1.
+\]</span></p></li>
+</ul>
+<p>因此</p>
+<p><span class="math display">\[
+R(\theta)^T
+R(\theta)=\begin{bmatrix}1&amp;0\\[4pt]0&amp;1\end{bmatrix}=I.
+\]</span></p>
+<p>这正符合正交矩阵的定义，所以 <span
+class="math inline">\(R(\theta)\)</span> 是正交矩阵。</p>
+<hr />
 <h3 id="why-this-matters-6">Why this matters</h3>
 <p>为什么这很重要</p>
 <p>Special matrices serve as the building blocks of linear algebra.
@@ -1263,34 +1367,39 @@ Identity matrices define the neutral element, diagonal matrices simplify
 computations, permutation matrices reorder data, symmetric and
 orthogonal matrices describe fundamental geometric structures. Much of
 modern applied mathematics reduces complex problems to operations
-involving these simple forms.
-特殊矩阵是线性代数的基石。单位矩阵定义中性元素，对角矩阵简化计算，置换矩阵重新排序数据，对称矩阵和正交矩阵描述基本几何结构。许多现代应用数学将复杂问题简化为涉及这些简单形式的运算。</p>
+involving these simple forms.</p>
+<p>特殊矩阵是线性代数的基石。单位矩阵定义中性元素，对角矩阵简化计算，置换矩阵重新排序数据，对称矩阵和正交矩阵描述基本几何结构。许多现代应用数学将复杂问题简化为涉及这些简单形式的运算。</p>
 <h3 id="exercises-2.4">Exercises 2.4</h3>
 <p>练习 2.4</p>
 <ol type="1">
-<li>Show that the product of two diagonal matrices is diagonal, and
-compute an example.
-证明两个对角矩阵的乘积是对角的，并计算一个例子。</li>
-<li>Find the permutation matrix that cycles <span
+<li><p>Show that the product of two diagonal matrices is diagonal, and
+compute an example.</p>
+<p>证明两个对角矩阵的乘积是对角的，并计算一个例子。</p></li>
+<li><p>Find the permutation matrix that cycles <span
 class="math inline">\((a,b,c)\)</span> into <span
-class="math inline">\((b,c,a)\)</span>. 找到将 <span
-class="math inline">\((a,b,c)\)</span> 循环到 <span
-class="math inline">\((b,c,a)\)</span> 的置换矩阵。</li>
-<li>Prove that every permutation matrix is invertible and its inverse is
-its transpose. 证明每个置换矩阵都是可逆的，并且它的逆是它的转置。</li>
-<li>Verify that 验证</li>
+class="math inline">\((b,c,a)\)</span>.</p>
+<p>找到将 <span class="math inline">\((a,b,c)\)</span> 循环到 <span
+class="math inline">\((b,c,a)\)</span> 的置换矩阵。</p></li>
+<li><p>Prove that every permutation matrix is invertible and its inverse
+is its transpose.</p>
+<p>证明每个置换矩阵都是可逆的，并且它的逆是它的转置。</p></li>
+<li><p>Verify that</p>
+<p>验证</p></li>
 </ol>
 <p><span class="math display">\[
 Q = \begin{bmatrix}0 &amp; 1 \\-1 &amp; 0 \end{bmatrix}
 \]</span></p>
-<p>is orthogonal. What geometric transformation does it represent? 5.
-Determine whether 是正交的。它代表什么几何变换？5. 判断</p>
+<p>is orthogonal. What geometric transformation does it represent?</p>
+<p>是正交的。它代表什么几何变换？</p>
+<ol start="5" type="1">
+<li>Determine whether 判断</li>
+</ol>
 <p><span class="math display">\[
 A = \begin{bmatrix}2 &amp; 3 \\3 &amp; 2 \end{bmatrix}, \quad B =
 \begin{bmatrix}0 &amp; 5 \\-5 &amp; 0 \end{bmatrix}
 \]</span></p>
-<p>are symmetric, skew-symmetric, or neither.
-是对称的、斜对称的，或者都不是。</p>
+<p>are symmetric, skew-symmetric, or neither.</p>
+<p>是对称的、斜对称的，或者都不是。</p>
 <h1 id="chapter-3.-systems-of-linear-equations">Chapter 3. Systems of
 Linear Equations</h1>
 <p>第 3 章线性方程组</p>
@@ -1300,15 +1409,15 @@ Solutions</h2>
 <p>One of the central motivations for linear algebra is solving systems
 of linear equations. These systems arise naturally in science,
 engineering, and data analysis whenever multiple constraints interact.
-Matrices provide a compact language for expressing and solving them.
-线性代数的核心动机之一是求解线性方程组。在科学、工程和数据分析领域，当多个约束相互作用时，这类方程组自然而然地出现。矩阵提供了一种简洁的语言来表达和求解它们。</p>
+Matrices provide a compact language for expressing and solving them.</p>
+<p>线性代数的核心动机之一是求解线性方程组。在科学、工程和数据分析领域，当多个约束相互作用时，这类方程组自然而然地出现。矩阵提供了一种简洁的语言来表达和求解它们。</p>
 <h3 id="linear-systems">Linear Systems</h3>
 <p>线性系统</p>
 <p>A linear system consists of equations where each unknown appears only
 to the first power and with no products between variables. A general
 system of <span class="math inline">\(m\)</span> equations in <span
-class="math inline">\(n\)</span> unknowns can be written as:
-线性系统由方程组成，其中每个未知数仅出现一次方，并且之间没有乘积
+class="math inline">\(n\)</span> unknowns can be written as:</p>
+<p>线性系统由方程组成，其中每个未知数仅出现一次方，并且之间没有乘积
 变量。包含 <span class="math inline">\(n\)</span> 个未知数的 <span
 class="math inline">\(m\)</span> 个方程的一般系统可以写成：</p>
 <p><span class="math display">\[
@@ -1318,88 +1427,104 @@ class="math inline">\(m\)</span> 个方程的一般系统可以写成：</p>
 \]</span></p>
 <p>Here the coefficients <span class="math inline">\(a_{ij}\)</span> and
 constants <span class="math inline">\(b_i\)</span> are scalars, and the
-unknowns are <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>.
-这里系数𝑎 𝑖 𝑗 a 伊奇 ​ 和常数𝑏 𝑖 b i ​ 是标量，未知数是𝑥 1 , 𝑥 2 , … , 𝑥 𝑛
-x 1 ​ ，x 2 ​ ，…，x n ​ .</p>
+unknowns are <span class="math inline">\(x_1, x_2, \dots,
+x_n\)</span>.</p>
+<p>这里系数<span class="math inline">\(a_{ij}\)</span> ​ 和常数<span
+class="math inline">\(b_i\)</span>​ 是标量，未知数是<span
+class="math inline">\(x_1, x_2, \dots, x_n\)</span>。</p>
 <h3 id="matrix-form">Matrix Form</h3>
 <p>矩阵形式</p>
-<p>The system can be expressed compactly as:
-该系统可以简洁地表示为：</p>
+<p>The system can be expressed compactly as:</p>
+<p>该系统可以简洁地表示为：</p>
 <p><span class="math display">\[
 A\mathbf{x} = \mathbf{b},
 \]</span></p>
-<p>where 在哪里</p>
+<p>where</p>
+<p>其中</p>
 <ul>
-<li><span class="math inline">\(A \in \mathbb{R}^{m \times n}\)</span>
-is the coefficient matrix <span class="math inline">\([a_{ij}]\)</span>,
-<span class="math inline">\(A \in \mathbb{R}^{m \times n}\)</span>
-是系数矩阵 <span class="math inline">\([a_{ij}]\)</span> ，</li>
-<li><span class="math inline">\(\mathbf{x} \in \mathbb{R}^n\)</span> is
-the column vector of unknowns, <span class="math inline">\(\mathbf{x}
-\in \mathbb{R}^n\)</span> 是未知数的列向量，</li>
-<li><span class="math inline">\(\mathbf{b} \in \mathbb{R}^m\)</span> is
-the column vector of constants. <span class="math inline">\(\mathbf{b}
-\in \mathbb{R}^m\)</span> 是常数列向量。</li>
+<li><p><span class="math inline">\(A \in \mathbb{R}^{m \times
+n}\)</span> is the coefficient matrix <span
+class="math inline">\([a_{ij}]\)</span>,</p>
+<p><span class="math inline">\(A \in \mathbb{R}^{m \times n}\)</span>
+是系数矩阵 <span class="math inline">\([a_{ij}]\)</span> ，</p></li>
+<li><p><span class="math inline">\(\mathbf{x} \in \mathbb{R}^n\)</span>
+is the column vector of unknowns,</p>
+<p><span class="math inline">\(\mathbf{x} \in \mathbb{R}^n\)</span>
+是未知数的列向量，</p></li>
+<li><p><span class="math inline">\(\mathbf{b} \in \mathbb{R}^m\)</span>
+is the column vector of constants.</p>
+<p><span class="math inline">\(\mathbf{b} \in \mathbb{R}^m\)</span>
+是常数列向量。</p></li>
 </ul>
 <p>This formulation turns the problem of solving equations into
-analyzing the action of a matrix.
-这个公式将解方程的问题转化为分析矩阵的作用。</p>
-<p>Example 3.1.1. The system 例 3.1.1. 系统</p>
+analyzing the action of a matrix.</p>
+<p>这个公式将解方程的问题转化为分析矩阵的作用。</p>
+<p>Example 3.1.1. The system</p>
+<p>例 3.1.1. 系统</p>
 <p><span class="math display">\[
 \begin{cases}x + 2y = 5, \\3x - y = 4\end{cases}
 \]</span></p>
-<p>can be written as 可以写成</p>
+<p>可以写成</p>
 <p><span class="math display">\[
 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; -1 \end{bmatrix}\begin{bmatrix} x
 \\ y \end{bmatrix}=\begin{bmatrix} 5 \\ 4 \end{bmatrix}.
 \]</span></p>
 <h3 id="types-of-solutions">Types of Solutions</h3>
 <p>解决方案类型</p>
-<p>A linear system may have: 线性系统可能有：</p>
+<p>A linear system may have:</p>
+<p>线性系统可能有：</p>
 <ol type="1">
-<li>No solution (inconsistent): The equations conflict. Example:
-无解（不一致）：方程式相互矛盾。例如：</li>
+<li><p>No solution (inconsistent): The equations conflict. Example:</p>
+<p>无解（不一致）：方程式相互矛盾。例如：</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x + y = 1 \\x + y = 2\end{cases}
 \]</span></p>
-<p>This system has no solution. 这个系统没有解决方案。</p>
+<p>This system has no solution.</p>
+<p>这个系统没有解决方案。</p>
 <ol start="2" type="1">
-<li>Exactly one solution (unique): The system’s equations intersect at a
-single point. 只有一个解（唯一）：系统方程在一个点相交。 Example: The
-following coefficient matrix: 例如：以下系数矩阵：</li>
+<li><p>Exactly one solution (unique): The system’s equations intersect
+at a single point.</p>
+<p>只有一个解（唯一）：系统方程在一个点相交。</p>
+<p>Example: The following coefficient matrix:</p>
+<p>例如：以下系数矩阵：</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{bmatrix}1 &amp; 2 \\3 &amp; -1\end{bmatrix}
 \]</span></p>
-<p>has a unique solution. 有一个独特的解决方案。</p>
+<p>has a unique solution.</p>
+<p>有一个独特的解决方案。</p>
 <ol start="3" type="1">
-<li>Infinitely many solutions: The equations describe overlapping
+<li><p>Infinitely many solutions: The equations describe overlapping
 constraints (e.g., multiple equations representing the same line or
-plane).
-无数个解：方程描述重叠的约束（例如，表示同一条线或平面的多个方程）。</li>
+plane).</p>
+<p>无数个解：方程描述重叠的约束（例如，表示同一条线或平面的多个方程）。</p></li>
 </ol>
 <p>The nature of the solution depends on the rank of <span
 class="math inline">\(A\)</span> and its relation to the augmented
 matrix <span class="math inline">\((A|\mathbf{b})\)</span>, which we
-will study later. 解的性质取决于 <span class="math inline">\(A\)</span>
+will study later.</p>
+<p>解的性质取决于 <span class="math inline">\(A\)</span>
 的秩及其与增广矩阵 <span class="math inline">\((A|\mathbf{b})\)</span>
 的关系，我们稍后会研究。</p>
 <h3 id="geometric-interpretation-1">Geometric Interpretation</h3>
 <p>几何解释</p>
 <ul>
-<li>In <span class="math inline">\(\mathbb{R}^2\)</span>, each linear
+<li><p>In <span class="math inline">\(\mathbb{R}^2\)</span>, each linear
 equation represents a line. Solving a system means finding intersection
-points of lines. 在 <span class="math inline">\(\mathbb{R}^2\)</span>
-中，每个线性方程代表一条直线。求解方程组意味着找到直线的交点。</li>
-<li>In <span class="math inline">\(\mathbb{R}^3\)</span>, each equation
-represents a plane. A system may have no solution (parallel planes), one
-solution (a unique intersection point), or infinitely many (a line of
-intersection). 在 <span class="math inline">\(\mathbb{R}^3\)</span>
-中，每个方程代表一个平面。一个方程组可能没有解（平行平面），可能有一个解（唯一的交点），也可能有无数个解（一条交线）。</li>
-<li>In higher dimensions, the picture generalizes: solutions form
-intersections of hyperplanes.
-在更高维度中，该图概括为：解决方案形成超平面的交点。</li>
+points of lines.</p>
+<p>在 <span class="math inline">\(\mathbb{R}^2\)</span>
+中，每个线性方程代表一条直线。求解方程组意味着找到直线的交点。</p></li>
+<li><p>In <span class="math inline">\(\mathbb{R}^3\)</span>, each
+equation represents a plane. A system may have no solution (parallel
+planes), one solution (a unique intersection point), or infinitely many
+(a line of intersection).</p>
+<p>在 <span class="math inline">\(\mathbb{R}^3\)</span>
+中，每个方程代表一个平面。一个方程组可能没有解（平行平面），可能有一个解（唯一的交点），也可能有无数个解（一条交线）。<br />
+</p></li>
+<li><p>In higher dimensions, the picture generalizes: solutions form
+intersections of hyperplanes.</p>
+<p>在更高维度中，该图概括为：解决方案形成超平面的交点。</p></li>
 </ul>
 <h3 id="why-this-matters-7">Why this matters</h3>
 <p>为什么这很重要</p>
@@ -1407,163 +1532,190 @@ intersections of hyperplanes.
 appear in balancing chemical reactions, circuit analysis, least-squares
 regression, optimization, and computer graphics. Understanding how to
 represent and classify their solutions is the first step toward
-systematic solution methods like Gaussian elimination.
-线性系统是线性代数的实践基础。它们出现在平衡化学反应、电路分析、最小二乘回归、优化和计算机图形学中。了解如何表示和分类它们的解是迈向高斯消元法等系统求解方法的第一步。</p>
+systematic solution methods like Gaussian elimination.</p>
+<p>线性系统是线性代数的实践基础。它们出现在平衡化学反应、电路分析、最小二乘回归、优化和计算机图形学中。了解如何表示和分类它们的解是迈向高斯消元法等系统求解方法的第一步。</p>
 <h3 id="exercises-3.1">Exercises 3.1</h3>
 <p>练习3.1</p>
 <ol type="1">
-<li>Write the following system in matrix form:
-将以下系统写成矩阵形式：</li>
+<li><p>Write the following system in matrix form:</p>
+<p>将以下系统写成矩阵形式：</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}2x + 3y - z = 7, \\x - y + 4z = 1, \\3x + 2y + z =
 5\end{cases}
 \]</span></p>
 <ol start="2" type="1">
-<li>Determine whether the system 确定系统是否</li>
+<li><p>Determine whether the system</p>
+<p>确定系统是否</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x + y = 1, \\2x + 2y = 2\end{cases}
 \]</span></p>
-<p>has no solution, one solution, or infinitely many solutions.
-有无解、有一个解或有无数个解。</p>
+<p>has no solution, one solution, or infinitely many solutions.</p>
+<p>有无解、有一个解或有无数个解。</p>
 <ol start="3" type="1">
-<li>Geometrically interpret the system 几何解释系统</li>
+<li><p>Geometrically interpret the system</p>
+<p>在平面上对方程组进行几何解释。</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x + y = 3, \\x - y = 1\end{cases}
 \]</span></p>
-<p>in the plane. 在飞机上。</p>
+<p>in the plane.</p>
 <ol start="4" type="1">
-<li>Solve the system 解决系统</li>
+<li><p>Solve the system</p>
+<p>解方程组</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}2x + y = 1, \\x - y = 4\end{cases}
 \]</span></p>
-<p>and check your solution. 并检查您的解决方案。</p>
+<p>and check your solution.</p>
+<p>并检查您的解。</p>
 <ol start="5" type="1">
-<li>In <span class="math inline">\(\mathbb{R}^3\)</span>, describe the
-solution set of 在 <span class="math inline">\(\mathbb{R}^3\)</span>
-中，描述</li>
+<li><p>In <span class="math inline">\(\mathbb{R}^3\)</span>, describe
+the solution set of</p>
+<p>在 <span class="math inline">\(\mathbb{R}^3\)</span>
+中，描述</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x + y + z = 0, \\2x + 2y + 2z = 0\end{cases}
 \]</span></p>
-<p>What geometric object does it represent? 它代表什么几何对象？</p>
+<p>What geometric object does it represent?</p>
+<p>它代表什么几何对象？</p>
 <h2 id="gaussian-elimination">3.2 Gaussian Elimination</h2>
 <p>3.2 高斯消元法</p>
 <p>To solve linear systems efficiently, we use Gaussian elimination: a
 systematic method of transforming a system into a simpler equivalent one
 whose solutions are easier to see. The method relies on elementary row
-operations that preserve the solution set.
-为了高效地求解线性方程组，我们使用高斯消元法：这是一种将方程组转化为更简单、更易解的等效方程的系统方法。该方法依赖于保留解集的基本行运算。</p>
+operations that preserve the solution set.</p>
+<p>为了高效地求解线性方程组，我们使用高斯消元法：这是一种将方程组转化为更简单、更易解的等效方程的系统方法。该方法依赖于保留解集的基本行运算。</p>
 <h3 id="elementary-row-operations">Elementary Row Operations</h3>
 <p>初等行运算</p>
 <p>On an augmented matrix <span
 class="math inline">\((A|\mathbf{b})\)</span>, we are allowed three
-operations: 对于增广矩阵 <span
-class="math inline">\((A|\mathbf{b})\)</span>
+operations:</p>
+<p>对于增广矩阵 <span class="math inline">\((A|\mathbf{b})\)</span>
 ，我们可以进行三种运算：</p>
 <ol type="1">
-<li>Row swapping: interchange two rows. 换行：交换两行。</li>
-<li>Row scaling: multiply a row by a nonzero scalar.
-行缩放：将一行乘以非零标量。</li>
-<li>Row replacement: replace one row by itself plus a multiple of
-another row. 行替换：用一行本身加上另一行的倍数来替换一行。</li>
+<li><p>Row swapping: interchange two rows.</p>
+<p>换行：交换两行。</p></li>
+<li><p>Row scaling: multiply a row by a nonzero scalar.</p>
+<p>行缩放：将一行乘以非零标量。</p></li>
+<li><p>Row replacement: replace one row by itself plus a multiple of
+another row.</p>
+<p>行替换：用一行本身加上另一行的倍数来替换一行。</p></li>
 </ol>
 <p>These operations correspond to re-expressing equations in different
-but equivalent forms. 这些运算对应于以不同但等效的形式重新表达方程。</p>
+but equivalent forms.</p>
+<p>这些运算对应于以不同但等效的形式重新表达方程。</p>
 <h3 id="row-echelon-form">Row Echelon Form</h3>
 <p>行梯队形式</p>
-<p>A matrix is in row echelon form (REF) if:
-如果满足以下条件，则矩阵为行阶梯形矩阵（REF）：</p>
+<p>A matrix is in row echelon form (REF) if:</p>
+<p>如果满足以下条件，则矩阵为行阶梯形矩阵（REF）：</p>
 <ol type="1">
-<li>All nonzero rows are above any zero rows.
-所有非零行均位于任何零行之上。</li>
-<li>Each leading entry (the first nonzero number from the left in a row)
-is to the right of the leading entry in the row above.
-每个前导条目（一行中从左边开始的第一个非零数字）位于上一行前导条目的右侧。</li>
-<li>All entries below a leading entry are zero.
-前导条目下面的所有条目都为零。</li>
+<li><p>All nonzero rows are above any zero rows.</p>
+<p>所有非零行均位于任何零行之上。</p></li>
+<li><p>Each leading entry (the first nonzero number from the left in a
+row) is to the right of the leading entry in the row above.</p>
+<p>每个前导条目（一行中从左边开始的第一个非零数字）位于上一行前导条目的右侧。</p></li>
+<li><p>All entries below a leading entry are zero.</p>
+<p>前导条目下面的所有条目都为零。</p></li>
 </ol>
 <p>Further, if each leading entry is 1 and is the only nonzero entry in
-its column, the matrix is in reduced row echelon form (RREF).
-此外，如果每个前导项都是
+its column, the matrix is in reduced row echelon form (RREF).</p>
+<p>此外，如果每个前导项都是
 1，并且是其列中唯一的非零项，则矩阵为简化行阶梯形式 (RREF)。</p>
 <h3 id="algorithm-of-gaussian-elimination">Algorithm of Gaussian
 Elimination</h3>
 <p>高斯消元法</p>
 <ol type="1">
-<li>Write the augmented matrix for the system. 写出系统的增广矩阵。</li>
-<li>Use row operations to create zeros below each pivot (the leading
-entry in a row).
-使用行运算在每个枢轴（一行中的前导条目）下方创建零。</li>
-<li>Continue column by column until the matrix is in echelon form.
-继续逐列进行，直到矩阵呈阶梯形式。</li>
-<li>Solve by back substitution: starting from the last pivot equation
-and working upward.
-通过反向代入来求解：从最后一个枢轴方程开始向上求解。</li>
+<li><p>Write the augmented matrix for the system.</p>
+<p>写出系统的增广矩阵。</p></li>
+<li><p>Use row operations to create zeros below each pivot (the leading
+entry in a row).</p>
+<p>使用行运算在每个主元（一行中的前导条目）下方创建零。</p></li>
+<li><p>Continue column by column until the matrix is in echelon
+form.</p>
+<p>继续逐列进行，直到矩阵呈阶梯形式。</p></li>
+<li><p>Solve by back substitution: starting from the last pivot equation
+and working upward.</p>
+<p>通过反向代入来求解：从最后一个主元方程开始向上求解。</p></li>
 </ol>
 <p>If we continue to RREF, the solution can be read off directly.
 如果我们继续 RREF，则可以直接读出解决方案。</p>
 <h3 id="example">Example</h3>
 <p>例子</p>
-<p>Example 3.2.1. Solve 例 3.2.1. 求解</p>
+<blockquote>
+<p>主元是 pivot element，或 pivot ，表示主要的元素的意思。</p>
+</blockquote>
+<p>Example 3.2.1. Solve</p>
+<p>例 3.2.1. 求解</p>
 <p><span class="math display">\[
 \begin{cases}x + 2y - z = 3, \\2x + y + z = 7, \\3x - y + 2z =
 4.\end{cases}
 \]</span></p>
-<p>Step 1. Augmented matrix 步骤1.增广矩阵</p>
+<p>Step 1. Augmented matrix</p>
+<p>步骤1.增广矩阵</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 2 &amp; -1 &amp; 3 \\2 &amp; 1 &amp; 1
 &amp; 7 \\3 &amp; -1 &amp; 2 &amp; 4\end{array}\right].
 \]</span></p>
-<p>Step 2. Eliminate below the first pivot 步骤 2.
-消除第一个枢轴以下</p>
-<p>Subtract 2 times row 1 from row 2, and 3 times row 1 from row 3: 从第
-2 行减去第 1 行的 2 倍，从第 3 行减去第 1 行的 3 倍：</p>
+<p>Step 2. Eliminate below the first pivot</p>
+<p>步骤 2. 消除第一个主元以下的元（置0）</p>
+<p>Subtract 2 times row 1 from row 2, and 3 times row 1 from row 3:</p>
+<p>从第 2 行减去第 1 行的 2 倍，从第 3 行减去第 1 行的 3 倍：</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 2 &amp; -1 &amp; 3 \\0 &amp; -3 &amp;
 3 &amp; 1 \\0 &amp; -7 &amp; 5 &amp; -5\end{array}\right].
 \]</span></p>
-<p>Step 3. Pivot in column 2 步骤 3. 在第 2 列中进行透视</p>
-<p>Divide row 2 by -3: 将第 2 行除以 -3：</p>
+<p>Step 3. Pivot in column 2</p>
+<p>步骤 3. 在第 2 列中选取主元</p>
+<p>Divide row 2 by -3:</p>
+<p>将第 2 行除以 -3：</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 2 &amp; -1 &amp; 3 \\0 &amp; 1 &amp;
 -1 &amp; -\tfrac{1}{3} \\0 &amp; -7 &amp; 5 &amp; -5\end{array}\right].
 \]</span></p>
-<p>Add 7 times row 2 to row 3: 将第 2 行的 7 倍加到第 3 行：</p>
+<p>Add 7 times row 2 to row 3:</p>
+<p>将第 2 行的 7 倍加到第 3 行：</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 2 &amp; -1 &amp; 3 \\0 &amp; 1 &amp;
 -1 &amp; -\tfrac{1}{3} \\0 &amp; 0 &amp; -2 &amp;
 -\tfrac{22}{3}\end{array}\right].
 \]</span></p>
-<p>Step 4. Pivot in column 3 步骤 4. 在第 3 列中进行透视</p>
-<p>Divide row 3 by -2: 将第 3 行除以 -2：</p>
+<p>Step 4. Pivot in column 3</p>
+<p>步骤 4. 在第 3 列中选取主元</p>
+<p>Divide row 3 by -2:</p>
+<p>将第 3 行除以 -2：</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 2 &amp; -1 &amp; 3 \\0 &amp; 1 &amp;
 -1 &amp; -\tfrac{1}{3} \\0 &amp; 0 &amp; 1 &amp;
 \tfrac{11}{3}\end{array}\right].
 \]</span></p>
-<p>Step 5. Back substitution 步骤 5. 回代</p>
-<p>From the last row: 从最后一行开始：</p>
+<p>Step 5. Back substitution</p>
+<p>步骤 5. 回代</p>
+<p>From the last row:</p>
+<p>从最后一行开始：</p>
 <p><span class="math display">\[
 z = \tfrac{11}{3}.
 \]</span></p>
-<p>Second row: 第二行：</p>
+<p>Second row:</p>
+<p>第二行：</p>
 <p><span class="math display">\[
 y - z = -\tfrac{1}{3} \implies y = -\tfrac{1}{3} + \tfrac{11}{3} =
 \tfrac{10}{3}.
 \]</span></p>
-<p>First row: 第一行：</p>
+<p>First row:</p>
+<p>第一行：</p>
 <p><span class="math display">\[
 x + 2y - z = 3 \implies x + 2\cdot\tfrac{10}{3} - \tfrac{11}{3} = 3.
 \]</span></p>
-<p>So 所以</p>
+<p>So</p>
+<p>所以</p>
 <p><span class="math display">\[
 x + \tfrac{20}{3} - \tfrac{11}{3} = 3 \implies x + 3 = 3 \implies x = 0.
 \]</span></p>
-<p>Solution: 解决方案：</p>
+<p>Solution:</p>
+<p>解：</p>
 <p><span class="math display">\[
 (x,y,z) = \big(0, \tfrac{10}{3}, \tfrac{11}{3}\big).
 \]</span></p>
@@ -1572,223 +1724,245 @@ x + \tfrac{20}{3} - \tfrac{11}{3} = 3 \implies x + 3 = 3 \implies x = 0.
 <p>Gaussian elimination is the foundation of computational linear
 algebra. It reduces complex systems to a form where solutions are
 visible, and it forms the basis for algorithms used in numerical
-analysis, scientific computing, and machine learning.
-高斯消元法是计算线性代数的基础。它将复杂系统简化为可见解的形式，并构成数值分析、科学计算和机器学习中使用的算法的基础。</p>
+analysis, scientific computing, and machine learning.</p>
+<p>高斯消元法是计算线性代数的基础。它将复杂系统简化为可见解的形式，并构成数值分析、科学计算和机器学习中使用的算法的基础。</p>
 <h3 id="exercises-3.2">Exercises 3.2</h3>
 <p>练习 3.2</p>
 <ol type="1">
-<li>Solve by Gaussian elimination: 通过高斯消元法求解：</li>
+<li><p>Solve by Gaussian elimination:</p>
+<p>通过高斯消元法求解：</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x + y = 2, \\2x - y = 0.\end{cases}
 \]</span></p>
 <ol start="2" type="1">
-<li>Reduce the following augmented matrix to REF: 将以下增广矩阵简化为
-REF：</li>
+<li><p>Reduce the following augmented matrix to REF:</p>
+<p>将以下增广矩阵简化为 REF：</p></li>
 </ol>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 1 &amp; 1 &amp; 6 \\2 &amp; -1 &amp; 3
 &amp; 14 \\1 &amp; 4 &amp; -2 &amp; -2\end{array}\right].
 \]</span></p>
 <ol start="3" type="1">
-<li>Show that Gaussian elimination always produces either:
-证明高斯消元法总是产生以下结果：</li>
+<li><p>Show that Gaussian elimination always produces either:</p>
+<p>证明高斯消元法总是产生以下结果：</p></li>
 </ol>
 <ul>
-<li>a unique solution, 一个独特的解决方案，</li>
-<li>infinitely many solutions, or 无穷多个解，或者</li>
-<li>a contradiction (no solution). 矛盾（无解）。</li>
+<li><p>a unique solution,</p>
+<p>一个独特的解决方案，</p></li>
+<li><p>infinitely many solutions, or</p>
+<p>无穷多个解，或者</p></li>
+<li><p>a contradiction (no solution).</p>
+<p>矛盾（无解）。</p></li>
 </ul>
 <ol start="4" type="1">
-<li>Use Gaussian elimination to find all solutions of
-使用高斯消元法找到所有解</li>
+<li><p>Use Gaussian elimination to find all solutions of</p>
+<p>使用高斯消元法找到所有解</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x + y + z = 0, \\2x + y + z = 1.\end{cases}
 \]</span></p>
 <ol start="5" type="1">
-<li>Explain why pivoting (choosing the largest available pivot element)
-is useful in numerical computation.
-解释为什么枢轴旋转（选择最大的可用枢轴元素）在数值计算中很有用。</li>
+<li><p>Explain why pivoting (choosing the largest available pivot
+element) is useful in numerical computation.</p>
+<p>解释为什么枢轴旋转（选择最大的可用主元元素）在数值计算中很有用。</p></li>
 </ol>
 <h2 id="rank-and-consistency">3.3 Rank and Consistency</h2>
-<p>3.3 等级和一致性</p>
+<p>3.3 秩和一致性</p>
 <p>Gaussian elimination not only provides solutions but also reveals the
 structure of a linear system. Two key ideas are the rank of a matrix and
 the consistency of a system. Rank measures the amount of independent
 information in the equations, while consistency determines whether the
-system has at least one solution.
-高斯消元法不仅能提供解，还能揭示线性系统的结构。两个关键概念是矩阵的秩和系统的一致性。秩衡量方程中独立信息的数量，而一致性则决定系统是否至少有一个解。</p>
+system has at least one solution.</p>
+<p>高斯消元法不仅能提供解，还能揭示线性系统的结构。两个关键概念是矩阵的秩和系统的一致性。秩衡量方程中独立信息的数量，而一致性则决定系统是否至少有一个解。</p>
 <h3 id="rank-of-a-matrix">Rank of a Matrix</h3>
 <p>矩阵的秩</p>
 <p>The rank of a matrix is the number of leading pivots in its row
 echelon form. Equivalently, it is the maximum number of linearly
-independent rows or columns.
-矩阵的秩是其行阶梯形中前导主元的个数。换句话说，它是线性无关的行或列的最大数量。</p>
+independent rows or columns.</p>
+<p>矩阵的秩是其行阶梯形中前导主元的个数。换句话说，它是线性无关的行或列的最大数量。</p>
 <p>Formally, 正式地，</p>
 <p><span class="math display">\[
 \text{rank}(A) = \dim(\text{row space of } A) = \dim(\text{column space
 of } A).
 \]</span></p>
 <p>The rank tells us the effective dimension of the space spanned by the
-rows (or columns). 秩告诉我们行（或列）所跨越的空间的有效维度。</p>
-<p>Example 3.3.1. For 例 3.3.1. 对于</p>
+rows (or columns).</p>
+<p>秩告诉我们行（或列）所跨越的空间的有效维度。</p>
+<p>Example 3.3.1. For</p>
+<p>例 3.3.1. 对于</p>
 <p><span class="math display">\[
 A = \begin{bmatrix}1 &amp; 2 &amp; 3 \\2 &amp; 4 &amp; 6 \\3 &amp; 6
 &amp; 9\end{bmatrix},
 \]</span></p>
-<p>row reduction gives 行减少给出</p>
+<p>row reduction gives</p>
+<p>行减少给出</p>
 <p><span class="math display">\[
 \begin{bmatrix}1 &amp; 2 &amp; 3 \\0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp;
 0\end{bmatrix}.
 \]</span></p>
 <p>Thus, <span class="math inline">\(\text{rank}(A) = 1\)</span>, since
-all rows are multiples of the first. 因此， <span
-class="math inline">\(\text{rank}(A) = 1\)</span>
+all rows are multiples of the first.</p>
+<p>因此， <span class="math inline">\(\text{rank}(A) = 1\)</span>
 ，因为所有行都是第一行的倍数。</p>
 <h3 id="consistency-of-linear-systems">Consistency of Linear
 Systems</h3>
 <p>线性系统的一致性</p>
 <p>Consider the system <span class="math inline">\(A\mathbf{x} =
 \mathbf{b}\)</span>. The system is consistent (has at least one
-solution) if and only if 考虑系统 <span
-class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>
-。该系统是一致的（至少有一个解），当且仅当</p>
+solution) if and only if</p>
+<p>考虑系统 <span class="math inline">\(A\mathbf{x} =
+\mathbf{b}\)</span> 。该系统是一致的（至少有一个解），当且仅当</p>
 <p><span class="math display">\[
 \text{rank}(A) = \text{rank}(A|\mathbf{b}),
 \]</span></p>
 <p>where <span class="math inline">\((A|\mathbf{b})\)</span> is the
-augmented matrix. If the ranks differ, the system is inconsistent. 其中
-<span class="math inline">\((A|\mathbf{b})\)</span>
+augmented matrix. If the ranks differ, the system is inconsistent.</p>
+<p>其中 <span class="math inline">\((A|\mathbf{b})\)</span>
 是增广矩阵。如果秩不同，则系统不一致。</p>
 <ul>
-<li>If <span class="math inline">\(\text{rank}(A) =
+<li><p>If <span class="math inline">\(\text{rank}(A) =
 \text{rank}(A|\mathbf{b}) = n\)</span> (number of unknowns), the system
-has a unique solution. 如果 <span class="math inline">\(\text{rank}(A) =
+has a unique solution.</p>
+<p>如果 <span class="math inline">\(\text{rank}(A) =
 \text{rank}(A|\mathbf{b}) = n\)</span>
-（未知数），则系统有一个唯一的解。</li>
-<li>If <span class="math inline">\(\text{rank}(A) =
+（未知数），则系统有一个唯一的解。</p></li>
+<li><p>If <span class="math inline">\(\text{rank}(A) =
 \text{rank}(A|\mathbf{b}) &lt; n\)</span>, the system has infinitely
-many solutions. 如果 <span class="math inline">\(\text{rank}(A) =
-\text{rank}(A|\mathbf{b}) &lt; n\)</span> ，则系统有无数个解。</li>
+many solutions.</p>
+<p>如果 <span class="math inline">\(\text{rank}(A) =
+\text{rank}(A|\mathbf{b}) &lt; n\)</span> ，则系统有无数个解。</p></li>
 </ul>
 <h3 id="example-1">Example</h3>
 <p>例子</p>
-<p>Example 3.3.2. Consider 例 3.3.2. 考虑</p>
+<p>Example 3.3.2. Consider</p>
+<p>例 3.3.2. 考虑</p>
 <p><span class="math display">\[
 \begin{cases}x + y + z = 1, \\2x + 2y + 2z = 2, \\x + y + z =
 3.\end{cases}
 \]</span></p>
-<p>The augmented matrix is 增广矩阵是</p>
+<p>The augmented matrix is</p>
+<p>增广矩阵是</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 1 &amp; 1 &amp; 1 \\2 &amp; 2 &amp; 2
 &amp; 2 \\1 &amp; 1 &amp; 1 &amp; 3\end{array}\right].
 \]</span></p>
-<p>Row reduction gives 行减少给出</p>
+<p>Row reduction gives</p>
+<p>行减少给出</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 1 &amp; 1 &amp; 1 \\0 &amp; 0 &amp; 0
 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 2\end{array}\right].
 \]</span></p>
 <p>Here, <span class="math inline">\(\text{rank}(A) = 1\)</span>, but
 <span class="math inline">\(\text{rank}(A|\mathbf{b}) = 2\)</span>.
-Since the ranks differ, the system is inconsistent: no solution exists.
-这里， <span class="math inline">\(\text{rank}(A) = 1\)</span> ，但
+Since the ranks differ, the system is inconsistent: no solution
+exists.</p>
+<p>这里， <span class="math inline">\(\text{rank}(A) = 1\)</span> ，但
 <span class="math inline">\(\text{rank}(A|\mathbf{b}) = 2\)</span>
 。由于秩不同，系统不一致：不存在解。</p>
 <h3 id="example-with-infinite-solutions">Example with Infinite
 Solutions</h3>
 <p>无限解的例子</p>
-<p>Example 3.3.3. For 例 3.3.3. 对于</p>
+<p>Example 3.3.3. For</p>
+<p>例 3.3.3. 对于</p>
 <p><span class="math display">\[
 \begin{cases}x + y = 2, \\2x + 2y = 4,\end{cases}
 \]</span></p>
-<p>the augmented matrix reduces to 增广矩阵简化为</p>
+<p>the augmented matrix reduces to</p>
+<p>增广矩阵简化为</p>
 <p><span class="math display">\[
 \left[\begin{array}{cc|c}1 &amp; 1 &amp; 2 \\0 &amp; 0 &amp;
 0\end{array}\right].
 \]</span></p>
 <p>Here, <span class="math inline">\(\text{rank}(A) =
 \text{rank}(A|\mathbf{b}) = 1 &lt; 2\)</span>. Thus, infinitely many
-solutions exist, forming a line. 这里， <span
-class="math inline">\(\text{rank}(A) = \text{rank}(A|\mathbf{b}) = 1
-&lt; 2\)</span> 。因此，存在无数个解，形成一条线。</p>
+solutions exist, forming a line.</p>
+<p>这里， <span class="math inline">\(\text{rank}(A) =
+\text{rank}(A|\mathbf{b}) = 1 &lt; 2\)</span>
+。因此，存在无数个解，形成一条线。</p>
 <h3 id="why-this-matters-9">Why this matters</h3>
 <p>为什么这很重要</p>
 <p>Rank is a measure of independence: it tells us how many truly
 distinct equations or directions are present. Consistency explains when
 equations align versus when they contradict. These concepts connect
 linear systems to vector spaces and prepare for the ideas of dimension,
-basis, and the Rank–Nullity Theorem.
-秩是独立性的度量：它告诉我们有多少个真正不同的方程或方向。一致性解释了方程何时一致，何时矛盾。这些概念将线性系统与向量空间联系起来，并为维度、基和秩零定理的概念做好准备。</p>
+basis, and the Rank–Nullity Theorem.</p>
+<p>秩是独立性的度量：它告诉我们有多少个真正不同的方程或方向。一致性解释了方程何时一致，何时矛盾。这些概念将线性系统与向量空间联系起来，并为维度、基和秩零定理的概念做好准备。</p>
 <h3 id="exercises-3.3">Exercises 3.3</h3>
 <p>练习 3.3</p>
 <ol type="1">
-<li>Compute the rank of 计算</li>
+<li><p>Compute the rank of</p>
+<p>计算下面矩阵的秩</p></li>
 </ol>
 <p><span class="math display">\[
 A = \begin{bmatrix}1 &amp; 2 &amp; 1 \\0 &amp; 1 &amp; -1 \\2 &amp; 5
 &amp; -1\end{bmatrix}.
 \]</span></p>
 <ol start="2" type="1">
-<li>Determine whether the system 确定系统</li>
+<li><p>Determine whether the system</p>
+<p>确定方程组是一致的</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x + y + z = 1, \\2x + 3y + z = 2, \\3x + 5y + 2z =
 3\end{cases}
 \]</span></p>
-<p>is consistent. 是一致的。</p>
+<p>is consistent.</p>
 <ol start="3" type="1">
 <li><p>Show that the rank of the identity matrix <span
 class="math inline">\(I_n\)</span> is <span
-class="math inline">\(n\)</span>. 证明单位矩阵𝐼的秩 𝑛 I n ​ 是 <span
+class="math inline">\(n\)</span>.</p>
+<p>证明单位矩阵 <span class="math inline">\(I_n\)</span> 的秩 ​ 是 <span
 class="math inline">\(n\)</span> 。</p></li>
 <li><p>Give an example of a system in <span
 class="math inline">\(\mathbb{R}^3\)</span> with infinitely many
-solutions, and explain why it satisfies the rank condition. 给出 <span
-class="math inline">\(\mathbb{R}^3\)</span>
+solutions, and explain why it satisfies the rank condition.</p>
+<p>给出 <span class="math inline">\(\mathbb{R}^3\)</span>
 中具有无穷多个解的系统的例子，并解释它为什么满足秩条件。</p></li>
 <li><p>Prove that for any matrix <span class="math inline">\(A \in
 \mathbb{R}^{m \times n}\)</span>, <span
-class="math inline">\(\text{rank}(A) \leq \min(m,n).\)</span>
-证明对于任意矩阵 <span class="math inline">\(A \in \mathbb{R}^{m \times
-n}\)</span> ， <span class="math inline">\(\text{rank}(A) \leq
+class="math inline">\(\text{rank}(A) \leq \min(m,n).\)</span></p>
+<p>证明对于任意矩阵 <span class="math inline">\(A \in \mathbb{R}^{m
+\times n}\)</span> ， <span class="math inline">\(\text{rank}(A) \leq
 \min(m,n).\)</span></p></li>
 </ol>
 <h2 id="homogeneous-systems">3.4 Homogeneous Systems</h2>
-<p>3.4 均质系统</p>
+<p>3.4 齐次方程组</p>
 <p>A homogeneous system is a linear system in which all constant terms
-are zero: 齐次系统是所有常数项都为零的线性系统：</p>
+are zero:</p>
+<p>齐次方程组是所有常数项都为零的线性系统：</p>
 <p><span class="math display">\[
 A\mathbf{x} = \mathbf{0},
 \]</span></p>
 <p>where <span class="math inline">\(A \in \mathbb{R}^{m \times
 n}\)</span>, and <span class="math inline">\(\mathbf{0}\)</span> is the
-zero vector in <span class="math inline">\(\mathbb{R}^m\)</span>. 其中
-<span class="math inline">\(A \in \mathbb{R}^{m \times n}\)</span> ，且
-<span class="math inline">\(\mathbf{0}\)</span> 是 <span
-class="math inline">\(\mathbb{R}^m\)</span> 中的零向量。</p>
+zero vector in <span class="math inline">\(\mathbb{R}^m\)</span>.</p>
+<p>其中 <span class="math inline">\(A \in \mathbb{R}^{m \times
+n}\)</span> ，且 <span class="math inline">\(\mathbf{0}\)</span> 是
+<span class="math inline">\(\mathbb{R}^m\)</span> 中的零向量。</p>
 <h3 id="the-trivial-solution">The Trivial Solution</h3>
 <p>简单的解决方案</p>
-<p>Every homogeneous system has at least one solution:
-每个同质系统至少有一个解：</p>
+<p>Every homogeneous system has at least one solution:</p>
+<p>每个齐次方程组至少有一个解：</p>
 <p><span class="math display">\[
 \mathbf{x} = \mathbf{0}.
 \]</span></p>
 <p>This is called the trivial solution. The interesting question is
-whether <em>nontrivial solutions</em> (nonzero vectors) exist.
-这被称为平凡解。有趣的问题是是否存在<em>非平凡解</em> （非零向量）。</p>
+whether <em>nontrivial solutions</em> (nonzero vectors) exist.</p>
+<p>这被称为平凡解。有趣的问题是是否存在<em>非平凡解</em>
+（非零向量）。</p>
 <h3 id="existence-of-nontrivial-solutions">Existence of Nontrivial
 Solutions</h3>
 <p>非平凡解的存在性</p>
 <p>Nontrivial solutions exist precisely when the number of unknowns
-exceeds the rank of the coefficient matrix:
-当未知数的数量超过系数矩阵的秩时，就会存在非平凡解：</p>
+exceeds the rank of the coefficient matrix:</p>
+<p>当未知数的数量超过系数矩阵的秩时，就会存在非平凡解：</p>
 <p><span class="math display">\[
 \text{rank}(A) &lt; n.
 \]</span></p>
 <p>In this case, there are infinitely many solutions, forming a subspace
 of <span class="math inline">\(\mathbb{R}^n\)</span>. The dimension of
-this solution space is 在这种情况下，有无穷多个解，形成一个 <span
+this solution space is</p>
+<p>在这种情况下，有无穷多个解，形成一个 <span
 class="math inline">\(\mathbb{R}^n\)</span>
 的子空间。这个解空间的维度是</p>
 <p><span class="math display">\[
@@ -1796,65 +1970,74 @@ class="math inline">\(\mathbb{R}^n\)</span>
 \]</span></p>
 <p>where null(A) is the set of all solutions to <span
 class="math inline">\(A\mathbf{x} = 0\)</span>. This set is called the
-null space or kernel of <span class="math inline">\(A\)</span>. 其中
-null(A) 是 <span class="math inline">\(A\mathbf{x} = 0\)</span>
+null space or kernel of <span class="math inline">\(A\)</span>.</p>
+<p>其中 null(A) 是 <span class="math inline">\(A\mathbf{x} = 0\)</span>
 所有解的集合。该集合称为 <span class="math inline">\(A\)</span>
 的零空间或零核。</p>
 <h3 id="example-2">Example</h3>
 <p>例子</p>
-<p>Example 3.4.1. Consider 例 3.4.1. 考虑</p>
+<p>Example 3.4.1. Consider</p>
+<p>例 3.4.1. 考虑</p>
 <p><span class="math display">\[
 \begin{cases}x + y + z = 0, \\2x + y - z = 0.\end{cases}
 \]</span></p>
-<p>The augmented matrix is 增广矩阵是</p>
+<p>The augmented matrix is</p>
+<p>增广矩阵是</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 1 &amp; 1 &amp; 0 \\2 &amp; 1 &amp; -1
 &amp; 0\end{array}\right].
 \]</span></p>
-<p>Row reduction: 行减少：</p>
+<p>Row reduction:</p>
+<p>行减少：</p>
 <p><span class="math display">\[
 \left[\begin{array}{ccc|c}1 &amp; 1 &amp; 1 &amp; 0 \\0 &amp; -1 &amp;
 -3 &amp; 0\end{array}\right]\quad\to\quad\left[\begin{array}{ccc|c}1
 &amp; 1 &amp; 1 &amp; 0 \\0 &amp; 1 &amp; 3 &amp; 0\end{array}\right].
 \]</span></p>
-<p>So the system is equivalent to: 因此该系统等同于：</p>
+<p>So the system is equivalent to:</p>
+<p>因此该系统等同于：</p>
 <p><span class="math display">\[
 \begin{cases}x + y + z = 0, \\y + 3z = 0.\end{cases}
 \]</span></p>
 <p>From the second equation, <span class="math inline">\(y =
 -3z\)</span>. Substituting into the first: <span class="math inline">\(x
-- 3z + z = 0 \implies x = 2z.\)</span> 从第二个方程得出 <span
-class="math inline">\(y = -3z\)</span> 。代入第一个方程： <span
-class="math inline">\(x - 3z + z = 0 \implies x = 2z.\)</span></p>
-<p>Thus solutions are: 因此解决方案是：</p>
+- 3z + z = 0 \implies x = 2z.\)</span></p>
+<p>从第二个方程得出 <span class="math inline">\(y = -3z\)</span>
+。代入第一个方程： <span class="math inline">\(x - 3z + z = 0 \implies x
+= 2z.\)</span></p>
+<p>Thus solutions are:</p>
+<p>因此解决方案是：</p>
 <p><span class="math display">\[
 (x,y,z) = z(2, -3, 1), \quad z \in \mathbb{R}.
 \]</span></p>
 <p>The null space is the line spanned by the vector <span
-class="math inline">\((2, -3, 1)\)</span>. 零空间是向量 <span
-class="math inline">\((2, -3, 1)\)</span> 所跨越的线。</p>
+class="math inline">\((2, -3, 1)\)</span>.</p>
+<p>零空间是向量 <span class="math inline">\((2, -3, 1)\)</span>
+所跨越的线。</p>
 <h3 id="geometric-interpretation-2">Geometric Interpretation</h3>
 <p>几何解释</p>
 <p>The solution set of a homogeneous system is always a subspace of
-<span class="math inline">\(\mathbb{R}^n\)</span>. 同质系统的解集始终是
-<span class="math inline">\(\mathbb{R}^n\)</span> 的子空间。</p>
+<span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<p>同质系统的解集始终是 <span
+class="math inline">\(\mathbb{R}^n\)</span> 的子空间。</p>
 <ul>
-<li>If <span class="math inline">\(\text{rank}(A) = n\)</span>, the only
-solution is the zero vector. 如果为 <span
-class="math inline">\(\text{rank}(A) = n\)</span>
-，则唯一的解就是零向量。</li>
-<li>If <span class="math inline">\(\text{rank}(A) = n-1\)</span>, the
-solution set is a line through the origin. 如果为 <span
-class="math inline">\(\text{rank}(A) = n-1\)</span>
-，则解集是一条过原点的线。</li>
-<li>If <span class="math inline">\(\text{rank}(A) = n-2\)</span>, the
-solution set is a plane through the origin. 如果为 <span
-class="math inline">\(\text{rank}(A) = n-2\)</span>
-，则解集是通过原点的平面。</li>
+<li><p>If <span class="math inline">\(\text{rank}(A) = n\)</span>, the
+only solution is the zero vector.</p>
+<p>如果为 <span class="math inline">\(\text{rank}(A) = n\)</span>
+，则唯一的解就是零向量。</p></li>
+<li><p>If <span class="math inline">\(\text{rank}(A) = n-1\)</span>, the
+solution set is a line through the origin.</p>
+<p>如果为 <span class="math inline">\(\text{rank}(A) = n-1\)</span>
+，则解集是一条过原点的线。</p></li>
+<li><p>If <span class="math inline">\(\text{rank}(A) = n-2\)</span>, the
+solution set is a plane through the origin.</p>
+<p>如果为 <span class="math inline">\(\text{rank}(A) = n-2\)</span>
+，则解集是通过原点的平面。</p></li>
 </ul>
 <p>More generally, the null space has dimension <span
-class="math inline">\(n - \text{rank}(A)\)</span>, known as the nullity.
-更一般地，零空间的维度为 <span class="math inline">\(n -
+class="math inline">\(n - \text{rank}(A)\)</span>, known as the
+nullity.</p>
+<p>更一般地，零空间的维度为 <span class="math inline">\(n -
 \text{rank}(A)\)</span> ，称为零度。</p>
 <h3 id="why-this-matters-10">Why this matters</h3>
 <p>为什么这很重要</p>
@@ -1862,45 +2045,49 @@ class="math inline">\(n - \text{rank}(A)\)</span>, known as the nullity.
 subspaces, and dimension. They lead directly to the concepts of kernel,
 null space, and linear dependence. In applications, homogeneous systems
 appear in equilibrium problems, eigenvalue equations, and computer
-graphics transformations.
-齐次系统是理解向量空间、子空间和维度的核心。它们直接引出核、零空间和线性相关性的概念。在实际应用中，齐次系统出现在平衡问题、特征值方程和计算机图形变换中。</p>
+graphics transformations.</p>
+<p>齐次系统是理解向量空间、子空间和维度的核心。它们直接引出核、零空间和线性相关性的概念。在实际应用中，齐次系统出现在平衡问题、特征值方程和计算机图形变换中。</p>
 <h3 id="exercises-3.4">Exercises 3.4</h3>
 <p>练习 3.4</p>
 <ol type="1">
-<li>Solve the homogeneous system 解决均质系统</li>
+<li><p>Solve the homogeneous system</p>
+<p>解齐次方程组</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x + 2y - z = 0, \\2x + 4y - 2z = 0.\end{cases}
 \]</span></p>
-<p>What is the dimension of its solution space?
-其解空间的维数是多少？</p>
+<p>What is the dimension of its solution space?</p>
+<p>其解空间的维数是多少？</p>
 <ol start="2" type="1">
-<li>Find all solutions of 找到所有解决方案</li>
+<li><p>Find all solutions of</p>
+<p>找到所有解</p></li>
 </ol>
 <p><span class="math display">\[
 \begin{cases}x - y + z = 0, \\2x + y - z = 0.\end{cases}
 \]</span></p>
 <ol start="3" type="1">
 <li><p>Show that the solution set of any homogeneous system is a
-subspace of <span class="math inline">\(\mathbb{R}^n\)</span>.
-证明任何同质系统的解集都是 <span
+subspace of <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<p>证明任何线性方程组的解集都是 <span
 class="math inline">\(\mathbb{R}^n\)</span> 的子空间。</p></li>
 <li><p>Suppose <span class="math inline">\(A\)</span> is a <span
-class="math inline">\(3 \\times 3\)</span>matrix with<span
-class="math inline">\(\\text{rank}(A) = 2\)</span>. What is the
-dimension of the null space of <span class="math inline">\(A\)</span>?
-假设 <span class="math inline">\(A\)</span> 是 $3 \times 3 <span
-class="math inline">\(matrix with\)</span> \text{rank}(A) = 2 $. What is
-the dimension of the null space of $ A$？</p></li>
-<li><p>For 为了</p></li>
+class="math inline">\(3 \times 3\)</span> matrix with <span
+class="math inline">\(\text{rank}(A) = 2\)</span>. What is the dimension
+of the null space of <span class="math inline">\(A\)</span>?</p>
+<p>设 <span class="math inline">\(A\)</span> 是 <span
+class="math inline">\(3 \times 3\)</span> 矩阵，且 <span
+class="math inline">\(\text{rank}(A) = 2\)</span>。则 <span
+class="math inline">\(A\)</span> 的零空间维数是多少？</p></li>
+<li><p>For</p>
+<p>为</p></li>
 </ol>
 <p><span class="math display">\[
 A = \begin{bmatrix} 1 &amp; 2 &amp; -1 \\ 0 &amp; 1 &amp; 3
 \end{bmatrix},
 \]</span></p>
 <p>compute a basis for the null space of <span
-class="math inline">\(A\)</span>. 计算 <span
-class="math inline">\(A\)</span> 的零空间的基础。</p>
+class="math inline">\(A\)</span>.</p>
+<p>计算 <span class="math inline">\(A\)</span> 的零空间的基础。</p>
 <h1 id="chapter-4.-vector-spaces">Chapter 4. Vector Spaces</h1>
 <p>第 4 章 向量空间</p>
 <h2 id="definition-of-a-vector-space">4.1 Definition of a Vector
