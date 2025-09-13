@@ -9,7 +9,14 @@
 <script defer src="libs//katex/katex.min.js"></script>
 <script defer src="libs//katex/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body);"></script>
-
+<style>
+@media (max-width: 600px) {
+  .katex-display {
+    font-size: 1.1em;   /* 手机上稍微放大字体 */
+    overflow-x: auto;
+  }
+}
+</style>
 </head>
 <body>
 <article class="markdown-body">
@@ -5712,15 +5719,11 @@ eigenvalue (which is always 1) and the second largest eigenvalue.
 P = \begin{bmatrix}0 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 1 \\1 &amp; 0
 &amp; 0\end{bmatrix}.
 \]</span></p>
-<p>This Markov chain cycles deterministically among the nodes.
-Eigenvalues are the cube roots of unity: <span class="math inline">\(1,
-e^{2\\pi i/3}, e^{4\\pi i/3}. The eigenvalue \\1\)</span>corresponds to
-the steady state, which is the uniformdistribution<span
-class="math inline">\((1/3,1/3,1/3)\)</span>.
-这个马尔可夫链在节点之间确定性地循环。特征值是 统一：$1,e^{2\pi
-i/3},e^{4\pi i/3} 。特征值 \ 1 <span class="math inline">\(corresponds
-to the steady state, which is the uniformdistribution\)</span>
-(1/3,1/3,1/3)$。</p>
+<pre><code>This Markov chain cycles deterministically among the nodes. Eigenvalues are the cube roots of unity: $1, e^{2\\pi i/3}, e^{4\\pi i/3}. The eigenvalue \\1$corresponds to the steady state, which is the uniformdistribution$(1/3,1/3,1/3)$.
+
+这个马尔可夫链在节点之间确定性地循环。特征值是 统一：$1,e^{2\\pi i/3},e^{4\\pi i/3} 。
+
+特征值 \\ 1 $corresponds to the steady state, which is the uniformdistribution$ (1/3,1/3,1/3)$。</code></pre>
 <h3 id="applications-2">Applications</h3>
 <p>应用</p>
 <ul>

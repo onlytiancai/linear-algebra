@@ -4895,8 +4895,13 @@ $$
 P = \begin{bmatrix}0 & 1 & 0 \\0 & 0 & 1 \\1 & 0 & 0\end{bmatrix}.
 $$
 
+```
 This Markov chain cycles deterministically among the nodes. Eigenvalues are the cube roots of unity: $1, e^{2\\pi i/3}, e^{4\\pi i/3}. The eigenvalue \\1$corresponds to the steady state, which is the uniformdistribution$(1/3,1/3,1/3)$.
-这个马尔可夫链在节点之间确定性地循环。特征值是 统一：$1,e^{2\\pi i/3},e^{4\\pi i/3} 。特征值 \\ 1 $corresponds to the steady state, which is the uniformdistribution$ (1/3,1/3,1/3)$。
+
+这个马尔可夫链在节点之间确定性地循环。特征值是 统一：$1,e^{2\\pi i/3},e^{4\\pi i/3} 。
+
+特征值 \\ 1 $corresponds to the steady state, which is the uniformdistribution$ (1/3,1/3,1/3)$。
+```
 
 ### Applications
 应用

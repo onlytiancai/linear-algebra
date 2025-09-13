@@ -9,7 +9,14 @@
 <script defer src="libs//katex/katex.min.js"></script>
 <script defer src="libs//katex/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body);"></script>
-
+<style>
+@media (max-width: 600px) {
+  .katex-display {
+    font-size: 1.1em;   /* 手机上稍微放大字体 */
+    overflow-x: auto;
+  }
+}
+</style>
 </head>
 <body>
 <article class="markdown-body">
