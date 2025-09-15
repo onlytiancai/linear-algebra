@@ -8,6 +8,7 @@ A concise, beginner-friendly introduction to the core ideas of linear algebra.
 简洁、适合初学者的线性代数核心思想介绍。
 
 ---
+
 Here is an inline example, $ \pi(\theta) $,
 
 an equation,
