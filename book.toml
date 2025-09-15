@@ -1,0 +1,7 @@
+[book]
+authors = ["onlytiancai"]
+language = "zh-cn"
+src = "src"
+title = "The Little Book of Linear Algebra"
+[preprocessor.katex]
+after = ["links"]
