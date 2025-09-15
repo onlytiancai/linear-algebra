@@ -5,8 +5,11 @@ src = "src"
 title = "The Little Book of Linear Algebra"
 [preprocessor.katex]
 after = ["links"]
+no-css = true
 [output.html.search]
 enable = false
 [output.html.print]
 enable = false
+[output.html]
+additional-css = ["katex.min.css"]
 
