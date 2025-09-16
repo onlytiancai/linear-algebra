@@ -246,18 +246,18 @@ Describe the null space of $A$ as a subspace of $\mathbb{R}^3$.
     列出 $\mathbb{R}^2$ 所有可能的子空间。
 
 ## 4.3 Span, Basis, Dimension
-4.3 跨度、基、维度
+4.3 张成、基、维度
 
 The ideas of span, basis, and dimension provide the language for describing the size and structure of subspaces. Together, they tell us how a vector space is generated, how many building blocks it requires, and how those blocks can be chosen.
 
-跨度、基和维数的概念提供了描述子空间大小和结构的语言。它们共同告诉我们向量空间是如何生成的，它需要多少个构建块，以及如何选择这些构建块。
+张成、基和维数的概念提供了描述子空间大小和结构的语言。它们共同告诉我们向量空间是如何生成的，它需要多少个构建块，以及如何选择这些构建块。
 
 ### Span
-跨度
+张成
 
 Given a set of vectors ${\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k} \subseteq V$, the span is the collection of all linear combinations:
 
-给定一组向量 ${\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k} \subseteq V$ ，跨度是所有线性组合的集合：
+给定一组向量 ${\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k} \subseteq V$ ，张成是所有线性组合的集合：
 
 $$
 \text{span}\{\mathbf{v}_1, \dots, \mathbf{v}_k\} = \{ c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k \mid c_i \in \mathbb{R} \}.
@@ -265,14 +265,14 @@ $$
 
 The span is always a subspace of $V$, namely the smallest subspace containing those vectors.
 
-跨度始终是 $V$ 的子空间，即包含这些向量的最小子空间。
+张成始终是 $V$ 的子空间，即包含这些向量的最小子空间。
 
 Example 4.3.1. In $\mathbb{R}^2$, $ \text{span}{(1,0)} = \{(x,0) \mid x \in \mathbb{R}\},$ the x-axis. Similarly, $\text{span}\{(1,0),(0,1)\} = \mathbb{R}^2.$
 
 例 4.3.1。 在 $\mathbb{R}^2$ 中， $ \text{span}{(1,0)} = \{(x,0) \mid x \in \mathbb{R}\},$ x 轴。同样， $\text{span}\{(1,0),(0,1)\} = \mathbb{R}^2.$
 
 ### Basis
-基础
+基
 
 A basis of a vector space $V$ is a set of vectors that:
 
@@ -280,14 +280,14 @@ A basis of a vector space $V$ is a set of vectors that:
 
 1.  Span $V$.
 
-    跨度 $V$ 。
+    张成 $V$ 。
 2.  Are linearly independent (no vector in the set is a linear combination of the others).
 
     是线性独立的（集合中没有向量是其他向量的线性组合）。
 
 If either condition fails, the set is not a basis.
 
-如果任一条件不成立，则该集合不作为基础。
+如果任一条件不成立，则该集合不作为基。
 
 Example 4.3.2. In $\mathbb{R}^3$, the standard unit vectors
 
@@ -299,14 +299,14 @@ $$
 
 form a basis. Every vector $(x,y,z)$ can be uniquely written as
 
-构成基础。每个向量 $(x,y,z)$ 都可以唯一地写成
+构成基。每个向量 $(x,y,z)$ 都可以唯一地写成
 
 $$
 x\mathbf{e}_1 + y\mathbf{e}_2 + z\mathbf{e}_3.
 $$
 
 ### Dimension
-方面
+维度
 
 The dimension of a vector space $V$, written $\dim(V)$, is the number of vectors in any basis of $V$. This number is well-defined: all bases of a vector space have the same cardinality.
 
@@ -331,24 +331,24 @@ Examples 4.3.3.
 
 *   The span is like the reach of a set of vectors.
 
-    跨度就像一组向量的范围。
+    张成就像一组向量的范围。
 *   A basis is the minimal set of directions needed to reach everything in the space.
 
-    基础是到达空间中所有事物所需的最小方向集。
+    基是到达空间中所有事物所需的最小方向集。
 *   The dimension is the count of those independent directions.
 
     维度是这些独立方向的数量。
 
 Lines, planes, and higher-dimensional flats can all be described in terms of span, basis, and dimension.
 
-线、平面和高维平面都可以用跨度、基和维度来描述。
+线、平面和高维平面都可以用张成、基和维度来描述。
 
 ### Why this matters
 为什么这很重要
 
 These concepts classify vector spaces and subspaces in terms of size and structure. Many theorems in linear algebra-such as the Rank–Nullity Theorem-are consequences of understanding span, basis, and dimension. In practical terms, bases are how we encode data in coordinates, and dimension tells us how much freedom a system truly has.
 
-这些概念根据大小和结构对向量空间和子空间进行分类。线性代数中的许多定理，例如秩零定理，都是理解跨度、基和维数的结果。实际上，基是我们在坐标系中编码数据的方式，而维数则告诉我们一个系统真正拥有多少自由度。
+这些概念根据大小和结构对向量空间和子空间进行分类。线性代数中的许多定理，例如秩零定理，都是理解张成、基和维数的结果。实际上，基是我们在坐标系中编码数据的方式，而维数则告诉我们一个系统真正拥有多少自由度。
 
 ### Exercises 4.3
 练习 4.3
@@ -358,11 +358,12 @@ These concepts classify vector spaces and subspaces in terms of size and structu
     证明 $(1,0,0)$ , $(0,1,0)$ , $(1,1,0)$ 在 $\mathbb{R}^3$ 中跨越 $xy$ -平面。它们是基吗？
 2.  Find a basis for the line $\{(2t,-3t,t) : t \in \mathbb{R}\}$ in $\mathbb{R}^3$.
 
-    找出 $\mathbb{R}^3$ 中第 $\{(2t,-3t,t) : t \in \mathbb{R}\}$ 行的依据。
+    找出 $\mathbb{R}^3$ 中直线 $\{(2t,-3t,t) : t \in \mathbb{R}\}$ 的基。
 3.  Determine the dimension of the subspace of $\mathbb{R}^3$ defined by $x+y+z=0$.
 
     确定由 $x+y+z=0$ 定义的 $\mathbb{R}^3$ 子空间的维数。
 4.  Prove that any two different bases of $\mathbb{R}^n$ must contain exactly $n$ vectors.
+
     证明 $\mathbb{R}^n$ 的任意两个不同基必定包含恰好 $n$ 个向量。
 5.  Give a basis for the set of polynomials of degree $\leq 2$. What is its dimension?
 
@@ -415,7 +416,7 @@ $$
 
 To find the coordinates of $\mathbf{u} = (3,1)$ relative to $\mathcal{B}$, solve
 
-要查找 $\mathbf{u} = (3,1)$ 相对于 $\mathcal{B}$ 的坐标，请求解
+要查找 $\mathbf{u} = (3,1)$ 相对于 $\mathcal{B}$ 的坐标，求解
 
 $$
 (3,1) = c_1(1,1) + c_2(1,-1).
@@ -423,15 +424,15 @@ $$
 
 This gives the system
 
-这使得系统
+得方程组
 
 $$
 \begin{cases}c_1 + c_2 = 3, \\c_1 - c_2 = 1.\end{cases}
 $$
 
-Adding: $2c\_1 = 4 \\implies c\_1 = 2$. Then $c\_2 = 1$.
+Adding: $2c_1 = 4 \implies c_1 = 2$. Then $c_2 = 1$.
 
-添加：$2c\_1 = 4 \\implies c\_1 = 2 $. Then $ c\_2 = 1$。
+两式相加：$2c_1 = 4 \implies c_1 = 2 $. 则 $ c_2 = 1$。
 
 So,
 
@@ -457,11 +458,11 @@ Relative to this basis, the coordinates of a vector are simply its entries. Thus
 相对于此基，向量的坐标仅仅是它的元素。因此，列向量默认为坐标表示。
 
 ### Change of Basis
-基础变更
+变基
 
 If $\mathcal{B} = {\mathbf{v}_1, \dots, \mathbf{v}_n}$ is a basis of $\mathbb{R}^n$, the change of basis matrix is
 
-如果𝐵 = 𝑣 1 , … , 𝑣 𝑛 B=v 1 ​ ，…，v n ​ 是 $\mathbb{R}^n$ 的基，基矩阵的变化是
+如果 $\mathcal{B} = {\mathbf{v}_1, \dots, \mathbf{v}_n}$  ​ 是 $\mathbb{R}^n$ 的基，基矩阵的变化是
 
 $$
 P = \begin{bmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \end{bmatrix},
@@ -504,7 +505,7 @@ Coordinates turn abstract vectors into concrete numerical data. Changing basis i
     找出 $(1,2,3)$ 相对于 $\mathbb{R}^3$ 标准基的坐标。
 3.  If $\mathcal{B} = \{(2,0), (0,3)\}$, compute $[ (4,6) ]_{\mathcal{B}}$.
 
-    如果 $\mathcal{B} = \{(2,0), (0,3)\}$ ，则计算 \[ ( 4 , 6 ) \] 𝐵 \[(4,6)\] B ​ .
+    如果 $\mathcal{B} = \{(2,0), (0,3)\}$ ，则计算 $[ (4,6) ]_{\mathcal{B}}$ ​ .
 4.  Construct the change of basis matrix from the standard basis of $\mathbb{R}^2$ to $\mathcal{B} = \{(1,1), (1,-1)\}$.
 
     构建从标准基 $\mathbb{R}^2$ 到 $\mathcal{B} = \{(1,1), (1,-1)\}$ 的基变换矩阵。

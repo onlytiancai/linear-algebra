@@ -259,7 +259,7 @@ If we continue to RREF, the solution can be read off directly.
 ### Example
 例子
 
-> 主元是 pivot element，或 pivot ，表示主要的元素的意思。
+
 
 Example 3.2.1. Solve
 
