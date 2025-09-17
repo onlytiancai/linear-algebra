@@ -1,10 +1,11 @@
 # Chapter 5. Linear Transformations
-第五章线性变换
+第 5 章线性变换
 
 ## 5.1 Functions that Preserve Linearity
 5.1 保持线性的函数
 
 A central theme of linear algebra is understanding linear transformations: functions between vector spaces that preserve their algebraic structure. These transformations generalize the idea of matrix multiplication and capture the essence of linear behavior.
+
 线性代数的核心主题是理解线性变换：向量空间之间保持其代数结构的函数。这些变换推广了矩阵乘法的概念，并抓住了线性行为的本质。
 
 ### Definition
