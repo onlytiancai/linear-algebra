@@ -18,7 +18,7 @@ A concise, beginner-friendly introduction to the core ideas of linear algebra.
 
 ## 中英文对照词汇表
 
-- systems of linear equations, linear systems: 翻译成线性方程组
+- systems of linear equations, linear systems, system: 翻译成线性方程组
 - span: 翻译成“张成”，既做动词，也做名词
 - pivot element：翻译成主元，表示主要的元素的意思。
 - pivot：当动词用，表示选择主元，当名词时同 pivot element
@@ -26,6 +26,8 @@ A concise, beginner-friendly introduction to the core ideas of linear algebra.
 - rank：翻译成秩
 - consistency: 翻译成相容性
 - homogeneous systems：翻译成线性齐次方程组
+- kernel：翻译成核，描述线性变换如何使空间变平坦
+- image：翻译成像，描述线性变换所达到的目标子空间
 
 ## 相关工具
 
