@@ -212,14 +212,14 @@ $$
 
 Example 5.2.3. Projection onto the x-axis. The map $P(x,y) = (x,0)$ corresponds to
 
-例 5.2.3. 投影到 x 轴。 地图 $P(x,y) = (x,0)$ 对应于
+例 5.2.3. 投影到 x 轴。 映射 $P(x,y) = (x,0)$ 对应于
 
 $$
 [P] = \begin{bmatrix}1 & 0 \\0 & 0\end{bmatrix}.
 $$
 
 ### Change of Basis
-变基
+基变换
 
 Matrix representations depend on the chosen basis. If $\mathcal{B}$ and $\mathcal{C}$ are bases of $\mathbb{R}^n$ and $\mathbb{R}^m$, then the matrix of $T: \mathbb{R}^n \to \mathbb{R}^m$ with respect to these bases is obtained by expressing $T(\mathbf{v}_j)$ in terms of $\mathcal{C}$ for each $\mathbf{v}_j \in \mathcal{B}$. Changing bases corresponds to conjugating the matrix by the appropriate change-of-basis matrices.
 
@@ -237,7 +237,7 @@ Matrices are not just convenient notation-they *are* linear maps once a basis is
 
 Matrix representations make linear transformations computable. They connect abstract definitions to explicit calculations, enabling algorithms for solving systems, finding eigenvalues, and performing decompositions. Applications from graphics to machine learning depend on this translation.
 
-矩阵表示使线性变换可计算。它们将抽象定义与明确的计算联系起来，从而支持求解系统、查找特征值和执行分解的算法。从图形到机器学习等各种应用都依赖于这种转换。
+矩阵表示使线性变换可计算。它们将抽象定义与明确的计算联系起来，从而支持求解方程组、查找特征值和执行分解的算法。从图形到机器学习等各种应用都依赖于这种转换。
 
 ### Exercises 5.2
 练习 5.2
@@ -389,7 +389,7 @@ Kernel and image capture the essence of a linear map. They classify transformati
 
     查找 $T:\mathbb{R}^2 \to \mathbb{R}^2$ 、 $T(x,y) = (x-y, x+y)$ 的核和像。
 2.  Let
-    让
+    令
 
     $$
     A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}
@@ -462,7 +462,7 @@ $$
 
 Thus, changing basis corresponds to a similarity transformation of the matrix.
 
-因此，改变基础对应于矩阵的相似变换。
+因此，改变基对应于矩阵的相似变换。
 
 ### Example
 例子
