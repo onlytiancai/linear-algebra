@@ -81,8 +81,8 @@ $\mathbb{R}[x]$ 是一种特殊表示法，它的含义是“所有实系数多�
 > 例 4.2.2. $\mathbb{R}^3$ 中的 x-y 平面 该集合
 > 
 > $$
-> W = \{ (x, y, 0) \mid x,y \in \mathbb{R} \}
-> $$
+W = \{ (x, y, 0) \mid x,y \in \mathbb{R} \}
+$$
 >
 > is a subspace of $\mathbb{R}^3$. It is the collection of all vectors lying in the plane through the origin parallel to the x–y plane.
 > 
@@ -196,8 +196,8 @@ plt.show()
 > 例 4.2.3. 矩阵的零空间 对于矩阵 $A \in \mathbb{R}^{m \times n}$ ，零空间
 > 
 > $$
-> \{ \mathbf{x} \in \mathbb{R}^n \mid A\mathbf{x} = \mathbf{0} \}
-> $$
+\{ \mathbf{x} \in \mathbb{R}^n \mid A\mathbf{x} = \mathbf{0} \}
+$$
 > 
 > is a subspace of $\mathbb{R}^n$. This subspace represents all solutions to the homogeneous > system.
 > 

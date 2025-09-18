@@ -374,8 +374,8 @@ $T(x, y, z) = (x, y)$
 > 令 $T:\mathbb{R}[x] \to \mathbb{R}[x]$ 为积分：
 > 
 > $$
-> T(p(x)) = \int_0^x p(t)\\,dt.
-> $$
+T(p(x)) = \int_0^x p(t)\\,dt.
+$$
 >  
 > Prove that $T$ is a linear transformation.
 > 
@@ -624,7 +624,7 @@ $$
 学不懂线性代数？用动画来拯救（一）：线性变换
 https://zhuanlan.zhihu.com/p/1896368529332237603
 
-# 问题 13
+# 问题 12
 
 > For the differentiation map $D:\mathbb{R}_2[x] \to \mathbb{R}_1[x]$, where $\mathbb{R}_k[x]$ is the space of polynomials of degree at most $k$, find the matrix of $D$ relative to the bases $\{1,x,x^2\}$ and $\{1,x\}$.
 > 
@@ -703,7 +703,7 @@ $$
 
 因此，矩阵 $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$ 正确地表示了微分映射 $D$ 相对于给定基的矩阵。
 
-# 问题 14
+# 问题 13
 
 > Find the kernel and image of $T:\mathbb{R}^2 \to \mathbb{R}^2$, $T(x,y) = (x-y, x+y)$.
 >
@@ -772,7 +772,7 @@ $$\text{dim}(\text{ker}(T)) + \text{dim}(\text{Im}(T)) = \text{dim}(V)$$
 $$0 + \text{dim}(\text{Im}(T)) = 2$$
 所以 $\text{dim}(\text{Im}(T)) = 2$，这再次确认了像的维度为 2，即整个 $\mathbb{R}^2$ 空间。
 
-# 问题 15
+# 问题 14
 
 > Matrix representations depend on the chosen basis. If $\mathcal{B}$ and $\mathcal{C}$ are bases of $\mathbb{R}^n$ and $\mathbb{R}^m$, then the matrix of $T: \mathbb{R}^n \to \mathbb{R}^m$ with respect to these bases is obtained by expressing $T(\mathbf{v}_j)$ in terms of $\mathcal{C}$ for each $\mathbf{v}_j \in \mathcal{B}$. Changing bases corresponds to conjugating the matrix by the appropriate change-of-basis matrices.
 >
@@ -825,19 +825,19 @@ $A' = P^{-1}AP$
 
 通过这个公式，我们可以方便地在不同基下的矩阵表示之间进行转换，而无需重新计算每个基向量的变换。这个特性是**特征值和特征向量**理论的基础，因为特征向量所组成的基可以使线性变换的矩阵表示成为最简单的形式——对角矩阵。
 
-# 问题 16
+# 问题 15
 
 > Let
 >
 > 令
 >
->    $$
->    A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}
->    $$
+> $$
+A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}
+$$
 >
->    Find bases for $\ker(A)$ and $\text{im}(A)$. 
+ >Find bases for $\ker(A)$ and $\text{im}(A)$. 
 >
->    找到 $\ker(A)$ 和 $\text{im}(A)$ 的基。
+> 找到 $\ker(A)$ 和 $\text{im}(A)$ 的基。
 
 首先，矩阵 $A$ 描述了一个从 $\mathbb{R}^3$ 到 $\mathbb{R}^2$ 的线性变换。我们需要找到这个变换的**零空间（核）**和**列空间（像）**的基。
 
@@ -988,7 +988,7 @@ $$
 并且验算：$-5(1,0)^T+4(2,1)^T=(3,4)^T$。因此 $c_3$ 确实是 $c_1,c_2$ 的线性组合。
 
 
-# 问题 17
+# 问题 16
 
 
 > For the projection map $P(x,y,z) = (x,y,0)$, describe the kernel and image. 
@@ -1032,7 +1032,7 @@ $P(x,y,z) = (x,y,0) = (0,0,0)$
 * **核**包含了所有“消失”的点，即那些被压平后变成原点的点。在三维空间中，只有位于 z 轴上的点才能满足这个条件。
 * **像**是所有投影结果的集合，也就是 xy 平面本身。
 
-# 问题 18
+# 问题 17
 
 > Prove that $\ker(T)$ and $\text{im}(T)$ are always subspaces. 
 > 
@@ -1105,7 +1105,7 @@ $P(x,y,z) = (x,y,0) = (0,0,0)$
 
 所有三个条件都满足，因此 $\text{im}(T)$ 是 $W$ 的一个子空间。
 
-# 问题 19
+# 问题 18
 
 > Linear transformations can look very different depending on the coordinate system we use. The process of rewriting vectors and transformations relative to a new basis is called a change of basis. This concept lies at the heart of diagonalization, orthogonalization, and many computational techniques.
 > 
@@ -1142,7 +1142,7 @@ $P(x,y,z) = (x,y,0) = (0,0,0)$
 
 总而言之，这段话告诉我们，矩阵的表示是相对的，而基变换是寻找**最优**矩阵表示的方法。这个最优的矩阵（例如对角矩阵）能让我们更容易地理解和操作线性变换。
 
-# 问题 20
+# 问题 19
 
 > 基变换矩阵必须是可逆的吗？
 
@@ -1155,11 +1155,11 @@ $P$ 是从基 $\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ 到标准基
 
 因为 $P$ 的列是线性无关的，所以 $P$ 是可逆的。这确保了从一个坐标系到另一个坐标系的转换是**一对一**的，并且是可逆的。如果 $P$ 不可逆，那么不同的向量在 $\mathcal{B}$ 下可能有相同的坐标，这与基的唯一性定义相矛盾。
 
-# 问题 21
+# 问题 20
 
 > $$
-> \mathbf{x} = P [\mathbf{x}]_{\mathcal{B}}.
-> $$
+\mathbf{x} = P [\mathbf{x}]_{\mathcal{B}}.
+$$
 
 
 让我们来详细解释这个等式的含义。
@@ -1180,8 +1180,8 @@ $P$ 是从基 $\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ 到标准基
 这个等式描述了从一个坐标系（新基 $\mathcal{B}$）转换到另一个坐标系（标准基）的过程。它告诉我们，要找到一个向量在标准基下的坐标，我们只需知道它在新基下的坐标，然后用矩阵 $P$ 转换即可。
 
 > $$
-> [\mathbf{x}]_{\mathcal{B}} = P^{-1} \mathbf{x}.
-> $$
+[\mathbf{x}]_{\mathcal{B}} = P^{-1} \mathbf{x}.
+$$
 
 这个等式描述了将一个向量的**标准基坐标**转换成**新基坐标**的过程。
 
@@ -1213,7 +1213,7 @@ $P$ 是从基 $\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ 到标准基
 
 等式 $ [\mathbf{x}]_{\mathcal{B}} = P^{-1} \mathbf{x}$ 描述的就是这个**从旧坐标系到新坐标系**的转换过程。
 
-# 问题 22
+# 问题 21
 
 > ### Transformation of Matrices
 > 矩阵变换
@@ -1223,8 +1223,8 @@ $P$ 是从基 $\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ 到标准基
 > 令 $T: V \to V$ 为线性变换。假设其在标准基中的矩阵为 $A$ 。在基 $\mathcal{B}$ 中，表示矩阵变为
 > 
 > $$
-> [T]_{\mathcal{B}} = P^{-1} A P.
-> $$
+[T]_{\mathcal{B}} = P^{-1} A P.
+$$
 > 
 > Thus, changing basis corresponds to a similarity transformation of the matrix.
 > 
@@ -1273,15 +1273,15 @@ $P$ 是从基 $\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ 到标准基
 
 **相似变换** $A' = P^{-1}AP$ 在线性代数中至关重要。它的主要目的就是寻找一个**最简单**的矩阵表示，通常是对角矩阵。如果一个矩阵可以被对角化（即可找到一个可逆矩阵 $P$ 使得 $P^{-1}AP$ 是对角矩阵），那么在这个对角矩阵所对应的基下，线性变换就是简单的拉伸或压缩，没有旋转或剪切。这极大地简化了矩阵运算，也是**特征值和特征向量**理论的核心。
 
-# 问题 23
+# 问题 22
 
 > Let
 > 
 > 令
 > 
 > $$
-> A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}
-> $$
+A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}
+$$
 > 
 > Compute its representation in the basis $\{(1,0),(1,1)\}$. 
 > 
@@ -1367,7 +1367,7 @@ $$
 $$A' = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}$$
 这与我们使用相似变换公式得到的结果完全一致。
 
-# 问题 24
+# 问题 23
 
 > Find the change-of-basis matrix from the standard basis of $\mathbb{R}^2$ to $\{(2,1),(1,1)\}$. 
 > 
@@ -1448,7 +1448,7 @@ $1 \cdot (2,1) + 1 \cdot (1,1) = (2+1, 1+1) = (3,2)$
 
 结果正确。
 
-# 问题 25
+# 问题 24
 
 > Prove that similar matrices (related by $P^{-1}AP$) represent the same linear transformation under different bases. 
 > 
@@ -1501,15 +1501,15 @@ $$[T(\mathbf{x})]_{\mathcal{B}} = (P^{-1}AP) [\mathbf{x}]_{\mathcal{B}}$$
 
 因此，矩阵 $A' = P^{-1}AP$ **就是**线性变换 $T$ 在新基 $\mathcal{B}$ 下的矩阵表示。这证明了**相似矩阵在不同基下表示相同的线性变换**。
 
-# 问题 26
+# 问题 25
 
 > Diagonalize the matrix
 > 
 > 对角化矩阵
 > 
 > $$
-> A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
-> $$
+A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
+$$
 > 
 > in the basis $\{(1,1),(1,-1)\}$. 
 > 
@@ -1588,7 +1588,7 @@ $$
 
 因此，矩阵 $A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ 在基 $\{(1,1),(1,-1)\}$ 中的表示是 $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$。
 
-# 问题 27
+# 问题 26
 
 > In $\mathbb{R}^3$, let $\mathcal{B} = \{(1,0,0),(1,1,0),(1,1,1)\}$. Construct the change-of-basis matrix $P$ and compute $P^{-1}$.
 > 
