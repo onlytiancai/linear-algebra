@@ -20,3 +20,6 @@
 - [第 4 章 笔记](./chapter_14.md)
 - [第 5 章 笔记](./chapter_15.md)
 
+# 附录
+
+- [The Most Important Machine Learning Equations: A Comprehensive Guide](./chapter_100_ml-key-math-eqns.md)
