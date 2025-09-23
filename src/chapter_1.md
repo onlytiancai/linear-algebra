@@ -67,7 +67,7 @@ In $\mathbb{R}^2$, a vector $(x_1, x_2)$ can be visualized as an arrow starting 
     向量以粗体小写字母表示： $\mathbf{v}, \mathbf{w}, \mathbf{x}$ 。
 *   The *i*\-th entry of a vector $\mathbf{v}$ is written $v_i$, where indices begin at 1.
 
-    向量 $\mathbf{v}$ 的第 - 个元素写为 $v_i$​ ，其中索引从 1 开始。
+    向量 $\mathbf{v}$ 的第 *i* 个元素写为 $v_i$​ ，其中索引从 1 开始。
 *   The set of all *n*\-dimensional vectors over $\mathbb{R}$ is denoted $\mathbb{R}^n$.
 
     $\mathbb{R}$ 上的所有 *n* 维向量的集合记为 $\mathbb{R}^n$ 。
