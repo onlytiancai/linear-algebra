@@ -1,16 +1,18 @@
 # Chapter 6. Determinants
-第六章 决定因素
+第六章 行列式
 
 ## 6.1 Motivation and Geometric Meaning
 6.1 动机和几何意义
 
 Determinants are numerical values associated with square matrices. At first they may appear as a complicated formula, but their importance comes from what they measure: determinants encode scaling, orientation, and invertibility of linear transformations. They bridge algebra and geometry.
+
 行列式是与方阵相关的数值。乍一看，它们可能看起来像一个复杂的公式，但它们的重要性在于它们所测量的内容：行列式编码了线性变换的缩放、方向和可逆性。它们连接了代数和几何。
 
 ### Determinants of 2×2 Matrices
 2×2 矩阵的行列式
 
 For a 2×2 matrix
+
 对于 2×2 矩阵
 
 $$
@@ -18,6 +20,7 @@ A = \begin{bmatrix} a & b \\ c & d \end{bmatrix},
 $$
 
 the determinant is defined as
+
 行列式定义为
 
 $$
@@ -25,19 +28,22 @@ $$
 $$
 
 Geometric meaning: If $A$ represents a linear transformation of the plane, then $|\det(A)|$ is the area scaling factor. For example, if $\det(A) = 2$, areas of shapes are doubled. If $\det(A) = 0$, the transformation collapses the plane to a line: all area is lost.
+
 几何含义：如果 $A$ 表示平面的线性变换，则 $|\det(A)|$ 是面积缩放因子。例如，如果 $\det(A) = 2$ ，形状的面积将加倍。如果 $\det(A) = 0$ ，变换将平面折叠成一条线：所有面积都将丢失。
 
 ### Determinants of 3×3 Matrices
 3×3 矩阵的行列式
 
 For
-为了
+
+对于
 
 $$
 A = \begin{bmatrix}a & b & c \\d & e & f \\g & h & i\end{bmatrix},
 $$
 
 the determinant can be computed as
+
 行列式可以计算为
 
 $$
@@ -45,31 +51,39 @@ $$
 $$
 
 Geometric meaning: In $\mathbb{R}^3$, $|\det(A)|$ is the volume scaling factor. If $\det(A) < 0$, orientation is reversed (a handedness flip), such as turning a right-handed coordinate system into a left-handed one.
+
 几何含义：在 $\mathbb{R}^3$ 中， $|\det(A)|$ 是体积缩放因子。如果为 $\det(A) < 0$ ，则方向反转（即手性翻转），例如将右手坐标系转换为左手坐标系。
 
 ### General Case
 一般情况
 
 For $A \in \mathbb{R}^{n \times n}$, the determinant is a scalar that measures how the linear transformation given by $A$ scales n-dimensional volume.
+
 对于 $A \in \mathbb{R}^{n \times n}$ ，行列式是一个标量，它衡量 $A$ 给出的线性变换如何缩放 n 维体积。
 
 *   If $\det(A) = 0$: the transformation squashes space into a lower dimension, so $A$ is not invertible.
+
     如果 $\det(A) = 0$ ：变换将空间压缩到较低维度，因此 $A$ 不可逆。
 *   If $\det(A) > 0$: volume is scaled by $\det(A)$, orientation preserved.
+
     如果是 $\det(A) > 0$ ：体积按 $\det(A)$ 缩放，方向保持不变。
 *   If $\det(A) < 0$: volume is scaled by $|\det(A)|$, orientation reversed.
+
     如果是 $\det(A) < 0$ ：体积按 $|\det(A)|$ 缩放，方向反转。
 
 ### Visual Examples
 视觉示例
 
 1.  Shear in $\mathbb{R}^2$: $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$. Then $\det(A) = 1$. The transformation slants the unit square into a parallelogram but preserves area.
-    $\mathbb{R}^2$ 处的剪切： $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ 。然后是 $\det(A) = 1$ 。变换将单位正方形倾斜为平行四边形，但保留面积。
+
+    $\mathbb{R}^2$ 的剪切： $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ 。然后是 $\det(A) = 1$ 。变换将单位正方形倾斜为平行四边形，但保留面积。
     
 2.  Projection in $\mathbb{R}^2$: $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$. Then $\det(A) = 0$. The unit square collapses into a line segment: area vanishes.
+
     $\mathbb{R}^2$ 中的投影： $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$ 。然后 $\det(A) = 0$ 。单位正方形坍缩成一条线段：面积消失。
     
 3.  Rotation in $\mathbb{R}^2$: $R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}$. Then $\det(R_\theta) = 1$. Rotations preserve area and orientation.
+
     $\mathbb{R}^2$ 中的旋转： $R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}$ 。然后 $\det(R_\theta) = 1$ 。旋转保留面积和方向。
     
 
@@ -77,30 +91,53 @@ For $A \in \mathbb{R}^{n \times n}$, the determinant is a scalar that measures h
 为什么这很重要
 
 The determinant is not just a formula-it is a measure of transformation. It tells us whether a matrix is invertible, how it distorts space, and whether it flips orientation. This geometric insight makes the determinant indispensable in analysis, geometry, and applied mathematics.
+
 行列式不仅仅是一个公式，它还是一种变换的度量。它告诉我们一个矩阵是否可逆，它如何扭曲空间，以及它是否会翻转方向。这种几何学上的洞察力使得行列式在分析、几何和应用数学中不可或缺。
 
 ### Exercises 6.1
 练习 6.1
 
 1.  Compute the determinant of
-    计算行列式
 
+    计算行列式
 $$
 \begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}
 $$
 
-What area scaling factor does it represent? 2. Find the determinant of the shear matrix
-它代表什么面积比例因子？2. 求剪切矩阵的行列式
+What area scaling factor does it represent? 
+
+它代表什么面积比例因子？
+
+2. Find the determinant of the shear matrix
+
+   求剪切矩阵的行列式
 
 $$
 \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}
 $$
 
-> 下面这段公式解析错误，我改成源码模式了
-```
-What happens to the area of the unit square? 3. For the $3 \\times 3matrix \[100020003\] Compute the determinant. How does it scale volume in\\mathbb{R}^3$?4. Show that any rotation matrix in $\\mathbb{R}^2 has determinant \\1. 5. Give an example of a \\2 \\times 2$matrix with determinant$\-1$. What geometric action does it represent?
-单位正方形的面积会发生什么变化？ 3. 对于 $3 \\times 3 矩阵 \[100020003\] 计算行列式。\\mathbb{R}^3 $?4. Show that any rotation matrix in $ \\mathbb{R}^2 的行列式为 \\ 1 ，它如何缩放体积 ？5. 举一个 \\ 2 \\times 2 $matrix with determinant$ -1$ 的例子 。它代表什么几何作用？
-```
+What happens to the area of the unit square? 
+
+单位正方形的面积会发生什么变化？ 
+
+3. For the $3 \times 3$ matrix
+
+   对于 $3 \times 3$ 矩阵
+
+$$\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}$$
+
+Compute the determinant. How does it scale volume in $\mathbb{R}^3$?
+
+计算行列式。它如何在$\mathbb{R}^3$中缩放体积？
+
+4. Show that any rotation matrix in $\mathbb{R}^2$ has determinant $1$.
+
+   证明$\mathbb{R}^2$中任意旋转矩阵的行列式均为$1$。
+
+5. Give an example of a $2 \times 2$ matrix with determinant $-1$. What geometric action does it represent?
+
+   举一个行列式为$-1$的$2 \times 2$矩阵的例子。它代表什么几何作用？
+
 
 
 ## 6.2 Properties of Determinants

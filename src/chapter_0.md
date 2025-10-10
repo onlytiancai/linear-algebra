@@ -2,6 +2,7 @@
 线性代数小册子
 
 https://github.com/little-book-of/linear-algebra
+https://github.com/little-book-of/linear-algebra/blob/main/archived/v1/README.md
 
 A concise, beginner-friendly introduction to the core ideas of linear algebra.
 
