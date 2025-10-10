@@ -141,41 +141,51 @@ Compute the determinant. How does it scale volume in $\mathbb{R}^3$?
 
 
 ## 6.2 Properties of Determinants
-6.2 行列式的性质
+
+行列式的性质
 
 Beyond their geometric meaning, determinants satisfy a collection of algebraic rules that make them powerful tools in linear algebra. These properties allow us to compute efficiently, test invertibility, and understand how determinants behave under matrix operations.
+
 除了几何意义之外，行列式还满足一系列代数规则，使其成为线性代数中强大的工具。这些性质使我们能够高效计算、测试可逆性，并理解行列式在矩​​阵运算下的行为。
 
 ### Basic Properties
+
 基本属性
 
 Let $A, B \in \mathbb{R}^{n \times n}$, and let $c \in \mathbb{R}$. Then:
-令 $A, B \in \mathbb{R}^{n \times n}$ ，令 $c \in \mathbb{R}$ 。然后：
+
+令 $A, B \in \mathbb{R}^{n \times n}$ ，令 $c \in \mathbb{R}$ 。则：
 
 1.  Identity:
-    身份：
+
+    单位矩阵的行列式为 1：
 
 $$
 \det(I_n) = 1.
 $$
 
 2.  Triangular matrices: If $A$ is upper or lower triangular, then
-    三角矩阵： 如果 $A$ 是上三角或下三角，则
+
+    三角矩阵： 如果 $A$ 是上三角矩阵或下三角矩阵，则
 
 $$
 \det(A) = a_{11} a_{22} \cdots a_{nn}.
 $$
 
 3.  Row/column swap: Interchanging two rows (or columns) multiplies the determinant by $-1$.
+
     行/列交换： 交换两行（或列）将行列式乘以 $-1$ 。
     
 4.  Row/column scaling: Multiplying a row (or column) by a scalar $c$ multiplies the determinant by $c$.
+
     行/列缩放： 将行（或列）乘以标量 $c$ 会将行列式乘以 $c$ 。
     
 5.  Row/column addition: Adding a multiple of one row to another does not change the determinant.
+
     行/列加法：将一行的倍数添加到另一行不会改变行列式。
     
 6.  Transpose:
+
     转置：
     
 
@@ -184,6 +194,7 @@ $$
 $$
 
 7.  Multiplicativity:
+
     乘法性：
 
 $$
@@ -191,12 +202,14 @@ $$
 $$
 
 8.  Invertibility: $A$ is invertible if and only if $\det(A) \neq 0$.
+
     可逆性： 当且仅当 $\det(A) \neq 0$ 时， $A$ 才是可逆的。
 
 ### Example Computations
 计算示例
 
 Example 6.2.1. For
+
 例 6.2.1. 对于
 
 $$
@@ -204,6 +217,7 @@ A = \begin{bmatrix}2 & 0 & 0 \\1 & 3 & 0 \\-1 & 4 & 5\end{bmatrix},
 $$
 
 $A$ is lower triangular, so
+
 $A$ 是下三角，所以
 
 $$
@@ -211,6 +225,7 @@ $$
 $$
 
 Example 6.2.2. Let
+
 例 6.2.2. 设
 
 $$
@@ -218,13 +233,15 @@ B = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad C = \begin{bmatrix} 0 & 
 $$
 
 Then
-然后
+
+则
 
 $$
 \det(B) = 1\cdot 4 - 2\cdot 3 = -2, \quad \det(C) = -1.
 $$
 
 Since $CB$ is obtained by swapping rows of $B$,
+
 由于 $CB$ 是通过交换 $B$ 的行获得的，
 
 $$
@@ -232,21 +249,27 @@ $$
 $$
 
 This matches the multiplicativity rule: $\det(CB) = \det(C)\det(B) = (-1)(-2) = 2.$
+
 这符合乘法规则： $\det(CB) = \det(C)\det(B) = (-1)(-2) = 2.$
 
 ### Geometric Insights
 几何洞察
 
 *   Row swaps: flipping orientation of space.
+
     行交换：翻转空间的方向。
 *   Scaling a row: stretching space in one direction.
+
     缩放一行：朝一个方向拉伸空间。
 *   Row replacement: sliding hyperplanes without altering volume.
+
     行替换：滑动超平面而不改变体积。
 *   Multiplicativity: performing two transformations multiplies their scaling factors.
+
     乘法性：执行两个变换会将它们的比例因子相乘。
 
 These properties make determinants both computationally manageable and geometrically interpretable.
+
 这些性质使得行列式既易于计算管理，又易于几何解释。
 
 ### Why this matters
