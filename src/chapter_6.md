@@ -276,6 +276,7 @@ These properties make determinants both computationally manageable and geometric
 为什么这很重要
 
 Determinant properties connect computation with geometry and theory. They explain why Gaussian elimination works, why invertibility is equivalent to nonzero determinant, and why determinants naturally arise in areas like volume computation, eigenvalue theory, and differential equations.
+
 行列式的性质将计算与几何和理论联系起来。它们解释了高斯消元法为何有效，可逆性为何等价于非零行列式，以及行列式为何自然地出现在体积计算、特征值理论和微分方程等领域。
 
 ### Exercises 6.2
