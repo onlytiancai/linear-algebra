@@ -283,6 +283,7 @@ Determinant properties connect computation with geometry and theory. They explai
 练习 6.2
 
 1.  Compute the determinant of
+
     计算行列式
 
 $$
@@ -290,9 +291,11 @@ A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{bmatrix}.
 $$
 
 2.  Show that if two rows of a square matrix are identical, then its determinant is zero.
+
     证明如果方阵的两行相同，则其行列式为零。
     
 3.  Verify $\det(A^T) = \det(A)$ for
+
     验证 $\det(A^T) = \det(A)$
     
 
@@ -301,37 +304,45 @@ A = \begin{bmatrix} 2 & -1 \\ 3 & 4 \end{bmatrix}.
 $$
 
 4.  If $A$ is invertible, prove that
+
     如果 $A$ 可逆，则证明
 
 $$
 \det(A^{-1}) = \frac{1}{\det(A)}.
 $$
 
-5.  Suppose $A$ is a $3\\times 3$matrix with$\\det(A) = 5$. What is $\\det(2A)$?
-    假设 $A$ 是 $3\\times 3 $matrix with$ \\det(A) = 5 $. What is $ \\det(2A)$？
+5.  Suppose $A$ is a $3 \times 3$ matrix with $ \det(A) = 5$. What is $ \det(2A)$?
+
+    假设 $A$ 是 $3\times 3 $ 矩阵， 且 $ \ det(A) = 5 $. 求 $ \det(2A)$？
 
 ## 6.3 Cofactor Expansion
-6.3 辅因子展开
+6.3 余因子展开
 
 While determinants of small matrices can be computed directly from formulas, larger matrices require a systematic method. The cofactor expansion (also known as Laplace expansion) provides a recursive way to compute determinants by breaking them into smaller ones.
+
 虽然小矩阵的行列式可以直接通过公式计算，但较大的矩阵则需要系统的方法。余因子展开式（也称为拉普拉斯展开式）通过将行列式分解为更小的矩阵，提供了一种递归计算行列式的方法。
 
 ### Minors and Cofactors
-小式和辅因子
+
+子式和余因子
 
 For an $n \times n$ matrix $A = [a_{ij}]$:
+
 对于 $n \times n$ 矩阵 $A = [a_{ij}]$ ：
 
 *   The minor $M_{ij}$ is the determinant of the $(n-1) \times (n-1)$ matrix obtained by deleting the $i$\-th row and $j$ -th column of $A$.
-    小调𝑀 𝑖 𝑗 M 伊奇 ​ 是删除第 $i$ 行和 $j$ 后得到的 $(n-1) \times (n-1)$ 矩阵的行列式 $A$ 的第列。
+
+    子式 $M_{ij}$ ​ 是删除第 $i$ 行和第 $j$ 列后得到的 $(n-1) \times (n-1)$ 矩阵的行列式 $A$ 的第列。
 *   The cofactor $C_{ij}$ is defined by
-    辅因子𝐶 𝑖 𝑗 C 伊奇 ​ 定义为
+
+    余因子 $C_{ij}$ ​ 定义为
 
 $$
 C_{ij} = (-1)^{i+j} M_{ij}.
 $$
 
 The sign factor $(-1)^{i+j}$ alternates in a checkerboard pattern:
+
 符号因子 $(-1)^{i+j}$ 以棋盘格图案交替出现：
 
 $$
@@ -339,9 +350,10 @@ $$
 $$
 
 ### Cofactor Expansion Formula
-辅因式展开公式
+余因子展开公式 
 
 The determinant of $A$ can be computed by expanding along any row or any column:
+
 $A$ 的行列式可以通过沿任意行或任意列展开来计算：
 
 $$
@@ -355,9 +367,11 @@ $$
 $$
 
 ### Example
+
 例子
 
 Example 6.3.1. Compute
+
 例 6.3.1. 计算
 
 $$
@@ -365,6 +379,7 @@ A = \begin{bmatrix}1 & 2 & 3 \\0 & 4 & 5 \\1 & 0 & 6\end{bmatrix}.
 $$
 
 Expand along the first row:
+
 沿第一行展开：
 
 $$
@@ -372,36 +387,43 @@ $$
 $$
 
 *   For $C_{11}$:
-    对于𝐶 11 C 11 ​ :
+
+    对于 $C_{11}$ ​ :
 
 $$
 M_{11} = \det \begin{bmatrix} 4 & 5 \\ 0 & 6 \end{bmatrix} = 24
 $$
 
 so $C_{11} = (+1)(24) = 24$.
+
 所以 $C_{11} = (+1)(24) = 24$ 。
 
 *   For $C_{12}$:
-    对于𝐶 12 C 12 ​ :
+
+    对于 $C_{12}$:
 
 $$
 M_{12} = \det \begin{bmatrix} 0 & 5 \\ 1 & 6 \end{bmatrix} = 0 - 5 = -5
 $$
 
 so $C_{12} = (-1)(-5) = 5$.
+
 所以 $C_{12} = (-1)(-5) = 5$ 。
 
 *   For $C_{13}$:
-    对于𝐶 13 C 13 ​ :
+
+    对于 $C_{13}$ ​ :
 
 $$
 M_{13} = \det \begin{bmatrix} 0 & 4 \\ 1 & 0 \end{bmatrix} = 0 - 4 = -4
 $$
 
 so $C_{13} = (+1)(-4) = -4$.
+
 所以 $C_{13} = (+1)(-4) = -4$ 。
 
 Thus,
+
 因此，
 
 $$
@@ -412,10 +434,13 @@ $$
 辅因子展开的性质
 
 1.  Expansion along any row or column yields the same result.
+
     沿任意行或列扩展都会产生相同的结果。
 2.  The cofactor expansion provides a recursive definition of determinant: a determinant of size $n$ is expressed in terms of determinants of size $n-1$.
+
     余因子展开提供了行列式的递归定义：大小为 $n$ 的行列式可以用大小为 $n-1$ 的行列式来表示。
 3.  Cofactors are fundamental in constructing the adjugate matrix, which gives a formula for inverses:
+
     余因子是构造伴随矩阵的基础，它给出了逆的公式：
 
 $$
@@ -426,18 +451,22 @@ $$
 几何解释
 
 Cofactor expansion breaks down the determinant into contributions from sub-volumes defined by fixing one row or column at a time. Each cofactor measures how that row/column influences the overall volume scaling.
+
 余因子展开将行列式分解为由每次固定一行或一列定义的子体积的贡献。每个余因子衡量该行/列对整体体积缩放的影响。
 
 ### Why this matters
 为什么这很重要
 
 Cofactor expansion generalizes the small-matrix formulas and provides a conceptual definition of determinants. While not the most efficient way to compute determinants for large matrices, it is essential for theory, proofs, and connections to adjugates, Cramer’s rule, and classical geometry.
+
 余因子展开式推广了小矩阵公式，并提供了行列式的概念定义。虽然它并非计算大矩阵行列式的最有效方法，但它对于理论、证明以及与伴随项、克莱姆规则和古典几何的联系至关重要。
 
 ### Exercises 6.3
+
 练习 6.3
 
 1.  Compute the determinant of
+
     计算行列式
 
 $$
@@ -445,31 +474,40 @@ $$
 $$
 
 by cofactor expansion along the first column.
+
 通过沿第一列的余因子展开。
 
 2.  Verify that expanding along the second row of Example 6.3.1 gives the same determinant.
+
     验证沿示例 6.3.1 的第二行展开是否给出相同的行列式。
     
 3.  Prove that expansion along any row gives the same value.
+
     证明沿任何行展开都会给出相同的值。
     
 4.  Show that if a row of a matrix is zero, then its determinant is zero.
+
     证明如果矩阵的某一行是零，那么它的行列式也是零。
     
 5.  Use cofactor expansion to prove that $\det(A) = \det(A^T)$.
+
     使用余因子展开来证明 $\det(A) = \det(A^T)$ 。
     
 
 ## 6.4 Applications (Volume, Invertibility Test)
+
 6.4 应用（体积、可逆性测试）
 
 Determinants are not merely algebraic curiosities; they have concrete geometric and computational uses. Two of the most important applications are measuring volumes and testing invertibility of matrices.
+
 行列式不仅仅是代数上的奇闻；它们有着具体的几何和计算用途。其中最重要的两个应用是测量体积和检验矩阵的可逆性。
 
 ### Determinants as Volume Scalers
-决定因素作为体积标量
+
+行列式作为体积标量
 
 Given vectors $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n \in \mathbb{R}^n$, arrange them as columns of a matrix:
+
 给定向量 $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n \in \mathbb{R}^n$ ，将它们排列为矩阵的列：
 
 $$
@@ -477,16 +515,21 @@ A = \begin{bmatrix}| & | & & | \\\mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{
 $$
 
 Then $|\det(A)|$ equals the volume of the parallelepiped spanned by these vectors.
-那么 $|\det(A)|$ 等于这些向量所跨越的平行六面体的体积。
+
+那么 $|\det(A)|$ 等于这些向量所张成的平行六面体的体积。
 
 *   In $\mathbb{R}^2$, $|\det(A)|$ gives the area of the parallelogram spanned by $\mathbf{v}_1, \mathbf{v}_2$.
-    在 $\mathbb{R}^2$ 中， $|\det(A)|$ 给出由 𝑣 构成的平行四边形的面积 1 , 𝑣 2 v 1 ​ ，v 2 ​ .
+
+    在 $\mathbb{R}^2$ 中， $|\det(A)|$ 给出由 $\mathbf{v}_1, \mathbf{v}_2$ 张成的平行四边形的面积 .
 *   In $\mathbb{R}^3$, $|\det(A)|$ gives the volume of the parallelepiped spanned by $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$.
-    在 $\mathbb{R}^3$ 中， $|\det(A)|$ 给出平行六面体的体积，跨度为 𝑣 1 , 𝑣 2 , 𝑣 3 v 1 ​ ，v 2 ​ ，v 3 ​ .
+
+    在 $\mathbb{R}^3$ 中， $|\det(A)|$ 给出由 $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ 张成的平行六面体的体积.
 *   In higher dimensions, it generalizes to $n$\-dimensional volume (hypervolume).
+
     在更高维度中，它可以推广到 $n$ 维体积（超体积）。
 
 Example 6.4.1. Let
+
 例 6.4.1. 设
 
 $$
@@ -494,27 +537,34 @@ $$
 $$
 
 Then
-然后
+
+则
 
 $$
 A = \begin{bmatrix}1 & 1 & 1 \\0 & 1 & 1 \\0 & 0 & 1\end{bmatrix}, \quad \det(A) = 1.
 $$
 
 So the parallelepiped has volume 1, even though the vectors are not orthogonal.
+
 因此，即使向量不正交，平行六面体的体积也是 1 。
 
 ### Invertibility Test
+
 可逆性测试
 
 A square matrix $A$ is invertible if and only if $\det(A) \neq 0$.
+
 方阵 $A$ 可逆当且仅当 $\det(A) \neq 0$ 。
 
 *   If $\det(A) = 0$: the transformation collapses space into a lower dimension (area/volume is zero). No inverse exists.
+
     如果 $\det(A) = 0$ ：变换将空间塌缩至较低维度（面积/体积为零）。不存在逆变换。
 *   If $\det(A) \neq 0$: the transformation scales volume by $|\det(A)|$, and is reversible.
+
     如果 $\det(A) \neq 0$ ：变换将体积缩放 $|\det(A)|$ ，并且是可逆的。
 
 Example 6.4.2. The matrix
+
 例 6.4.2. 矩阵
 
 $$
@@ -522,12 +572,15 @@ B = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix}
 $$
 
 has determinant $\det(B) = 2 \cdot 2 - 4 \cdot 1 = 0$. Thus, $B$ is not invertible. Geometrically, the two column vectors are collinear, spanning only a line in $\mathbb{R}^2$.
+
 行列式为 $\det(B) = 2 \cdot 2 - 4 \cdot 1 = 0$ 。因此， $B$ 不可逆。几何上，这两个列向量共线，在 $\mathbb{R}^2$ 中仅延伸一条线。
 
 ### Cramer’s Rule
+
 克莱默规则
 
 Determinants also provide an explicit formula for solving systems of linear equations when the matrix is invertible. For $A\mathbf{x} = \mathbf{b}$ with $A \in \mathbb{R}^{n \times n}$:
+
 当矩阵可逆时，行列式还提供了求解线性方程组的明确公式。 对于带有 $A \in \mathbb{R}^{n \times n}$ 的 $A\mathbf{x} = \mathbf{b}$ ：
 
 $$
@@ -535,30 +588,38 @@ x_i = \frac{\det(A_i)}{\det(A)},
 $$
 
 where $A_i$ is obtained by replacing the $i$\-th column of $A$ with $\mathbf{b}$. While inefficient computationally, Cramer’s rule highlights the determinant’s role in solutions and uniqueness.
-其中𝐴 𝑖 A i ​ 通过将 $A$ 的第 $i$ 列替换为 $\mathbf{b}$ 得到。克莱姆规则虽然计算效率低下，但它凸显了行列式在解和唯一性方面的作用。
+
+其中$A_i$​ 通过将 $A$ 的第 $i$ 列替换为 $\mathbf{b}$ 得到。克莱姆规则虽然计算效率低下，但它凸显了行列式在解和唯一性方面的作用。
 
 ### Orientation
+
 方向
 
 The sign of $\det(A)$ indicates whether a transformation preserves or reverses orientation. For example, a reflection in the plane has determinant $-1$, flipping handedness.
+
 $\det(A)$ 的符号表示变换是保持方向还是反转方向。例如，平面上的反射具有行列式 $-1$ ，即翻转旋向性。
 
 ### Why this matters
+
 为什么这很重要
 
 Determinants condense key information: they measure scaling, test invertibility, and track orientation. These insights are indispensable in geometry (areas and volumes), analysis (Jacobian determinants in calculus), and computation ( solving systems and checking singularity).
+
 行列式浓缩了关键信息：它们测量缩放比例、检验可逆性并追踪方向。这些洞见在几何学（面积和体积）、分析学（微积分中的雅可比行列式）和计算学（求解系统和检查奇点）中都不可或缺。
 
 ### Exercises 6.4
 练习 6.4
 
 1.  Compute the area of the parallelogram spanned by $(2,1)$ and $(1,3)$.
+
     计算 $(2,1)$ 和 $(1,3)$ 所构成的平行四边形的面积。
     
 2.  Find the volume of the parallelepiped spanned by $(1,0,0), (1,1,0), (1,1,1)$.
-    求出 $(1,0,0), (1,1,0), (1,1,1)$ 所跨度的平行六面体的体积。
+
+    求出 $(1,0,0), (1,1,0), (1,1,1)$ 所张成的平行六面体的体积。
     
 3.  Determine whether the matrix
+
     确定矩阵
     
 
@@ -567,11 +628,15 @@ $$
 $$
 
 is invertible. Justify using determinants. 4. Use Cramer’s rule to solve
-是可逆的。用行列式证明。4. 使用克莱姆规则求解
+
+是可逆的。用行列式证明。
+
+4. 使用克莱姆规则求解
 
 $$
 \begin{cases}x + y = 3, \\2x - y = 0.\end{cases}
 $$
 
 5.  Explain geometrically why a determinant of zero implies no inverse exists.
-    从几何角度解释为什么行列式为零意味着不存在逆元。
+
+    从几何角度解释为什么行列式为零意味着不存在逆。

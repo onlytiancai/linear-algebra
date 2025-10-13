@@ -29,6 +29,7 @@ A concise, beginner-friendly introduction to the core ideas of linear algebra.
 - homogeneous systems：翻译成线性齐次方程组
 - kernel：翻译成核，描述线性变换如何使空间变平坦
 - image：翻译成像，描述线性变换所达到的目标子空间
+- Minors and Cofactors：翻译成子式和余因子，后者也可叫代数余子式
 
 ## 相关工具
 
