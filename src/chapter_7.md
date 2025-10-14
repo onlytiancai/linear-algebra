@@ -1,16 +1,21 @@
 # Chapter 7. Inner Product Spaces
-第七章内积空间
+
+第 7 章内积空间
 
 ## 7.1 Inner Products and Norms
+
 7.1 内积和范数
 
 To extend the geometric ideas of length, distance, and angle beyond $\mathbb{R}^2$ and $\mathbb{R}^3$, we introduce inner products. Inner products provide a way of measuring similarity between vectors, while norms derived from them measure length. These concepts are the foundation of geometry inside vector spaces.
+
 为了将长度、距离和角度的几何概念扩展到 $\mathbb{R}^2$ 和 $\mathbb{R}^3$ 之外，我们引入了内积。内积提供了一种度量向量之间相似性的方法，而由内积导出的范数则用于度量长度。这些概念是向量空间几何的基础。
 
 ### Inner Product
+
 内积
 
 An inner product on a real vector space $V$ is a function
+
 实向量空间 $V$ 上的内积是一个函数
 
 $$
@@ -18,19 +23,24 @@ $$
 $$
 
 that assigns to each pair of vectors $(\mathbf{u}, \mathbf{v})$ a real number, subject to the following properties:
+
 为每对向量 $(\mathbf{u}, \mathbf{v})$ 分配一个实数，并遵循以下属性：
 
 1.  Symmetry: $\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle.$
-    对称： $\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle.$
+
+    对称性： $\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle.$
     
 2.  Linearity in the first argument: $\langle a\mathbf{u} + b\mathbf{w}, \mathbf{v} \rangle = a \langle \mathbf{u}, \mathbf{v} \rangle + b \langle \mathbf{w}, \mathbf{v} \rangle.$
+
     第一个参数的线性： $\langle a\mathbf{u} + b\mathbf{w}, \mathbf{v} \rangle = a \langle \mathbf{u}, \mathbf{v} \rangle + b \langle \mathbf{w}, \mathbf{v} \rangle.$
     
 3.  Positive-definiteness: $\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$, and equality holds if and only if $\mathbf{v} = \mathbf{0}$.
+
     正定性： $\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$ ，且仅当 $\mathbf{v} = \mathbf{0}$ 时等式成立。
     
 
 The standard inner product on $\mathbb{R}^n$ is the dot product:
+
 $\mathbb{R}^n$ 上的标准内积是点积：
 
 $$
@@ -38,9 +48,10 @@ $$
 $$
 
 ### Norms
-规范
+范数
 
 The norm of a vector is its length, defined in terms of the inner product:
+
 向量的范数是其长度，根据内积定义：
 
 $$
@@ -48,6 +59,7 @@ $$
 $$
 
 For the dot product in $\mathbb{R}^n$:
+
 对于 $\mathbb{R}^n$ 中的点积：
 
 $$
@@ -55,9 +67,11 @@ $$
 $$
 
 ### Angles Between Vectors
+
 向量之间的角度
 
 The inner product allows us to define the angle $\theta$ between two nonzero vectors $\mathbf{u}, \mathbf{v}$ by
+
 通过内积，我们可以定义两个非零向量 $\mathbf{u}, \mathbf{v}$ 之间的角度 $\theta$ ，即
 
 $$
@@ -65,12 +79,15 @@ $$
 $$
 
 Thus, two vectors are orthogonal if $\langle \mathbf{u}, \mathbf{v} \rangle = 0$.
+
 因此，若 $\langle \mathbf{u}, \mathbf{v} \rangle = 0$ ，则两个向量正交。
 
 ### Examples
+
 示例
 
 Example 7.1.1. In $\mathbb{R}^2$, with $\mathbf{u} = (1,2)$, $\mathbf{v} = (3,4)$:
+
 例 7.1.1。 在 $\mathbb{R}^2$ 中，使用 $\mathbf{u} = (1,2)$ 、 $\mathbf{v} = (3,4)$ ：
 
 $$
@@ -84,6 +101,7 @@ $$
 $$
 
 So,
+
 所以，
 
 $$
@@ -91,6 +109,7 @@ $$
 $$
 
 Example 7.1.2. In the function space $C[0,1]$, the inner product
+
 例 7.1.2。 在函数空间 $C[0,1]$ 中，内积
 
 $$
@@ -98,6 +117,7 @@ $$
 $$
 
 defines a length
+
 定义长度
 
 $$
@@ -105,43 +125,54 @@ $$
 $$
 
 This generalizes geometry to infinite-dimensional spaces.
+
 这将几何学推广到无限维空间。
 
 ### Geometric Interpretation
 几何解释
 
 *   Inner product: measures similarity between vectors.
+
     内积：测量向量之间的相似性。
 *   Norm: length of a vector.
+
     范数：向量的长度。
 *   Angle: measure of alignment between two directions.
+
     角度：两个方向之间的对齐度量。
 
 These concepts unify algebraic operations with geometric intuition.
+
 这些概念将代数运算与几何直觉统一起来。
 
 ### Why this matters
 为什么这很重要
 
 Inner products and norms allow us to extend geometry into abstract vector spaces. They form the basis of orthogonality, projections, Fourier series, least squares approximation, and many applications in physics and machine learning.
+
 内积和范数使我们能够将几何扩展到抽象向量空间。它们构成了正交性、投影、傅里叶级数、最小二乘近似以及物理学和机器学习中许多应用的基础。
 
 ### Exercises 7.1
 练习 7.1
 
 1.  Compute $\langle (2,-1,3), (1,4,0) \rangle$. Then find the angle between them.
+
     计算 $\langle (2,-1,3), (1,4,0) \rangle$ 。然后求出它们之间的角度。
     
 2.  Show that $\|(x,y)\| = \sqrt{x^2+y^2}$ satisfies the properties of a norm.
-    证明∥ ( 𝑥 , 𝑦 ) ∥ = 𝑥 2 + 𝑦 2 ∥(x,y)∥= x 2 +y 2 ​ 满足范数的性质。
+
+    证明$\|(x,y)\| = \sqrt{x^2+y^2}$​ 满足范数的性质。
     
 3.  In $\mathbb{R}^3$, verify that $(1,1,0)$ and $(1,-1,0)$ are orthogonal.
+
     在 $\mathbb{R}^3$ 中，验证 $(1,1,0)$ 和 $(1,-1,0)$ 是否正交。
     
 4.  In $C[0,1]$, compute $\langle f,g \rangle$ for $f(x)=x$, $g(x)=1$.
+
     在 $C[0,1]$ 中，计算 $f(x)=x$ 、 $g(x)=1$ 的 $\langle f,g \rangle$ 。
     
 5.  Prove the Cauchy–Schwarz inequality:
+
     证明柯西-施瓦茨不等式：
     
     $$
@@ -150,25 +181,31 @@ Inner products and norms allow us to extend geometry into abstract vector spaces
     
 
 ## 7.2 Orthogonal Projections
+
 7.2 正交投影
 
 One of the most useful applications of inner products is the notion of orthogonal projection. Projection allows us to approximate a vector by another lying in a subspace, minimizing error in the sense of distance. This idea underpins geometry, statistics, and numerical analysis.
+
 内积最有用的应用之一是正交投影的概念。投影使我们能够用子空间中的另一个向量来近似一个向量，从而最小化距离方向上的误差。这一思想是几何、统计学和数值分析的基础。
 
 ### Projection onto a Line
+
 投影到线上
 
 Let $\mathbf{u} \in \mathbb{R}^n$ be a nonzero vector. The line spanned by $\mathbf{u}$ is
-令 $\mathbf{u} \in \mathbb{R}^n$ 为非零向量。 $\mathbf{u}$ 所构成的线段为
+
+令 $\mathbf{u} \in \mathbb{R}^n$ 为非零向量。 $\mathbf{u}$ 所张成的直线为
 
 $$
 L = \{ c\mathbf{u} \mid c \in \mathbb{R} \}.
 $$
 
 Given a vector $\mathbf{v}$, the projection of $\mathbf{v}$ onto $\mathbf{u}$ is the vector in $L$ closest to $\mathbf{v}$. Geometrically, it is the shadow of $\mathbf{v}$ on the line.
+
 给定向量 $\mathbf{v}$ ， $\mathbf{v}$ 在 $\mathbf{u}$ 上的投影是 $L$ 中距离 $\mathbf{v}$ 最近的向量。从几何学上讲，它是 $\mathbf{v}$ 在线上的阴影。
 
 The formula is
+
 公式是
 
 $$
@@ -176,12 +213,14 @@ $$
 $$
 
 The error vector $\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})$ is orthogonal to $\mathbf{u}$.
+
 误差向量 $\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})$ 与 $\mathbf{u}$ 正交。
 
 ### Example 7.2.1
 例 7.2.1
 
 Let $\mathbf{u} = (1,2)$, $\mathbf{v} = (3,1)$.
+
 令 $\mathbf{u} = (1,2)$ ， $\mathbf{v} = (3,1)$ 。
 
 $$
@@ -189,6 +228,7 @@ $$
 $$
 
 So
+
 所以
 
 $$
@@ -196,12 +236,15 @@ $$
 $$
 
 The error vector is $(3,1) - (1,2) = (2,-1)$, which is orthogonal to $(1,2)$.
+
 误差向量为 $(3,1) - (1,2) = (2,-1)$ ，与 $(1,2)$ 正交。
 
 ### Projection onto a Subspace
+
 投影到子空间
 
 Suppose $W \subseteq \mathbb{R}^n$ is a subspace with orthonormal basis $\{ \mathbf{w}_1, \dots, \mathbf{w}_k \}$. The projection of a vector $\mathbf{v}$ onto $W$ is
+
 假设 $W \subseteq \mathbb{R}^n$ 是一个具有正交基 $\{ \mathbf{w}_1, \dots, \mathbf{w}_k \}$ 的子空间。向量 $\mathbf{v}$ 在 $W$ 上的投影为
 
 $$
@@ -209,12 +252,15 @@ $$
 $$
 
 This is the unique vector in $W$ closest to $\mathbf{v}$. The difference $\mathbf{v} - \text{proj}_{W}(\mathbf{v})$ is orthogonal to all of $W$.
+
 这是 $W$ 中与 $\mathbf{v}$ 最接近的唯一向量。差值 $\mathbf{v} - \text{proj}_{W}(\mathbf{v})$ 与所有 $W$ 正交。
 
 ### Least Squares Approximation
+
 最小二乘近似
 
 Orthogonal projection explains the method of least squares. To solve an overdetermined system $A\mathbf{x} \approx \mathbf{b}$, we seek the $\mathbf{x}$ that makes $A\mathbf{x}$ the projection of $\mathbf{b}$ onto the column space of $A$. This gives the normal equations
+
 正交投影解释了最小二乘法。为了解决超定问题 系统 $A\mathbf{x} \approx \mathbf{b}$ ，我们寻找 $\mathbf{x}$ ，使得 $A\mathbf{x}$ 成为 $\mathbf{b}$ 在 $A$ 的列空间上的投影。这给出了正则方程
 
 $$
@@ -222,22 +268,28 @@ A^T A \mathbf{x} = A^T \mathbf{b}.
 $$
 
 Thus, least squares is just projection in disguise.
+
 因此，最小二乘法只是伪装的投影。
 
 ### Geometric Interpretation
 几何解释
 
 *   Projection finds the closest point in a subspace to a given vector.
+
     投影找到子空间中距离给定向量最近的点。
 *   It minimizes distance (error) in the sense of Euclidean norm.
+
     它按照欧几里得范数的意义最小化距离（误差）。
 *   Orthogonality ensures the error vector points directly away from the subspace.
+
     正交性确保误差向量直接指向远离子空间的方向。
 
 ### Why this matters
+
 为什么这很重要
 
 Orthogonal projection is central in both pure and applied mathematics. It underlies the geometry of subspaces, the theory of Fourier series, regression in statistics, and approximation methods in numerical linear algebra. Whenever we fit data with a simpler model, projection is at work.
+
 正交投影在纯数学和应用数学中都至关重要。它是子空间几何、傅里叶级数理论、统计学中的回归以及数值线性代数中的近似方法的基础。每当我们用更简单的模型拟合数据时，投影就会发挥作用。
 
 ### Exercises 7.2
