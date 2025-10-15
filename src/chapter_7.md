@@ -272,11 +272,13 @@ Thus, least squares is just projection in disguise.
 因此，最小二乘法只是伪装的投影。
 
 ### Geometric Interpretation
+
 几何解释
 
 *   Projection finds the closest point in a subspace to a given vector.
 
     投影找到子空间中距离给定向量最近的点。
+
 *   It minimizes distance (error) in the sense of Euclidean norm.
 
     它按照欧几里得范数的意义最小化距离（误差）。
@@ -296,42 +298,55 @@ Orthogonal projection is central in both pure and applied mathematics. It underl
 练习 7.2
 
 1.  Compute the projection of $(2,3)$ onto the vector $(1,1)$.
+
     计算 $(2,3)$ 到向量 $(1,1)$ 的投影。
 2.  Show that $\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})$ is orthogonal to $\mathbf{u}$.
+
     证明 $\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})$ 与 $\mathbf{u}$ 正交。
 3.  Let $W = \text{span}\{(1,0,0), (0,1,0)\} \subseteq \mathbb{R}^3$. Find the projection of $(1,2,3)$ onto $W$.
+
     令 $W = \text{span}\{(1,0,0), (0,1,0)\} \subseteq \mathbb{R}^3$ 。求 $(1,2,3)$ 到 $W$ 的投影。
 4.  Explain why least squares fitting corresponds to projection onto the column space of $A$.
+
     解释为什么最小二乘拟合对应于 $A$ 的列空间上的投影。
 5.  Prove that projection onto a subspace $W$ is unique: there is exactly one closest vector in $W$ to a given $\mathbf{v}$.
+
     证明投影到子空间 $W$ 是唯一的：在 $W$ 中，有且仅有一个与给定 $\mathbf{v}$ 最接近的向量。
 
 ## 7.3 Gram–Schmidt Process
+
 7.3 格拉姆-施密特过程
 
 The Gram–Schmidt process is a systematic way to turn any linearly independent set of vectors into an orthonormal basis. This is especially useful because orthonormal bases simplify computations: inner products become simple coordinate comparisons, and projections take clean forms.
+
 格拉姆-施密特过程是一种将任意线性无关的向量集转化为正交基的系统方法。这种方法尤其有用，因为正交基可以简化计算：内积变成了简单的坐标比较，并且投影呈现出清晰的形式。
 
 ### The Idea
 理念
 
 Given a linearly independent set of vectors $\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}$ in an inner product space, we want to construct an orthonormal set $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$ that spans the same subspace.
-给定内积空间中一组线性无关的向量 $\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}$ ，我们想要构建一个跨越同一子空间的正交集 $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$ 。
+
+给定内积空间中一组线性无关的向量 $\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}$ ，我们想要构建一个张成同一子空间的正交集 $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$ 。
 
 We proceed step by step:
 我们一步步来：
 
 1.  Start with $\mathbf{v}_1$, normalize it to get $\mathbf{u}_1$.
-    从𝑣开始 1 v 1 ​ ，将其标准化得到𝑢 1 u 1 ​ .
+
+    从 $\mathbf{v}_1$ 开始，将其标准化得到$\mathbf{u}_1$​ .
 2.  Subtract from $\mathbf{v}_2$ its projection onto $\mathbf{u}_1$, leaving a vector orthogonal to $\mathbf{u}_1$. Normalize to get $\mathbf{u}_2$.
-    从𝑣中减去 2 v 2 ​ 它在𝑢上的投影 1 u 1 ​ ，留下一个与𝑢正交的向量 1 u 1 ​ . 标准化得到𝑢 2 u 2 ​ .
+
+    从 $\mathbf{v}_2$ 中减去它在$\mathbf{u}_1$上的投影 ​ ，留下一个与$\mathbf{u}_1$正交的向量 ​ . 标准化得到$\mathbf{u}_2$​ .
 3.  For each $\mathbf{v}_k$, subtract projections onto all previously constructed $\mathbf{u}_1, \dots, \mathbf{u}_{k-1}$, then normalize.
-    对于每个𝑣 𝑘 v k ​ ，减去所有先前构建的𝑢上的投影 1 , … , 𝑢 𝑘 − 1 u 1 ​ ，…，你 k−1 ​ ，然后标准化。
+
+    对于每个$\mathbf{v}_k$ ​ ，减去所有先前构建的𝑢上的投影 $\mathbf{u}_1, \dots, \mathbf{u}_{k-1}$ ​ ，然后标准化。
 
 ### The Algorithm
+
 算法
 
 For $k = 1, 2, \dots, n$:
+
 对于 $k = 1, 2, \dots, n$ ：
 
 $$
@@ -345,23 +360,28 @@ $$
 $$
 
 The result $\{\mathbf{u}_1, \dots, \mathbf{u}_n\}$ is an orthonormal basis of the span of the original vectors.
+
 结果 $\{\mathbf{u}_1, \dots, \mathbf{u}_n\}$ 是原始向量跨度的正交基。
 
 ### Example 7.3.1
+
 例 7.3.1
 
 Take $\mathbf{v}_1 = (1,1,0), \ \mathbf{v}_2 = (1,0,1), \ \mathbf{v}_3 = (0,1,1)$ in $\mathbb{R}^3$.
-在 $\mathbb{R}^3$ 中乘坐 $\mathbf{v}_1 = (1,1,0), \ \mathbf{v}_2 = (1,0,1), \ \mathbf{v}_3 = (0,1,1)$ 。
+
+在 $\mathbb{R}^3$ 中 $\mathbf{v}_1 = (1,1,0), \ \mathbf{v}_2 = (1,0,1), \ \mathbf{v}_3 = (0,1,1)$ 。
 
 1.  Normalize $\mathbf{v}_1$:
-    标准化𝑣 1 v 1 ​ :
+
+    标准化$\mathbf{v}_1$​ :
 
 $$
 \mathbf{u}_1 = \frac{1}{\sqrt{2}}(1,1,0).
 $$
 
 2.  Subtract projection of $\mathbf{v}_2$ on $\mathbf{u}_1$:
-    减去𝑣的投影 2 v 2 ​ 在𝑢 1 u 1 ​ :
+
+    减去 $\mathbf{v}_2$ 在$\mathbf{u}_1$ 的投影 :
 
 $$
 \mathbf{w}_2 = \mathbf{v}_2 - \langle \mathbf{v}_2,\mathbf{u}_1 \rangle \mathbf{u}_1.
@@ -374,6 +394,7 @@ $$
 $$
 
 So
+
 所以
 
 $$
@@ -381,6 +402,7 @@ $$
 $$
 
 Normalize:
+
 规范化：
 
 $$
@@ -388,67 +410,84 @@ $$
 $$
 
 3.  Subtract projections from $\mathbf{v}_3$:
-    从𝑣中减去投影 3 v 3 ​ :
+
+    从$\mathbf{v}_3$中减去投影:
 
 $$
 \mathbf{w}_3 = \mathbf{v}_3 - \langle \mathbf{v}_3,\mathbf{u}_1 \rangle \mathbf{u}_1 - \langle \mathbf{v}_3,\mathbf{u}_2 \rangle \mathbf{u}_2.
 $$
 
 After computing, normalize to obtain $\mathbf{u}_3$.
-计算后，归一化得到𝑢 3 u 3 ​ .
+
+计算后，归一化得到$\mathbf{u}_3$​ .
 
 The result is an orthonormal basis of the span of $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$.
-结果是 $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ 跨度的正交基。
+
+结果是 $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ 张成的正交基。
 
 ### Geometric Interpretation
 几何解释
 
 Gram–Schmidt is like straightening out a set of vectors: you start with the original directions and adjust each new vector to be perpendicular to all previous ones. Then you scale to unit length. The process ensures orthogonality while preserving the span.
+
 格拉姆-施密特变换就像拉直一组向量：从原始方向开始，调整每个新向量使其与所有先前的向量垂直。然后缩放到单位长度。这个过程确保了正交性，同时保留了跨度。
 
 ### Why this matters
+
 为什么这很重要
 
 Orthonormal bases simplify inner products, projections, and computations in general. They make coordinate systems easier to work with and are crucial in numerical methods, QR decomposition, Fourier analysis, and statistics (orthogonal polynomials, principal component analysis).
+
 正交基可以简化内积、投影和一般计算。它们使坐标系更易于使用，并且在数值方法、QR 分解、傅里叶分析和统计学（正交多项式、主成分分析）中至关重要。
 
 ### Exercises 7.3
 练习 7.3
 
 1.  Apply Gram–Schmidt to $(1,0), (1,1)$ in $\mathbb{R}^2$.
+
     对 $\mathbb{R}^2$ 中的 $(1,0), (1,1)$ 应用 Gram–Schmidt 公式。
 2.  Orthogonalize $(1,1,1), (1,0,1)$ in $\mathbb{R}^3$.
+
     在 $\mathbb{R}^3$ 中对 $(1,1,1), (1,0,1)$ 进行正交化。
 3.  Prove that each step of Gram–Schmidt yields a vector orthogonal to all previous ones.
+
     证明 Gram-Schmidt 的每一步都会产生一个与所有前面的向量正交的向量。
 4.  Show that Gram–Schmidt preserves the span of the original vectors.
+
     证明 Gram–Schmidt 保留了原始向量的跨度。
 5.  Explain how Gram–Schmidt leads to the QR decomposition of a matrix.
+
     解释 Gram-Schmidt 如何导致矩阵的 QR 分解。
 
 ## 7.4 Orthonormal Bases
 7.4 正交基
 
 An orthonormal basis is a basis of a vector space in which all vectors are both orthogonal to each other and have unit length. Such bases are the most convenient possible coordinate systems: computations involving inner products, projections, and norms become exceptionally simple.
+
 正交基是向量空间中的一种基，其中所有向量彼此正交且具有单位长度。这样的基是最方便的坐标系：涉及内积、投影和范数的计算变得异常简单。
 
 ### Definition
 定义
 
 A set of vectors $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$ in an inner product space $V$ is called an orthonormal basis if
+
 内积空间 $V$ 中的一组向量 $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$ 称为正交基，若
 
 1.  $\langle \mathbf{u}_i, \mathbf{u}_j \rangle = 0$ whenever $i \neq j$ (orthogonality),
+
     $\langle \mathbf{u}_i, \mathbf{u}_j \rangle = 0$ 每当 $i \neq j$ （正交性）
 2.  $\|\mathbf{u}_i\| = 1$ for all $i$ (normalization),
+
     对所有 $i$ 进行 $\|\mathbf{u}_i\| = 1$ （规范化），
 3.  The set spans $V$.
-    该集合跨越 $V$ 。
+
+    该集合张成 $V$ 。
 
 ### Examples
 示例
 
 Example 7.4.1. In $\mathbb{R}^2$, the standard basis
+
 例 7.4.1. 在 $\mathbb{R}^2$ 中，标准基础
 
 $$
@@ -456,9 +495,11 @@ $$
 $$
 
 is orthonormal under the dot product.
+
 在点积下是正交的。
 
 Example 7.4.2. In $\mathbb{R}^3$, the standard basis
+
 例 7.4.2. 在 $\mathbb{R}^3$ 中，标准基础
 
 $$
@@ -466,9 +507,11 @@ $$
 $$
 
 is orthonormal.
+
 是正交的。
 
 Example 7.4.3. Fourier basis on functions:
+
 例 7.4.3. 函数的傅里叶基：
 
 $$
@@ -476,6 +519,7 @@ $$
 $$
 
 is an orthogonal set in the space of square-integrable functions on $[-\pi,\pi]$ with inner product
+
 是 $[-\pi,\pi]$ 上平方可积函数空间中的正交集，具有内积
 
 $$
@@ -483,12 +527,14 @@ $$
 $$
 
 After normalization, it becomes an orthonormal basis.
+
 经过归一化之后，它就变成了正交基。
 
 ### Properties
 特性
 
 1.  Coordinate simplicity: If $\{\mathbf{u}_1,\dots,\mathbf{u}_n\}$ is an orthonormal basis of $V$, then any vector $\mathbf{v}\in V$ has coordinates
+
     坐标简单性：如果 $\{\mathbf{u}_1,\dots,\mathbf{u}_n\}$ 是 $V$ 的正交基，则任何向量 $\mathbf{v}\in V$ 都有坐标
     
     $$
@@ -496,17 +542,20 @@ After normalization, it becomes an orthonormal basis.
     $$
     
     That is, coordinates are just inner products.
+
     也就是说，坐标只是内积。
     
 2.  Parseval’s identity: For any $\mathbf{v} \in V$,
-    帕塞瓦尔的身份： 对于任意的 $\mathbf{v} \in V$ ，
+
+    帕塞瓦尔的 identity： 对于任意的 $\mathbf{v} \in V$ ，
     
     $$
     \|\mathbf{v}\|^2 = \sum_{i=1}^n |\langle \mathbf{v}, \mathbf{u}_i \rangle|^2.
     $$
     
-3.  Projections: The orthogonal projection onto the span of $\\{\mathbf{u}_1,\dots,\mathbf{u}_k\\}$ is
-    预测： 𝑢 跨度上的正交投影 1 , … , 𝑢 𝑘 u 1 ​ ，…，你 k ​ 是
+3.  Projections: The orthogonal projection onto the span of $\mathbf{u}_1,\dots,\mathbf{u}_k$ is
+    
+    投影： $ \mathbf{u}_1,\dots,\mathbf{u}_k$ 张成的正交投影​ 是
     
     $$
     \text{proj}(\mathbf{v}) = \sum_{i=1}^k \langle \mathbf{v}, \mathbf{u}_i \rangle \mathbf{u}_i.
@@ -517,32 +566,42 @@ After normalization, it becomes an orthonormal basis.
 构造正交基
 
 *   Start with any linearly independent set, then apply the Gram–Schmidt process to obtain an orthonormal set spanning the same subspace.
-    从任意线性无关集开始，然后应用 Gram-Schmidt 过程来获取跨越相同子空间的正交集。
+
+    从任意线性无关集开始，然后应用 Gram-Schmidt 过程来获取张成相同子空间的正交集。
+
 *   In practice, orthonormal bases are often chosen for numerical stability and simplicity of computation.
+
     在实践中，通常选择正交基来实现数值稳定性和计算简单性。
 
 ### Geometric Interpretation
 几何解释
 
 An orthonormal basis is like a perfectly aligned and equally scaled coordinate system. Distances and angles are computed directly using coordinates without correction factors. They are the ideal rulers of linear algebra.
+
 正交基就像一个完美对齐且等比例缩放的坐标系。距离和角度直接使用坐标计算，无需校正因子。它们是线性代数的理想标尺。
 
 ### Why this matters
 为什么这很重要
 
 Orthonormal bases simplify every aspect of linear algebra: solving systems, computing projections, expanding functions, diagonalizing symmetric matrices, and working with Fourier series. In data science, principal component analysis produces orthonormal directions capturing maximum variance.
+
 正交基简化了线性代数的各个方面：求解系统、计算投影、展开函数、对角化对称矩阵以及处理傅里叶级数。在数据科学中，主成分分析可以生成正交方向，从而捕捉最大方差。
 
 ### Exercises 7.4
 练习 7.4
 
-1.  Verify that $(1/\\sqrt{2})(1,1)$ and $(1/\\sqrt{2})(1,-1)$ form an orthonormal basis of $\mathbb{R}^2$.
-    验证 $(1/\\sqrt{2})(1,1)$ 和 $(1/\\sqrt{2})(1,-1)$ 是否构成 $\mathbb{R}^2$ 的正交基。
-2.  Express $(3,4)$ in terms of the orthonormal basis $\{(1/\\sqrt{2})(1,1), (1/\\sqrt{2})(1,-1)\}$.
-    用正交基 $\{(1/\\sqrt{2})(1,1), (1/\\sqrt{2})(1,-1)\}$ 表示 $(3,4)$ 。
-3.  Prove Parseval’s identity for $\\mathbb{R}^n$ with the dot product.
-    使用点积证明 $\\mathbb{R}^n$ 的帕塞瓦尔恒等式。
-4.  Find an orthonormal basis for the plane $x+y+z=0$ in $\\mathbb{R}^3$.
-    在 $\\mathbb{R}^3$ 中找出平面 $x+y+z=0$ 的正交基。
+1.  Verify that $(1/\sqrt{2})(1,1)$ and $(1/\sqrt{2})(1,-1)$ form an orthonormal basis of $\mathbb{R}^2$.
+
+    验证 $(1/\sqrt{2})(1,1)$ 和 $(1/\sqrt{2})(1,-1)$ 是否构成 $\mathbb{R}^2$ 的正交基。
+2.  Express $(3,4)$ in terms of the orthonormal basis $\{(1/\sqrt{2})(1,1), (1/\sqrt{2})(1,-1)\}$.
+    
+    用正交基 $\{(1/\sqrt{2})(1,1), (1/\sqrt{2})(1,-1)\}$ 表示 $(3,4)$ 。
+3.  Prove Parseval’s identity for $\mathbb{R}^n$ with the dot product.
+    
+    使用点积证明 $\mathbb{R}^n$ 的帕塞瓦尔恒等式。
+4.  Find an orthonormal basis for the plane $x+y+z=0$ in $\mathbb{R}^3$.
+
+    在 $\mathbb{R}^3$ 中找出平面 $x+y+z=0$ 的正交基。
 5.  Explain why orthonormal bases are numerically more stable than arbitrary bases in computations.
+
     解释为什么正交基在计算中比任意基在数值上更稳定。
