@@ -232,7 +232,7 @@ Thus, $A$ is diagonalizable.
 
 *   Computing powers: If $A = P D P^{-1}$, then
 
-    计算能力： 如果 $A = P D P^{-1}$ ，则
+    计算幂： 如果 $A = P D P^{-1}$ ，则
     
     $$
     A^k = P D^k P^{-1}.
@@ -514,7 +514,7 @@ $$
 
 is a solution.
 
-是一个解决方案。
+是一个解。
 
 *   Eigenvalues determine the growth or decay rate:
     
@@ -522,10 +522,10 @@ is a solution.
     
     *   If $\lambda < 0$, solutions decay (stable).
        
-        如果 $\lambda < 0$ ，则解决方案衰减（稳定）。
+        如果 $\lambda < 0$ ，则解衰减（稳定）。
     *   If $\lambda > 0$, solutions grow (unstable).
         
-        如果 $\lambda > 0$ ，则解决方案会增长（不稳定）。
+        如果 $\lambda > 0$ ，则解会增长（不稳定）。
     *   If $\lambda$ is complex, oscillations occur.
         
         如果 $\lambda$ 是复数，则会发生振荡。
@@ -558,7 +558,7 @@ Thus one component grows exponentially, the other decays.
 
 A Markov chain is described by a stochastic matrix $P$, where each column sums to 1 and entries are nonnegative. If $\mathbf{x}_k$ represents the probability distribution after $k$ steps, then
 
-马尔可夫链可以用随机矩阵 $P$ 来描述，其中每列和为 1，且元素为非负值。如果 𝑥 𝑘 x k ​ 表示 $k$ 步后的概率分布，则
+马尔可夫链可以用随机矩阵 $P$ 来描述，其中每列和为 1，且元素为非负值。如果 $\mathbf{x}_k$  ​ 表示 $k$ 步后的概率分布，则
 
 $$
 \mathbf{x}_{k+1} = P \mathbf{x}_k.
@@ -574,7 +574,7 @@ $$
 
 Understanding long-term behavior reduces to analyzing powers of $P$.
 
-理解长期行为可以归结为分析 $P$ 的力量。
+理解长期行为可以归结为分析 $P$ 的幂。
 
 *   The eigenvalue $\lambda = 1$ always exists. Its eigenvector gives the steady-state distribution.
     
