@@ -17,8 +17,12 @@
 
 # 笔记
 
+- [第 1 章 笔记](./chapter_11.md)
 - [第 4 章 笔记](./chapter_14.md)
 - [第 5 章 笔记](./chapter_15.md)
+- [第 6 章 笔记](./chapter_16.md)
+- [第 7 章 笔记](./chapter_17.md)
+- [第 8 章 笔记](./chapter_18.md)
 
 # 附录
 
