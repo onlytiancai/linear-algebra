@@ -632,6 +632,169 @@ plt.show()
 轨迹展示了系统状态随时间如何沿这些方向演化。</p>
 </blockquote>
 <hr />
+<h1 id="问题-5"><a class="header" href="#问题-5">问题 5</a></h1>
+<blockquote>
+<p>马尔科夫链为什么始终有一个特征值是1呢，这个从什么方面去理解？</p>
+</blockquote>
+<p>非常好的问题！这是理解马尔可夫链长期行为的核心所在。我们来系统地解释一下为什么马尔可夫链的转移矩阵 ( P ) <strong>总是有一个特征值为 1</strong>，以及从不同角度该怎么理解。</p>
+<hr />
+<h3 id="一从定义出发概率守恒列和为-1"><a class="header" href="#一从定义出发概率守恒列和为-1">一、从定义出发：概率守恒（列和为 1）</a></h3>
+<p>题中指出 ( P ) 是一个<strong>列随机矩阵（column-stochastic matrix）</strong>，即：
+[
+\sum_i P_{ij} = 1 \quad \forall j,
+]
+并且每个 ( P_{ij} \ge 0 )。</p>
+<p>这表示：每一列代表从状态 ( j ) 出发转移到其他状态的概率分布。
+而
+[
+\mathbf{x}_{k+1} = P \mathbf{x}_k
+]
+表示从分布 (\mathbf{x}_k) 经过一次转移得到下一步分布。</p>
+<hr />
+<h3 id="二从线性代数的角度看1t-p--1t"><a class="header" href="#二从线性代数的角度看1t-p--1t">二、从线性代数的角度看：(1^T P = 1^T)</a></h3>
+<p>注意到“列和为 1”意味着：
+[
+(1, 1, \dots, 1)^T \text{ 是 } P^T \text{ 的特征向量，对应特征值 } 1。
+]</p>
+<p>因为：
+[
+P^T \mathbf{1} = \mathbf{1}.
+]
+所以 (1) 是 (P^T) 的特征值。</p>
+<p>根据线性代数基本事实：矩阵与其转置拥有<strong>相同的特征值集合（谱）</strong>。
+因此，(P) 的特征值中也必定包含 (1)。</p>
+<p>这就是一个非常直接的证明。</p>
+<hr />
+<h3 id="三从概率角度理解概率总和不变"><a class="header" href="#三从概率角度理解概率总和不变">三、从概率角度理解：概率总和不变</a></h3>
+<p>(\mathbf{x}<em>k) 表示一个概率分布，所以
+[
+\sum_i x</em>{k,i} = 1.
+]</p>
+<p>由于
+[
+\mathbf{x}<em>{k+1} = P \mathbf{x}<em>k,
+]
+我们有
+[
+\sum_i x</em>{k+1,i} = \sum_i (P \mathbf{x}<em>k)<em>i = \sum_i \sum_j P</em>{ij} x</em>{k,j} = \sum_j x</em>{k,j} \sum_i P_{ij} = \sum_j x_{k,j} = 1.
+]</p>
+<p>即：<strong>转移不会改变总概率</strong>。</p>
+<p>而这种“总量守恒”的性质在矩阵意义下，就对应“存在一个不变方向（eigenvector）”，其特征值为 1。
+这个方向就是概率空间中“总和为 1 的分布方向”。</p>
+<hr />
+<h3 id="四从稳态分布角度看p-pi--pi"><a class="header" href="#四从稳态分布角度看p-pi--pi">四、从稳态分布角度看：(P \pi = \pi)</a></h3>
+<p>马尔可夫链的平稳（稳态）分布 (\pi) 定义为：
+[
+P \pi = \pi.
+]
+这实际上就是：
+[
+(P - I) \pi = 0.
+]
+也就是说，(\pi) 是 (P) 的一个右特征向量，对应特征值 (\lambda = 1)。</p>
+<p>因此，<strong>“存在平稳分布”<strong>这件事本质上就是</strong>“矩阵 (P) 有特征值 1”</strong>。</p>
+<hr />
+<h3 id="五总结"><a class="header" href="#五总结">五、总结</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>理解角度</th><th>说明</th><th>数学形式</th></tr></thead><tbody>
+<tr><td>线性代数</td><td>( P^T \mathbf{1} = \mathbf{1} ) → ( \lambda = 1 ) 是特征值</td><td>(P) 与 (P^T) 拥有相同谱</td></tr>
+<tr><td>概率守恒</td><td>转移不会改变总概率和</td><td>(\sum_i x_{k+1,i} = \sum_i x_{k,i})</td></tr>
+<tr><td>稳态分布</td><td>存在 ( \pi ) 使 ( P\pi = \pi )</td><td>( (P - I)\pi = 0 )</td></tr>
+</tbody></table>
+</div>
+<hr />
+<p>✅ <strong>一句话总结：</strong></p>
+<blockquote>
+<p>马尔可夫链的转移矩阵 (P) 一定有特征值 1，因为它保持总概率守恒；这个不变方向对应的特征向量正是系统的稳态分布。</p>
+</blockquote>
+<hr />
+<p>如果你想，我也可以帮你画一个简单的几何图示，展示“特征值 1 对应的不变方向”和“其他特征值对应方向逐渐衰减”的直观图像。要我画吗？</p>
+<blockquote>
+<p>如何解读 8-2 的图</p>
+</blockquote>
+<p>非常好，这个图能直观展示马尔可夫链收敛到稳态分布的过程。下面我详细解释一下这个图中每个元素的含义、数学对应关系，以及如何理解它背后的思想。</p>
+<hr />
+<h2 id="-一总体结构"><a class="header" href="#-一总体结构">🔹 一、总体结构</a></h2>
+<p>这幅图展示了一个<strong>2 状态的马尔可夫链</strong>（即概率分布只有两个分量的情形）。
+因此：
+[
+\mathbf{x} =
+\begin{bmatrix}
+p \ 1-p
+\end{bmatrix},
+]
+所有可能的分布都在平面上那条从 ((1,0)) 到 ((0,1)) 的直线上，这条线就是图中虚线标出的：</p>
+<blockquote>
+<p><strong>“Probability simplex”</strong>
+—— 所有概率向量的集合。</p>
+</blockquote>
+<hr />
+<h2 id="-二颜色轨迹trajectories"><a class="header" href="#-二颜色轨迹trajectories">🔹 二、颜色轨迹（trajectories）</a></h2>
+<p>每一条折线轨迹表示：
+[
+\mathbf{x}_{k+1} = P \mathbf{x}_k,
+]
+即某个初始分布 (\mathbf{x}_0) 经过不断乘以转移矩阵 (P) 的演化过程。</p>
+<p>在图中：</p>
+<ul>
+<li>每条线的起点（小方块 <code>□</code>）是初始分布；</li>
+<li>每条线的终点（星号 <code>★</code>）是多次迭代后的分布；</li>
+<li>你会看到无论从哪里出发，所有轨迹<strong>都收敛到同一个点</strong>。</li>
+</ul>
+<p>这个共同的终点，就是稳态分布（steady state）。</p>
+<hr />
+<h2 id="-三红色菱形点steady-state"><a class="header" href="#-三红色菱形点steady-state">🔹 三、红色菱形点（steady state）</a></h2>
+<p>红色菱形标出的点是矩阵 (P) 对应于特征值 (\lambda = 1) 的<strong>特征向量方向</strong>，归一化后得到的<strong>稳态概率分布</strong>：
+[
+P \pi = \pi.
+]</p>
+<p>它表示：
+当分布达到这个点之后，继续施加 (P) 不会再改变结果。
+换句话说：
+[
+\mathbf{x}_k \to \pi \quad \text{当 } k \to \infty.
+]</p>
+<hr />
+<h2 id="-四箭头eigenvectors"><a class="header" href="#-四箭头eigenvectors">🔹 四、箭头（eigenvectors）</a></h2>
+<p>图中从坐标轴附近出发的箭头表示 (P) 的不同特征向量方向：</p>
+<ul>
+<li>对应 (\lambda = 1) 的箭头方向（通常与红色稳态点平行）代表<strong>不变方向</strong>；</li>
+<li>其他箭头对应 (|\lambda| &lt; 1) 的特征值方向，这些方向的分量会<strong>随迭代逐渐衰减</strong>。</li>
+</ul>
+<p>这解释了为什么无论初始分布怎样，最终都“掉进”稳态点：
+所有与稳态方向垂直的成分都会因为 (|\lambda| &lt; 1) 而指数衰减。</p>
+<hr />
+<h2 id="-五右上角的文字eigenvalues"><a class="header" href="#-五右上角的文字eigenvalues">🔹 五、右上角的文字（eigenvalues）</a></h2>
+<p>图右上角显示了矩阵的特征值，例如：</p>
+<pre><code>lambda_0 = 1.000000
+lambda_1 = 0.500000
+</code></pre>
+<p>这表示：</p>
+<ul>
+<li>(\lambda_0 = 1)：对应稳态（不会衰减）；</li>
+<li>(\lambda_1 = 0.5)：表示另一个方向的收敛速度（每步衰减到原来的一半）。</li>
+</ul>
+<p>所以第二个特征值越小，系统越快收敛到稳态。</p>
+<hr />
+<h2 id="-六总体解读"><a class="header" href="#-六总体解读">🔹 六、总体解读</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>图像元素</th><th>数学意义</th><th>概念说明</th></tr></thead><tbody>
+<tr><td>虚线段</td><td>概率单纯形（所有合法分布）</td><td>概率的总和必须为 1</td></tr>
+<tr><td>轨迹曲线</td><td>(\mathbf{x}_{k+1} = P\mathbf{x}_k) 的迭代路径</td><td>从初始分布演化的轨迹</td></tr>
+<tr><td>红色菱形</td><td>稳态分布 (\pi)，满足 (P\pi=\pi)</td><td>对应特征值 (\lambda=1)</td></tr>
+<tr><td>箭头</td><td>不同特征向量方向</td><td>决定收敛动态的主方向</td></tr>
+<tr><td>右上角文字</td><td>特征值 (\lambda_i)</td><td>影响收敛速度与稳态稳定性</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="-七直观总结"><a class="header" href="#-七直观总结">🔹 七、直观总结</a></h2>
+<ul>
+<li>所有概率分布点最终都会汇聚到<strong>稳态点（红色菱形）</strong>。</li>
+<li>收敛的快慢由第二大特征值 (|\lambda_2|) 决定。</li>
+<li>这说明马尔可夫链长期行为是由<strong>特征值结构</strong>主导的。</li>
+<li>特征值 (1) 的存在保证了概率“总量守恒”；其他小于 1 的特征值则表示“扰动会逐渐消失”。</li>
+</ul>
+<hr />
+<p>如果你愿意，我可以帮你改成一个三维版本（3 个状态的马尔可夫链），那样图会是一个三角平面中的轨迹，可更直观地看到“流向稳态”的过程。
+要我给出那个 3D 版代码吗？</p>
 
                     </main>
 
