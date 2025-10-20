@@ -43,11 +43,35 @@ $$
 A = \begin{bmatrix}2 & 1 \\1 & 3 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix}x \\y \end{bmatrix},
 $$
 
- 
 
 $$
 Q(x,y) = \begin{bmatrix} x & y \end{bmatrix}\begin{bmatrix}2 & 1 \\1 & 3 \end{bmatrix}\begin{bmatrix}x \\y \end{bmatrix}= 2x^2 + 2xy + 3y^2.
 $$
+
+$$
+\begin{bmatrix}2 & 1 \\1 & 3 \end{bmatrix}\begin{bmatrix}x \\y \end{bmatrix}
+=
+\begin{bmatrix} 
+2x+y \\
+x+3y 
+\end{bmatrix}
+
+$$
+
+$$
+\begin{bmatrix} x & y \end{bmatrix}
+\begin{bmatrix}
+2x+y \\
+x+3y 
+\end{bmatrix}
+=
+(2x^2+xy) +
+(xy + 3y^2)
+=
+2x^2+2xy+3y^2
+$$
+
+
 
 Example 9.1.2. The quadratic form
 
@@ -58,9 +82,11 @@ Q(x,y) = x^2 + y^2
 $$
 
 corresponds to the matrix $A = I_2$. It measures squared Euclidean distance from the origin.
-对应于矩阵𝐴 = 𝐼 2 A=I 2 ​ . 它测量距离原点的平方欧几里得距离。
+
+对应于矩阵$A = I_2$. ​ . 它测量距离原点的平方欧几里得距离。
 
 Example 9.1.3. The conic section equation
+
 例 9.1.3 圆锥曲线方程
 
 $$
@@ -68,6 +94,7 @@ $$
 $$
 
 is described by the quadratic form $\mathbf{x}^T A \mathbf{x} = 1$ with
+
 由二次型 $\mathbf{x}^T A \mathbf{x} = 1$ 描述
 
 $$
