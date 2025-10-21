@@ -314,6 +314,7 @@ Positive definiteness provides stability and guarantees in mathematics and compu
 练习 9.2
 
 1.  Use Sylvester’s criterion to check whether
+
     使用 Sylvester 标准检查
     
     $$
@@ -337,6 +338,7 @@ Positive definiteness provides stability and guarantees in mathematics and compu
     是正定的、半定的或不定的。
     
 3.  Find the eigenvalues of
+
     找到特征值
     
     $$
@@ -416,12 +418,26 @@ $$
 A = \begin{bmatrix}2 & 1 \\1 & 2 \end{bmatrix}.
 $$
 
+已知二维矩阵求行列式公式： $\det(\begin{bmatrix} a & b \\ c & d \end{bmatrix}) = ad - bc$
+
 1.  Characteristic polynomial:
 
     特征多项式：
 
 $$
-p(\lambda) = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3.
+p(\lambda) = \det(A-\lambda I)\\
+
+=\det(\begin{bmatrix}2 & 1 \\1 & 2 \end{bmatrix}- \lambda \begin{bmatrix}1 & 0 \\0 & 1 \end{bmatrix})\\
+
+=\det(\begin{bmatrix}2 & 1 \\1 & 2 \end{bmatrix}-  \begin{bmatrix}\lambda & 0 \\0 & \lambda \end{bmatrix})\\
+
+=\det(\begin{bmatrix}2-\lambda & 1 \\1 & 2-\lambda \end{bmatrix} \\
+
+= (2-\lambda)^2 - 1  \\
+
+= \lambda^2 - 4\lambda + 3\\
+
+
 $$
 
 Eigenvalues: $\lambda_1 = 1, \ \lambda_2 = 3$.
@@ -435,6 +451,17 @@ Eigenvalues: $\lambda_1 = 1, \ \lambda_2 = 3$.
 *   For $\lambda=1$: solve $(A-I)\mathbf{v} = 0$, giving $(1,-1)$.
 
     对于 $\lambda=1$ ：求解 $(A-I)\mathbf{v} = 0$ ，得到 $(1,-1)$ 。
+    $$
+    (A-I)\mathbf{v} = 0\\
+    (\begin{bmatrix}2 & 1 \\1 & 2 \end{bmatrix}-\begin{bmatrix}1 & 0 \\0 & 1 \end{bmatrix})\mathbf{v} = 0\\
+    \begin{bmatrix}1 & 1 \\1 & 1 \end{bmatrix}\mathbf{v} = 0\\
+    \begin{bmatrix}1 & 1 \\1 & 1 \end{bmatrix} \begin{bmatrix}v_1 \\v_2 \end{bmatrix} = 0\\
+    \begin{bmatrix}v_1 + v_2 \\v_1 + v_2\end{bmatrix} = \begin{bmatrix}0 \\0\end{bmatrix} \\
+    \begin{cases}v_1 + v_2 = 0 \\v_1 + v_2 = 0\end{cases}\\
+    v_1 = -v_2\\
+    \mathbf{v} =c\begin{bmatrix}1 \\-1\end{bmatrix}
+    
+    $$
 *   For $\lambda=3$: solve $(A-3I)\mathbf{v} = 0$, giving $(1,1)$.
 
     对于 $\lambda=3$ ：求解 $(A-3I)\mathbf{v} = 0$ ，得到 $(1,1)$ 。
