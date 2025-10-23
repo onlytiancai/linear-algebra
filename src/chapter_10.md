@@ -31,7 +31,7 @@ $$
 
 This preserves lengths and angles, since $R_\theta$ is orthogonal with determinant 1.
 
-这保留了长度和角度，因为$R_\theta$ 与行列式 1 正交。
+这保持了长度和角度不变，因为$R_\theta$是正交矩阵且其行列式为1。
 
 ### Rotations in 3D
 3D 旋转
@@ -123,6 +123,7 @@ Linear algebra enables all real-time graphics: video games, simulations, CAD sof
 练习10.1
 
 1.  Write the rotation matrix for a 90° counterclockwise rotation in $\mathbb{R}^2$. Apply it to $(1,0)$.
+
     在 $\mathbb{R}^2$ 中写出逆时针旋转 90° 的旋转矩阵。将其应用到 $(1,0)$ 。
 2.  Rotate the point $(1,1,0)$ about the $z$\-axis by 180°.
    
