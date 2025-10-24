@@ -203,6 +203,25 @@ The solution is the orthogonal projection of $\mathbf{b}$ onto the column space 
 
 解决方案是将 $\mathbf{b}$ 正交投影到 $A$ 的列空间上。
 
+---
+
+要求 $\|A\mathbf{x} - \mathbf{b}\|^2$,分两步走，首先取模，再求平方。
+- 向量 $x$ 的模就是自己和自己的内积开根号，再平方的话相当于就是自己和自己的内积。
+- 自己和自己的内积就是 $x^Tx$，在这里 $x$ 是 $A\mathbf{x} - \mathbf{b}$，所以就是求 $(A\mathbf{x} - \mathbf{b})^T(A\mathbf{x} - \mathbf{b})$
+- 矩阵转置的几个规则：
+    - 矩阵乘向量的转置等于向量的转置乘矩阵的转置：$(Ax)^T=x^TA^T$
+    - 标量的转置还是自己：$b^T=b$
+    - 当结果是一个标量时，转置不会改变它的值：$b^T(Ax)=(Ax)^Tb$
+- 推导过程如下
+  $$
+  (A\mathbf{x} - \mathbf{b})^T(A\mathbf{x} - \mathbf{b})\\
+  = (Ax-b)^TAx - (Ax-b)^Tb\\
+  = (Ax)^TAx-b^T(Ax)-(Ax)^Tb+b^Tb\\
+  = x^TA^TAx-b^T(Ax)-(Ax)^Tb+b^Tb\\
+  = x^TA^TAx-2b^T(Ax)+b^Tb
+  $$
+
+---
 ### Example 10.2.2
 例 10.2.2
 

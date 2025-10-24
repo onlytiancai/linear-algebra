@@ -2,3 +2,4 @@
 /katex.min.css
 theme/fonts/KaTeX_*.*
 /temp.md
+code/.ipynb_checkpoints
