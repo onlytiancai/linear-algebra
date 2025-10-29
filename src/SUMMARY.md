@@ -23,6 +23,8 @@
 - [第 6 章 笔记](./chapter_16.md)
 - [第 7 章 笔记](./chapter_17.md)
 - [第 8 章 笔记](./chapter_18.md)
+- [第 9 章 笔记](./chapter_19.md)
+- [第 10 章 笔记](./chapter_20.md)
 
 # 附录
 
