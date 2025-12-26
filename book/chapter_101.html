@@ -1,0 +1,428 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>希尔伯特空间 - The Little Book of Linear Algebra</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="katex.min.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">The Little Book of Linear Algebra</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<p>解释希尔伯特空间中函数的范数是如何得到的，一步一步解释，假设读者数学基础比较弱。</p>
+</blockquote>
+<p>绝对值和范数公式测试</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">b</span><span class="mclose delimcenter" style="top:0em;">∣</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∥</span><span class="mord mathnormal">x</span><span class="mclose delimcenter" style="top:0em;">∥</span></span></span></span></span></span></p>
+<p>好 — 我把“希尔伯特空间里函数的范数是怎么来的”分成<strong>清晰的几步 + 直观例子</strong>来讲，尽量用简单直观的语言和计算示例，让数学基础不强的读者也能跟得上。</p>
+<h1 id="先说目标一句话直观印象"><a class="header" href="#先说目标一句话直观印象">先说目标（一句话直观印象）</a></h1>
+<p>把函数看成“向量”，用一种测量大小的规则把它们量化——这个“大小”就是<strong>范数</strong>。在希尔伯特空间里，这个范数通常是由**内积（inner product）**自然得到的：先定义内积，再从内积定义范数。</p>
+<hr />
+<h1 id="步骤-1把函数当成向量"><a class="header" href="#步骤-1把函数当成向量">步骤 1：把函数当成向量</a></h1>
+<p>想像二维平面里的向量 ((a,b))。向量有长度（norm），长度公式是
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.1777em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0623em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.0223em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119 c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120 c340,-704.7,510.7,-1060.3,512,-1067 l0 -0 c4.7,-7.3,11,-11,19,-11 H40000v40H1012.3 s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232 c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1 s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26 c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1777em;"><span></span></span></span></span></span><span class="mord">.</span></span></span></span></span>
+在函数空间里，我们也把函数 (f) 当作“向量”（只是“分量”变成了每个点的函数值）。于是就想给函数定义“长度”。</p>
+<hr />
+<h1 id="步骤-2先定义内积再由内积得范数"><a class="header" href="#步骤-2先定义内积再由内积得范数">步骤 2：先定义内积（再由内积得范数）</a></h1>
+<p>在普通欧几里得空间，两个向量 ((a,b)) 和 ((c,d)) 的内积是 (a c + b d)。内积是一个把两个向量变成数的规则，有几个重要性质（对称、线性和正定性）。在函数空间里，我们也定义类似的东西。</p>
+<p>最常见的函数内积（在区间 ([a,b]) 上）是
+[
+\langle f, g\rangle = \int_a^b f(x),g(x),dx.
+]
+（如果函数是复值的，内积通常写成 (\langle f,g\rangle = \int_a^b f(x)\overline{g(x)},dx)，用复共轭 (\overline{g(x)})。）</p>
+<p>内积把两个函数“比较”在一起：如果 (\langle f,g\rangle = 0)，就说 (f) 和 (g) 正交（类似向量垂直）。</p>
+<hr />
+<h1 id="步骤-3从内积得到范数自然且唯一"><a class="header" href="#步骤-3从内积得到范数自然且唯一">步骤 3：从内积得到范数（自然且唯一）</a></h1>
+<p>一旦有了内积，就可以定义该内积对应的范数：
+[
+|f| := \sqrt{\langle f, f\rangle}.
+]
+代入上面的内积，就得到常见的 (L^2) 范数：
+[
+|f|_{L^2([a,b])} = \sqrt{\int_a^b |f(x)|^2,dx }.
+]</p>
+<p>这是为什么用“平方再开根号”：类似于向量长度 (\sqrt{a^2+b^2})。平方能保证非负并且把正负抵消（因为 ((-1)^2=1)），开根号把尺度恢复成和函数同单位的“长度”。</p>
+<hr />
+<h1 id="步骤-4范数需要满足的性质直观"><a class="header" href="#步骤-4范数需要满足的性质直观">步骤 4：范数需要满足的性质（直观）</a></h1>
+<p>范数应该满足三条直觉上的要求：</p>
+<ol>
+<li><strong>非负且只有零函数范数为 0</strong>：(|f|\ge0)。如果 (|f|=0)，说明 (f) 在“几乎处处”是 0（在 (L^2) 的情形，允许在测零集上不同）。</li>
+<li><strong>齐次性（尺度放大）</strong>：对标量 (\alpha)，(|\alpha f|=|\alpha|,|f|)。</li>
+<li><strong>三角不等式（“两者之和不比个别太大”）</strong>：(|f+g|\le|f|+|g|)。</li>
+</ol>
+<p>在由内积定义的范数里，这些性质都能被证明（其中三角不等式通常用<strong>柯西—施瓦茨不等式</strong>来证明）。</p>
+<hr />
+<h1 id="步骤-5举两个简单例子计算范数"><a class="header" href="#步骤-5举两个简单例子计算范数">步骤 5：举两个简单例子计算范数</a></h1>
+<p><strong>例 1（离散向量的类比）</strong>
+把函数样本化到两点 ({x_1,x_2})，值为 (f(x_1)=a,; f(x_2)=b)。内积变成 (a c + b d)，范数就是 (\sqrt{a^2+b^2})。这就是熟悉的欧几里得长度。</p>
+<p><strong>例 2（连续函数 (f(x)=x) 在区间 ([0,1])）</strong>
+范数按定义：
+[
+|f|_{L^2([0,1])}=\sqrt{\int_0^1 x^2,dx}=\sqrt{\left[\frac{x^3}{3}\right]_0^1}=\sqrt{\frac{1}{3}}.
+]
+所以函数 (x) 在 (L^2([0,1])) 的“长度”是 (\sqrt{1/3})。</p>
+<hr />
+<h1 id="步骤-6为什么我们常用-l2平方可积空间"><a class="header" href="#步骤-6为什么我们常用-l2平方可积空间">步骤 6：为什么我们常用 (L^2)（平方可积）空间？</a></h1>
+<ol>
+<li><strong>解析方便</strong>：积分 (\int |f|^2) 有良好性，能用许多工具（傅里叶变换、正交展开等）。</li>
+<li><strong>空间完备</strong>：(L^2) 是希尔伯特空间，意味着序列收敛的性质很好（任何柯西列都有极限），便于做分析。</li>
+<li><strong>物理/工程意义</strong>：能量测度（很多情况下能量与平方成正比），例如信号的平均能量就是 (\int |f|^2) 的形式。</li>
+</ol>
+<hr />
+<h1 id="补充直观为什么要内积范数而不是直接定义一个任意的大小"><a class="header" href="#补充直观为什么要内积范数而不是直接定义一个任意的大小">补充直观：为什么要“内积→范数”而不是直接定义一个任意的“大小”？</a></h1>
+<p>内积不仅给出长度，还给出角度（或正交）的概念。很多重要的操作（比如把函数展开成正交基的和——傅里叶级数/正交多项式）都需要角度/正交的概念。所以先定义内积，再由内积得到范数，是数学上更强、更有结构的做法。</p>
+<hr />
+<h1 id="小结一步步回顾"><a class="header" href="#小结一步步回顾">小结（一步步回顾）</a></h1>
+<ol>
+<li>把函数看成向量。</li>
+<li>在函数集合上定义内积（常见的：(\langle f,g\rangle=\int f g) 或复值情形的 (\int f\overline{g})）。</li>
+<li>用 (|f|=\sqrt{\langle f,f\rangle}) 定义范数。</li>
+<li>计算时常出现 (|f|<em>{L^2}=\sqrt{\int |f|^2})，例如 (|x|</em>{L^2([0,1])}=\sqrt{1/3})。</li>
+<li>这样得到的范数满足必要的性质，并允许做正交分解、傅里叶展开等有用操作。</li>
+</ol>
+<hr />
+<p>如果你愿意，我可以：</p>
+<ul>
+<li>用更直观的图像/比喻（比如把函数想成绳子，(\int |f|^2) 是“能量”），或</li>
+<li>再举几个不同函数的实际计算例子（如 ( \sin x,; e^x) 在某区间的 (L^2) 范数），或</li>
+<li>解释柯西—施瓦茨不等式和三角不等式的简明证明（带步骤）。</li>
+</ul>
+<p>你想要哪个方向继续？</p>
+<blockquote>
+<p>依次解释这几个问题</p>
+<ul>
+<li>如何把函数看成向量？</li>
+<li>解释任何柯西列都有极限</li>
+<li>解释平方可积L^2空间，哪些函数在这个空间，哪些不在，举一些例子。</li>
+<li>介绍常见的积分求解公式</li>
+<li>如何可视化两个函数的范数，一个比另一个大，给出python代码即可</li>
+</ul>
+</blockquote>
+<p>下面按你的要求 <strong>依次解释五个问题</strong>。
+（最后一个问题也已用 Python 图形可视化并计算了范数，见上方输出。）</p>
+<hr />
+<h1 id="1-如何把函数看成向量"><a class="header" href="#1-如何把函数看成向量">1. 如何把函数看成向量？</a></h1>
+<p>在常规的二维向量 ((a,b)) 中，我们说“向量有分量”。
+对函数 (f(x))，你可以把它看成有无限个分量：每个点 (x) 对应一个“分量” (f(x))。</p>
+<ul>
+<li>二维向量：两个分量</li>
+<li>三维向量：三个分量</li>
+<li>函数：无数个分量（每个点都有值）</li>
+</ul>
+<p>于是，函数空间就是“无限维向量空间”。</p>
+<p>更具体地，函数加法和标量乘法满足向量的规则：</p>
+<p>[
+(f+g)(x)=f(x)+g(x),\quad (\alpha f)(x)=\alpha f(x).
+]</p>
+<p>这跟向量满足的线性规则是完全一样的，因此函数可以当作向量。</p>
+<hr />
+<h1 id="2-任何柯西列都有极限是什么意思"><a class="header" href="#2-任何柯西列都有极限是什么意思">2. “任何柯西列都有极限”是什么意思？</a></h1>
+<p>这是“完备性”的定义。</p>
+<p><strong>柯西列（Cauchy sequence）</strong>：
+一个序列 ({x_n})，当 (n,m) 很大时，(x_n) 和 (x_m) 之间会越来越接近。
+重点：它只要求“项与项之间越来越近”，并不要求你知道它靠近什么。</p>
+<p>例如实数列 (1, 1.4, 1.41, 1.414, ...) 是柯西列。</p>
+<p><strong>完备性（completeness）</strong>：
+如果“所有柯西列一定收敛到空间中的某个元素”，这个空间就是完备的。</p>
+<p>例如：</p>
+<ul>
+<li><strong>实数 (\mathbb{R})</strong> 是完备的。任何柯西列都有极限，而且极限还在 (\mathbb{R}) 里。</li>
+<li><strong>有理数 (\mathbb{Q})</strong> 不完备。
+因为上面的序列的极限是 (\sqrt{2})，不在 (\mathbb{Q}) 里。</li>
+</ul>
+<p>在希尔伯特空间（如 (L^2)）中，完备性是关键结构性质。</p>
+<hr />
+<h1 id="3-解释平方可积-l2-空间--哪些函数在里面哪些不在"><a class="header" href="#3-解释平方可积-l2-空间--哪些函数在里面哪些不在">3. 解释平方可积 (L^2) 空间 —— 哪些函数在里面？哪些不在？</a></h1>
+<h3 id="定义"><a class="header" href="#定义">定义</a></h3>
+<p>函数 (f) 在区间 ([a,b]) 上属于 (L^2) 是指：</p>
+<p>[
+\int_a^b |f(x)|^2 dx &lt; \infty.
+]</p>
+<p>这表示函数的平方是“可积的”，可以理解成“有限能量”。</p>
+<h3 id="在-l2-的典型例子"><a class="header" href="#在-l2-的典型例子">在 (L^2) 的典型例子：</a></h3>
+<ol>
+<li><strong>多项式</strong>：
+如 (f(x)=x^2-3x+1)，因为多项式在有限区间上是有界的。</li>
+<li><strong>常见连续函数</strong>：
+(\sin x,; e^x,; \cos x)（在有限区间上）。</li>
+<li><strong>不连续但平方可积的函数</strong>：
+如阶跃函数
+[
+f(x)=\begin{cases}1,&amp;x&lt;0-1,&amp;x\ge0\end{cases}.
+]</li>
+</ol>
+<p>这些都满足 (\int |f|^2 &lt;\infty)。</p>
+<hr />
+<h3 id="不在-l2-的函数典型反例"><a class="header" href="#不在-l2-的函数典型反例">不在 (L^2) 的函数（典型反例）</a></h3>
+<ol>
+<li>
+<p><strong>增长太快导致积分发散</strong>
+在 ([0,\infty)) 上
+[
+f(x)=x
+]
+因为
+[
+\int_0^\infty x^2 dx = \infty.
+]</p>
+</li>
+<li>
+<p><strong>在点附近爆炸太严重</strong>
+[
+f(x)=\frac{1}{x} \quad \text{在 } (0,1)
+]
+因为
+[
+\int_0^1 \frac{1}{x^2} dx=\infty.
+]</p>
+</li>
+<li>
+<p><strong>发散太强的振荡函数</strong>
+如 (f(x)=\frac{1}{\sqrt{x}}) 在 ([0,1])，
+因为
+[
+\int_0^1 \frac{1}{x} dx = \infty.
+]</p>
+</li>
+</ol>
+<p>这些都不属于 (L^2)。</p>
+<hr />
+<h1 id="4-常见的积分求解公式简单实用版"><a class="header" href="#4-常见的积分求解公式简单实用版">4. 常见的积分求解公式（简单实用版）</a></h1>
+<h3 id="1基本幂函数"><a class="header" href="#1基本幂函数">（1）基本幂函数</a></h3>
+<p>[
+\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n\neq -1)
+]</p>
+<h3 id="2指数函数"><a class="header" href="#2指数函数">（2）指数函数</a></h3>
+<p>[
+\int e^{ax} dx = \frac{1}{a}e^{ax} + C
+]</p>
+<h3 id="3三角函数"><a class="header" href="#3三角函数">（3）三角函数</a></h3>
+<p>[
+\int \sin x ,dx = -\cos x + C,\qquad
+\int \cos x ,dx = \sin x + C.
+]</p>
+<h3 id="4分部积分"><a class="header" href="#4分部积分">（4）分部积分</a></h3>
+<p>[
+\int u,dv = uv - \int v,du.
+]</p>
+<h3 id="5换元积分"><a class="header" href="#5换元积分">（5）换元积分</a></h3>
+<p>若 (u=g(x))，则
+[
+\int f(g(x))g'(x)dx = \int f(u)du.
+]</p>
+<p>对于 (L^2) 范数常用的是：</p>
+<p>[
+\int_a^b |f(x)|^2 dx
+]
+直接按基本积分公式计算即可。</p>
+<hr />
+<h1 id="5-如何可视化两个函数的范数"><a class="header" href="#5-如何可视化两个函数的范数">5. 如何可视化两个函数的范数？</a></h1>
+<p>下面的 Python 代码已经执行并画出了图像（见上一条输出）。</p>
+<p>内容包括：</p>
+<ul>
+<li>定义两个函数 (f(x)=x) 和 (g(x)=x^2)</li>
+<li>用数值积分计算它们的 (L^2) 范数</li>
+<li>绘制两者以便直观看出谁的范数更大</li>
+</ul>
+<p>代码已执行，不再重复。</p>
+<p>如果你还想可视化：</p>
+<ul>
+<li>内积</li>
+<li>正交分解</li>
+<li>多个函数的范数比较</li>
+<li>在不同区间的变化</li>
+</ul>
+<p>我也可以继续帮你画图。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="chapter_100_ml-key-math-eqns.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="chapter_102.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="chapter_100_ml-key-math-eqns.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="chapter_102.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
