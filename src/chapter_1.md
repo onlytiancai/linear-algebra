@@ -175,7 +175,7 @@ This corresponds to flipping the vector through the origin and doubling its leng
 
 The interaction of addition and scalar multiplication allows us to form *linear combinations*. A linear combination of vectors $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k$ is any vector of the form
 
-加法和标量乘法的相互作用使我们能够形成*线性组合* 。向量𝑣的线性组合 1 , 𝑣 2 , … , 𝑣 𝑘 v 1 ​ ，v 2 ​ ，…，v k ​ 是任意形式的向量
+加法和标量乘法的相互作用使我们能够形成 *线性组合* 。向量 $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k$ 的线性组合如下
 
 $$
 c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_k \mathbf{v}_k, \quad c_i \in \mathbb{R}.
@@ -183,7 +183,7 @@ $$
 
 Linear combinations are the mechanism by which we generate new vectors from existing ones. The span of a set of vectors-the collection of all their linear combinations-will later lead us to the idea of a subspace.
 
-线性组合是一种从现有向量生成新向量的机制。一组向量的跨度——它们所有线性组合的集合——稍后会引出子空间的概念。
+线性组合是一种从现有向量生成新向量的机制。一组向量张成的空间是它们所有线性组合的集合——稍后会引出子空间的概念。
 
 Example 1.2.3. Let $\mathbf{v}_1 = (1,0)$ and $\mathbf{v}_2 = (0,1)$. Then any vector $(a,b)\in\mathbb{R}^2$ can be expressed as
 
@@ -208,7 +208,7 @@ Thus $(1,0)$ and $(0,1)$ form the basic building blocks of the plane.
     标量乘法： $c\mathbf{v}$ 将 $\mathbf{v}$ 的每个条目乘以 $c$ 。
 *   Linear combination: a sum of the form $c_1 \mathbf{v}_1 + \cdots + c_k \mathbf{v}_k$.
 
-    线性组合：𝑐 形式的和 1 𝑣 1 + ⋯ + 𝑐 𝑘 𝑣 𝑘 c 1 ​ v 1 ​ +⋯+c k ​ v k ​ .
+    线性组合： $c_1 \mathbf{v}_1 + \cdots + c_k \mathbf{v}_k$ 形式的和 .
 
 ### Why this matters
 为什么这很重要
@@ -230,6 +230,7 @@ Vector addition and scalar multiplication are the defining operations of linear 
 
     证明 $(5,7)$ 可以写成 $(1,0)$ 和 $(0,1)$ 的线性组合。
 4.  Write $(4,4)$ as a linear combination of $(1,1)$ and $(1,-1)$.
+
     将 $(4,4)$ 写为 $(1,1)$ 和 $(1,-1)$ 的线性组合。
 5.  Prove that if $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$, then $(c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} + c\mathbf{v} + d\mathbf{u} + d\mathbf{v}$ for scalars $c,d \in \mathbb{R}$.
 
@@ -362,7 +363,7 @@ Orthogonality generalizes the idea of perpendicularity from geometry to higher d
     点积： $\mathbf{u} \cdot \mathbf{v}$ 。
 *   Norm (length): $|\mathbf{v}|$.
 
-    规范（长度）： $|\mathbf{v}|$ 。
+    范数（长度）： $|\mathbf{v}|$ 。
 *   Orthogonality: $\mathbf{u} \perp \mathbf{v}$ if $\mathbf{u} \cdot \mathbf{v} = 0$.
 
     正交性：如果为 $\mathbf{u} \cdot \mathbf{v} = 0$ ，则为 $\mathbf{u} \perp \mathbf{v}$ 。
@@ -443,7 +444,7 @@ form an orthonormal set: each has length 1, and their dot products vanish when t
 形成一个正交集：每个集的长度为 1，并且当索引不同时，它们的点积消失。
 
 ### Projections
-预测
+投影
 
 Orthogonality makes possible the decomposition of a vector into two components: one parallel to another vector, and one orthogonal to it. Given a nonzero vector $\mathbf{u}$ and any vector $\mathbf{v}$, the projection of $\mathbf{v}$ onto $\mathbf{u}$ is
 
@@ -455,7 +456,7 @@ $$
 
 The difference
 
-区别
+差
 
 $$
 \mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})
@@ -510,7 +511,7 @@ where the first term is parallel to $\mathbf{u}$ and the second term is orthogon
     正交集：向量两两正交。
 *   An orthonormal set: pairwise orthogonal, each of norm 1.
 
-    正交集：两两正交，每组范数为 1。
+    标准正交集：两两正交，每组范数为 1。
 
 ### Why this matters
 为什么这很重要
