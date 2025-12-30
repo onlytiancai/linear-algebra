@@ -21,7 +21,7 @@ $$
 
 Each entry $a_{ij}$ is a scalar, located in the *i*\-th row and *j*\-th column. The size (or dimension) of the matrix is denoted by $m \times n$.
 
-每个条目$a_{ij}$ 是一个标量，位于第 *i* 行和第 *j* 列。矩阵的大小（或维度）用 $m \times n$ 表示。
+每个条目$a_{ij}$ 是一个标量，位于第 $i$ 行和第 $j$ 列。矩阵的大小（或维度）用 $m \times n$ 表示。
 
 *   If $m = n$, the matrix is square.
 
@@ -34,6 +34,7 @@ Each entry $a_{ij}$ is a scalar, located in the *i*\-th row and *j*\-th column. 
     如果为 $n = 1$ ，则矩阵为列向量。
 
 Thus, vectors are simply special cases of matrices.
+
 因此，向量只是矩阵的特殊情况。
 
 ### Examples
@@ -94,32 +95,34 @@ Matrices generalize vectors and give us a language for describing linear operati
 
     写一个你选定的 $3 \times 2$ 行方阵，并确定其各元素 $a_{ij}$。
 2.  Is every vector a matrix? Is every matrix a vector? Explain.
+
     每个向量都是矩阵吗？每个矩阵都是向量吗？请解释。
 3.  Which of the following are square matrices: $A \in \mathbb{R}^{4\times4}$, $B \in \mathbb{R}^{3\times5}$, $C \in \mathbb{R}^{1\times1}$?
 
     下列哪些是正方形 矩阵： $A \in \mathbb{R}^{4\times4}$ ， $B \in \mathbb{R}^{3\times5}$ ， $C \in \mathbb{R}^{1\times1}$ ？
 4.  Let
-    让
 
-$$
-D = \begin{bmatrix} 1 & 0 \\\\ 0 & 1 \end{bmatrix}
-$$
+    设
 
-What kind of matrix is this? 
+    $$
+    D = \begin{bmatrix} 1 & 0 \\\\ 0 & 1 \end{bmatrix}
+    $$
 
-这是什么类型的矩阵？
+    What kind of matrix is this? 
+
+    这是什么类型的矩阵？
 
 5. Consider the matrix
 
-考虑矩阵
+   考虑矩阵
 
-$$
-E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
-$$
+    $$
+    E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
+    $$
 
-Express $e_{11}, e_{12}, e_{21}, e_{22}$ explicitly.
+    Express $e_{11}, e_{12}, e_{21}, e_{22}$ explicitly.
 
-明确表示$e_{11}, e_{12}, e_{21}, e_{22}$。
+    明确表示$e_{11}, e_{12}, e_{21}, e_{22}$。
 
 ## 2.2 Matrix Addition and Multiplication
 2.2 矩阵加法和乘法
@@ -140,6 +143,7 @@ A = [a_{ij}] \in \mathbb{R}^{m \times n}, \quad B = [b_{ij}] \in \mathbb{R}^{m \
 $$
 
 then
+
 则
 
 $$
@@ -168,9 +172,9 @@ Matrix addition is commutative ($A+B = B+A$) and associative ($(A+B)+C = A+(B+C)
 ### Scalar Multiplication
 标量乘法
 
-For a scalar $c \in \mathbb{R}$ and a matrix $A = [[a_{ij}]$, we define
+For a scalar $c \in \mathbb{R}$ and a matrix $A = [a_{ij}]$, we define
 
-对于标量 $c \in \mathbb{R}$ 和矩阵 $A = [[a_{ij}]$ ，我们定义
+对于标量 $c \in \mathbb{R}$ 和矩阵 $A = [a_{ij}]$ ，我们定义
 
 $$
 cA = [c \cdot a_{ij}].
@@ -251,13 +255,13 @@ Matrix multiplication corresponds to the composition of linear transformations. 
 
 *   Matrix sum: $A+B$.
 
-    矩阵和： $A+B$ 。
+    矩阵加法： $A+B$ 。
 *   Scalar multiple: $cA$.
 
-    标量倍数： $cA$ 。
+    矩阵数乘： $cA$ 。
 *   Product: $AB$, defined only when the number of columns of $A$ equals the number of rows of $B$.
 
-    乘积： $AB$ ，仅当 $A$ 的列数等于 $B$ 的行数时才定义。
+    矩阵乘法： $AB$ ，仅当 $A$ 的列数等于 $B$ 的行数时才定义。
 
 ### Why this matters
 为什么这很重要
@@ -279,7 +283,7 @@ $$
 
 2.  Find 3A where
 
-    查找 3A
+    计算 3A
 
 $$
 A = \begin{bmatrix} 1 & -4 \\2 & 6 \end{bmatrix}.
@@ -287,7 +291,7 @@ $$
 
 3.  Multiply
 
-    乘
+    计算 $AB$
 
 $$
 A = \begin{bmatrix} 1 & 0 & 2 \\-1 & 3 & 1 \end{bmatrix}, \quad B = \begin{bmatrix} 2 & 1 \\0 & -1 \\3 & 4 \end{bmatrix}.
@@ -298,7 +302,7 @@ $$
     通过明确的例子来验证 $AB \neq BA$ 。
 5.  Prove that matrix multiplication is distributive: $A(B+C) = AB + AC$.
 
-    证明矩阵乘法是分配的： $A(B+C) = AB + AC$ 。
+    证明矩阵乘法满足分配率的： $A(B+C) = AB + AC$ 。
 
 ## 2.3 Transpose and Inverse
 2.3 转置和逆
@@ -319,7 +323,7 @@ Formally,
 正式地，
 
 $$
-(A^T)\_{ij} = a\_{ji}.
+(A^T)_{ij} = a_{ji}.
 $$
 
 Example 2.3.1. If
@@ -404,7 +408,7 @@ $$
     转置对应于沿对角线反映线性变换。对于向量，它在行和列形式之间切换。
 *   The inverse, when it exists, corresponds to reversing a linear transformation. For example, if $A$ scales and rotates vectors, $A^{-1}$ rescales and rotates them back.
 
-    如果存在逆变换，则它对应于线性变换的逆变换。例如，如果 $A$ 缩放并旋转了矢量，则 $A^{-1}$ 会将其重新缩放并旋转回去。
+    如果存在逆变换，则它对应于线性变换的逆变换。例如，如果 $A$ 缩放并旋转了向量，则 $A^{-1}$ 会将其重新缩放并旋转回去。
 
 ### Notation
 符号
@@ -447,29 +451,30 @@ $$
 
 3.  Determine whether
 
-    确定是否
+    确定
 
-$$
-C = \begin{bmatrix}2 & 1 \\4 & 2 \end{bmatrix}
-$$
+    $$
+    C = \begin{bmatrix}2 & 1 \\4 & 2 \end{bmatrix}
+    $$
 
-is invertible. If so, find $C^{-1}$.
-可逆。如果可逆，则求 $C^{-1}$ 。
+    is invertible. If so, find $C^{-1}$.
+
+    是否可逆。如果可逆，则求 $C^{-1}$ 。
 
 4.  Find the inverse of
-    求逆
+    求
 
-$$
-D = \begin{bmatrix}0 & 1 \\-1 & 0 \end{bmatrix},
-$$
+    $$
+    D = \begin{bmatrix}0 & 1 \\-1 & 0 \end{bmatrix},
+    $$
 
-and explain its geometric action on vectors in the plane.
+    and explain its geometric action on vectors in the plane.
 
-并解释其对平面向量的几何作用。
+    的逆，并解释其对平面向量的几何作用。
 
 5.  Prove that if $A$ is invertible, then so is $A^T$, and $(A^T)^{-1} = (A^{-1})^T$.
 
-    证明如果 $A$ 可逆，则 $A^T$ 和 $(A^T)^{-1} = (A^{-1})^T$ 也可逆。
+    证明如果 $A$ 可逆，则 $A^T$ 也可以你，并且 $(A^T)^{-1} = (A^{-1})^T$ 。
 
 ## 2.4 Special Matrices
 
@@ -588,7 +593,7 @@ and skew-symmetric if Symmetric matrices appear in quadratic forms and optimizat
 
 A square matrix $Q$ is orthogonal if
 
-方阵 $Q$ 是正交的，如果
+如果
 
 $$
 Q^T Q = QQ^T = I.
@@ -596,7 +601,7 @@ $$
 
 Equivalently, the rows (and columns) of $Q$ form an orthonormal set. Orthogonal matrices preserve lengths and angles; they represent rotations and reflections.
 
-等价地， $Q$ 的行（和列）构成一个正交集。正交矩阵保留长度和角度；它们表示旋转和反射。
+则方阵 $Q$ 是正交的，等价地， $Q$ 的行（和列）构成一个正交集。正交矩阵保留长度和角度；它们表示旋转和反射。
 
 Example 2.4.3. The rotation matrix in the plane:
 
@@ -686,21 +691,22 @@ Special matrices serve as the building blocks of linear algebra. Identity matric
 
     验证
 
-$$
-Q = \begin{bmatrix}0 & 1 \\-1 & 0 \end{bmatrix}
-$$
+    $$
+    Q = \begin{bmatrix}0 & 1 \\-1 & 0 \end{bmatrix}
+    $$
 
-is orthogonal. What geometric transformation does it represent? 
+    is orthogonal. What geometric transformation does it represent? 
 
-是正交的。它代表什么几何变换？
+    是正交的。它代表什么几何变换？
 
 5. Determine whether
-判断
 
-$$
-A = \begin{bmatrix}2 & 3 \\3 & 2 \end{bmatrix}, \quad B = \begin{bmatrix}0 & 5 \\-5 & 0 \end{bmatrix}
-$$
+    判断
 
-are symmetric, skew-symmetric, or neither.
+    $$
+    A = \begin{bmatrix}2 & 3 \\3 & 2 \end{bmatrix}, \quad B = \begin{bmatrix}0 & 5 \\-5 & 0 \end{bmatrix}
+    $$
 
-是对称的、斜对称的，或者都不是。
+    are symmetric, skew-symmetric, or neither.
+
+    是对称的、斜对称的，或者都不是。
