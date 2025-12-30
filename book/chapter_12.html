@@ -1,0 +1,1307 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第 2 章 笔记 - The Little Book of Linear Algebra</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="katex.min.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">The Little Book of Linear Algebra</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="问题-1"><a class="header" href="#问题-1">问题 1</a></h1>
+<p>每个向量都是矩阵吗？每个矩阵都是向量吗？请解释。</p>
+<p>这是一个<strong>线性代数里常见、但容易混淆的问题</strong>，关键在于你如何定义“向量”和你所在的向量空间。</p>
+<p>先说结论，再解释原因。</p>
+<p><strong>不是每个向量都是矩阵，但在某些定义下可以把向量看成特殊的矩阵；也不是每个矩阵都是向量，但在合适的向量空间里，矩阵可以作为向量。</strong></p>
+<p>下面一步一步说明。</p>
+<hr />
+<p>先看<strong>向量是不是矩阵</strong>。</p>
+<p>在初等线性代数中，我们常说的向量通常是
+[
+\mathbb{R}^n \text{ 中的元素}
+]
+比如
+[
+\mathbf{v} = (1,2,3)
+]</p>
+<p>严格来说，它是一个“抽象的向量”，不是矩阵。
+但在计算时，我们<strong>常用矩阵来表示它</strong>：</p>
+<ul>
+<li>列向量：
+[
+\begin{pmatrix}
+1<br />
+2<br />
+3
+\end{pmatrix}
+]
+是一个 (3\times 1) 的矩阵</li>
+<li>行向量：
+[
+(1;2;3)
+]
+是一个 (1\times 3) 的矩阵</li>
+</ul>
+<p>所以结论是：
+<strong>向量本身不是矩阵，但可以用特殊形状的矩阵来表示。</strong></p>
+<hr />
+<p>再看<strong>矩阵是不是向量</strong>。</p>
+<p>这要看你选的“向量空间”是什么。</p>
+<p>如果你定义的向量空间是
+[
+\mathbb{R}^{m\times n}
+]
+即所有 (m\times n) 的实矩阵组成的集合，并且运算是“矩阵加法”和“数乘”，那么：</p>
+<ul>
+<li>每一个 (m\times n) 矩阵</li>
+<li>都是这个向量空间中的一个<strong>向量</strong></li>
+</ul>
+<p>例如：
+[
+A =
+\begin{pmatrix}
+1 &amp; 2<br />
+3 &amp; 4
+\end{pmatrix}
+]
+在 (\mathbb{R}^{2\times2}) 中，它就是一个向量。</p>
+<p>所以：
+<strong>矩阵是否是向量，取决于你是否把“矩阵集合”定义成一个向量空间。</strong></p>
+<hr />
+<p>把两点合在一起理解：</p>
+<ul>
+<li>“向量”和“矩阵”不是同一类对象</li>
+<li>向量是“向量空间中的元素”</li>
+<li>矩阵是一种数学对象，但<strong>完全可以作为向量空间的元素</strong></li>
+</ul>
+<hr />
+<p>一句话总结：</p>
+<p>向量是一个“角色”，矩阵是一种“形式”。
+在合适的舞台（向量空间）上，矩阵可以扮演向量的角色，但它们并不天然等同。</p>
+<h1 id="问题-2"><a class="header" href="#问题-2">问题 2</a></h1>
+<p>Matrix multiplication is the core mechanism of linear algebra: it encodes how transformations combine, how systems of equations are solved, and how data flows in modern algorithms. Addition and scalar multiplication make matrices into a vector space, while multiplication gives them an algebraic structure rich enough to model geometry, computation, and networks.</p>
+<p>如何理解这段话</p>
+<p>这段话是在<strong>用“结构层次”的眼光理解矩阵乘法在数学和应用中的地位</strong>。可以把它拆成三层来理解：<strong>运算层、结构层、意义层</strong>。</p>
+<hr />
+<p>先看第一句：
+<strong>“Matrix multiplication is the core mechanism of linear algebra”</strong></p>
+<p>意思不是说“只有矩阵乘法最重要”，而是说：
+在线性代数中，<strong>真正产生“动力”和“信息流动”的，是矩阵乘法</strong>。</p>
+<p>直观理解：</p>
+<ul>
+<li>加法、数乘只是把对象“放在一起、缩放”</li>
+<li>乘法才是在说：<strong>一个线性过程接着另一个线性过程会发生什么</strong></li>
+</ul>
+<hr />
+<p>接着看它列举的三个例子。</p>
+<p><strong>1. 它编码了变换如何复合（how transformations combine）</strong></p>
+<p>一个矩阵本质上表示一个线性变换。
+如果：</p>
+<ul>
+<li>(A) 表示“先做的变换”</li>
+<li>(B) 表示“后做的变换”</li>
+</ul>
+<p>那么：
+[
+BA
+]
+表示“先 (A)，再 (B)”。</p>
+<p>所以矩阵乘法不是随意定义的，它是<strong>函数复合在坐标中的体现</strong>。
+这也是为什么矩阵乘法一般<strong>不交换</strong>：
+先旋转再拉伸，和先拉伸再旋转，结果通常不同。</p>
+<hr />
+<p><strong>2. 它编码了线性方程组如何被求解（how systems of equations are solved）</strong></p>
+<p>线性方程组：
+[
+A\mathbf{x}=\mathbf{b}
+]</p>
+<p>这里的 (A\mathbf{x}) 本身就是一次矩阵乘法。
+求解方程，其实是在问：</p>
+<blockquote>
+<p>哪个输入向量 (\mathbf{x})，经过线性变换 (A)，会变成 (\mathbf{b})？</p>
+</blockquote>
+<p>高斯消元、LU 分解、逆矩阵等方法，本质上都在<strong>操控矩阵乘法的结构</strong>，把复杂变换拆解成容易处理的乘积。</p>
+<hr />
+<p><strong>3. 它描述了数据如何流动（how data flows in modern algorithms）</strong></p>
+<p>在机器学习、图算法、数值计算中：</p>
+<ul>
+<li>数据是向量</li>
+<li>层、规则、连接关系是矩阵</li>
+<li>一步计算就是一次矩阵乘法</li>
+</ul>
+<p>例如神经网络中的一层：
+[
+\mathbf{y} = W\mathbf{x}
+]</p>
+<p>矩阵乘法在这里表示：
+<strong>信息如何从输入节点传播到输出节点，并被加权、混合。</strong></p>
+<hr />
+<p>再看第二句：
+<strong>“Addition and scalar multiplication make matrices into a vector space”</strong></p>
+<p>这句话强调的是：
+如果你只允许</p>
+<ul>
+<li>矩阵加法</li>
+<li>数乘</li>
+</ul>
+<p>那么矩阵集合和普通向量没有本质区别，它们满足向量空间的全部公理。</p>
+<p>也就是说：</p>
+<ul>
+<li>可以谈线性无关</li>
+<li>可以谈基、维数</li>
+<li>可以谈子空间</li>
+</ul>
+<p>到这里为止，矩阵只是“向量”。</p>
+<hr />
+<p>但接下来一句是关键转折：
+<strong>“while multiplication gives them an algebraic structure”</strong></p>
+<p>一旦再加入<strong>矩阵乘法</strong>：</p>
+<ul>
+<li>你不只是有一个向量空间</li>
+<li>而是有了一个“代数”（algebra）</li>
+</ul>
+<p>这意味着：</p>
+<ul>
+<li>对象之间可以“相互作用”</li>
+<li>变换可以组合</li>
+<li>可以讨论幂、指数、对易性、谱结构</li>
+</ul>
+<p>这一步把线性代数从“几何上的加法世界”，提升到了“过程和计算的世界”。</p>
+<hr />
+<p>最后一句：
+<strong>“rich enough to model geometry, computation, and networks”</strong></p>
+<p>意思是：
+矩阵乘法这种结构<strong>恰到好处</strong>：</p>
+<ul>
+<li>足够简单（线性）</li>
+<li>又足够强大（能表达复杂系统）</li>
+</ul>
+<p>因此它可以：</p>
+<ul>
+<li>描述几何中的旋转、投影、度量</li>
+<li>表达计算步骤的组合</li>
+<li>建模网络中的连接、传播、反馈</li>
+</ul>
+<hr />
+<p>一句话总结理解方式：</p>
+<p>加法和数乘告诉你“矩阵是什么”；
+矩阵乘法告诉你“矩阵能做什么”；
+而线性代数的力量，正来自这种“可组合的线性行动”。</p>
+<h1 id="问题3"><a class="header" href="#问题3">问题3</a></h1>
+<p>Prove that matrix multiplication is distributive: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span>.</p>
+<p>我们用<strong>定义出发、逐项计算</strong>来证明矩阵乘法对加法的分配律。</p>
+<hr />
+<p><strong>前提与记号</strong></p>
+<p>设</p>
+<ul>
+<li>(A) 是一个 (m\times n) 矩阵</li>
+<li>(B, C) 是两个 (n\times p) 矩阵</li>
+</ul>
+<p>这样 (AB, AC, A(B+C)) 都是有定义的 (m\times p) 矩阵。</p>
+<hr />
+<p><strong>矩阵加法与乘法的定义</strong></p>
+<ol>
+<li>
+<p>矩阵加法按元素定义：
+[
+(B+C)<em>{kj} = B</em>{kj} + C_{kj}
+]</p>
+</li>
+<li>
+<p>矩阵乘法按行列定义：
+[
+(AB)<em>{ij} = \sum</em>{k=1}^n A_{ik}B_{kj}
+]</p>
+</li>
+</ol>
+<hr />
+<p><strong>证明</strong></p>
+<p>我们比较矩阵 (A(B+C)) 与 (AB+AC) 的第 ((i,j)) 个元素。</p>
+<p>首先，
+[
+\bigl(A(B+C)\bigr)<em>{ij}
+= \sum</em>{k=1}^n A_{ik}(B+C)_{kj}
+]</p>
+<p>代入矩阵加法的定义：
+[
+= \sum_{k=1}^n A_{ik}\bigl(B_{kj}+C_{kj}\bigr)
+]</p>
+<p>利用实数（或域）上的分配律：
+[
+= \sum_{k=1}^n \bigl(A_{ik}B_{kj}+A_{ik}C_{kj}\bigr)
+]</p>
+<p>把求和拆开：
+[
+= \sum_{k=1}^n A_{ik}B_{kj}
+;+;
+\sum_{k=1}^n A_{ik}C_{kj}
+]</p>
+<p>根据矩阵乘法的定义：
+[
+= (AB)<em>{ij} + (AC)</em>{ij}
+]</p>
+<p>而矩阵加法是逐元素进行的，所以：
+[
+(AB+AC)<em>{ij} = (AB)</em>{ij} + (AC)_{ij}
+]</p>
+<p>因此对所有 (i,j) 都有：
+[
+\bigl(A(B+C)\bigr)<em>{ij} = (AB+AC)</em>{ij}
+]</p>
+<hr />
+<p><strong>结论</strong></p>
+<p>因为两个矩阵在每一个对应元素上都相等，所以：
+[
+A(B+C) = AB + AC
+]</p>
+<hr />
+<p><strong>补充说明（直观理解）</strong></p>
+<p>矩阵乘法本质上是“行向量与列向量的内积”，
+而内积对加法是分配的，这一性质自然地体现在矩阵乘法中。</p>
+<h1 id="问题4"><a class="header" href="#问题4">问题4</a></h1>
+<p>证明 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>我们直接从<strong>转置和矩阵乘法的定义</strong>出发证明。</p>
+<hr />
+<p><strong>前提与记号</strong></p>
+<p>设</p>
+<ul>
+<li>(A) 是一个 (m\times n) 矩阵</li>
+<li>(B) 是一个 (n\times p) 矩阵</li>
+</ul>
+<p>则</p>
+<ul>
+<li>(AB) 是 (m\times p) 矩阵</li>
+<li>((AB)^T) 是 (p\times m) 矩阵</li>
+<li>(B^T) 是 (p\times n) 矩阵</li>
+<li>(A^T) 是 (n\times m) 矩阵</li>
+</ul>
+<p>乘积 (B^T A^T) 有定义，结果也是 (p\times m) 矩阵。</p>
+<hr />
+<p><strong>转置与矩阵乘法的定义</strong></p>
+<ol>
+<li>
+<p>转置的定义：
+[
+(M^T)<em>{ij} = M</em>{ji}
+]</p>
+</li>
+<li>
+<p>矩阵乘法的定义：
+[
+(AB)<em>{ij} = \sum</em>{k=1}^n A_{ik} B_{kj}
+]</p>
+</li>
+</ol>
+<hr />
+<p><strong>证明</strong></p>
+<p>考虑 ((AB)^T) 的第 ((i,j)) 个元素：
+[
+\bigl((AB)^T\bigr)<em>{ij} = (AB)</em>{ji}
+]</p>
+<p>代入矩阵乘法的定义：
+[
+= \sum_{k=1}^n A_{jk} B_{ki}
+]</p>
+<p>利用标量乘法的交换性，将顺序调换：
+[
+= \sum_{k=1}^n B_{ki} A_{jk}
+]</p>
+<p>注意到：</p>
+<ul>
+<li>((B^T)<em>{ik} = B</em>{ki})</li>
+<li>((A^T)<em>{kj} = A</em>{jk})</li>
+</ul>
+<p>因此：
+[
+= \sum_{k=1}^n (B^T)<em>{ik} (A^T)</em>{kj}
+]</p>
+<p>根据矩阵乘法的定义：
+[
+= (B^T A^T)_{ij}
+]</p>
+<hr />
+<p><strong>结论</strong></p>
+<p>因为对任意 (i,j)，都有
+[
+\bigl((AB)^T\bigr)<em>{ij} = (B^T A^T)</em>{ij},
+]
+所以
+[
+(AB)^T = B^T A^T.
+]</p>
+<hr />
+<p><strong>直观理解</strong></p>
+<p>转置本质上是“交换行和列”，
+而矩阵乘法是“行对列”。
+先乘再转置，等价于先把两个矩阵分别转置，并且<strong>交换乘法顺序</strong>。</p>
+<h1 id="问题-5"><a class="header" href="#问题-5">问题 5</a></h1>
+<p>The transpose allows us to define symmetric and orthogonal matrices, central to geometry and numerical methods. The inverse underlies the solution of linear systems, encoding the idea of undoing a transformation. Together, these operations set the stage for determinants, eigenvalues, and orthogonalization.</p>
+<p>解释这段话</p>
+<p>这段话是在说明：<strong>转置和逆并不是零散的技巧，而是线性代数中“结构展开”的起点</strong>。理解它的关键，是把注意力从“公式”转到“几何与操作的意义”。</p>
+<p>先看第一句：
+<strong>“The transpose allows us to define symmetric and orthogonal matrices, central to geometry and numerical methods.”</strong></p>
+<p>转置的本质是<strong>交换行与列</strong>，几何上对应于“把线性变换反过来看”。</p>
+<ul>
+<li>
+<p><strong>对称矩阵</strong> (A^T = A)：
+这表示这个变换在某种意义下“没有方向偏好”，
+在几何中对应的是<strong>二次型、能量、距离</strong>等概念。
+例如内积 (\langle x, Ax\rangle) 就自然要求 (A) 是对称的。</p>
+</li>
+<li>
+<p><strong>正交矩阵</strong> (A^T A = I)：
+转置在这里起到“逆”的作用，说明这种变换<strong>保持长度和角度</strong>，
+对应于旋转、反射这样的刚性运动。
+这正是欧几里得几何的核心结构。</p>
+</li>
+</ul>
+<p>在数值计算中，对称性和正交性意味着<strong>稳定、可控、误差不易放大</strong>，因此极其重要。</p>
+<hr />
+<p>第二句：
+<strong>“The inverse underlies the solution of linear systems, encoding the idea of undoing a transformation.”</strong></p>
+<p>逆矩阵的意义是非常直接的：
+如果 (A) 表示一个线性变换，那么 (A^{-1}) 就是<strong>把这个变换“撤销”</strong>。</p>
+<p>线性方程组
+[
+A x = b
+]
+的本质问题是：</p>
+<blockquote>
+<p>哪个 (x) 经过变换 (A)，会得到 (b)？</p>
+</blockquote>
+<p>如果 (A^{-1}) 存在，那么
+[
+x = A^{-1} b
+]</p>
+<p>这不是单纯的代数操作，而是在说：
+<strong>解方程 = 把变换反过来作用一次</strong>。</p>
+<p>因此，逆矩阵把“求解问题”转化为“理解变换是否可逆、如何可逆”。</p>
+<hr />
+<p>最后一句是总结和升华：
+<strong>“Together, these operations set the stage for determinants, eigenvalues, and orthogonalization.”</strong></p>
+<p>意思是：
+转置和逆这两种操作，为更深层的概念提供了舞台。</p>
+<ul>
+<li>
+<p><strong>行列式</strong>：
+与可逆性直接相关，刻画变换是否压扁空间，以及体积如何变化。</p>
+</li>
+<li>
+<p><strong>特征值与特征向量</strong>：
+描述在某些特殊方向上，变换只做“拉伸/压缩”，
+这类分析高度依赖对称性和转置结构。</p>
+</li>
+<li>
+<p><strong>正交化（如 Gram–Schmidt）</strong>：
+本质上是在利用转置定义的内积，
+把一组向量变成“彼此独立、几何清晰”的坐标系统。</p>
+</li>
+</ul>
+<hr />
+<p>一句话理解整段话：</p>
+<p>转置让我们谈“几何对称与保持结构”，
+逆让我们谈“可解性与可逆过程”，
+而在线性代数中，这两者共同支撑了对线性变换最核心的分析工具。</p>
+<h1 id="问题-6"><a class="header" href="#问题-6">问题 6</a></h1>
+<p>几个不明白的地方</p>
+<ul>
+<li>内积 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">x</span><span class="mclose">⟩</span></span></span></span> 就自然要求 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> 是对称</li>
+<li>在数值计算中，对称性和正交性意味着<strong>稳定、可控、误差不易放大</strong></li>
+<li>为什么特征值与特征向量的分析高度依赖对称性和转置结构</li>
+<li>为什么正交化本质上是在利用转置定义的内积</li>
+</ul>
+<p>这些问题都问到了**线性代数“为什么这样定义”而不是“怎么算”**的层面。下面我逐条解释，每一条都尽量从直觉 → 数学事实来说明。</p>
+<hr />
+<p>先看第一点：
+<strong>为什么内积 (\langle x, Ax\rangle) 自然要求 (A) 是对称的</strong></p>
+<p>在实向量空间里，标准内积是
+[
+\langle u, v\rangle = u^T v
+]</p>
+<p>因此
+[
+\langle x, Ax\rangle = x^T A x
+]</p>
+<p>现在注意一个关键事实：
+对任意标量，
+[
+x^T A x = (x^T A x)^T = x^T A^T x
+]</p>
+<p>所以
+[
+x^T A x = x^T \frac{A + A^T}{2} x
+]</p>
+<p>这说明一件事：
+<strong>任何矩阵在这种“能量表达式”中，只能“看到”它的对称部分</strong>。</p>
+<p>如果 (A) 不是对称的，那么</p>
+<ul>
+<li>非对称部分 (\frac{A - A^T}{2})</li>
+<li>对 (\langle x, Ax\rangle) 完全没有贡献</li>
+</ul>
+<p>因此，当你用 (\langle x, Ax\rangle) 来描述长度、能量、曲率等几何量时，
+<strong>非对称部分在物理和几何上是“不可见的”</strong>，自然就要求 (A) 取对称矩阵。</p>
+<hr />
+<p>第二点：
+<strong>为什么对称性和正交性意味着数值稳定、误差不易放大</strong></p>
+<p>先从正交矩阵说起。</p>
+<p>若 (Q^T Q = I)，那么
+[
+|Qx| = |x|
+]</p>
+<p>这意味着：</p>
+<ul>
+<li>不拉伸、不压缩</li>
+<li>不会把一个很小的误差放大</li>
+</ul>
+<p>在浮点计算中，这是极其重要的：
+正交变换只会“重新排列能量”，而不会制造或放大误差。</p>
+<p>再看对称矩阵。</p>
+<p>对称矩阵有一个关键性质：</p>
+<ul>
+<li>它们可以被正交对角化
+[
+A = Q \Lambda Q^T
+]</li>
+</ul>
+<p>计算时你面对的是：</p>
+<ul>
+<li>正交变换（稳定）</li>
+<li>对角矩阵（简单、可控）</li>
+</ul>
+<p>这避免了复杂、病态的中间步骤，因此数值算法更可靠。</p>
+<hr />
+<p>第三点：
+<strong>为什么特征值与特征向量分析高度依赖对称性和转置结构</strong></p>
+<p>一般矩阵的特征分析是“危险的”：</p>
+<ul>
+<li>特征值可能是复数</li>
+<li>特征向量可能不正交，甚至不完备</li>
+<li>微小扰动会导致巨大变化</li>
+</ul>
+<p>但如果 (A = A^T)（实对称）：</p>
+<ul>
+<li>所有特征值都是实数</li>
+<li>不同特征值的特征向量正交</li>
+<li>可以选取一组正交基</li>
+</ul>
+<p>而这些结论的证明都<strong>离不开转置和内积结构</strong>，例如：
+[
+\langle Ax, y\rangle = \langle x, Ay\rangle
+]</p>
+<p>这正是对称性的核心代数表现。</p>
+<p>所以，对称性把特征值问题从“代数难题”变成了“几何分解”。</p>
+<hr />
+<p>第四点：
+<strong>为什么正交化本质上是在利用转置定义的内积</strong></p>
+<p>在 (\mathbb{R}^n) 中，
+[
+\langle u, v\rangle = u^T v
+]</p>
+<p>Gram–Schmidt 的每一步都在做：</p>
+<ul>
+<li>投影
+[
+\text{proj}_u(v) = \frac{\langle v, u\rangle}{\langle u, u\rangle} u
+]</li>
+</ul>
+<p>而这里的 (\langle v, u\rangle)，本质就是：
+[
+v^T u
+]</p>
+<p>也就是说：</p>
+<ul>
+<li>转置把“列向量”变成“行向量”</li>
+<li>行 × 列 → 标量</li>
+<li>这正是内积</li>
+</ul>
+<p>所以正交化的全部操作，都建立在“转置 + 乘法”所定义的内积之上。</p>
+<hr />
+<p><strong>整体一句话总结</strong></p>
+<ul>
+<li>对称性保证“几何量是可见且一致的”</li>
+<li>正交性保证“变换不扭曲、不放大误差”</li>
+<li>特征分析在对称情形下才真正几何化</li>
+<li>正交化不过是反复使用由转置定义的内积</li>
+</ul>
+<p>如果你愿意，我也可以把其中任何一点<strong>用具体二维/三维例子画成几何图像来解释</strong>。</p>
+<h1 id="问题-7"><a class="header" href="#问题-7">问题 7</a></h1>
+<p>举一些用 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">x</span><span class="mclose">⟩</span></span></span></span> 来描述长度、能量、曲率等几何量的例子</p>
+<p>这是个<strong>非常好的问题</strong>，因为
+(\langle x,Ax\rangle) 之所以重要，正是因为它在很多几何与物理量中<strong>不是人为设定的，而是“自然出现的”</strong>。下面我按“长度 → 能量 → 曲率”的层次给你一些典型、直观的例子。</p>
+<hr />
+<p>先从<strong>长度与度量</strong>说起。</p>
+<p><strong>例 1：加权长度（椭球度量）</strong></p>
+<p>在 (\mathbb{R}^n) 中，普通长度是
+[
+|x|^2 = \langle x,x\rangle = x^T x
+]</p>
+<p>如果空间在不同方向上“尺度不同”，自然会出现：
+[
+|x|_A^2 = \langle x,Ax\rangle = x^T A x
+]
+其中 (A) 是对称正定矩阵。</p>
+<p>几何意义：</p>
+<ul>
+<li>等长集合 (x^T A x = 1) 是一个椭球</li>
+<li>(A) 决定了各方向被拉伸或压缩的程度</li>
+</ul>
+<p>这在统计学中的 <strong>Mahalanobis 距离</strong>、计算几何中的各向异性网格里都直接出现。</p>
+<hr />
+<p>接着看<strong>能量与物理量</strong>。</p>
+<p><strong>例 2：弹性势能（胡克定律的多维形式）</strong></p>
+<p>一维中，弹簧能量是：
+[
+E = \frac12 k x^2
+]</p>
+<p>多维系统（多个自由度）中，自然变成：
+[
+E = \frac12 x^T K x
+]
+其中 (K) 是刚度矩阵，对称正定。</p>
+<p>含义是：</p>
+<ul>
+<li>(x) 是位移</li>
+<li>(K) 描述各方向的“弹性耦合”</li>
+<li>能量是一个二次型</li>
+</ul>
+<p>非对称部分在物理上毫无意义，因此 (K) 必须对称。</p>
+<hr />
+<p><strong>例 3：电路与图上的能量</strong></p>
+<p>在电阻网络中：
+[
+E = \sum_{(i,j)} w_{ij}(x_i - x_j)^2
+]</p>
+<p>这可以写成：
+[
+E = x^T L x
+]
+其中 (L) 是图的 Laplacian 矩阵（对称半正定）。</p>
+<p>这里：</p>
+<ul>
+<li>(x) 是节点电势</li>
+<li>能量刻画“电流消耗”</li>
+<li>(L) 自动是对称的</li>
+</ul>
+<hr />
+<p>再看<strong>曲率与二阶结构</strong>。</p>
+<p><strong>例 4：函数在极值点附近的二阶近似（Hessian）</strong></p>
+<p>设 (f:\mathbb{R}^n \to \mathbb{R})，在极值点附近：
+[
+f(x) \approx f(0) + \frac12 x^T H x
+]
+其中 (H) 是 Hessian 矩阵。</p>
+<p>几何含义：</p>
+<ul>
+<li>(x^T H x) 描述“函数表面”在各方向上的弯曲程度</li>
+<li>正定 → 极小值</li>
+<li>不定 → 鞍点</li>
+</ul>
+<p>而 Hessian 在自然条件下总是对称的。</p>
+<hr />
+<p><strong>例 5：黎曼几何中的度量张量（局部）</strong></p>
+<p>在曲面或流形上，长度微元写成：
+[
+ds^2 = dx^T G(x), dx
+]</p>
+<p>这里：</p>
+<ul>
+<li>(G(x)) 是对称正定矩阵</li>
+<li>决定局部长度、角度、曲率</li>
+</ul>
+<p>这正是 (\langle dx, G(x) dx\rangle) 的连续版本。</p>
+<hr />
+<p>最后给一个<strong>纯几何/代数的例子</strong>。</p>
+<p><strong>例 6：主成分分析（PCA）中的方差</strong></p>
+<p>数据的协方差矩阵 (\Sigma) 是对称的，
+方向 (x) 上的方差是：
+[
+\text{Var}(x) = x^T \Sigma x
+]</p>
+<p>这里：</p>
+<ul>
+<li>(x) 是方向</li>
+<li>二次型告诉你“沿该方向数据有多分散”</li>
+</ul>
+<hr />
+<p><strong>统一的直觉总结</strong></p>
+<p>当一个量满足：</p>
+<ul>
+<li>对 (x) 是二次的</li>
+<li>与方向有关</li>
+<li>是标量</li>
+<li>表示“大小、能量、弯曲、代价”</li>
+</ul>
+<p>它几乎必然写成：
+[
+\langle x,Ax\rangle = x^T A x
+]</p>
+<p>而要求它“几何合理”，就自然逼迫 (A) 是对称（且通常正定）。</p>
+<p>如果你愿意，我也可以选其中一个例子（比如椭球或 Hessian）<strong>详细展开成几何图像来解释</strong>。</p>
+<h1 id="问题-8"><a class="header" href="#问题-8">问题 8</a></h1>
+<p>Determine whether</p>
+<p>确定</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>is invertible. If so, find <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>是否可逆。如果可逆，则求 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span> 。</p>
+<p>我们直接按<strong>可逆矩阵的判定方法</strong>来做。</p>
+<p>给定矩阵
+[
+C=\begin{bmatrix}
+2 &amp; 1<br />
+4 &amp; 2
+\end{bmatrix}
+]</p>
+<hr />
+<p><strong>第一步：判断是否可逆</strong></p>
+<p>一个 (2\times2) 矩阵
+[
+\begin{bmatrix}
+a &amp; b<br />
+c &amp; d
+\end{bmatrix}
+]
+可逆当且仅当行列式
+[
+\det = ad - bc \neq 0
+]</p>
+<p>计算 (C) 的行列式：
+[
+\det(C) = 2\cdot 2 - 1\cdot 4 = 4 - 4 = 0
+]</p>
+<hr />
+<p><strong>结论</strong></p>
+<p>因为
+[
+\det(C)=0,
+]
+所以矩阵 (C) <strong>不可逆</strong>，因此 <strong>(C^{-1}) 不存在</strong>。</p>
+<hr />
+<p><strong>补充直观理解</strong></p>
+<p>注意到
+[
+\begin{bmatrix}4 &amp; 2\end{bmatrix} = 2 \begin{bmatrix}2 &amp; 1\end{bmatrix}
+]</p>
+<p>也就是说：</p>
+<ul>
+<li>第二行是第一行的 2 倍</li>
+<li>行向量线性相关</li>
+</ul>
+<p>几何上，这个矩阵把整个平面“压扁”到一条直线上，信息丢失，自然无法被“反变换”，所以不存在逆矩阵。</p>
+<h1 id="问题-9"><a class="header" href="#问题-9">问题 9</a></h1>
+<p>Find the inverse of
+求</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span></span></span></span></span></p>
+<p>and explain its geometric action on vectors in the plane.</p>
+<p>的逆，并解释其对平面向量的几何作用。</p>
+<p>我们分两步来做：<strong>先求逆矩阵，再解释几何意义</strong>。</p>
+<hr />
+<p><strong>一、求 (D^{-1})</strong></p>
+<p>给定
+[
+D=\begin{bmatrix}
+0 &amp; 1<br />
+-1 &amp; 0
+\end{bmatrix}
+]</p>
+<p>先计算行列式：
+[
+\det(D)=0\cdot 0-1\cdot(-1)=1\neq 0
+]
+所以 (D) 可逆。</p>
+<p>对 (2\times2) 矩阵</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">b</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>其逆为
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal">c</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal">b</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>代入 (a=0,b=1,c=-1,d=0)，得到
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>也可以注意到：
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8913em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span>
+所以
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8913em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<hr />
+<p><strong>二、几何作用的解释</strong></p>
+<p>考虑任意平面向量
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>作用 (D) 后：
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>这意味着：</p>
+<ul>
+<li>原来的 ((1,0)) 变成 ((0,-1))</li>
+<li>原来的 ((0,1)) 变成 ((1,0))</li>
+</ul>
+<p>几何上，这是把所有向量<strong>绕原点顺时针旋转 (90^\circ)</strong>。</p>
+<p>因此：</p>
+<ul>
+<li>(D)：顺时针旋转 (90^\circ)</li>
+<li>(D^{-1})：逆向操作，即<strong>逆时针旋转 (90^\circ)</strong></li>
+</ul>
+<hr />
+<p><strong>补充理解</strong></p>
+<p>这个矩阵还有几个重要性质：</p>
+<ul>
+<li>(D^T D = I)，说明它是<strong>正交矩阵</strong></li>
+<li>保持长度和角度不变</li>
+<li>行列式为 (1)，表示纯旋转（不含反射）</li>
+</ul>
+<hr />
+<p><strong>一句话总结</strong></p>
+<p>矩阵
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span>
+表示平面上<strong>绕原点顺时针旋转 (90^\circ)</strong> 的线性变换，它的逆就是反方向的旋转。</p>
+<h1 id="问题-10"><a class="header" href="#问题-10">问题 10</a></h1>
+<p>如果对称矩阵出现在二次形式和优化中，则为斜对称，而斜对称矩阵描述几何中的旋转和叉积。</p>
+<p>这句话其实是在<strong>对比两类“极端不同但同样自然”的矩阵角色</strong>。理解它的关键，是抓住一个问题：</p>
+<blockquote>
+<p>一个矩阵是在描述“大小 / 能量 / 曲率”，
+还是在描述“方向变化 / 旋转 / 面积取向”？</p>
+</blockquote>
+<p>下面我分层解释。</p>
+<hr />
+<p>先说<strong>对称矩阵出现在二次形式和优化中</strong>，以及为什么“斜对称部分不出现”。</p>
+<p>考虑最一般的二次形式：
+[
+x^T A x
+]</p>
+<p>把任意矩阵分解为
+[
+A = \frac{A + A^T}{2} + \frac{A - A^T}{2}
+]
+其中</p>
+<ul>
+<li>(\frac{A + A^T}{2}) 是对称矩阵</li>
+<li>(\frac{A - A^T}{2}) 是斜对称矩阵（(S^T = -S)）</li>
+</ul>
+<p>现在看斜对称部分的贡献：
+[
+x^T S x = (x^T S x)^T = x^T S^T x = -x^T S x
+]</p>
+<p>因此：
+[
+x^T S x = 0
+]</p>
+<p>结论是：
+<strong>任何斜对称矩阵在二次形式中都完全消失</strong>。</p>
+<p>所以：</p>
+<ul>
+<li>优化问题里的目标函数、能量函数、距离、曲率</li>
+<li>必然只“看到”对称矩阵</li>
+</ul>
+<p>这不是选择，而是数学结构强制的结果。</p>
+<hr />
+<p>接着看<strong>斜对称矩阵描述旋转和叉积</strong>。</p>
+<p>考虑一个很小的旋转（无穷小旋转）。
+在二维中：
+[
+\begin{bmatrix}
+0 &amp; -\theta<br />
+\theta &amp; 0
+\end{bmatrix}
+]
+是一个斜对称矩阵。</p>
+<p>在三维中，每一个斜对称矩阵都可以写成：
+[
+\Omega =
+\begin{bmatrix}
+0 &amp; -\omega_3 &amp; \omega_2<br />
+\omega_3 &amp; 0 &amp; -\omega_1<br />
+-\omega_2 &amp; \omega_1 &amp; 0
+\end{bmatrix}
+]</p>
+<p>它满足：
+[
+\Omega x = \omega \times x
+]</p>
+<p>这说明：</p>
+<ul>
+<li>斜对称矩阵编码的是“方向改变”</li>
+<li>它让向量转向一个<strong>正交方向</strong></li>
+<li>不改变长度的一阶近似</li>
+</ul>
+<hr />
+<p>为什么旋转对应斜对称？</p>
+<p>因为旋转有三个本质特征：</p>
+<ol>
+<li>不改变长度（能量不变）</li>
+<li>改变方向</li>
+<li>没有“伸缩”</li>
+</ol>
+<p>而斜对称矩阵正好满足：
+[
+x^T \Omega x = 0
+]</p>
+<p>这意味着：</p>
+<ul>
+<li>不产生二次能量</li>
+<li>不改变长度（在无穷小意义下）</li>
+<li>只负责“转向”</li>
+</ul>
+<hr />
+<p>把两类矩阵的角色并排看，就非常清楚了：</p>
+<ul>
+<li>
+<p><strong>对称矩阵</strong>
+描述“多少、大小、代价、曲率”
+→ 出现在二次形式、优化、Hessian、能量函数中</p>
+</li>
+<li>
+<p><strong>斜对称矩阵</strong>
+描述“怎么转、往哪转、绕谁转”
+→ 出现在旋转、叉积、角速度、流体涡旋中</p>
+</li>
+</ul>
+<hr />
+<p>一句话直觉总结：</p>
+<p>对称矩阵控制“量的大小”；
+斜对称矩阵控制“方向的变化”；
+一个负责“弯曲能量景观”，一个负责“在景观上转动”。</p>
+<p>如果你愿意，我也可以用<strong>二维/三维的具体几何图像</strong>或**物理系统（刚体旋转）**来进一步直观化这个对比。</p>
+<p>这段话是在<strong>对比两类矩阵在数学与几何中“各司其职”的角色</strong>。可以从“定义—出现的场景—背后的原因”三个层面来理解。</p>
+<hr />
+<p>先从<strong>定义</strong>开始。</p>
+<ul>
+<li>矩阵 (A) 若满足 (A^T = A)，称为<strong>对称矩阵</strong>。</li>
+<li>矩阵 (A) 若满足 (A^T = -A)，称为<strong>斜对称矩阵</strong>（skew-symmetric）。</li>
+</ul>
+<p>这两个条件看似只是代数上的符号差别，但它们决定了矩阵在几何和分析中能“表达什么”。</p>
+<hr />
+<p>接着看<strong>为什么对称矩阵自然出现在二次形式和优化中</strong>。</p>
+<p>二次形式的一般形态是
+[
+x^T A x
+]</p>
+<p>一个关键事实是：
+对任意矩阵 (A)，都有
+[
+x^T A x = x^T \frac{A + A^T}{2} x
+]</p>
+<p>也就是说，<strong>二次形式只与矩阵的对称部分有关</strong>，斜对称部分对 (x^T A x) 的贡献恒为零。</p>
+<p>因此：</p>
+<ul>
+<li>距离、长度、能量、代价函数</li>
+<li>优化问题中的目标函数</li>
+<li>曲率、Hessian 矩阵</li>
+</ul>
+<p>这些本质上都是“二次量”的对象，<strong>必然由对称矩阵来描述</strong>。
+这不是人为选择，而是由二次形式的代数结构强制决定的。</p>
+<hr />
+<p>然后看<strong>为什么斜对称矩阵描述旋转和叉积</strong>。</p>
+<p>斜对称矩阵有一个根本性质：
+[
+x^T A x = 0 \quad (\text{当 } A^T=-A)
+]</p>
+<p>这意味着：</p>
+<ul>
+<li>它不会产生长度或能量的变化</li>
+<li>它只会改变方向，而不改变大小（在无穷小意义下）</li>
+</ul>
+<p>这正是“旋转”的本质特征。</p>
+<p>在几何中：</p>
+<ul>
+<li>二维的无穷小旋转由斜对称矩阵表示</li>
+<li>三维中，每一个斜对称矩阵都对应一个向量 (\omega)，并满足
+[
+A x = \omega \times x
+]</li>
+</ul>
+<p>也就是说，<strong>叉积本身就是斜对称线性算子的具体实现</strong>。</p>
+<hr />
+<p>把两类矩阵的角色放在一起看，就非常清楚了：</p>
+<ul>
+<li>
+<p><strong>对称矩阵</strong>
+描述“大小、能量、代价、曲率”
+→ 出现在二次形式、优化、物理能量中</p>
+</li>
+<li>
+<p><strong>斜对称矩阵</strong>
+描述“方向变化、旋转、取向”
+→ 出现在几何旋转、角速度、叉积中</p>
+</li>
+</ul>
+<hr />
+<p>一句话理解这段话的核心思想：</p>
+<p>对称矩阵控制“量有多大”，
+斜对称矩阵控制“方向怎么变”，
+它们分别对应几何与分析中两种最基本、也最互补的结构。</p>
+<h1 id="问题-11"><a class="header" href="#问题-11">问题 11</a></h1>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0913em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord">/2</span></span></span></span> 是什么意思，有什么意义</p>
+<p>((A + A^T)/2) 的意思和意义，其实可以从**代数、几何、以及“为什么要这么做”**三个层面来理解。</p>
+<hr />
+<p>先说<strong>它是什么</strong>。</p>
+<p>对任意矩阵 (A)，
+[
+\frac{A + A^T}{2}
+]
+是一个<strong>对称矩阵</strong>，因为
+[
+\left(\frac{A + A^T}{2}\right)^T
+= \frac{A^T + A}{2}
+= \frac{A + A^T}{2}
+]</p>
+<p>这一步不是巧合，而是刻意构造出来的。</p>
+<hr />
+<p>再说<strong>它从哪里来</strong>。</p>
+<p>任意矩阵 (A) 都可以唯一地分解为：
+[
+A = \underbrace{\frac{A + A^T}{2}}<em>{\text{对称部分}}
+;+;
+\underbrace{\frac{A - A^T}{2}}</em>{\text{斜对称部分}}
+]</p>
+<p>这就像把一个向量分解成“偶函数部分 + 奇函数部分”，
+对称与斜对称是由转置这个“镜像操作”诱导出来的自然分解。</p>
+<hr />
+<p>接着说<strong>它的核心意义</strong>。</p>
+<p><strong>1. 在二次形式中，只剩下它</strong></p>
+<p>对任意向量 (x)：
+[
+x^T A x = x^T \frac{A + A^T}{2} x
+]</p>
+<p>而
+[
+x^T \frac{A - A^T}{2} x = 0
+]</p>
+<p>这意味着：</p>
+<ul>
+<li>所有长度、能量、代价、曲率</li>
+<li>都“只看得见” ((A + A^T)/2)</li>
+</ul>
+<p>因此，在优化和几何中，((A + A^T)/2) 才是真正“有效的部分”。</p>
+<hr />
+<p><strong>2. 它是“最接近 (A)”的对称矩阵</strong></p>
+<p>在 Frobenius 范数意义下，
+[
+\frac{A + A^T}{2}
+]
+是距离 (A) 最近的对称矩阵。</p>
+<p>这在数值分析中非常重要：</p>
+<ul>
+<li>如果模型或计算中出现非对称噪声</li>
+<li>对称化是最自然、最稳定的修正方式</li>
+</ul>
+<hr />
+<p><strong>3. 它决定了几何与物理意义</strong></p>
+<ul>
+<li>在力学中，它对应“应变、能量”</li>
+<li>在 PDE 中，它决定椭圆性</li>
+<li>在优化中，它决定 Hessian 的正定性</li>
+<li>在统计中，它是协方差结构</li>
+</ul>
+<p>斜对称部分只对应“旋转或流动”，不产生能量。</p>
+<hr />
+<p><strong>4. 一个直观二维例子</strong></p>
+<p>设
+[
+A=
+\begin{bmatrix}
+1 &amp; 2<br />
+0 &amp; 1
+\end{bmatrix}
+]</p>
+<h1>则
+[
+\frac{A + A^T}</h1>
+<p>\begin{bmatrix}
+1 &amp; 1<br />
+1 &amp; 1
+\end{bmatrix}
+]</p>
+<p>几何上：</p>
+<ul>
+<li>(A)：拉伸 + 剪切 + 旋转</li>
+<li>((A + A^T)/2)：只保留“拉伸与压缩”</li>
+</ul>
+<hr />
+<p><strong>一句话总结</strong></p>
+<p>[
+\frac{A + A^T}{2}
+]
+不是一个随意的平均，而是：</p>
+<blockquote>
+<p>把一个线性变换中“真正影响大小、能量和曲率的那一部分”提取出来。</p>
+</blockquote>
+<p>如果你愿意，我也可以把它和
+((A - A^T)/2) 的“旋转意义”并排画成几何图像来解释。</p>
+<h1 id="问题-12"><a class="header" href="#问题-12">问题 12</a></h1>
+<p>Verify that</p>
+<p>验证</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>is orthogonal. What geometric transformation does it represent?</p>
+<p>是正交的。它代表什么几何变换？</p>
+<p>我们直接按<strong>正交矩阵的定义</strong>来验证，并给出几何解释。</p>
+<hr />
+<p><strong>一、验证 (Q) 是正交矩阵</strong></p>
+<p>矩阵
+[
+Q=\begin{bmatrix}
+0 &amp; 1<br />
+-1 &amp; 0
+\end{bmatrix}
+]</p>
+<p>正交矩阵的定义是：
+[
+Q^T Q = I
+]</p>
+<p>先求转置：
+[
+Q^T=\begin{bmatrix}
+0 &amp; -1\
+1 &amp; 0
+\end{bmatrix}
+]</p>
+<p>计算乘积：
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0858em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">Q</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span></span></p>
+<p>因此 (Q^T Q = I)，说明 <strong>(Q) 是正交矩阵</strong>。</p>
+<hr />
+<p><strong>二、几何变换的解释</strong></p>
+<p>取任意平面向量
+[
+x=\begin{bmatrix}x_1\x_2\end{bmatrix}
+]</p>
+<p>作用 (Q) 后：
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">]</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"> </span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">]</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"> </span><span class="mord">−</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">]</span></span></span></span></span></span></span></p>
+<p>这说明：</p>
+<ul>
+<li>((1,0)) 被映射到 ((0,-1))</li>
+<li>((0,1)) 被映射到 ((1,0))</li>
+</ul>
+<p>几何上，这是把所有向量<strong>绕原点顺时针旋转 (90^\circ)</strong>。</p>
+<hr />
+<p><strong>三、补充说明</strong></p>
+<ul>
+<li>(Q^T = Q^{-1})，说明逆变换就是反向旋转</li>
+<li>(\det(Q)=1)，表示这是纯旋转，不包含反射</li>
+<li>正交矩阵保持长度和角度不变</li>
+</ul>
+<hr />
+<p><strong>结论</strong></p>
+<p>矩阵
+[
+\begin{bmatrix}
+0 &amp; 1<br />
+-1 &amp; 0
+\end{bmatrix}
+]
+是一个正交矩阵，它表示平面上<strong>绕原点顺时针旋转 (90^\circ)</strong> 的几何变换。</p>
+<h1 id="问题-13"><a class="header" href="#问题-13">问题 13</a></h1>
+<p>Determine whether</p>
+<p>判断</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>are symmetric, skew-symmetric, or neither.</p>
+<p>是对称的、斜对称的，或者都不是。</p>
+<p>我们分别用<strong>定义</strong>来判断。</p>
+<hr />
+<p>先看矩阵 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span>。</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></p>
+<p>求转置：
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></p>
+<p>因为 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span>，所以
+<strong><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> 是对称矩阵（symmetric）</strong>。</p>
+<hr />
+<p>再看矩阵 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
+<p>求转置：
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8913em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">5</span><span class="mspace"> </span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">]</span></span></span></span></span></span></span></p>
+<p>可以看到：
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8913em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span></span></p>
+<p>因此
+<strong><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 是斜对称矩阵（skew-symmetric）</strong>。</p>
+<hr />
+<p><strong>最终结论</strong></p>
+<ul>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span>：对称矩阵</li>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>：斜对称矩阵</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="chapter_11.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="chapter_14.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="chapter_11.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="chapter_14.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

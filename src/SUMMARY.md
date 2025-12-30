@@ -18,6 +18,7 @@
 # 笔记
 
 - [第 1 章 笔记](./chapter_11.md)
+- [第 2 章 笔记](./chapter_12.md)
 - [第 4 章 笔记](./chapter_14.md)
 - [第 5 章 笔记](./chapter_15.md)
 - [第 6 章 笔记](./chapter_16.md)

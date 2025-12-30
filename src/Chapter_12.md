@@ -1462,4 +1462,77 @@ $$
 
 # 问题 13
 
+Determine whether
 
+判断
+
+$$
+A = \begin{bmatrix}2 & 3 \\3 & 2 \end{bmatrix}, \quad B = \begin{bmatrix}0 & 5 \\-5 & 0 \end{bmatrix}
+$$
+
+are symmetric, skew-symmetric, or neither.
+
+是对称的、斜对称的，或者都不是。
+
+我们分别用**定义**来判断。
+
+---
+
+先看矩阵 $A$。
+
+$
+A=
+\begin{bmatrix}
+2 & 3\\
+3 & 2
+\end{bmatrix}
+$
+
+求转置：
+$
+A^T=
+\begin{bmatrix}
+2 & 3\\
+3 & 2
+\end{bmatrix}
+= A
+$
+
+因为 $A^T = A$，所以
+**$A$ 是对称矩阵（symmetric）**。
+
+---
+
+再看矩阵 $B$。
+
+$$
+B=
+\begin{bmatrix}
+0 & 5\\
+-5 & 0
+\end{bmatrix}
+$$
+
+求转置：
+$$
+B^T=
+\begin{bmatrix}
+0 & -5\
+5 & 0
+\end{bmatrix}
+$$
+
+可以看到：
+$$
+B^T = -B
+$$
+
+因此
+**$B$ 是斜对称矩阵（skew-symmetric）**。
+
+---
+
+**最终结论**
+
+* $A$：对称矩阵
+* $B$：斜对称矩阵
