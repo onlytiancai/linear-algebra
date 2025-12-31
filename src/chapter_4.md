@@ -43,7 +43,7 @@ These operations must satisfy the following axioms (for all $\mathbf{u}, \mathbf
     标量乘法的兼容性： $a(b\mathbf{v}) = (ab)\mathbf{v}$ 。
 6.  Identity element of scalars: 1⋅v\=v.
 
-    标量的标识元： 1⋅v\=v 。
+    标量的单位元： 1⋅v\=v 。
 7.  Distributivity over vector addition: $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$.
 
     向量加法的分配律： $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$ 。
@@ -68,7 +68,7 @@ Example 4.1.2. Polynomials The set of all polynomials with real coefficients, de
 
 Example 4.1.3. Functions The set of all real-valued functions on an interval, e.g. $f: [0,1] \to \mathbb{R}$, forms a vector space, since functions can be added and scaled pointwise.
 
-例 4.1.3. 函数 区间上的所有实值函数的集合，例如 $f: [0,1] \to \mathbb{R}$ ，形成一个向量空间，因为函数可以逐点添加和缩放。
+例 4.1.3. 函数区间上的所有实值函数的集合，例如 $f: [0,1] \to \mathbb{R}$ ，形成一个向量空间，因为函数可以逐点添加和缩放。
 
 
 ---
@@ -233,13 +233,13 @@ Subspaces capture the essential structure of linear problems. Column spaces, row
 
     对于矩阵
 
-$$
-A = \begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\end{bmatrix}
-$$
+    $$
+    A = \begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\end{bmatrix}
+    $$
 
-Describe the null space of $A$ as a subspace of $\mathbb{R}^3$.
+    Describe the null space of $A$ as a subspace of $\mathbb{R}^3$.
 
-将 $A$ 的零空间描述为 $\mathbb{R}^3$ 的子空间。
+    将 $A$ 的零空间描述为 $\mathbb{R}^3$ 的子空间。
 
 5.  List all possible subspaces of $\mathbb{R}^2$.
 
@@ -265,7 +265,7 @@ $$
 
 The span is always a subspace of $V$, namely the smallest subspace containing those vectors.
 
-张成始终是 $V$ 的子空间，即包含这些向量的最小子空间。
+张成的空间始终是 $V$ 的子空间，即包含这些向量的最小子空间。
 
 Example 4.3.1. In $\mathbb{R}^2$, $ \text{span}{(1,0)} = \{(x,0) \mid x \in \mathbb{R}\},$ the x-axis. Similarly, $\text{span}\{(1,0),(0,1)\} = \mathbb{R}^2.$
 
@@ -331,7 +331,7 @@ Examples 4.3.3.
 
 *   The span is like the reach of a set of vectors.
 
-    张成就像一组向量的范围。
+    张成的空间就像一组向量的范围。
 *   A basis is the minimal set of directions needed to reach everything in the space.
 
     基是到达空间中所有事物所需的最小方向集。
@@ -355,7 +355,7 @@ These concepts classify vector spaces and subspaces in terms of size and structu
 
 1.  Show that $(1,0,0)$, $(0,1,0)$, $(1,1,0)$ span the $xy$\-plane in $\mathbb{R}^3$. Are they a basis?
 
-    证明 $(1,0,0)$ , $(0,1,0)$ , $(1,1,0)$ 在 $\mathbb{R}^3$ 中跨越 $xy$ -平面。它们是基吗？
+    证明 $(1,0,0)$ , $(0,1,0)$ , $(1,1,0)$ 在 $\mathbb{R}^3$ 中张成 $xy$ -平面。它们是基吗？
 2.  Find a basis for the line $\{(2t,-3t,t) : t \in \mathbb{R}\}$ in $\mathbb{R}^3$.
 
     找出 $\mathbb{R}^3$ 中直线 $\{(2t,-3t,t) : t \in \mathbb{R}\}$ 的基。
@@ -377,11 +377,11 @@ Once a basis for a vector space is chosen, every vector can be expressed uniquel
 一旦选定了向量空间的基，每个向量都可以唯一地表示为基向量的线性组合。该组合中的系数称为向量相对于该基的坐标。坐标使我们能够在向量空间的抽象世界和具体的数字世界之间移动。
 
 ### Coordinates Relative to a Basis
-相对于基坐标
+相对于基的坐标
 
 Let $V$ be a vector space, and let
 
-令 $V$ 为向量空间，
+令 $V$ 为向量空间，然后
 
 $$
 \mathcal{B} = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}
@@ -408,7 +408,7 @@ $\mathbb{R}^2$ 中的示例
 
 Example 4.4.1. Let the basis be
 
-例 4.4.1. 设基础为
+例 4.4.1. 设基为
 
 $$
 \mathcal{B} = \{ (1,1), (1,-1) \}.
@@ -416,7 +416,7 @@ $$
 
 To find the coordinates of $\mathbf{u} = (3,1)$ relative to $\mathcal{B}$, solve
 
-要查找 $\mathbf{u} = (3,1)$ 相对于 $\mathcal{B}$ 的坐标，求解
+要找 $\mathbf{u} = (3,1)$ 相对于 $\mathcal{B}$ 的坐标，求解
 
 $$
 (3,1) = c_1(1,1) + c_2(1,-1).
@@ -478,7 +478,7 @@ $$
 
 Thus, switching between bases reduces to matrix multiplication.
 
-因此，基数之间的切换就简化为矩阵乘法。
+因此，基之间的切换就简化为矩阵乘法。
 
 ### Geometric Interpretation
 几何解释
