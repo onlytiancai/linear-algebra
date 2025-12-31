@@ -13,7 +13,7 @@ One of the central motivations for linear algebra is solving systems of linear e
 
 A linear system consists of equations where each unknown appears only to the first power and with no products between variables. A general system of $m$ equations in $n$ unknowns can be written as:
 
-线性系统由方程组成，其中每个未知数仅出现一次方，并且之间没有乘积 变量。包含 $n$ 个未知数的 $m$ 个方程的一般系统可以写成：
+线性方程组由方程组成，其中每个未知数仅出现一次方，并且之间没有乘积变量。包含 $n$ 个未知数的 $m$ 个方程的一般系统可以写成：
 
 $$
 \begin{aligned}a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1, \\a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2, \\&\vdots \\a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m.\end{aligned}
@@ -31,7 +31,7 @@ The system can be expressed compactly as:
 该系统可以简洁地表示为：
 
 $$
-A\mathbf{x} = \mathbf{b},
+A\mathbf{x} = \mathbf{b}
 $$
 
 where
@@ -422,7 +422,7 @@ $$
 
 Gaussian elimination not only provides solutions but also reveals the structure of a linear system. Two key ideas are the rank of a matrix and the consistency of a system. Rank measures the amount of independent information in the equations, while consistency determines whether the system has at least one solution.
 
-高斯消元法不仅能提供解，还能揭示线性系统的结构。两个关键概念是矩阵的秩和系统的一致性。秩衡量方程中独立信息的数量，而一致性则决定系统是否至少有一个解。
+高斯消元法不仅能提供解，还能揭示线性系统的结构。两个关键概念是矩阵的秩和方程组的一致性。秩衡量方程中独立信息的数量，而一致性则决定系统是否至少有一个解。
 
 ### Rank of a Matrix
 矩阵的秩
@@ -432,6 +432,7 @@ The rank of a matrix is the number of leading pivots in its row echelon form. Eq
 矩阵的秩是其行阶梯形中前导主元的个数。换句话说，它是线性无关的行或列的最大数量。
 
 Formally,
+
 正式地，
 
 $$
@@ -440,7 +441,7 @@ $$
 
 The rank tells us the effective dimension of the space spanned by the rows (or columns).
 
-秩告诉我们行（或列）所跨越的空间的有效维度。
+秩告诉我们行（或列）所张成的空间的有效维度。
 
 Example 3.3.1. For
 
@@ -452,7 +453,7 @@ $$
 
 row reduction gives
 
-行减少给出
+高斯消元后的行如下
 
 $$
 \begin{bmatrix}1 & 2 & 3 \\0 & 0 & 0 \\0 & 0 & 0\end{bmatrix}.
@@ -464,11 +465,11 @@ Thus, $\text{rank}(A) = 1$, since all rows are multiples of the first.
 
 ### Consistency of Linear Systems
 
-线性系统的一致性
+线性方程组的一致性
 
 Consider the system $A\mathbf{x} = \mathbf{b}$. The system is consistent (has at least one solution) if and only if
 
-考虑系统 $A\mathbf{x} = \mathbf{b}$ 。该系统是一致的（至少有一个解），当且仅当
+考虑方程组 $A\mathbf{x} = \mathbf{b}$ 。当且仅当满足以下条件时，该方程组是一致的（至少有一个解）
 
 $$
 \text{rank}(A) = \text{rank}(A|\mathbf{b}),
@@ -506,7 +507,7 @@ $$
 
 Row reduction gives
 
-行减少给出
+行消除后如下
 
 $$
 \left[\begin{array}{ccc|c}1 & 1 & 1 & 1 \\0 & 0 & 0 & 0 \\0 & 0 & 0 & 2\end{array}\right].
@@ -544,7 +545,7 @@ Here, $\text{rank}(A) = \text{rank}(A|\mathbf{b}) = 1 < 2$. Thus, infinitely man
 
 Rank is a measure of independence: it tells us how many truly distinct equations or directions are present. Consistency explains when equations align versus when they contradict. These concepts connect linear systems to vector spaces and prepare for the ideas of dimension, basis, and the Rank–Nullity Theorem.
 
-秩是独立性的度量：它告诉我们有多少个真正不同的方程或方向。一致性解释了方程何时一致，何时矛盾。这些概念将线性系统与向量空间联系起来，并为维度、基和秩零定理的概念做好准备。
+秩是独立性的度量：它告诉我们有多少个真正不同的方程或方向。一致性解释了方程何时一致，何时矛盾。这些概念将线性方程组与向量空间联系起来，并为维度、基和秩零定理的概念做好准备。
 
 ### Exercises 3.3
 练习 3.3
@@ -597,7 +598,7 @@ where $A \in \mathbb{R}^{m \times n}$, and $\mathbf{0}$ is the zero vector in $\
 其中 $A \in \mathbb{R}^{m \times n}$ ，且 $\mathbf{0}$ 是 $\mathbb{R}^m$ 中的零向量。
 
 ### The Trivial Solution
-简单的解决方案
+简单的解
 
 Every homogeneous system has at least one solution:
 
@@ -655,7 +656,7 @@ $$
 
 Row reduction:
 
-行减少：
+行消除：
 
 $$
 \left[\begin{array}{ccc|c}1 & 1 & 1 & 0 \\0 & -1 & -3 & 0\end{array}\right]\quad\to\quad\left[\begin{array}{ccc|c}1 & 1 & 1 & 0 \\0 & 1 & 3 & 0\end{array}\right].
@@ -663,7 +664,7 @@ $$
 
 So the system is equivalent to:
 
-因此该系统等同于：
+因此该方程组等同于：
 
 $$
 \begin{cases}x + y + z = 0, \\y + 3z = 0.\end{cases}
@@ -675,7 +676,7 @@ From the second equation, $y = -3z$. Substituting into the first: $x - 3z + z = 
 
 Thus solutions are:
 
-因此解决方案是：
+因此解是：
 
 $$
 (x,y,z) = z(2, -3, 1), \quad z \in \mathbb{R}.
@@ -683,14 +684,14 @@ $$
 
 The null space is the line spanned by the vector $(2, -3, 1)$.
 
-零空间是向量 $(2, -3, 1)$ 所跨越的线。
+零空间是向量 $(2, -3, 1)$ 所张成的线。
 
 ### Geometric Interpretation
 几何解释
 
 The solution set of a homogeneous system is always a subspace of $\mathbb{R}^n$.
 
-同质系统的解集始终是 $\mathbb{R}^n$ 的子空间。
+齐次方程组的解集始终是 $\mathbb{R}^n$ 的子空间。
 
 *   If $\text{rank}(A) = n$, the only solution is the zero vector.
 
@@ -711,7 +712,7 @@ More generally, the null space has dimension $n - \text{rank}(A)$, known as the 
 
 Homogeneous systems are central to understanding vector spaces, subspaces, and dimension. They lead directly to the concepts of kernel, null space, and linear dependence. In applications, homogeneous systems appear in equilibrium problems, eigenvalue equations, and computer graphics transformations.
 
-齐次系统是理解向量空间、子空间和维度的核心。它们直接引出核、零空间和线性相关性的概念。在实际应用中，齐次系统出现在平衡问题、特征值方程和计算机图形变换中。
+齐次方程组是理解向量空间、子空间和维度的核心。它们直接引出核、零空间和线性相关性的概念。在实际应用中，齐次方程组出现在平衡问题、特征值方程和计算机图形变换中。
 
 ### Exercises 3.4
 练习 3.4
@@ -720,13 +721,13 @@ Homogeneous systems are central to understanding vector spaces, subspaces, and d
 
     解齐次方程组
 
-$$
-\begin{cases}x + 2y - z = 0, \\2x + 4y - 2z = 0.\end{cases}
-$$
+    $$
+    \begin{cases}x + 2y - z = 0, \\2x + 4y - 2z = 0.\end{cases}
+    $$
 
-What is the dimension of its solution space?
+    What is the dimension of its solution space?
 
-其解空间的维数是多少？
+    其解空间的维数是多少？
 
 2.  Find all solutions of
 
@@ -749,10 +750,10 @@ $$
     为
     
 
-$$
-A = \begin{bmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \end{bmatrix},
-$$
+    $$
+    A = \begin{bmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \end{bmatrix},
+    $$
 
-compute a basis for the null space of $A$.
+    compute a basis for the null space of $A$.
 
-计算 $A$ 的零空间的基础。
+    计算 $A$ 的零空间的基。
