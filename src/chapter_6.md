@@ -100,35 +100,35 @@ The determinant is not just a formula-it is a measure of transformation. It tell
 1.  Compute the determinant of
 
     计算行列式
-$$
-\begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}
-$$
+    $$
+    \begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}
+    $$
 
-What area scaling factor does it represent? 
+    What area scaling factor does it represent? 
 
-它代表什么面积比例因子？
+    它代表什么面积比例因子？
 
 2. Find the determinant of the shear matrix
 
    求剪切矩阵的行列式
 
-$$
-\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}
-$$
+    $$
+    \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}
+    $$
 
-What happens to the area of the unit square? 
+    What happens to the area of the unit square? 
 
-单位正方形的面积会发生什么变化？ 
+    单位正方形的面积会发生什么变化？ 
 
 3. For the $3 \times 3$ matrix
 
    对于 $3 \times 3$ 矩阵
 
-$$\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}$$
+    $$\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}$$
 
-Compute the determinant. How does it scale volume in $\mathbb{R}^3$?
+    Compute the determinant. How does it scale volume in $\mathbb{R}^3$?
 
-计算行列式。它如何在$\mathbb{R}^3$中缩放体积？
+    计算行列式。它如何在$\mathbb{R}^3$中缩放体积？
 
 4. Show that any rotation matrix in $\mathbb{R}^2$ has determinant $1$.
 
@@ -174,7 +174,7 @@ $$
 
 3.  Row/column swap: Interchanging two rows (or columns) multiplies the determinant by $-1$.
 
-    行/列交换： 交换两行（或列）将行列式乘以 $-1$ 。
+    行/列交换： 交换两行（或列）会将行列式乘以 $-1$ 。
     
 4.  Row/column scaling: Multiplying a row (or column) by a scalar $c$ multiplies the determinant by $c$.
 
@@ -431,7 +431,8 @@ $$
 $$
 
 ### Properties of Cofactor Expansion
-辅因子展开的性质
+
+余因子展开的性质
 
 1.  Expansion along any row or column yields the same result.
 
@@ -469,13 +470,13 @@ Cofactor expansion generalizes the small-matrix formulas and provides a conceptu
 
     计算行列式
 
-$$
-\begin{bmatrix}2 & 0 & 1 \\3 & -1 & 4 \\1 & 2 & 0\end{bmatrix}
-$$
+    $$
+    \begin{bmatrix}2 & 0 & 1 \\3 & -1 & 4 \\1 & 2 & 0\end{bmatrix}
+    $$
 
-by cofactor expansion along the first column.
+    by cofactor expansion along the first column.
 
-通过沿第一列的余因子展开。
+    通过沿第一列的余因子展开。
 
 2.  Verify that expanding along the second row of Example 6.3.1 gives the same determinant.
 
@@ -516,7 +517,7 @@ $$
 
 Then $|\det(A)|$ equals the volume of the parallelepiped spanned by these vectors.
 
-那么 $|\det(A)|$ 等于这些向量所张成的平行六面体的体积。
+那么 $|\det(A)|$ 等于这些向量所张成的平行多面体的体积。
 
 *   In $\mathbb{R}^2$, $|\det(A)|$ gives the area of the parallelogram spanned by $\mathbf{v}_1, \mathbf{v}_2$.
 
@@ -581,7 +582,7 @@ has determinant $\det(B) = 2 \cdot 2 - 4 \cdot 1 = 0$. Thus, $B$ is not invertib
 
 Determinants also provide an explicit formula for solving systems of linear equations when the matrix is invertible. For $A\mathbf{x} = \mathbf{b}$ with $A \in \mathbb{R}^{n \times n}$:
 
-当矩阵可逆时，行列式还提供了求解线性方程组的明确公式。 对于带有 $A \in \mathbb{R}^{n \times n}$ 的 $A\mathbf{x} = \mathbf{b}$ ：
+当矩阵可逆时，行列式还提供了求解线性方程组的明确公式。 对于 $A \in \mathbb{R}^{n \times n}$ 的 $A\mathbf{x} = \mathbf{b}$ ：
 
 $$
 x_i = \frac{\det(A_i)}{\det(A)},
@@ -605,7 +606,7 @@ $\det(A)$ 的符号表示变换是保持方向还是反转方向。例如，平�
 
 Determinants condense key information: they measure scaling, test invertibility, and track orientation. These insights are indispensable in geometry (areas and volumes), analysis (Jacobian determinants in calculus), and computation ( solving systems and checking singularity).
 
-行列式浓缩了关键信息：它们测量缩放比例、检验可逆性并追踪方向。这些洞见在几何学（面积和体积）、分析学（微积分中的雅可比行列式）和计算学（求解系统和检查奇点）中都不可或缺。
+行列式浓缩了关键信息：它们测量缩放比例、检验可逆性并追踪方向。这些洞见在几何学（面积和体积）、分析学（微积分中的雅可比行列式）和计算学（求解方程组和检查奇点）中都不可或缺。
 
 ### Exercises 6.4
 练习 6.4

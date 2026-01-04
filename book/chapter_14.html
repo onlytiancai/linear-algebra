@@ -766,6 +766,511 @@ plt.show()
 <p>✅ <strong>结论</strong>：次数 ≤ 2 的多项式空间的一个基底是</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">}</span><span class="mpunct">,</span></span></span></span></span></p>
 <p>其维数为 <strong>3</strong>。</p>
+<h1 id="问题-14"><a class="header" href="#问题-14">问题 14</a></h1>
+<p>Consider the set of all polynomials of degree at most 3. Show it forms a vector space over
+R. What is its dimension?</p>
+<p>设 (V) 为所有次数不超过 3 的实系数多项式所组成的集合，即
+[
+V={,a_0+a_1x+a_2x^2+a_3x^3 \mid a_0,a_1,a_2,a_3\in\mathbb{R},}.
+]</p>
+<p>我们采用多项式的通常加法和数乘运算。</p>
+<p>首先，(V) 对加法封闭。若
+[
+p(x)=a_0+a_1x+a_2x^2+a_3x^3,\quad
+q(x)=b_0+b_1x+b_2x^2+b_3x^3,
+]
+则
+[
+p(x)+q(x)=(a_0+b_0)+(a_1+b_1)x+(a_2+b_2)x^2+(a_3+b_3)x^3,
+]
+仍然是次数不超过 3 的多项式。</p>
+<p>其次，(V) 对数乘封闭。对任意 (c\in\mathbb{R})，
+[
+c,p(x)=ca_0+ca_1x+ca_2x^2+ca_3x^3,
+]
+其次数仍不超过 3。</p>
+<p>零多项式 (0=0+0x+0x^2+0x^3) 属于 (V)，且对任意 (p(x)\in V)，其加法逆元 (-p(x)) 也属于 (V)。加法的结合律、交换律以及分配律都直接来自实数的相应性质。因此，(V) 满足向量空间的所有公理，是一个定义在 (\mathbb{R}) 上的向量空间。</p>
+<p>(V) 的一个自然基是
+[
+{1,,x,,x^2,,x^3}.
+]
+这些多项式线性无关，并且 (V) 中的任意多项式都可以表示为它们的线性组合。</p>
+<p>因此，该向量空间的维数是 (4)。</p>
+<h1 id="问题-15"><a class="header" href="#问题-15">问题 15</a></h1>
+<p>遇到一个问题，就是一个矩阵列空间和零空间的关系是什么，比如矩阵A是R^3空间，它的列空间和零空间都是R^3的子空间，那零空间肯定在列空间里吗？R^3里的子空间，要么是个过原点的平面，要么是过原点的直线，要么是0和空间本身，如果列空间和零空间都是平面的话，这俩平面肯定重合吗？</p>
+<p>这是一个非常经典、也很容易混淆的线性代数问题。核心结论先说出来：<strong>矩阵的列空间和零空间一般没有“包含关系”，更不会必然重合</strong>。下面一步一步理清。</p>
+<p>先把概念放准。</p>
+<p>设 (A) 是一个 (3\times 3) 矩阵（这样列空间和零空间才都在 (\mathbb R^3) 里）。</p>
+<ul>
+<li><strong>列空间</strong> (\mathrm{Col}(A))：由矩阵 A 的列向量张成的子空间，是所有 (Ax) 能取到的向量集合。</li>
+<li><strong>零空间</strong> (\mathrm{Null}(A))：满足 (Ax=0) 的所有向量 (x) 的集合。</li>
+</ul>
+<p>它们都确实是 (\mathbb R^3) 的子空间。</p>
+<hr />
+<h3 id="1-零空间一定在列空间里吗"><a class="header" href="#1-零空间一定在列空间里吗">1️⃣ 零空间一定在列空间里吗？</a></h3>
+<p><strong>不一定，而且一般不在。</strong></p>
+<p>零空间里的向量 (x) 表示的是“被 A 映射到 0 的输入”，
+列空间里的向量 (y) 表示的是“某个输入经过 A 得到的输出”。</p>
+<p>一个是“输入空间里被压扁的方向”，
+一个是“输出空间里能到达的方向”，
+它们本质上是<strong>完全不同的角色</strong>。</p>
+<p>没有任何线性代数定理说：
+[
+\mathrm{Null}(A) \subset \mathrm{Col}(A)
+]
+这在一般情况下是<strong>错误的</strong>。</p>
+<hr />
+<h3 id="2-用维数关系来判断可能性"><a class="header" href="#2-用维数关系来判断可能性">2️⃣ 用维数关系来判断可能性</a></h3>
+<p>在 (\mathbb R^3) 中，秩–零度定理告诉我们：
+[
+\dim(\mathrm{Col}(A)) + \dim(\mathrm{Null}(A)) = 3
+]</p>
+<p>所以可能的组合只有：</p>
+<ul>
+<li>列空间 3 维，零空间 0 维（A 可逆）</li>
+<li>列空间 2 维，零空间 1 维</li>
+<li>列空间 1 维，零空间 2 维</li>
+<li>列空间 0 维，零空间 3 维（零矩阵）</li>
+</ul>
+<p><strong>注意一个关键点</strong>：</p>
+<blockquote>
+<p>列空间和零空间不可能同时都是 2 维平面。</p>
+</blockquote>
+<p>因为 (2+2 \neq 3)。</p>
+<p>所以你问的“如果列空间和零空间都是平面”——
+<strong>这种情况根本不可能发生</strong>。</p>
+<hr />
+<h3 id="3-那如果一个是平面一个是直线呢"><a class="header" href="#3-那如果一个是平面一个是直线呢">3️⃣ 那如果一个是平面，一个是直线呢？</a></h3>
+<p>这是最常见的情况，比如：</p>
+<ul>
+<li>列空间：过原点的一个平面</li>
+<li>零空间：过原点的一条直线</li>
+</ul>
+<p>它们之间有三种可能关系：</p>
+<ul>
+<li>直线在平面内</li>
+<li>直线与平面只在原点相交</li>
+<li>直线不在平面内（但在 (\mathbb R^3) 中仍可能与平面相交于原点）</li>
+</ul>
+<p><strong>没有必然关系</strong>，完全取决于矩阵 A 的具体结构。</p>
+<hr />
+<h3 id="4-一个非常重要但容易混的结论"><a class="header" href="#4-一个非常重要但容易混的结论">4️⃣ 一个非常重要但容易混的结论</a></h3>
+<p>真正“有关系”的不是列空间和零空间，而是：</p>
+<blockquote>
+<p><strong>零空间 ⟂ 行空间</strong></p>
+</blockquote>
+<p>也就是说：
+[
+\mathrm{Null}(A) = \mathrm{Row}(A)^\perp
+]</p>
+<p>这是一个<strong>正交关系</strong>，而不是包含关系。</p>
+<p>而列空间的正交补是：
+[
+\mathrm{Col}(A)^\perp = \mathrm{Null}(A^T)
+]</p>
+<p>这才是线性代数里最核心的“四大子空间”结构。</p>
+<hr />
+<h3 id="5-总结一句话"><a class="header" href="#5-总结一句话">5️⃣ 总结一句话</a></h3>
+<ul>
+<li>列空间和零空间都是 (\mathbb R^3) 的子空间 ✔</li>
+<li>零空间不一定在列空间里 ✘</li>
+<li>两者不可能同时是平面 ✘</li>
+<li>它们一般既不重合，也不正交</li>
+<li>真正正交的是：<strong>零空间 和 行空间</strong></li>
+</ul>
+<p>如果你愿意，我可以给你画一个“(\mathbb R^3) 中列空间是平面、零空间是直线”的几何直观解释，或者直接用一个具体矩阵算给你看，这样会非常清楚。</p>
+<blockquote>
+<p>列空间和零空间是互斥的？列空间就是image，零空间就是kernel吗？</p>
+</blockquote>
+<p>先给你一个<strong>一句话结论</strong>，再展开解释：</p>
+<p><strong>列空间和零空间既不是“互斥的”，也不是“必然有交集的”——它们没有固定的几何关系；而且在你这个语境下，列空间 = image，零空间 = kernel，这个理解是完全正确的。</strong></p>
+<p>下面分点说清楚。</p>
+<hr />
+<p>先回答第二个问题，因为这个是<strong>对的</strong>。</p>
+<p>是的，只要我们把 (A) 看成一个线性映射
+[
+A:\ \mathbb R^3 \to \mathbb R^3,
+]
+那么：</p>
+<ul>
+<li><strong>列空间</strong> (=\mathrm{Col}(A)=\mathrm{Im}(A))（像空间、值域）</li>
+<li><strong>零空间</strong> (=\mathrm{Null}(A)=\ker(A))</li>
+</ul>
+<p>这是标准术语，对任何线性变换都成立。</p>
+<hr />
+<p>接着说第一个问题：“互斥”该怎么理解？</p>
+<p>如果你说的“互斥”是指</p>
+<blockquote>
+<p><strong>除了 0 以外没有公共元素</strong></p>
+</blockquote>
+<p>那答案是：</p>
+<p><strong>不一定。</strong></p>
+<ul>
+<li>有可能
+[
+\mathrm{Col}(A)\cap\ker(A)={0}
+]</li>
+<li>也有可能
+[
+\mathrm{Col}(A)\cap\ker(A)\neq{0}
+]</li>
+</ul>
+<p>这完全取决于矩阵 (A)。</p>
+<hr />
+<p>用一个非常直观的例子说明“不互斥”的情况。</p>
+<p>设 (A) 是一个投影矩阵，把 (\mathbb R^3) 投影到某个平面 (P)。</p>
+<ul>
+<li>列空间 = 投影到的平面 (P)</li>
+<li>零空间 = 与 (P) 垂直的那条直线</li>
+</ul>
+<p>这种情况下：</p>
+<ul>
+<li>列空间 ∩ 零空间 = ({0})</li>
+</ul>
+<p>这是很多人最容易形成的“直觉印象”。</p>
+<hr />
+<p>但下面这个例子说明它们<strong>可以有非零交集</strong>。</p>
+<p>设 (A) 把所有向量都压到一条直线 (L)，并且这条直线本身又被映射到 0。</p>
+<p>那么：</p>
+<ul>
+<li>列空间 = (L)</li>
+<li>零空间 ⊇ (L)</li>
+</ul>
+<p>于是：
+[
+\mathrm{Col}(A)\cap\ker(A)=L
+]</p>
+<p>这在代数上是完全合法的。</p>
+<hr />
+<p>一个重要提醒：<strong>不要把它们和“正交”混在一起</strong>。</p>
+<ul>
+<li>(\ker(A)) 一定正交于 <strong>行空间</strong></li>
+<li>(\mathrm{Col}(A)) 一定正交于 (\ker(A^T))</li>
+</ul>
+<p>但 <strong>(\ker(A)) 和 (\mathrm{Col}(A)) 之间没有固定的正交或包含关系</strong>。</p>
+<hr />
+<p>最后帮你把逻辑彻底捋顺一句话版本：</p>
+<ul>
+<li>列空间 = image ✔</li>
+<li>零空间 = kernel ✔</li>
+<li>二者不互斥、不包含、不正交（一般情况）</li>
+<li>是否有交集，完全由具体线性变换决定</li>
+</ul>
+<p>如果你愿意，我可以给你一个<strong>具体的 3×3 矩阵</strong>，直接算出它的 image 和 kernel，让你一眼看到它们“相交 / 不相交”的真实样子，这一步通常会让理解彻底定型。</p>
+<p>用python写一段代码，用一个具体的3*3矩阵，可视化它的列空间和零空间</p>
+<p>这段代码用的是一个<strong>非常典型、也最容易理解的 3×3 矩阵</strong>：</p>
+<p>[
+A=\begin{pmatrix}
+1&amp;0&amp;0<br />
+0&amp;1&amp;0<br />
+0&amp;0&amp;0
+\end{pmatrix}
+]</p>
+<p>我帮你把它的几何意义和图一一对应起来解释一下，这样你就不只是“看到”，而是真的“懂”。</p>
+<p>先说这个矩阵在做什么。</p>
+<p>它把任意向量 ((x,y,z)) 映射成 ((x,y,0))，也就是说：</p>
+<ul>
+<li>(z) 方向被完全压扁</li>
+<li>所有向量都被投影到 (xy) 平面</li>
+</ul>
+<p>所以立刻能得到：</p>
+<ul>
+<li>列空间（image）：整个 (xy) 平面
+[
+\mathrm{Col}(A)={(x,y,0)}
+]</li>
+<li>零空间（kernel）：(z) 轴
+[
+\ker(A)={(0,0,z)}
+]</li>
+</ul>
+<p>再看图是怎么画出来的。</p>
+<ul>
+<li>图中<strong>一大片散点</strong>（圆点）落在同一个平面上
+→ 这表示列空间，也就是 image</li>
+<li>图中<strong>一条竖直的点线</strong>（三角形）
+→ 这表示零空间，也就是 kernel</li>
+</ul>
+<p>它们只在原点相交，这正好对应：
+[
+\mathrm{Col}(A)\cap\ker(A)={0}
+]</p>
+<p>这一点非常重要：
+<strong>这是一个“相交但不包含”的例子</strong>，不是普遍规律，只是这个矩阵的特性。</p>
+<p>你现在可以从这个例子里牢牢记住三件事：</p>
+<ol>
+<li>列空间 = image，零空间 = kernel（完全正确）</li>
+<li>它们可以同时存在于 (\mathbb R^3)，但几何角色完全不同
+一个是“能到达的地方”，一个是“被压没的方向”</li>
+<li>是否相交、怎么相交，取决于矩阵本身，而不是维数直觉</li>
+</ol>
+<p>如果你愿意，下一步我可以：</p>
+<ul>
+<li>给你一个<strong>列空间和零空间有非零交集</strong>的矩阵</li>
+<li>或者改成<strong>列空间是一条直线、零空间是一个平面</strong></li>
+<li>或者带你从代数角度推导“为什么 kernel 一定和行空间正交”</li>
+</ul>
+<p>你想看哪一种？</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Define a concrete 3x3 matrix
+A = np.array([
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 0]
+])
+
+# Basis for column space (first two standard basis vectors)
+col_basis = np.array([
+    [1, 0, 0],
+    [0, 1, 0]
+])
+
+# Basis for null space (z-axis)
+null_basis = np.array([
+    [0, 0, 1]
+])
+
+# Generate sample points in column space (plane)
+coeffs = np.random.randn(100, 2)
+col_points = coeffs @ col_basis
+
+# Generate sample points in null space (line)
+t = np.linspace(-2, 2, 20)
+null_points = t[:, None] * null_basis
+
+# Plot
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+
+ax.scatter(col_points[:, 0], col_points[:, 1], col_points[:, 2], marker='o')
+ax.scatter(null_points[:, 0], null_points[:, 1], null_points[:, 2], marker='^')
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+
+plt.show()
+</code></pre>
+<h1 id="问题-16"><a class="header" href="#问题-16">问题 16</a></h1>
+<p>二维空间中两条不垂直的向量也可以作为基吗？只是不是正交基？</p>
+<p>是的，<strong>完全可以</strong>。你的理解已经很准确了：
+<strong>二维空间里，两条不垂直的向量当然可以作为一组基，只是它们不是正交基。</strong></p>
+<p>把这个结论稍微说严谨一点。</p>
+<p>在二维空间（比如 (\mathbb R^2)）中，一组向量能不能作为基，<strong>唯一的要求</strong>是：</p>
+<blockquote>
+<p><strong>线性无关</strong></p>
+</blockquote>
+<p>而“垂直 / 正交”是一个<strong>额外的、可选的好性质</strong>，不是必须条件。</p>
+<hr />
+<p>所以在 (\mathbb R^2) 里，三种情况你可以清楚地区分：</p>
+<ul>
+<li>两条<strong>不共线</strong>的向量
+→ 线性无关
+→ 可以作为一组基</li>
+<li>两条<strong>正交</strong>的向量
+→ 线性无关
+→ 是一组正交基</li>
+<li>两条<strong>共线</strong>的向量
+→ 线性相关
+→ 不能作为基</li>
+</ul>
+<p>是否垂直，根本不影响“是不是基”。</p>
+<hr />
+<p>举一个最简单的例子。</p>
+<p>[
+v_1=(1,0),\quad v_2=(1,1)
+]</p>
+<p>它们明显不垂直，但任意 ((x,y)) 都可以写成：
+[
+(x,y)=a(1,0)+b(1,1)
+]</p>
+<p>所以这就是一组标准的（非正交）基。</p>
+<hr />
+<p>为什么大家在学习时总爱用正交基？</p>
+<p>原因不是“必须”，而是“好算”。</p>
+<ul>
+<li>系数容易算</li>
+<li>投影公式简单</li>
+<li>几何意义清楚</li>
+<li>数值计算稳定</li>
+</ul>
+<p>但从“张成空间”的角度看，
+<strong>非正交基和正交基在地位上是完全平等的。</strong></p>
+<hr />
+<p>你现在其实已经在触碰一个很重要的思想了：</p>
+<blockquote>
+<p>线性代数里，“能不能用”靠的是线性无关，
+“好不好用”才和正交有关。</p>
+</blockquote>
+<p>如果你愿意，下一步我可以把这个和前面讲的“列空间 / 零空间 / 正交补”连在一起，说清楚为什么<strong>行空间的基常常被选成正交基</strong>，这样你的知识会一下子串起来。</p>
+<p>对的，你这句话在数学上是<strong>完全正确的</strong>。现在我们做的就是把这个“直觉正确”的话，变成一个<strong>严谨的证明</strong>。</p>
+<p>结论先明确一下：</p>
+<p><strong>在二维向量空间中，两条向量只要不平行（也就是不共线），就一定可以作为一组基。</strong></p>
+<p>下面给你两种常见、也最标准的证明思路。</p>
+<hr />
+<p>先用<strong>定义法</strong>（最直接）。</p>
+<p>在 (\mathbb R^2) 中，一组向量是基，当且仅当它们：</p>
+<ol>
+<li>线性无关</li>
+<li>张成整个空间</li>
+</ol>
+<p>但在二维空间里，有一个非常重要的简化结论：</p>
+<blockquote>
+<p><strong>两个向量只要线性无关，就自动张成整个 (\mathbb R^2)。</strong></p>
+</blockquote>
+<p>所以你只需要证明“不共线 ⇒ 线性无关”。</p>
+<p>证明很简单。</p>
+<p>设两条向量是 (v_1, v_2)，并且它们不共线。</p>
+<p>假设存在
+[
+a v_1 + b v_2 = 0
+]</p>
+<p>如果 (b\neq 0)，那就可以写成：
+[
+v_2 = -\frac{a}{b} v_1
+]</p>
+<p>这说明 (v_2) 是 (v_1) 的倍数，也就是共线，<strong>与假设矛盾</strong>。</p>
+<p>所以只能有：
+[
+a=0,\quad b=0
+]</p>
+<p>因此 (v_1, v_2) 线性无关，于是它们构成一组基。</p>
+<p>证毕。</p>
+<hr />
+<p>再给你一个<strong>更“计算型”的证明</strong>，适合和矩阵联系起来。</p>
+<p>把两个向量当作列向量，组成一个 (2\times2) 矩阵：
+[
+A=\begin{pmatrix}
+| &amp; | <br />
+v_1 &amp; v_2 <br />
+| &amp; |
+\end{pmatrix}
+]</p>
+<ul>
+<li>不共线 ⇔ 一列不是另一列的倍数</li>
+<li>这等价于 (\det(A)\neq 0)</li>
+</ul>
+<p>而
+[
+\det(A)\neq 0 \iff A\ \text{可逆}
+]</p>
+<p>矩阵可逆意味着：
+对任意 ((x,y))，方程
+[
+A\begin{pmatrix}a\b\end{pmatrix}=(x,y)
+]
+都有唯一解。</p>
+<p>也就是说，任何向量都能被 (v_1, v_2) 线性表示。</p>
+<p>所以 (v_1, v_2) 构成一组基。</p>
+<hr />
+<p>最后帮你把逻辑压缩成一句“考试级”的话：</p>
+<blockquote>
+<p>在二维空间中，两条向量不共线
+⇔ 它们线性无关
+⇔ 它们张成整个空间
+⇔ 它们是一组基</p>
+</blockquote>
+<p>你现在问的这个问题，其实已经说明你在从“几何直觉”往“代数结构”过渡了，这是非常好的信号。如果你愿意，下一步我可以帮你把这个推广到 <strong>n 维空间</strong>，或者解释为什么在二维空间里“只检查线性无关就够了”。</p>
+<h1 id="问题-17"><a class="header" href="#问题-17">问题 17</a></h1>
+<p>Show that <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span> span the <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>-plane in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>. Are they a basis?
+中文回答</p>
+<p>先明确问题中的对象：
+( (1,0,0),(0,1,0),(1,1,0) ) 都在 (\mathbb R^3) 中，而且第三个坐标都是 0，所以它们都位于 <strong>(xy) 平面</strong>。</p>
+<hr />
+<p><strong>一、证明它们张成 (xy) 平面</strong></p>
+<p>(xy) 平面可以写成：
+[
+{(x,y,0)\mid x,y\in\mathbb R}
+]</p>
+<p>取任意一个 (xy) 平面中的向量 ((x,y,0))，我们来证明它能由给定向量的线性组合得到。</p>
+<p>注意到：
+[
+(1,0,0)\quad\text{和}\quad(0,1,0)
+]
+本身就是 (xy) 平面的标准基。</p>
+<p>显然有：
+[
+(x,y,0)=x(1,0,0)+y(0,1,0)
+]</p>
+<p>因此，((1,0,0),(0,1,0)) 已经能张成整个 (xy) 平面。
+而 ((1,1,0)) 又是它们的线性组合：
+[
+(1,1,0)=(1,0,0)+(0,1,0)
+]</p>
+<h1 (1,0,0),(0,1,0),(1,1,0)="">所以
+[
+\mathrm{span}</h1>
+<h1 (1,0,0),(0,1,0)="">\mathrm{span}</h1>
+<p>xy\text{ 平面}
+]</p>
+<p>结论：<strong>这三个向量确实张成了 (xy) 平面。</strong></p>
+<hr />
+<p><strong>二、它们是不是一组基？</strong></p>
+<p>不是。</p>
+<p>理由是：<strong>它们线性相关。</strong></p>
+<p>因为第三个向量可以由前两个线性表示：
+[
+(1,1,0)=(1,0,0)+(0,1,0)
+]</p>
+<p>也就是说存在非零系数使：
+[
+(1,0,0)+(0,1,0)-(1,1,0)=0
+]</p>
+<p>因此这三个向量线性相关。</p>
+<p>而一组基必须同时满足：</p>
+<ol>
+<li>张成空间</li>
+<li>线性无关</li>
+</ol>
+<p>虽然它们张成了 (xy) 平面，但<strong>不线性无关</strong>，所以不是基。</p>
+<hr />
+<p><strong>三、一句话总结</strong></p>
+<ul>
+<li>这三个向量张成了 (xy) 平面 ✔</li>
+<li>它们不是一组基 ✘（因为向量多了，存在冗余）</li>
+<li>(xy) 平面的一组基只需要 <strong>两个线性无关的向量</strong></li>
+</ul>
+<p>比如：
+[
+{(1,0,0),(0,1,0)}
+]
+就是一组标准基。</p>
+<h1 id="问题-18"><a class="header" href="#问题-18">问题 18</a></h1>
+<p>Find a basis for the line <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{(</span><span class="mord">2</span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">3</span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathbb">R</span><span class="mclose">}</span></span></span></span> in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>先看这条直线的形式：
+[
+{(2t,-3t,t): t\in\mathbb R}
+]</p>
+<p>把 (t) 提出来：
+[
+(2t,-3t,t)=t(2,-3,1)
+]</p>
+<p>这说明什么？</p>
+<p>这条直线上的<strong>所有向量</strong>，都是向量 ((2,-3,1)) 的数倍；
+反过来，((2,-3,1)) 的任意数倍也都在这条直线上。</p>
+<hr />
+<p><strong>因此，这条直线就是由向量 ((2,-3,1)) 张成的一维子空间。</strong></p>
+<p>一维向量空间的基，只需要一个非零向量即可。</p>
+<hr />
+<p><strong>结论：</strong></p>
+<p>这条直线在 (\mathbb R^3) 中的一组基可以取为：
+[
+{(2,-3,1)}
+]</p>
+<p>当然，你也可以选任何与它共线的非零向量，比如：
+[
+{(4,-6,2)},\ {(-2,3,-1)}
+]
+它们都是合法的基。</p>
+<hr />
+<p><strong>一句话总结：</strong></p>
+<ul>
+<li>给定的是一条过原点的直线</li>
+<li>提取参数后得到方向向量</li>
+<li>这个方向向量（任意非零倍）就是这条直线的一组基</li>
+</ul>
 
                     </main>
 
