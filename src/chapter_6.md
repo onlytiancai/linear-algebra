@@ -624,13 +624,13 @@ Determinants condense key information: they measure scaling, test invertibility,
     确定矩阵
     
 
-$$
-\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}
-$$
+    $$
+    \begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}
+    $$
 
-is invertible. Justify using determinants. 4. Use Cramer’s rule to solve
+    is invertible. Justify using determinants. 4. Use Cramer’s rule to solve
 
-是可逆的。用行列式证明。
+    是可逆的。用行列式证明。
 
 4. 使用克莱姆规则求解
 

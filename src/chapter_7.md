@@ -336,7 +336,7 @@ We proceed step by step:
     从 $\mathbf{v}_1$ 开始，将其标准化得到$\mathbf{u}_1$​ .
 2.  Subtract from $\mathbf{v}_2$ its projection onto $\mathbf{u}_1$, leaving a vector orthogonal to $\mathbf{u}_1$. Normalize to get $\mathbf{u}_2$.
 
-    从 $\mathbf{v}_2$ 中减去它在$\mathbf{u}_1$上的投影 ​ ，留下一个与$\mathbf{u}_1$正交的向量 ​ . 标准化得到$\mathbf{u}_2$​ .
+    从 $\mathbf{v}_2$ 中减去它在$\mathbf{u}_1$上的投影，留下一个与 $\mathbf{u}_1$ 正交的向量，标准化得到 $\mathbf{u}_2$​ .
 3.  For each $\mathbf{v}_k$, subtract projections onto all previously constructed $\mathbf{u}_1, \dots, \mathbf{u}_{k-1}$, then normalize.
 
     对于每个$\mathbf{v}_k$ ​ ，减去所有先前构建的𝑢上的投影 $\mathbf{u}_1, \dots, \mathbf{u}_{k-1}$ ​ ，然后标准化。
@@ -383,47 +383,47 @@ $$
 
     减去 $\mathbf{v}_2$ 在$\mathbf{u}_1$ 的投影 :
 
-$$
-\mathbf{w}_2 = \mathbf{v}_2 - \langle \mathbf{v}_2,\mathbf{u}_1 \rangle \mathbf{u}_1.
-$$
+    $$
+    \mathbf{w}_2 = \mathbf{v}_2 - \langle \mathbf{v}_2,\mathbf{u}_1 \rangle \mathbf{u}_1.
+    $$
 
- 
+    
 
-$$
-\langle \mathbf{v}_2,\mathbf{u}_1 \rangle = \frac{1}{\sqrt{2}}(1\cdot 1 + 0\cdot 1 + 1\cdot 0) = \tfrac{1}{\sqrt{2}}.
-$$
+    $$
+    \langle \mathbf{v}_2,\mathbf{u}_1 \rangle = \frac{1}{\sqrt{2}}(1\cdot 1 + 0\cdot 1 + 1\cdot 0) = \tfrac{1}{\sqrt{2}}.
+    $$
 
-So
+    So
 
-所以
+    所以
 
-$$
-\mathbf{w}_2 = (1,0,1) - \tfrac{1}{\sqrt{2}}\cdot \tfrac{1}{\sqrt{2}}(1,1,0)= (1,0,1) - \tfrac{1}{2}(1,1,0)= \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).
-$$
+    $$
+    \mathbf{w}_2 = (1,0,1) - \tfrac{1}{\sqrt{2}}\cdot \tfrac{1}{\sqrt{2}}(1,1,0)= (1,0,1) - \tfrac{1}{2}(1,1,0)= \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).
+    $$
 
-Normalize:
+    Normalize:
 
-规范化：
+    规范化：
 
-$$
-\mathbf{u}_2 = \frac{1}{\sqrt{\tfrac{1}{4}+\tfrac{1}{4}+1}} \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right)= \frac{1}{\sqrt{\tfrac{3}{2}}}\left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).
-$$
+    $$
+    \mathbf{u}_2 = \frac{1}{\sqrt{\tfrac{1}{4}+\tfrac{1}{4}+1}} \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right)= \frac{1}{\sqrt{\tfrac{3}{2}}}\left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).
+    $$
 
 3.  Subtract projections from $\mathbf{v}_3$:
 
     从$\mathbf{v}_3$中减去投影:
 
-$$
-\mathbf{w}_3 = \mathbf{v}_3 - \langle \mathbf{v}_3,\mathbf{u}_1 \rangle \mathbf{u}_1 - \langle \mathbf{v}_3,\mathbf{u}_2 \rangle \mathbf{u}_2.
-$$
+    $$
+    \mathbf{w}_3 = \mathbf{v}_3 - \langle \mathbf{v}_3,\mathbf{u}_1 \rangle \mathbf{u}_1 - \langle \mathbf{v}_3,\mathbf{u}_2 \rangle \mathbf{u}_2.
+    $$
 
-After computing, normalize to obtain $\mathbf{u}_3$.
+    After computing, normalize to obtain $\mathbf{u}_3$.
 
-计算后，归一化得到$\mathbf{u}_3$​ .
+    计算后，归一化得到$\mathbf{u}_3$​ .
 
-The result is an orthonormal basis of the span of $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$.
+    The result is an orthonormal basis of the span of $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$.
 
-结果是 $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ 张成的正交基。
+    结果是 $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ 张成的正交基。
 
 ### Geometric Interpretation
 几何解释

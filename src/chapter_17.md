@@ -598,3 +598,519 @@ $$
 $$
 
 它们互相正交，并且都在 (x+y+z=0) 上。
+
+# 问题 6
+
+1.  Symmetry: $\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle.$    
+2.  Linearity in the first argument: $\langle a\mathbf{u} + b\mathbf{w}, \mathbf{v} \rangle = a \langle \mathbf{u}, \mathbf{v} \rangle + b \langle \mathbf{w}, \mathbf{v} \rangle.$
+3.  Positive-definiteness: $\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$, and equality holds if and only if $\mathbf{v} = \mathbf{0}$.
+
+为什么内积的定义要同时满足这些特性？n维线性空间除了点积，还有什么能满足这些定义？
+
+可以把这个问题分成两个层次来理解：
+**为什么要这样定义内积**，以及 **除了标准点积，还有没有别的东西也算内积**。
+
+先说为什么内积要同时满足这三条性质。
+
+从直觉上看，内积是对“点积”这一几何概念的抽象，而点积本身承担了三件核心事情：
+1）衡量“相似程度 / 投影”；
+2）定义长度和角度；
+3）和线性结构相容。
+
+这三条公理正好一一对应。
+
+第一，**对称性**
+$\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle$。
+几何上，$\mathbf{u}$ 在 $\mathbf{v}$ 方向上的投影强度，和 $\mathbf{v}$ 在 $\mathbf{u}$ 方向上的“相互关系”是对等的，没有先后之分。如果没有对称性，“夹角”就会依赖于你把哪个向量放在前面，几何意义会变得很奇怪。
+
+第二，**对第一个变量线性**
+这是为了让内积和线性空间的结构兼容。
+你希望“先线性组合，再取内积”和“先取内积，再线性组合”是等价的，否则内积就会破坏线性运算。
+比如投影、正交分解、Gram–Schmidt 正交化，这些都严重依赖线性性；如果没有这一条，整个正交几何体系都会崩掉。
+
+第三，**正定性**
+$\langle \mathbf{v}, \mathbf{v} \rangle \ge 0$，且等号只在 $\mathbf{v}=0$ 时成立。
+这是为了保证
+$$
+|\mathbf{v}| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}
+$$
+真的是一个“长度”。
+如果允许非零向量的“长度平方”为 0 或负数，就无法建立距离、角度，也就失去了几何意义。正定性正是“长度必须是非负，且只有零向量长度为零”的抽象版本。
+
+所以总结一句话：
+**这三条不是随便选的，而是恰好保证了：内积既能定义几何（长度、角度、正交），又不破坏线性结构。**
+
+接下来回答第二个问题：
+**在 $n$ 维线性空间中，除了标准点积，还有没有别的内积？**
+
+答案是：**有，而且非常多。**
+
+在实数向量空间 $\mathbb{R}^n$ 中，所有内积本质上都可以写成下面这种形式：
+$$
+\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u}^T A \mathbf{v},
+$$
+其中 $A$ 是一个 **对称正定矩阵**。
+
+* 对称性 $\Rightarrow A^T = A$；
+* 正定性 $\Rightarrow \mathbf{v}^T A \mathbf{v} > 0$ $(\mathbf{v}\neq 0)$。
+
+标准点积只是最特殊的一种情况，对应
+$$
+A = I,
+\quad
+\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u}^T \mathbf{v}.
+$$
+
+一些常见但“非标准”的例子包括：
+
+1）**加权点积**
+$$
+\langle \mathbf{u}, \mathbf{v} \rangle
+= w_1 u_1 v_1 + \cdots + w_n u_n v_n,
+\quad w_i > 0.
+$$
+这在统计、数值分析里非常常见，用来强调某些坐标更重要。
+
+2）**椭球型内积**
+$$
+\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u}^T A \mathbf{v},
+$$
+其中 $A$ 不再是单位矩阵。
+在这个内积下，“单位球”不再是圆或球，而是一个椭球。
+
+3）**函数空间里的内积**（虽然不是有限维，但很重要）
+例如在区间 $[a,b]$ 上：
+$$
+\langle f, g \rangle = \int_a^b f(x)g(x),dx.
+$$
+这依然满足对称性、线性性和正定性，是 Fourier 分析和偏微分方程的基础。
+
+最后一个关键事实值得一提：
+**在有限维空间中，所有内积在本质上都是等价的。**
+更准确地说，任意内积都可以通过选取合适的基，化成标准点积。这也是为什么线性代数里常常“无损一般性地”使用普通点积。
+
+一句话总结：
+内积的三条公理精确地抽象了“长度和角度”的本质，而在 (n) 维空间中，标准点积只是无数合法内积中最简单、最对称的一个。
+
+# 问题 7 
+
+理论上两个向量之间的夹角和向量本身的长度是没有关系的，但为什么向量夹角的定义里用到了向量的长度呢？
+$$
+\cos \theta = \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\|\mathbf{u}\| \, \|\mathbf{v}\|}.
+$$
+
+这个问题问得非常好，其实正好触及了“角度”这个概念在向量空间里**为什么一定要借助长度**才能被严谨地定义。
+
+先说一个核心结论：
+**角度本身确实只和方向有关，但“方向”这个概念在向量空间里，只有借助长度才能被剥离出来。**
+
+从几何直觉开始看。
+如果你只给我两个向量 $\mathbf{u}, \mathbf{v}$，但不允许我使用“长度”，那我其实没法判断它们是否只是“同方向不同大小”，还是“真的不同方向”。
+比如 $\mathbf{u}$ 和 $2\mathbf{u}$，你直觉上说它们方向完全相同、夹角是 0，但这一步隐含地已经用到了“缩放不改变方向”这个想法，而这个想法正是通过长度来刻画的。
+
+再来看公式里为什么要除以 $|\mathbf{u}||\mathbf{v}|$。
+
+内积 $\langle \mathbf{u}, \mathbf{v} \rangle$ 同时混合了两种信息：
+
+* 方向关系（“有多对齐”）
+* 长度大小（向量有多长）
+
+事实上，如果把向量放大：
+$$
+\langle a\mathbf{u}, b\mathbf{v} \rangle = ab\langle \mathbf{u}, \mathbf{v} \rangle,
+$$
+内积会随着长度线性放大。
+所以**单独的内积根本不是一个“纯方向量”**。
+
+而
+$$
+\frac{\langle \mathbf{u}, \mathbf{v} \rangle}{|\mathbf{u}||\mathbf{v}|}
+$$
+正好做了一件事：
+把“长度因素”完全消掉，只留下和方向有关的那一部分。
+
+你可以把它理解成：
+
+* 先把 $\mathbf{u}, \mathbf{v}$ 归一化成单位向量
+  $$
+  \hat{\mathbf{u}}=\frac{\mathbf{u}}{|\mathbf{u}|},\quad
+  \hat{\mathbf{v}}=\frac{\mathbf{v}}{|\mathbf{v}|}
+  $$
+* 再取它们的内积
+  $$
+  \cos\theta=\langle \hat{\mathbf{u}}, \hat{\mathbf{v}} \rangle.
+  $$
+
+所以角度的定义里出现“长度”，并不是因为角度依赖长度，而是因为**必须用长度把向量的大小信息剥离掉，才能得到纯粹的方向比较**。
+
+从更抽象的角度看，这其实是被“逼出来的”。
+如果你希望角度满足这些非常自然的要求：
+
+* 与缩放无关（(\mathbf{u}) 和 (2\mathbf{u}) 夹角为 0）；
+* 对称；
+* 连续变化；
+* 在二维、三维里和熟悉的几何角度一致；
+
+那么在内积空间中，唯一合理的定义方式（在本质上）就是
+[
+\cos\theta=\frac{\langle \mathbf{u}, \mathbf{v} \rangle}{|\mathbf{u}||\mathbf{v}|}.
+]
+
+换句话说：
+**长度不是角度的“附属品”，而是用来消除长度影响、提取方向信息的工具。**
+正因为角度“理论上不依赖长度”，我们才必须在定义里显式地把长度除掉。
+
+# 问题 8
+
+Verify that $(1/\sqrt{2})(1,1)$ and $(1/\sqrt{2})(1,-1)$ form an orthonormal basis of $\mathbb{R}^2$.
+
+We verify orthonormality and that the vectors form a basis.
+
+设
+$$
+\mathbf{u}=\tfrac{1}{\sqrt{2}}(1,1), \qquad
+\mathbf{v}=\tfrac{1}{\sqrt{2}}(1,-1).
+$$
+
+首先验证它们是**单位向量**。
+$$
+|\mathbf{u}|^2
+= \left(\tfrac{1}{\sqrt{2}}\right)^2(1^2+1^2)
+= \tfrac{1}{2}\cdot 2
+=1,
+$$
+$$
+|\mathbf{v}|^2
+= \left(\tfrac{1}{\sqrt{2}}\right)^2(1^2+(-1)^2)
+=1.
+$$
+因此 $|\mathbf{u}|=|\mathbf{v}|=1$。
+
+接着验证它们**正交**。
+$$
+\langle \mathbf{u},\mathbf{v}\rangle
+= \tfrac{1}{\sqrt{2}}\tfrac{1}{\sqrt{2}}(1\cdot 1 + 1\cdot (-1))
+= \tfrac{1}{2}(1-1)
+=0.
+$$
+所以 $\mathbf{u}$ 与 $\mathbf{v}$ 正交。
+
+由此可知，这两个向量是**正交且单位长度**的，即它们是一个正交归一组（orthonormal set）。
+
+最后说明它们是 $\mathbb{R}^2$ 的一组**基**。
+在二维空间中，任意两个非零且线性无关的向量就能构成一组基；而正交向量必然线性无关。因此 $\mathbf{u},\mathbf{v}$ 构成 $\mathbb{R}^2$ 的一组基。
+
+综上，
+$$
+\{ \tfrac{1}{\sqrt{2}}(1,1),\ \tfrac{1}{\sqrt{2}}(1,-1) \}
+$$
+是 $\mathbb{R}^2$ 的一个正交归一基。
+
+# 问题 9
+
+Express $(3,4)$ in terms of the orthonormal basis $\{(1/\sqrt{2})(1,1), (1/\sqrt{2})(1,-1)\}$.
+
+设正交归一基为
+[
+\mathbf{e}_1=\tfrac{1}{\sqrt{2}}(1,1),\qquad
+\mathbf{e}_2=\tfrac{1}{\sqrt{2}}(1,-1).
+]
+
+由于这是一个**正交归一基**，向量在该基下的坐标可以直接用内积来计算：
+[
+(3,4)=\langle (3,4),\mathbf{e}_1\rangle,\mathbf{e}_1
++\langle (3,4),\mathbf{e}_2\rangle,\mathbf{e}_2.
+]
+
+先算第一个系数：
+[
+\langle (3,4),\mathbf{e}_1\rangle
+=\tfrac{1}{\sqrt{2}}(3+4)
+=\tfrac{7}{\sqrt{2}}.
+]
+
+再算第二个系数：
+[
+\langle (3,4),\mathbf{e}_2\rangle
+=\tfrac{1}{\sqrt{2}}(3-4)
+=-\tfrac{1}{\sqrt{2}}.
+]
+
+因此
+[
+(3,4)=\tfrac{7}{\sqrt{2}}\mathbf{e}_1-\tfrac{1}{\sqrt{2}}\mathbf{e}_2.
+]
+
+代回基向量的具体形式，也可以写成
+[
+(3,4)=\tfrac{7}{\sqrt{2}}\cdot\tfrac{1}{\sqrt{2}}(1,1)
+-\tfrac{1}{\sqrt{2}}\cdot\tfrac{1}{\sqrt{2}}(1,-1).
+]
+
+所以，在该正交归一基下，((3,4)) 的坐标是
+[
+\left(\tfrac{7}{\sqrt{2}},,-\tfrac{1}{\sqrt{2}}\right).
+]
+
+# 问题 10
+
+向量投影到直线的公式：
+
+$$
+\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\langle \mathbf{v}, \mathbf{u} \rangle}{\langle \mathbf{u}, \mathbf{u} \rangle} \, \mathbf{u}.
+$$
+
+
+向量投影到子空间的公式
+
+$$
+\text{proj}_{W}(\mathbf{v}) = \langle \mathbf{v}, \mathbf{w}_1 \rangle \mathbf{w}_1 + \cdots + \langle \mathbf{v}, \mathbf{w}_k \rangle \mathbf{w}_k.
+$$
+
+这两个公式之间有什么关联？
+
+这两个公式本质上是在说**同一件事**，只是一个是“投影到一条直线”，一个是“投影到更高维的子空间”。直线的情形其实正是子空间投影公式的最简单特例。
+
+先从“投影到直线”的公式看起。
+设 $W=\mathrm{span}{\mathbf\{u}\}$ 是由非零向量 $\mathbf{u}$ 张成的一维子空间。投影 $\text{proj}_{\mathbf{u}}(\mathbf{v})$ 的几何含义是：在所有属于 $W$ 的向量中，找一个离 $\mathbf{v}$ 最近的。
+
+这个最近向量一定形如 $c\mathbf{u}$。要确定系数 $c$，关键条件是
+$$
+\mathbf{v}-c\mathbf{u}\ \perp\ \mathbf{u}.
+$$
+也就是
+$$
+\langle \mathbf{v}-c\mathbf{u},\mathbf{u}\rangle=0.
+$$
+解这个方程得到
+$$
+c=\frac{\langle \mathbf{v},\mathbf{u}\rangle}{\langle \mathbf{u},\mathbf{u}\rangle},
+$$
+这正好给出了“投影到直线”的公式。
+
+现在看“投影到子空间”的公式。
+设 $W$ 是一个 $k$ 维子空间，并且 ${\mathbf{w}_1,\dots,\mathbf{w}_k}$ 是 **正交归一基**。我们仍然想找一个
+$
+\mathbf{p}\in W
+$
+使得 $\mathbf{v}-\mathbf{p}$ 与整个子空间 $W$ 正交。
+
+由于 $\mathbf{p}\in W$，它可以写成
+$$
+\mathbf{p}=c_1\mathbf{w}_1+\cdots+c_k\mathbf{w}_k.
+$$
+正交条件要求
+$$
+\langle \mathbf{v}-\mathbf{p},\mathbf{w}_i\rangle=0\quad(i=1,\dots,k).
+$$
+利用正交归一性，立刻得到
+$$
+c_i=\langle \mathbf{v},\mathbf{w}_i\rangle.
+$$
+于是
+$$
+   \text{proj}_{W}(\mathbf{v})
+=\langle \mathbf{v},\mathbf{w}_1\rangle\mathbf{w}_1+\cdots+\langle \mathbf{v},\mathbf{w}_k\rangle\mathbf{w}_k.
+$$
+
+现在两者的**直接联系**就非常清楚了。
+
+如果 $W=\mathrm{span}{\mathbf\{u}\}$，并且令
+$$
+\mathbf{w}_1=\frac{\mathbf{u}}{|\mathbf{u}|},
+$$
+那么 $\{\mathbf{w}_1\}$ 就是 $W$ 的一个正交归一基。把它代入“子空间投影公式”：
+$$
+\text{proj}_{W}(\mathbf{v})
+=\langle \mathbf{v},\mathbf{w}_1\rangle\mathbf{w}_1
+=\left\langle \mathbf{v},\frac{\mathbf{u}}{|\mathbf{u}|}\right\rangle
+\frac{\mathbf{u}}{|\mathbf{u}|}
+=\frac{\langle \mathbf{v},\mathbf{u}\rangle}{\langle \mathbf{u},\mathbf{u}\rangle}\mathbf{u}.
+$$
+这正好退化为“投影到直线”的公式。
+
+所以可以这样理解：
+**投影到直线的公式，是在“子空间投影公式”中，子空间维数等于 1 且基向量未必单位化时的写法；而投影到子空间的公式，是把“一维投影”沿着一组正交归一方向逐个相加的结果。**
+
+一句话总结：
+直线投影是子空间投影的最简单情形，而子空间投影就是把向量分别投影到每一个正交方向上，再把这些投影加起来。
+
+# 问题11
+
+$$
+\langle \mathbf{v}-c\mathbf{u},\mathbf{u}\rangle=0.
+$$
+
+解这个方程
+
+我们一步一步来解这个方程，把每一步为什么这样做说清楚。
+
+从条件
+$$
+\langle \mathbf{v}-c\mathbf{u},\mathbf{u}\rangle=0
+$$
+开始。
+
+第一步，利用内积对第一个变量的线性性：
+[
+\langle \mathbf{v}-c\mathbf{u},\mathbf{u}\rangle
+=\langle \mathbf{v},\mathbf{u}\rangle
+-\langle c\mathbf{u},\mathbf{u}\rangle.
+]
+
+第二步，把常数 (c) 提出来（内积对标量是线性的）：
+[
+\langle c\mathbf{u},\mathbf{u}\rangle
+= c,\langle \mathbf{u},\mathbf{u}\rangle.
+]
+
+于是原方程变成
+[
+\langle \mathbf{v},\mathbf{u}\rangle
+
+* c,\langle \mathbf{u},\mathbf{u}\rangle
+  =0.
+  ]
+
+第三步，把含 (c) 的项移到等式右边：
+[
+\langle \mathbf{v},\mathbf{u}\rangle
+= c,\langle \mathbf{u},\mathbf{u}\rangle.
+]
+
+第四步，两边同时除以 (\langle \mathbf{u},\mathbf{u}\rangle)。
+由于 (\mathbf{u}\neq\mathbf{0})，根据正定性，
+(\langle \mathbf{u},\mathbf{u}\rangle>0)，所以可以安全地除：
+[
+c=\frac{\langle \mathbf{v},\mathbf{u}\rangle}
+{\langle \mathbf{u},\mathbf{u}\rangle}.
+]
+
+这就得到了投影公式中系数 (c) 的来源。
+
+# 问题 12
+
+$\frac{\langle \mathbf{u}, \mathbf{v} \rangle}{|\mathbf{u}||\mathbf{v}|}$ 和$\langle\frac{\mathbf{u}}{|\mathbf{u}|},\frac{\mathbf{v}}{|\mathbf{v}|}\rangle$ 是等价的吗？
+
+是的，这两个表达式**完全等价**，而且等价性直接来自内积的线性性质。
+
+我们把第二个式子展开来看：
+$$
+\left\langle \frac{\mathbf{u}}{|\mathbf{u}|},\frac{\mathbf{v}}{|\mathbf{v}|}\right\rangle.
+$$
+
+利用内积对标量的线性（以及对称性），可以把分母中的常数提出来：
+$$
+\left\langle \frac{\mathbf{u}}{|\mathbf{u}|},\frac{\mathbf{v}}{|\mathbf{v}|}\right\rangle
+= \frac{1}{|\mathbf{u}||\mathbf{v}|}
+\langle \mathbf{u},\mathbf{v}\rangle.
+$$
+
+于是得到
+$$
+\left\langle \frac{\mathbf{u}}{|\mathbf{u}|},\frac{\mathbf{v}}{|\mathbf{v}|}\right\rangle
+= \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{|\mathbf{u}|,|\mathbf{v}|}.
+$$
+
+这正好就是第一个表达式。
+
+从概念上看，这种等价并不是巧合。
+右边的写法强调的是“先算内积，再把长度因素除掉”；
+左边的写法强调的是“先把向量单位化，再算内积”。
+
+两种做法的目的完全一致：**消除长度的影响，只保留方向信息**。
+
+# 问题 13
+
+从“几何直觉”或“物理里的线性响应”角度再解释一遍，或者帮你区分 linear / affine / homogeneous 这几个容易混的概念。
+
+好，那我换一种更“直觉化”的方式，把**几何直觉**和**物理里的线性响应**一起讲清楚，再顺手把 linear / affine / homogeneous 这几个概念理一遍。
+
+先从**几何直觉**说起。
+
+你可以把一个映射 (f) 想成是在“拉伸、旋转、压扁”空间里的向量。
+
+**homogeneous（齐次）**在几何上的核心含义是：
+所有从原点出发的射线，都会被映到“仍然从原点出发的射线”上，而且比例不乱。
+也就是说，如果你在同一条直线上把向量走远一点或近一点，映射之后仍然只是沿着某个方向放大或缩小。
+
+但注意：
+齐次性**只控制每一条射线内部发生了什么**，它**不管不同方向之间的关系**。
+
+所以你可以想象一种“怪物映射”：
+
+* 在每一个方向上，它都老老实实地按比例缩放
+* 但不同方向之间，缩放规则完全不协调
+
+这在几何上是允许齐次、但不允许线性的。
+
+而 **linearity（线性）** 在几何上的要求更强：
+不仅每条射线缩放得对，而且**任意两个方向叠加后，结果也必须叠加得对**。
+
+换句话说：
+
+* homogeneous：每条射线是“自洽”的
+* linear：整个空间的“平行四边形结构”都必须被保留
+
+如果你画两个向量 (x)、(y)，线性映射要求
+先加再映射 = 先映射再加
+几何上就是“平行四边形还能是平行四边形”。
+
+这就是为什么范数、绝对值看起来“挺规矩”，但一叠加就坏掉了。
+
+接着说**物理里的线性响应**，这会更直观。
+
+在物理中，**线性系统**通常意味着两件事：
+
+1. **比例性**：刺激加倍，响应也加倍
+2. **叠加性**：两个刺激同时作用，响应等于各自响应之和
+
+比例性 = homogeneity
+叠加性 = additivity
+
+所以：
+
+* homogeneity 对应“一个源单独拉多大，就响应多大”
+* linearity 额外要求“多个源一起拉，彼此不会干扰”
+
+举个物理例子：
+
+* 理想弹簧（小形变）：
+  力加倍，位移加倍；两股力一起拉，位移相加 —— 线性
+* 摩擦力、饱和效应、单向阈值系统：
+  力变大响应会变，但多个力一起作用时不再简单相加 —— 齐次但不线性，甚至连齐次都不满足
+
+这也是工程里为什么“线性系统”这么宝贵：
+它允许你把复杂输入拆成简单模式分别分析，再叠加回来。
+
+最后，把你提到的 **linear / affine / homogeneous** 放在一张“概念地图”里。
+
+**Linear（线性）**
+
+* 过原点
+* 保比例 + 保叠加
+* 几何上：原点固定，平行四边形结构保留
+* 例子：矩阵变换 (Ax)
+
+**Homogeneous（齐次）**
+
+* 一定过原点
+* 只保比例，不保证叠加
+* 几何上：原点射线不乱，但不同方向之间可能“互不理睬”
+* 例子：(|x|)、(|x|)
+
+**Affine（仿射）**
+
+* 不一定过原点
+* 保叠加结构的“形状”，但允许整体平移
+* 形式：(f(x)=Ax+b)
+* 几何上：平行线仍然平行，平行四边形还是平行四边形，但原点可能被挪走
+
+一个很好记的关系是：
+
+* linear = affine 且 (b=0)
+* linear ⇒ homogeneous
+* homogeneous ≠ linear
+* affine 一般既不 homogeneous，也不 linear
+
+如果你愿意，我也可以用一维图像、二维画图直觉，或者从“为什么微分一定是线性的”这个角度，把这些概念再连到微积分和 PDE 里去。
