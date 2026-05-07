@@ -49,3 +49,7 @@ an equation,
 $$ \nabla f(x) \in \mathbb{R}^n, $$
 
 and a regular \$ symbol.
+
+## 公式速查
+
+https://github.com/ihkyoung/latex
