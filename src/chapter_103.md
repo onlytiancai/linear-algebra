@@ -680,3 +680,53 @@ This is what $b$ bits per number means. With $b=2$ you get 4 levels, $b=3$ gives
 | 4. 存储 | 原始 float32 → $b$ bits，大幅节省内存 |
 
 $4^{-b}$ 这个因子后续会出现在 MSE 界限的分析中，用于证明 TurboQuant 的压缩误差上界。
+
+## 历史论文
+
+DRIVE (Vargaftik et al., NeurIPS 2021) introduced the construction for one bit per coordinate. A sender rotates the input vector by a random orthogonal matrix, sends the sign of every rotated coordinate together with a single scalar scale $S$ , and the receiver inverts the rotation after multiplying the sign vector by $S$. DRIVE derives two scale formulas. The MSE-optimal biased scale is $S=\|R(x)\|_1/d$
+. The unbiased scale is $S=\|x|_2^2/\|\R(x)\|_1$, which gives $E[\hat{x}]=x$. DRIVE also shows that a Randomized Hadamard Transform can replace the uniform random rotation at $O(d log d)$ cost (DRIVE, §6).
+
+
+翻译
+
+> DRIVE（Vargaftik 等，NeurIPS 2021）提出了每坐标 1 比特的构造方法。发送方将输入向量乘以一个随机正交矩阵进行旋转，发送旋转后每个坐标的符号（sign）以及一个标量缩放因子 $S$，接收方将符号向量乘以 $S$ 后再逆旋转。DRIVE 给出了两个缩放公式：MSE 最优的**有偏**缩放为 $S=\|R(x)\|_1/d$；**无偏**缩放为 $S=\|x\|_2^2/\|R(x)\|_1$，可使得 $E[\hat{x}]=x$。DRIVE 还证明了随机 Hadamard 变换可以替换均匀随机旋转，代价为 $O(d \log d)$（DRIVE, §6）。
+
+---
+
+解释
+
+**DRIVE 的通信协议**（一比特量化）：
+
+```
+Sender                          Receiver
+  │                                │
+  │  x (d维向量)                    │
+  │  ↓                             │
+  │  R (随机正交矩阵)                │
+  │  ↓                             │
+  │  y = Rx                        │
+  │  ↓                             │
+  │  sign(y)  ──── 传输 ────→  sign(y)  
+  │  S (缩放因子) ─── 传输 ───→  S    │
+  │                                │
+  │                           S × sign(y)
+  │                                ↓
+  │                           R^T (逆旋转)
+  │                                ↓
+  │                           x̂ (重建向量)
+```
+
+**两个缩放公式对比**：
+
+| 公式 | 名称 | 特点 |
+|------|------|------|
+| $S = \frac{\|R(x)\|_1}{d}$ | MSE 最优有偏 | 最小化均方误差，但 $E[\hat{x}] \neq x$ |
+| $S = \frac{\|x\|_2^2}{\|R(x)\|_1}$ | 无偏 | $E[\hat{x}] = x$，但 MSE 不是最优 |
+
+**计算效率优化**：
+
+- 均匀随机旋转：$O(d^2)$（矩阵乘法）
+- 随机 Hadamard 变换：$O(d \log d)$（快速 Walsh-Hadamard 变换）
+
+这使得 DRIVE 在高维场景下更加实用。
+
