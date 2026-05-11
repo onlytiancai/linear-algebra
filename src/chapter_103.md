@@ -730,3 +730,28 @@ Sender                          Receiver
 
 这使得 DRIVE 在高维场景下更加实用。
 
+
+**EDEN (Vargaftik et al., ICML 2022)** generalizes DRIVE to any $b$ bits per coordinate. After the rotation, EDEN normalizes the rotated vector by $\eta_x = \sqrt{d}/\|x\|_2$ so each coordinate is approximately $N(0, 1)$, then quantizes against a Lloyd-Max codebook designed once for the standard normal. The 1-bit codebook is $\{\pm\sqrt{2/\pi}\} \approx \{\pm0.798\}$ and the 2-bit codebook is $\{\pm0.453, \pm1.510\}$. These are the exact codebooks the page derives in §5. EDEN keeps a per-vector scale $S = \|x\|_2^2 / \langle R(x), Q(\eta_x R(x))\rangle$ that yields an unbiased estimate (EDEN, Theorem 2.1).
+
+翻译
+
+> **EDEN (Vargaftik et al., ICML 2022)** 将 DRIVE 推广到每坐标任意 $b$ 比特。在旋转后，EDEN 通过 $\eta_x = \sqrt{d}/\|x\|_2$ 对旋转向量进行归一化，使每个坐标近似服从 $N(0, 1)$，然后针对标准正态分布一次性设计的 Lloyd-Max 码本进行量化。1 比特码本是 $\{\pm\sqrt{2/\pi}\} \approx \{\pm0.798\}$，2 比特码本是 $\{\pm0.453, \pm1.510\}$。这些正是本页在 §5 推导出的确切码本。EDEN 保留一个每向量缩放因子 $S = \|x\|_2^2 / \langle R(x), Q(\eta_x R(x))\rangle$，这产生无偏估计（EDEN, Theorem 2.1）。
+
+---
+
+解释
+
+EDEN 是 DRIVE 的多比特扩展，核心思想是利用旋转后的坐标服从标准正态分布的特性，设计统一的量化码本。
+
+| 步骤 | 含义 |
+|------|------|
+| **随机旋转** | 与 DRIVE 相同，$y = R x$ |
+| **归一化** | $\eta_x = \sqrt{d} / \|x\|_2$，使 $y' = \eta_x y$ 的坐标近似 $N(0,1)$ |
+| **量化** | 用 Lloyd-Max 码本量化 $y'$，码本针对标准正态设计 |
+| **缩放因子** | $S = \|x\|_2^2 / \langle R(x), Q(\eta_x R(x)) \rangle$，确保无偏估计 |
+| **重建** | $\hat{x} = R^T (Q(\eta_x R(x)) \cdot S)$ |
+
+**码本设计**：Lloyd-Max 算法针对标准正态分布优化量化电平，1 比特和 2 比特的具体值通过数学推导得到（见 §5）。
+
+**无偏性**：通过精心设计的 $S$，保证 $E[\hat{x}] = x$，即量化误差的期望为零。
+
