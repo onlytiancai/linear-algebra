@@ -7,3 +7,7 @@ A concise, beginner-friendly introduction to the core ideas of linear algebra.
 - [原文（英文版）](https://github.com/little-book-of/linear-algebra/tree/main)
 - [单页版本（中英双语），pandoc 生成](https://linear-algebra.ihuhao.com/all_in_one.html)
 - [电子书版本（中英文双语），mdbook 生成](https://linear-algebra.ihuhao.com/book/index.html)
+
+## 命令
+
+    mdbook build

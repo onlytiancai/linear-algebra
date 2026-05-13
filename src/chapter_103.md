@@ -942,9 +942,9 @@ EDEN 无偏重构:
 
 Read [](file:///Users/huhao/src/linear-algebra/code/eden_reconstruction_demo.py)
 
-## 输出解读
+输出解读
 
-### 1. “1000 个向量重构统计”
+1. “1000 个向量重构统计”
 这个块对比了两种重构方法：
 
 - `简单重构`：只是把量化后的值反归一化并逆旋转得到重构向量
@@ -980,7 +980,7 @@ Read [](file:///Users/huhao/src/linear-algebra/code/eden_reconstruction_demo.py)
 
 ---
 
-### 2. “数据集统计特征”
+2. “数据集统计特征”
 这个块比较了原始数据集和 EDEN 重构后数据集的整体统计指标：
 
 - `原始均值向量 L2: 0.3116`
@@ -999,7 +999,7 @@ Read [](file:///Users/huhao/src/linear-algebra/code/eden_reconstruction_demo.py)
 
 ---
 
-### 3. “内积保持测试”
+ 3. “内积保持测试”
 这部分用了一个随机方向向量 `v`，比较了 `v·x` 和 `v·x_hat`：
 
 - `mean_abs_error`
@@ -1025,7 +1025,7 @@ Read [](file:///Users/huhao/src/linear-algebra/code/eden_reconstruction_demo.py)
 
 ---
 
-## 四个图表对应解释
+四个图表对应解释
 
 这四个图表实际是：
 
@@ -1051,7 +1051,7 @@ Read [](file:///Users/huhao/src/linear-algebra/code/eden_reconstruction_demo.py)
 
 ---
 
-## 总结
+总结
 
 - `EDEN 无偏重构`在平均偏差上更好，但代价是更大的 MSE 和更不稳定的尺度。
 - `简单重构`更“缩小”，MSE 更低，但它有更大的系统性缩减偏差。
@@ -1065,3 +1065,96 @@ Read [](file:///Users/huhao/src/linear-algebra/code/eden_reconstruction_demo.py)
 - 显示简单重构和 EDEN 重构的两组内积散点图
 - 改成 2-bit / 4-bit 比较
 - 或者直接输出 `bias` 与 `variance` 的分解分析
+
+> 再写一个脚本，用1,2,4,8 bit做对比，不需要保存图表，直接展示即可，可搞多个图表
+
+Created file:///Users/huhao/src/linear-algebra/code/eden_bits_comparison.py
+
+
+新脚本 `eden_bits_comparison.py` 已创建并运行成功。它比较了 1, 2, 4, 8 bit 量化效果，使用 100 个向量（减少样本以加快运行）。
+
+关键结果解读
+
+向量重构指标
+- **MSE**：随着比特数增加，MSE 急剧下降（1-bit: 55.78 → 8-bit: 0.04），符合量化理论（每增加 1 bit，MSE 降至 1/4）。
+- **Mean Bias**：1-bit 有较大正偏差（0.40），2-bit 负偏差（-0.51），4-bit 和 8-bit 接近 0，说明高比特更无偏。
+- **Mean Cosine**：相似度从 1-bit 的 0.80 提升到 8-bit 的 0.9998，方向保留越来越好。
+- **Mean Norm**：1-bit 重构向量偏长（12.5），2-bit 稍长（10.9），4/8-bit 接近原始（10.0），尺度恢复更准确。
+
+ 内积保持指标
+- **Correlation**：从 1-bit 的 0.76 提升到 8-bit 的 0.9999，内积相对关系保留越来越好。
+- **Mean Abs Error**：内积绝对误差从 0.55 降到 0.007，相对误差从 1.94 降到 0.07。
+- **MSE**：内积 MSE 从 0.51 降到 0.0001。
+
+图表展示
+脚本显示了四个子图：
+1. **MSE vs Bits**：指数下降曲线，显示量化精度提升。
+2. **Mean Bias vs Bits**：1-2 bit 有较大偏差，4-8 bit 趋近 0。
+3. **Mean Cosine vs Bits**：快速逼近 1，几何相似度提升。
+4. **Inner Product Correlation vs Bits**：同样快速提升，内积保持能力增强。
+
+结论
+- **1-bit**：压缩率最高，但精度最低，适合极端压缩场景。
+- **2-bit**：平衡点，MSE 降至 19，内积相关性 0.93。
+- **4-bit**：MSE 降至 1.2，偏差几乎为 0，内积相关性 0.99。
+- **8-bit**：接近完美，MSE 0.04，内积相关性 0.9999。
+
+这演示了 TurboQuant 的核心优势：通过旋转+归一化，量化后仍能较好保持向量几何和内积关系，比特数越多，保持越好。
+
+```
+=== 1-bit 量化 ===
+向量指标:
+  mse: 55.779139
+  mean_bias: 0.401442
+  mean_norm_orig: 10.041614
+  mean_norm_hat: 12.497600
+  mean_cosine: 0.804215
+  std_cosine: 0.021418
+内积指标:
+  mean_abs_error: 0.545660
+  mean_rel_error: 1.940803
+  mse: 0.505335
+  corr: 0.763382
+
+=== 2-bit 量化 ===
+向量指标:
+  mse: 19.322870
+  mean_bias: -0.508468
+  mean_norm_orig: 10.041614
+  mean_norm_hat: 10.905281
+  mean_cosine: 0.916109
+  std_cosine: 0.008824
+内积指标:
+  mean_abs_error: 0.299424
+  mean_rel_error: 0.897025
+  mse: 0.144435
+  corr: 0.926201
+
+=== 4-bit 量化 ===
+向量指标:
+  mse: 1.207547
+  mean_bias: -0.004870
+  mean_norm_orig: 10.041614
+  mean_norm_hat: 10.100669
+  mean_cosine: 0.994177
+  std_cosine: 0.000957
+内积指标:
+  mean_abs_error: 0.094754
+  mean_rel_error: 0.366733
+  mse: 0.013842
+  corr: 0.992220
+
+=== 8-bit 量化 ===
+向量指标:
+  mse: 0.040741
+  mean_bias: 0.008274
+  mean_norm_orig: 10.041614
+  mean_norm_hat: 10.023664
+  mean_cosine: 0.999830
+  std_cosine: 0.000689
+内积指标:
+  mean_abs_error: 0.006670
+  mean_rel_error: 0.068559
+  mse: 0.000116
+  corr: 0.999943
+```

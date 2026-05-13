@@ -32,3 +32,4 @@
 - [The Most Important Machine Learning Equations: A Comprehensive Guide](./chapter_100_ml-key-math-eqns.md)
 - [希尔伯特空间](./chapter_101.md)
 - [特征值和特征向量笔记](./chapter_102.md)
+- [TurboQuant 学习](./chapter_103.md)
