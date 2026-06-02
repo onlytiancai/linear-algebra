@@ -793,9 +793,9 @@ Optimized tool selection
 
 Created [](file:///Users/huhao/src/linear-algebra/code/eden_demo.py)
 
-### 推导过程的详细解释
+推导过程的详细解释
 
-#### 1. 旋转后坐标的分布和放大因子
+1. 旋转后坐标的分布和放大因子
 - **分布正确性**：旋转后坐标 $y_i$ 近似服从 $N(0, 1/d)$，这里的 $1/d$ 是**方差**（variance），不是标准差。标准差（standard deviation）是方差的平方根，所以 $\sigma = \sqrt{1/d} = 1/\sqrt{d}$。
 - **为什么乘 $\sqrt{d}$ 而不是 $d$**：
   - 目标：将标准差从 $1/\sqrt{d}$ 放大到 1。
@@ -804,7 +804,7 @@ Created [](file:///Users/huhao/src/linear-algebra/code/eden_demo.py)
   - 如果乘 $d$，新标准差会变成 $(1/\sqrt{d}) \times d = \sqrt{d}$，这会过度放大（例如 d=100 时，标准差变成 10），不符合目标。
 - **不是写错**：分布是 $N(0, 1/d)$（方差），放大因子是 $\sqrt{d}$（针对标准差）。
 
-#### 2. 为什么要除以 $\|x\|_2$ 而不是别的（如均值）
+2. 为什么要除以 $\|x\|_2$ 而不是别的（如均值）
 - **$\|x\|_2$ 的含义**：这是输入向量 $x$ 的 L2 范数（欧几里得长度），$\sqrt{\sum x_i^2}$，表示向量的"大小"或"能量"。
 - **为什么用它**：
   - **保持尺度关系**：归一化后，$y' = \eta_x y$ 的坐标标准差变为 1，但向量整体长度会改变。EDEN 需要通过后续的缩放因子 $S$ 来恢复原始向量 $x$ 的尺度，而 $S$ 的公式中包含 $\|x\|_2^2$，所以 $\eta_x$ 中除以 $\|x\|_2$ 确保了归一化向量与 $x$ 的比例关系正确。
@@ -813,7 +813,7 @@ Created [](file:///Users/huhao/src/linear-algebra/code/eden_demo.py)
 
 这个设计确保归一化向量 $y'$ 的坐标服从 $N(0,1)$，便于统一量化，同时通过 $\eta_x$ 保留了与原始向量 $x$ 的尺度关联。
 
-### Python 脚本演示
+Python 脚本演示
 我已经在 eden_demo.py 创建了一个脚本，演示旋转、归一化和简单量化的过程，并添加了可视化（坐标分布直方图）。脚本使用 NumPy 生成随机向量和正交矩阵，Matplotlib 画图。
 
 运行脚本（在终端中 `cd /Users/huhao/src/linear-algebra/code && python eden_demo.py`）会输出：
@@ -1158,3 +1158,502 @@ Created file:///Users/huhao/src/linear-algebra/code/eden_bits_comparison.py
   mse: 0.000116
   corr: 0.999943
 ```
+
+
+RaBitQ (Gao and Long, SIGMOD 2024) is a parallel line of work in approximate nearest-neighbor search. The encoder rotates the input vector with a randomized rotation, stores the sign of every rotated coordinate plus a per-vector normalization scalar, and the decoder estimates inner products from the signs and the scalar. The extended paper (Gao et al., 2024, arXiv:2409.09913) proves that this estimator achieves the asymptotic optimality bound of Alon and Klartag (FOCS 2017) for inner-product quantization. RaBitQ predates TurboQuant and shares the random-rotation backbone with the DRIVE/EDEN line. The two lines reach comparable theoretical results from different framings (federated mean estimation versus ANN search), and the relationship between them is the subject of an ongoing public discussion (arXiv:2604.18555 and arXiv:2604.19528, both 2026).
+
+
+**翻译**
+- RaBitQ（Gao 和 Long，SIGMOD 2024）是在近似最近邻搜索领域的一个并行研究方向。编码器对输入向量施加随机旋转，记录每个旋转后坐标的符号以及每个向量的一个归一化标量；解码器则从这些符号和该标量估计内积。扩展论文（Gao 等，2024，arXiv:2409.09913）证明该估计器在内积量化问题上达到了 Alon 和 Klartag（FOCS 2017）给出的渐近最优下界。RaBitQ 早于 TurboQuant，并与 DRIVE/EDEN 系列共享随机旋转的基础方法。两条研究路线通过不同的表述（联邦均值估计 vs. ANN 搜索）得到相近的理论结果，它们之间的关系目前正在公开讨论中（arXiv:2604.18555 和 arXiv:2604.19528，均为 2026 年）。
+
+**解释**
+- **核心思想**: 先用随机正交旋转把原始向量变换到新的坐标系，然后只保存每个坐标的符号（+/-）和一个标量来记录该向量的尺度信息；用这些离散化信息重建或估计两个向量的内积。
+- **为什么可行**: 随机旋转将信息均匀分布到坐标上，符号位携带关于投影方向的符号性信息，配合归一化标量可以在概率意义上恢复期望内积，从而实现低比特量化下的良好估计。
+- **理论保证**: Gao 等人的扩展论文证明该估计器达到了 Alon 和 Klartag 关于内积量化的渐近最优界（即在高维或样本量趋于无穷时误差率无法被更低的下界显著改善），说明方法在理论上是接近最优的。
+- **与其他工作的关系**: RaBitQ 与 TurboQuant 在时间线上有先后关系（RaBitQ 更早），并且与 DRIVE/EDEN 系列共享“随机旋转 + 符号/二值化”这一骨干思想；但两组工作出发点不同（一个从联邦均值/均值估计问题出发，另一个以 ANN 搜索为目标），因此在表述、目标函数和应用侧重点上有差异。
+- **当前争论**: 最近（2026 年）有两篇公开的 arXiv 文章讨论这两条路线之间的对应与差异，表明社区正在澄清它们的等价性、优劣与适用场景。
+
+## What is vector quantization, really?
+
+
+Let's say you have a vector $\mathbf{x} \in \mathbb{R}^d$ of $d=1536$ (1536 dimension vector stored as 1536 floating point numbers). Storing all these floating point numbers is quite space intensive (assume you use float16, you will need 24576 bits to store a single vector) and therefore, you might want to store it using only $b$ bits ($b$ can be as small as 1 or 2 bits) per coordinate (with a total of $b \cdot d$ bits). Later, you want to recover an approximation $\tilde{\mathbf{x}}$ and this should be close to $\mathbf{x}$. 
+
+
+
+假设你有一个向量 $\mathbf{x} \in \mathbb{R}^d$，其中 $d = 1536$（也就是一个 1536 维向量，存储为 1536 个浮点数）。存储所有这些浮点数非常占空间（假设你使用 `float16`，存储一个向量需要 $1536 \times 16 = 24576$ 比特）。因此，你可能希望每个坐标只用 $b$ 比特来存储（$b$ 最小可以是 1 或 2），也就是总共用 $b \cdot d$ 比特来存储整个向量。之后，你希望从这些压缩后的比特中恢复出一个近似向量 $\tilde{\mathbf{x}}$，并且这个近似向量应当与原向量 $\mathbf{x}$ 很接近。
+
+解释
+
+- 原向量 $\mathbf{x}$ 有 1536 个实数坐标。
+- 用 `float16` 存储时，每个坐标占 16 比特，所以整个向量需要 $1536 \times 16 = 24576$ 比特。
+- 为了节省空间，可以对每个坐标做“量化”，用更少的比特表示一个近似值。
+- 如果每个坐标只用 $b$ 比特，则总存储量变成 $b \cdot d$ 比特。
+- 当 $b = 1$ 或 $2$ 时，压缩比非常大，但恢复后的向量 $\tilde{\mathbf{x}}$ 也会有误差。
+- 目标是使恢复后的向量 $\tilde{\mathbf{x}}$ 与原向量 $\mathbf{x}$ 尽量接近，这通常通过最小化某种误差度量（例如欧氏距离 $\|\mathbf{x} - \tilde{\mathbf{x}}\|$）来实现。
+
+关键概念
+
+- 这是一个“矢量量化”问题。
+- 关键在于权衡“存储成本”与“近似精度”。
+- 更少的比特 $b$ → 更高的压缩率，但逼近误差通常更大。
+- 恢复出来的 $\tilde{\mathbf{x}}$ 不是原始向量，而是一个尽量接近的估计值。
+
+Closeness is measured by
+
+**MSE distortion** $D_{\text{mse}} = \mathbb{E} \left[ \|\mathbf{x} - \tilde{\mathbf{x}}\|_2^2 \right]$ 
+
+or 
+
+**inner-product error** $D_{\text{prod}} = \mathbb{E} \left[ |\langle\mathbf{y}, \mathbf{x}\rangle - \langle\mathbf{y}, \tilde{\mathbf{x}}\rangle|^2 \right]$
+
+The second one matters because attention scores and nearest-neighbor queries are all inner products. We would like the estimator to be unbiased: $ \mathbb{E}\left[ \langle\mathbf{y}, \tilde{\mathbf{x}}\rangle \right] = \langle\mathbf{y},\mathbf{x}\rangle$
+
+KEY WORDS
+- MSE distortion: average squared error between the true vector and its reconstruction.
+- Inner product $\langle x, y\rangle$: how much two vectors point the same way. This is what attention computes.
+- Estimator: a rule (here: quantize, then decode) that returns an approximation 
+$\hat{s}$ of a true number $s$.
+- Unbiased estimator: across many queries, the average  of $\hat{s}$ equals $s$. Individual estimates can be noisy; the mean is on target.
+
+翻译
+
+贴近程度由以下两种方式衡量：
+
+1. **均方误差失真**  $D_{\text{mse}} = \mathbb{E}\left[ \|\mathbf{x} - \tilde{\mathbf{x}}\|_2^2 \right]$
+2. **内积误差**  $D_{\text{prod}} = \mathbb{E}\left[ \bigl|\langle \mathbf{y}, \mathbf{x} \rangle - \langle \mathbf{y}, \tilde{\mathbf{x}} \rangle\bigr|^2 \right]$
+
+- 第二种衡量方式很重要，因为注意力机制和最近邻查询本质上都是内积计算。
+- 我们希望估计器是无偏的：$\mathbb{E}\left[ \langle \mathbf{y}, \tilde{\mathbf{x}} \rangle \right] = \langle \mathbf{y}, \mathbf{x} \rangle$
+
+解释
+
+- $D_{\text{mse}}$ 表示重构向量 $\tilde{\mathbf{x}}$ 与真实向量 $\mathbf{x}$ 之间的平均平方距离，衡量整体重构误差。
+- $D_{\text{prod}}$ 衡量的是在查询向量 $\mathbf{y}$ 下，原向量与重构向量的内积差异的平均平方值。
+- 关注 $D_{\text{prod}}$ 的原因是许多任务（如注意力、相似性搜索）依赖内积，内积误差会直接影响结果。
+- “估计器”指一个过程：先对 $\mathbf{x}$ 量化压缩，再解码得到 $\tilde{\mathbf{x}}$，用它去近似真实值。
+- “无偏估计器”意味着虽然单次估计可能有噪声，但多次平均后，估计值的期望等于真实值，没有系统性偏差。
+
+For each coordinate, pick the closest of $2^b$  evenly-spaced levels in $\left[ -1, 1 \right]$. That is $b$ bits per number. The same rule runs in 2D and 3D first, where the geometry is visible, before the high-dimensional version below.
+
+First, in 2D
+Drag the tip of the vector. The vector snaps to the nearest point of a $2^b *2^b$  grid. The green arrow shows the original input. The blue arrow shows where the input is quantized to. The red segment between them is the reconstruction error $x-\tilde{x}$.
+
+翻译
+
+对每个坐标，选择最接近的 $2^b$ 个在区间 $\left[-1, 1\right]$ 上均匀分布的量化水平。也就是说，每个数用 $b$ 比特表示。相同的规则先在二维和三维中运行，这样几何关系可见，然后再推广到下面的高维版本。
+
+先看二维：
+
+- 拖动向量的末端。
+- 向量会“吸附”到最近的一个 $2^b \times 2^b$ 网格点上。
+- 绿色箭头表示原始输入向量。
+- 蓝色箭头表示输入经过量化后的向量。
+- 绿色和蓝色之间的红色线段就是重构误差：$x - \tilde{x}$。
+
+解释
+
+- 这里的量化方法是“逐坐标量化”：对每个分量独立地在 $[-1,1]$ 内取 $2^b$ 个候选值。
+- 在二维平面上，这些候选值构成一个 $2^b$ 行、$2^b$ 列的格点阵列。
+- 原始向量被映射到最近的网格点，因此量化后得到的向量只是原向量的近似值。
+- 红色线段表示原向量和量化向量之间的差距，这就是我们希望尽量小的误差。
+- 这种几何可视化有助于理解高维量化：在高维空间中，每个分量仍然独立量化，但直观上看不到。
+
+Now at scale (d up to 128)
+The same rule applied to every coordinate of a high-dimensional vector. You cannot see the grid anymore, but the per-coordinate errors are still there.
+
+现在放大后（d 值最大为 128）
+同一规则适用于高维向量的每个坐标。虽然网格已不可见，但每个坐标的误差仍然存在。
+
+4 种随机输入方式，都是 ML/LLM 场景里测试模型用的，我来解释一下：
+
+
+
+1. ✅ Random Unit Vector (Uniform)
+各维度独立均匀采样，然后归一化到单位长度。向量在球面上均匀分布，每个方向等概率。没有明显偏好，任何方向的信息量差不多。适合测试模型对"普通输入"的反应。
+
+2. Adversarial: One Spike Coordinate
+只有一个坐标特别大（比如第 5 维 = 0.99，其他都接近 0），其余几乎为零。这是故意构造的"对抗性"输入，用来测试模型对极端稀疏输入的敏感度，以及模型是否会被少数几个坐标主导。
+
+3. 🟡 Random Gaussian
+各维度独立从标准正态分布 $N(0,1)$ 采样，**不归一化**。向量长度随机关联，服从 $\chi$ 分布。不是均匀分布在球面上，而是越长的向量出现概率越高（高维空间体积的影响）。这通常更接近真实数据在 embedding 空间里的分布特点，因为实际 embedding 往往不是单位球面上均匀的。
+
+4. Few Large Coords (Sparse)
+少数几个坐标显著，其他都小，但不是像 #2 那么极端。比如只有 3-5 个维度的值比较大，其余都是噪音。这种结构化稀疏输入测试模型捕捉"局部活跃特征"的能力。
+
+简单说：Gaussian 和 Few Large Coords 更接近真实 embedding 分布；Random Unit Vector 是理论上的基准假设；One Spike 是极端攻击性测试。
+
+Select the spike input. The naive quantizer's grid is spaced evenly over $\left[ -1, 1\right]$. The input has almost all of its magnitude in a single coordinate, whose value falls between the two grid levels nearest to it and so reconstructs poorly. The remaining coordinates are near zero and consume most of the levels despite carrying little of the input's information.
+
+
+翻译
+
+选择“尖刺输入”。朴素量化器在区间 $[-1,1]$ 上均匀布置网格。输入向量的大部分幅值集中在单个坐标 $x_{i^*}$ 上，该坐标的数值落在最靠近它的两个网格水平之间，因此重构得很差。其余坐标接近零，但量化器仍把大多数量化级别分配给整个区间，浪费了大量不携带信息的级别。
+
+解释（使用行内公式）
+
+- “尖刺输入”指向量 $\mathbf{x}$ 的能量主要集中在某个坐标 $x_{i^*}$，其余坐标几乎为零。  
+- 朴素逐坐标量化在 $[-1,1]$ 上为每个分量分配 $2^b$ 个均匀水平；因此在二维上形成 $2^b\times2^b$ 的格点。  
+- 若 $x_{i^*}$ 落在两个相邻量化级之间，则量化后得到 $\tilde{x}_{i^*}$ 与 $x_{i^*}$ 的差 $x_{i^*}-\tilde{x}_{i^*}$ 可能较大，导致重构误差（总体为 $x-\tilde{x}$）。  
+- 由于大多数级别用于表示接近零的分量，实际携带信息的高幅值坐标没有得到足够精度，造成比特资源浪费。  
+- 这种情况会显著增大均方误差 $D_{\text{mse}}=\mathbb{E}\bigl[\|\mathbf{x}-\tilde{\mathbf{x}}\|_2^2\bigr]$ 和内积误差 $D_{\text{prod}}=\mathbb{E}\bigl[|\langle\mathbf{y},\mathbf{x}\rangle-\langle\mathbf{y},\tilde{\mathbf{x}}\rangle|^2\bigr]$，特别是当任务对 $x_{i^*}$ 非常敏感时。  
+- 常见改进包括非均匀量化、逐向量缩放、自适应比特分配或稀疏编码，把更多精度分配给重要坐标，从而降低 $D_{\text{mse}}$ 与 $D_{\text{prod}}$。
+
+TAKEAWAY
+
+where the gap shows up
+
+A fixed grid produces small reconstruction errors on inputs whose coordinates are roughly uniform in magnitude, and large reconstruction errors on inputs whose magnitude is concentrated in one or a few coordinates. Next: §2 shows how production systems handle the second case and what they pay for the fix.
+
+记录进度：把此翻译任务标记为已完成并写入待办。
+
+Created 1 todo
+
+翻译（使用行内公式）
+
+固定的网格在那些各坐标大小大致相近的输入上产生较小的重构误差，而在幅值集中在一个或少数几个坐标的输入上产生较大的重构误差。下一步：第2节展示了生产系统如何处理第二种情况，以及为修复它需要付出的代价。
+
+解释（使用行内公式）
+
+- 当向量的各坐标幅值“均匀”时（每个分量规模相近），均匀分布的量化级别能较好覆盖所有分量，因而重构误差小。  
+- 对于“尖刺”或“稀疏”输入——即绝大部分能量集中在某些坐标 $x_{i^*}$ 上，而其他坐标接近零——固定均匀网格会把大量表示精度浪费在不重要的近零坐标上，导致重要坐标的量化误差很大。  
+- 生产系统通常通过引入额外机制来修复第二类错误，例如逐向量缩放（per-vector scale）、非均匀/对数量化、自适应比特分配或稀疏编码等。  
+- 这些修复可以显著降低均方误差 $D_{\text{mse}}$ 和内积误差 $D_{\text{prod}}$，但会带来额外开销——比如更多的元数据（标量/缩放因子）、更复杂的编码/解码逻辑、或增加的计算与存储成本。
+
+## The adversarial coordinate, and why production systems pay a tax
+
+Real embeddings are rarely flat. Trained models are likely to produce outlier channels. This means a few coordinates are much larger than the rest. Having a fixed $\left[ -L, L\right]$ grid either clips the outliers or wastes resolution on the bulk. Production quantizers (GPTQ, AWQ, KIVI, KVQuant) work around this by computing $(min,max)$  (or zero-point and scale) for every small block and storing those in full precision as side information.
+
+
+翻译
+
+对抗性坐标，以及为什么生产系统要付出“代价”
+
+真实的嵌入向量很少是平坦的。训练好的模型往往会产生异常通道（outlier channels），也就是说少数坐标的数值远大于其余坐标。使用固定的网格 $[-L,L]$ 要么把这些异常值截断（clipping），要么在大多数坐标上浪费分辨率。生产环境中的量化器（如 GPTQ、AWQ、KIVI、KVQuant）通过对每个小块计算 $(\min,\max)$（或零点和尺度）并将其以全精度作为侧信息存储来解决这个问题。
+
+解释
+
+- “异常通道”意味着存在少数坐标 $x_{i^*}$ 的幅值远大于其他坐标，导致分布不平坦。  
+- 用固定区间 $[-L,L]$ 的均匀网格量化时，必须在“覆盖异常大值”与“在大多数坐标上保留精度”之间权衡；两者难以兼得。  
+- 生产量化器的做法是把向量分成小块（block），对每个小块分别计算本地的 $(\min,\max)$ 或者零点/尺度，然后用该局部参数把该块的值映射到量化网格。  
+- 存储这些局部 $(\min,\max)$ 或零点/尺度需要额外的元数据（以全精度存储），这就是生产系统为改善重构和内积保真度而“支付的代价”——额外的存储和少量的计算开销。  
+- 该方法能显著降低对异常坐标的量化误差，从而改善 $D_{\text{mse}}$ 与 $D_{\text{prod}}$，但会增加每个向量或每个块的比特开销和实现复杂度。
+
+A 64-dimensional vector whose coordinates are mostly small, with one large outlier shown in red. Three quantizers reconstruct the same vector at the same b-bit budget. Strategy A uses a single fixed grid for the whole vector. Strategy B adapts the grid per block, at the cost of a float16 header per block. Strategy C rotates the vector first and then applies a single fixed grid. The metrics report the RMSE of each reconstruction and the effective bits-per-value once the metadata cost is included.
+
+记录进度：将“翻译并解释量化器比较”任务加入待办并标记为已完成。
+
+Added 1 todo
+
+翻译
+
+一个 64 维向量，其大多数坐标很小，只有一个大的异常值（用红色标示）。三个量化器在相同的每值 $b$ 比特预算下重构同一向量。策略 A 对整个向量使用单一固定网格。策略 B 对每个块自适应网格，但每块额外存储一个 float16 头信息。策略 C 先对向量做旋转（spread 能量），然后再使用单一固定网格。指标报告每种重构的 RMSE 以及在包含元数据成本后每值的有效比特数。
+
+解释
+
+- 向量维度为 $64$，在“尖刺”情形下大部分能量集中在一个坐标，固定网格容易对该坐标量化差。  
+- 策略 A（单一固定网格）：实现最简单，但对异常值鲁棒性差，RMSE 往往较高。  
+- 策略 B（每块自适应）：对每个块保存局部参数（如 $(\min,\max)$ 或 scale/zero-point），能显著降低局部量化误差，因而降低 RMSE，但每块的 float16 头信息会增加元数据开销，导致有效每值比特数 $b_{\mathrm{eff}}=b+\dfrac{\text{metadata bits}}{64}$ 增大。  
+- 策略 C（先旋转再量化）：通过旋转把异常能量分散到多个坐标，使得单一固定网格能更平均地表示所有坐标，RMSE 下降；代价是需要额外计算（以及在某些方案下需要存储或固定旋转矩阵），如果旋转矩阵可共享则不增加每向量元数据。  
+- 指标说明：RMSE 可写作 $\mathrm{RMSE}=\sqrt{\mathbb{E}\bigl[\|\mathbf{x}-\tilde{\mathbf{x}}\|_2^2/64\bigr]}$；“有效比特/值”把原始 $b$ 与分摊到每个值的元数据位数相加，用来衡量实际压缩率与精度的权衡。  
+- 总结：B 在减少误差上通常优于 A，但付出元数据开销；C 在可行时能同时获得低 RMSE 和低元数据开销（若旋转可共享），但引入计算或系统复杂性。
+
+The effective bits-per-value works out to b + 32/s for the per-block scheme and to b for the other two, because only the per-block scheme stores a float16 scale and zero-point (32 bits together) for every block of s elements. At b=3, s=16 the per-block cost works out to 3 + 2 = 5 bits/value, a 66% surcharge over the nominal b. Strategy C achieves the same storage cost as strategy A while producing the reconstruction quality of strategy B. The rest of this page explains the construction that makes that possible.
+
+翻译
+
+有效每值比特数对于每块方案计算为 $b + \frac{32}{s}$，而另外两个方案则仍为 $b$，因为只有每块方案需要为每个 $s$ 个元素块存储一个 float16 的 scale 和 zero-point（合计 32 比特）。当 $b=3$、$s=16$ 时，每块开销变成 $3 + 2 = 5$ 比特/值，相当于比名义 $b$ 多出 $66\%$。策略 C 在存储成本上与策略 A 相同，同时获得了策略 B 的重构质量。这一页面其余部分解释了使这成为可能的构造。
+
+解释
+
+- 每块方案需要额外元数据：每个块存一个 16-bit scale 和一个 16-bit zero-point，总共 $32$ 比特。
+- 如果每个块包含 $s$ 个值，这些元数据摊到每个值上就是 $\frac{32}{s}$ 比特。
+- 因此每块方案的有效比特率是 $b + \frac{32}{s}$；其他方案没有这部分额外元数据，仍然是 $b$。
+- 以 $b=3$、$s=16$ 为例，额外成本是 $\frac{32}{16}=2$，所以实际每值用 $5$ 比特，等于名义值的 $166\%$。
+- 关键点是：策略 C 通过先旋转向量再用固定网格，可以避免每块额外存储 scale/zero-point，因此存储成本与 A 一致，但重构效果达到 B 的水平。
+- 后续内容将说明这种“固定网格+旋转”构造的具体方法。
+
+每块的 `scale` 和 `zero-point` 逻辑是把该块内的实数值区间映射到有限的 `2^b` 个整数级别上。
+
+具体步骤：
+
+- 先对当前块内的值求局部范围：
+  - $\min = \min_i x_i$
+  - $\max = \max_i x_i$
+
+- 用这个范围决定量化步长（scale）：
+  - $\text{scale} = \dfrac{\max - \min}{2^b - 1}$
+
+- 用这个范围决定零点（zero-point），通常让最小值对应到整数 0：
+  - $\text{zero-point} = \operatorname{round}\!\left(-\,\dfrac{\min}{\text{scale}}\right)$
+
+这样，每个块里的值量化和重构为：
+
+- 量化：$q_i = \operatorname{clamp}\!\left(\operatorname{round}\!\left(\dfrac{x_i}{\text{scale}} + \text{zero-point}\right),\,0,\,2^b-1\right)$
+- 解码：$\tilde{x}_i = \text{scale}\,\bigl(q_i - \text{zero-point}\bigr)$
+
+所以 `scale` 决定一个整数级别对应多少实数幅度，`zero-point` 决定整数 0 对应哪个实数值。每块都单独存这一对参数，才能让每块的量化网格自适应局部最小/最大值。
+
+举个具体例子：
+
+假设一个块里的 4 个值是 $[0.1,\ 0.4,\ 0.9,\ 1.2]$，采用 $b=2$ 比特，则每块有 $2^b=4$ 个量化级别。
+
+1. 计算局部范围：
+   - $\min=0.1$
+   - $\max=1.2$
+
+2. 计算 scale：
+   - $\text{scale}=\dfrac{\max-\min}{2^b-1}=\dfrac{1.2-0.1}{3}=0.3667$
+
+3. 计算 zero-point：
+   - $\text{zero-point}=\operatorname{round}\!\left(-\,\dfrac{\min}{\text{scale}}\right)=\operatorname{round}\!\left(-\,\dfrac{0.1}{0.3667}\right)=0$
+
+4. 量化每个值：
+   - $q_1=\operatorname{round}\!\left(\dfrac{0.1}{0.3667}+0\right)=0$
+   - $q_2=\operatorname{round}\!\left(\dfrac{0.4}{0.3667}+0\right)=1$
+   - $q_3=\operatorname{round}\!\left(\dfrac{0.9}{0.3667}+0\right)=2$
+   - $q_4=\operatorname{clamp}\!\left(\operatorname{round}\!\left(\dfrac{1.2}{0.3667}+0\right),0,3\right)=3$
+
+5. 解码重构：
+   - $\tilde{x}_1=0.3667\,(0-0)=0$
+   - $\tilde{x}_2=0.3667\,(1-0)=0.3667$
+   - $\tilde{x}_3=0.3667\,(2-0)=0.7333$
+   - $\tilde{x}_4=0.3667\,(3-0)=1.1000$
+
+这个例子里，块的 $\text{scale}$ 和 $\text{zero-point}$ 是基于该块的最小值和最大值计算出来的，因此量化网格能自适应这一块的范围，而不是用全局固定的 $[-L,L]$ 网格。
+
+Production quantizers handle outliers by paying a per-block metadata tax. TurboQuant must instead be data-oblivious: a single procedure that runs on every vector with no calibration set and no per-block headers. Next: §3 introduces the move that makes a fixed grid work for every input.
+
+Production quantizers 通过支付每块元数据税来处理异常值。TurboQuant 则必须是数据不可知的：一个在每个向量上都运行的单一过程，不依赖校准集，也不存储每块头信息。下一步：第 3 节介绍使固定网格对每个输入都有效的关键步骤。
+
+## Multiply by a random rotation. Watch the spike dissolve.
+
+好的，原文+译文对照：
+
+
+§3. The Rotation Trick
+
+**Multiply by a random rotation. Watch the spike dissolve.**
+
+
+**中文：** 乘以一个随机旋转矩阵，然后观察 spike 消失。
+
+
+**The rotation trick:** apply a random orthogonal transform **Π**, then quantize coordinate-wise. Rotation is lossless, it preserves length and inner products exactly:
+
+$$||Π\mathbf{x}||_2 = ||\mathbf{x}||_2 \quad \cdot \quad \langle Π\mathbf{x}, Π\mathbf{y} \rangle = \langle \mathbf{x}, \mathbf{y} \rangle \quad \cdot \quad Π^⊤Π = \mathbf{I}$$
+
+
+
+**中文：** **旋转技巧：** 先对向量 **x** 应用一个随机正交变换 **Π**，再对每个坐标独立做量化。旋转是**无损的**，它严格保持向量的欧氏长度和内积：...
+
+
+
+Because rotation is exact, all reconstruction error comes from the quantization step alone. After a uniformly random rotation, every coordinate of Π**x** follows the same fixed Beta density (Lemma 1 of the paper), regardless of what **x** looked like. **A single codebook designed once for that density is then optimal for every input.** We build the codebook in **§5**.
+
+
+**中文：** 因为旋转是精确的，所有重建误差都**只来自量化这一步**。经过均匀随机旋转后，Π**x** 的每个坐标都服从同一个固定的 Beta 分布（见论文 Lemma 1），无论原始 **x** 长什么样。**因此，一个为这个分布专门设计的码本，对所有输入都是最优的。** 我们在 §5 中构建这个码本。
+
+
+> **Lineage** The random-rotation step and the analysis of the post-rotation Beta density were introduced by **DRIVE (Vargaftik et al., NeurIPS 2021, §3)**. DRIVE also shows the density approaches $\mathcal{N}(0, 1/d)$ as $d$ grows, which is what makes a single fixed codebook work. See **§0.9** for the full mapping.
+
+
+
+> **中文：** 📌 **传承：** 随机旋转这一步以及旋转后 Beta 密度的分析，来自于 **DRIVE (Vargaftik et al., NeurIPS 2021, §3)**。DRIVE 还证明了随着维度 d 增大，该分布趋近于 $\mathcal{N}(0, 1/d)$，这就是单一固定码本可行的原因。详见 §0.9 的完整映射。
+
+▼ **How to construct Π**
+
+Generate a $d \times d$ matrix of i.i.d. $\mathcal{N}(0, 1)$ entries and run QR decomposition; keep the orthogonal factor $Q$. The result is uniform on the orthogonal group $O(d)$, which is what Lemma 1 needs.
+
+
+▼ **如何构造 Π**
+
+生成一个 $d \times d$ 的矩阵，元素独立同分布服从 $\mathcal{N}(0,1)$，做 QR 分解；取正交因子 Q。即得到均匀分布在正交群 $O(d)$ 上的矩阵，这正是 Lemma 1 所需的。
+
+
+解释
+
+这段讲的是向量量化（Vector Quantization）中一个非常聪明的方法，核心思路如下：
+
+问题是什么？
+- 传统量化是对向量的每个坐标独立做量化（比如聚类）。
+- 但问题是：**不同输入向量的分布完全不同**。一个稀疏向量（几个坐标大）和一个稠密向量的最佳量化方式是不一样的。一套码本不可能对所有输入都最优。
+
+旋转技巧的解决方案
+
+1. **随机旋转 Π**：在量化之前，先对向量 **x** 乘以一个随机正交矩阵 Π。这步是**无损的**——长度不变，内积不变，信息完全不丢失。
+
+2. **统一分布**：关键洞察是——经过均匀随机旋转后，**任何向量的每个坐标都会服从同一个 Beta 分布**，跟原始向量的结构无关。也就是说，不管你的输入是稀疏的、稠密的、还是只有一个 spike，旋转后都变成"标准化"的状态了。
+
+3. **单一码本就够了**：既然所有输入旋转后都变成同一个分布，那就可以**用一套码本对所有输入都是最优的**，而不需要针对每种输入类型设计不同的码本。
+
+为什么要观察 spike 消失？
+原始向量可能有极端的 spike（少数坐标特别大），但旋转会把这种能量**均匀分散到所有维度**上，使得旋转后的向量每个坐标的分布都差不多，避免了少数几个坐标主导量化误差的问题。
+
+构造 Π 的方法
+用 QR 分解：从标准正态分布采样得到随机矩阵 A，然后做 QR 分解，Q 就是均匀分布在 $O(d)$（正交群）上的矩阵。这是生成随机正交矩阵的标准做法。
+
+**一句话总结：** 旋转技巧通过随机正交变换，把所有不同结构的输入"洗牌"成统一分布，从而让单一码本能最优地量化所有输入。
+
+A spike in 2D
+
+
+**A spike in 2D**
+
+Start with the extreme case: a vector with all of its magnitude in one coordinate, $(1, 0)$. Rotate by angle $\theta$ and observe how the magnitude is redistributed across the two coordinates. At $\theta=45^\circ$ the magnitude is split evenly between the two coordinates, giving $(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})$. The total length of the vector stays the same throughout.
+
+
+
+中文翻译
+
+**2D 中的 Spike（尖峰）**
+
+从一个极端情况开始：假设有一个向量，它的所有能量都集中在一个坐标上，即 $(1, 0)$。对它旋转角度 $\theta$，观察能量如何重新分布到两个坐标上。当 $\theta = 45^\circ$ 时，能量被均匀地分到两个坐标，得到 $(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})$。在整个旋转过程中，向量的总长度保持不变。
+
+
+解释
+
+这段是用**最简单最直观的 2D 例子**来说明旋转技巧的核心思想：
+
+直观演示
+
+1. **旋转前**：向量 $(1, 0)$，只在 x 轴方向有一个尖峰，y 轴方向为 0。这是极度不均衡的"spike"状态。
+
+2. **旋转 45° 后**：向量变成 $(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})$，两个坐标的幅度完全相同。尖峰被"打散"了。
+
+3. **关键观察**：总长度始终是 $\sqrt{1^2 + 0^2} = 1$，旋转后长度不变——这就是正交变换（旋转）保持欧氏距离的含义。
+
+为什么这个例子重要？
+
+- **1D spike 是最极端的情况**：想象一个 embedding 向量，其 1536 维中只有一个维度有值，其他全是 0。这种极端稀疏的输入在量化时会遇到麻烦——如果码本设计不合理，这个 spike 就很难被准确表示。
+- **旋转后变得"正常"了**：经过随机旋转，尖峰能量被均匀分散到所有维度上，每个坐标的分布都趋于一致，不再有极端的单个坐标主导问题。
+- **这个 2D 的例子可以推广到高维**：在 1536 维的空间里，同样的原理会让 spike 能量分散到所有维度上，每个坐标都服从同一个 Beta 分布。
+
+一句话总结
+
+旋转技巧就是：**把一个极度不均衡的向量"搅匀"，让它变成每个维度都差不多均匀分布的状态，从而让统一的码本能高效地量化它。**
+
+
+The same construction in three dimensions. The spike 
+ is rotated by a random orthogonal matrix, which spreads the input's magnitude across all three coordinates of the output. The total length of the vector is preserved. Each fresh draw of the random rotation produces a different spread.
+
+ 相同的构造在三维中的效果。这个尖刺向量被一个随机正交矩阵旋转，旋转后输入的幅值被分散到输出的三个坐标上。向量的总长度保持不变。每次重新抽取随机旋转都会得到不同的分布。
+
+At high dimension
+
+ A single rotation in 2-D reduces the largest coordinate to at most half the input's magnitude. A random rotation in 3-D typically leaves one coordinate around 0.7
+. At $d=64$ the largest coordinate after rotation is around $1/\sqrt{d}\approx0.125$, regardless of how concentrated the input was.
+
+翻译
+
+在高维情况下：
+
+- 2 维中的一次旋转可以把最大坐标缩小到不超过输入幅值的一半。
+- 3 维中的随机旋转通常会让最大坐标约为 $0.7$。
+- 在 $d=64$ 时，旋转后的最大坐标大约为 $1/\sqrt{d}\approx0.125$，与输入原本多么集中无关。
+
+解释
+
+- 这段话在说明：随着维度增长，随机正交旋转能把“尖刺”能量更均匀地分散到各个坐标上。
+- 在 2D 里，旋转后最大的坐标最多只有原始幅值的一半，因此输入不再只集中在一个方向。
+- 在 3D 里，随机旋转后最大坐标通常约为 $0.7$，说明能量已部分分散，但仍有一定偏差。
+- 到了高维，比如 $d=64$，随机旋转后每个坐标的典型大小约为 $1/\sqrt{64}\approx 0.125$，这意味着无论原始向量多么“尖刺”，旋转后各坐标都变得比较均匀，极大降低了最坏坐标的幅值。
+
+Rotation preserves length and inner products. The only thing it changes is which coordinates contain the magnitude of the vector. A vector with all of its mass concentrated in one coordinate becomes, after rotation, a vector whose mass is spread across all $d$ coordinates. Every input that gets quantized is of this spread-out kind. Next: §3.5 shows that the same rotated coordinates feed three different decoders across the prior-work map of §0.9.
+
+
+翻译
+
+旋转保持长度和内积不变。它唯一改变的是向量的幅值（magnitude）"装在"哪些坐标里。一个所有质量都集中在一个坐标上的向量，经过旋转后会变成一个质量分散到全部 $d$ 个坐标上的向量。所有进入量化的输入都是这种"已分散"形态的。下一节（§3.5）会说明：在 §0.9 的先驱工作（prior work）图谱中，**同一组旋转后的坐标会喂给三种不同的解码器**。
+
+
+解释
+
+这段话是 **§3「旋转技巧」的收尾总结句**，同时也是过渡到 **§3.5「三种解码器」** 的桥段。逐句拆开来看：
+
+句 1：旋转保持长度和内积
+
+$$\|\Pi \mathbf{x}\|_2 = \|\mathbf{x}\|_2, \qquad \langle \Pi \mathbf{x}, \Pi \mathbf{y}\rangle = \langle \mathbf{x}, \mathbf{y}\rangle$$
+
+- 这是正交矩阵（orthogonal matrix）的**等距性（isometry）**。
+- 含义：旋转**完全不丢信息**，所有重建误差只能来自后面的量化步骤。
+- 这一点正是 §3.1 给出的三个等式所要表达的核心结论。
+
+句 2：它唯一改变的是幅值所在的坐标
+
+- 旋转不会让向量变长或变短，也不会改变两个向量的夹角。
+- 它**仅仅**重新分配"哪一维装了多少幅值"。
+- 类比：把一杯水从一只高玻璃杯倒进一只矮水杯，水量没变，形状变了。
+
+句 3：集中向量 → 分散向量
+
+- 旋转前：$(1, 0, 0, \ldots, 0)$（极端的"尖刺"）。
+- 旋转后：每个坐标大约 $\sim 1/\sqrt{d}$（在 $d=64$ 时大约 $0.125$）。
+- 这是为什么可以用**一个固定的码本**——因为尖刺被打散了，旋转后的每个坐标都服从同一个分布（Beta / 趋近 $\mathcal{N}(0,1/d)$），与原始向量长什么样无关。
+
+句 4：所有被量化的输入都是"已分散"形态
+
+- 这是一个**管道（pipeline）声明**：在量化之前先做旋转 Π。
+- 因此，§3.5 中讨论解码器时，可以**假设**输入已经是"已分散"形态，而不需要再为每种原始输入单独设计解码器。
+
+## The rotation step is shared. The decoder is what changes.
+
+The random rotation of §3 is the encoder front end shared by every method on the prior-work map of §0.9 (DRIVE 2021, EDEN 2022, RaBitQ 2024, QJL 2024, TurboQuant 2025). The methods differ on the decoder side: each one reads the rotated coordinates and recovers a different quantity from them.
+
+The demo below runs one rotated vector through three decoders in parallel. The mean decoder from DRIVE returns an unbiased estimate of $x$  itself. The inner-product decoder from RaBitQ and QJL returns an estimate of $\langle q,x \rangle $
+ against a query. The MSE decoder from EDEN and TurboQuant returns a low-distortion reconstruction 
+. Each panel reports its error against the true value and the bits it stored per coordinate to get there.
+
+
+译文
+
+**旋转步骤是共享的。解码器才是变化之处。**
+
+§3 中的随机旋转是 §0.9 论文地图上每种方法（共 DRIVE 2021、EDEN 2022、RaBitQ 2024、QJL 2024、TurboQuant 2025）共享的编码器前端。这些方法的区别在于**解码器端**：每种方法读取旋转后的坐标，并从中恢复出**不同的量**。
+
+下面的演示将一个旋转后的向量并行地通过三个解码器。DRIVE 的均值解码器返回 x 本身的无偏估计。RaBitQ 和 QJL 的内积解码器返回关于查询 q 的估计值 ⟨q,x⟩。EDEN 和 TurboQuant 的 MSE 解码器返回低失真重建 $\hat{x}$。每个面板报告其误差（相对于真值）以及为达到该精度每位坐标存储的比特数。
+
+ 解释
+
+这段话描述的是**量化索引方法（Quantization Indexing Methods）**的核心设计思想：
+
+| 组件 | 作用 | 共享/独特 |
+|------|------|-----------|
+| **旋转（Rotation）** | 将数据旋转到新坐标系，打破原始维度间的依赖关系 | **所有方法共享** |
+| **解码器（Decoder）** | 从旋转后的压缩坐标中恢复目标量 | **每种方法独特** |
+
+**三种解码器：**
+
+1. **均值解码器（DRIVE）** → 恢复原始向量本身 $\hat{x} \approx x$
+2. **内积解码器（RaBitQ/QJL）** → 恢复向量与查询的内积 $\langle q, x \rangle$（用于最近邻搜索）
+3. **MSE 解码器（EDEN/TurboQuant）** → 恢复最小均方误差意义下的重建 $\hat{x}$
+
+这种"共享编码器 + 独特解码器"的模块化设计允许不同方法复用同一套旋转/量化流程，只需更换解码器即可适配不同任务。
+
+
+现在我创建 DRIVE Mean encoder/decoder 演示脚本，命名为 `103-1.py`（对应 chapter_103 的第一个 demo）。
+
+
+
+Ran terminal command:  pyenv shell qlib && /Users/huhao/.pyenv/versions/3.11.9/bin/python code/103-1.py
+
+代码运行成功，演示效果完全符合理论。
+
+文件已创建
+
+103-1.py — DRIVE 一比特 Mean encoder/decoder 演示
+
+关键要点
+
+| 项 | 编码 | 解码 |
+|---|---|---|
+| **共享旋转** | $y = R x$ | $R^T$ 逆旋转 |
+| **1 比特** | $\text{sign}(y) \in \{+1,-1\}^d$ | 同样使用 |
+| **无偏缩放** | $S = \|x\|_2^2 / \|R x\|_1$ | $E[\hat x] = x$ |
+| **MSE 缩放** | $S = \|R x\|_1 / d$ | 单次重建误差更小，但有偏 |
+
+运行结果验证
+
+- **无偏性**：200 次试验平均后，$\|\overline{\hat x} - x\| \approx 0.053$（小），说明 $E[\hat x] = x$
+- **有偏性**：MSE-optimal 版本 $\approx 0.365$（显著非零），确认其有偏
+- **方向**：cos(x, x̂) ≈ 0.79，单次重建与真向量方向基本一致
+
