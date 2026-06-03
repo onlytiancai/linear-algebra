@@ -2348,3 +2348,88 @@ ax2.hist(x1, bins=bins, density=True, ...)  # ← 关键参数
 一句话总结
 
 > **Y 轴密度 = 概率密度**：高度 × 区间宽度 = 概率。整条曲线下面积恒为 1。d=3 时恒为 0.5，意味着球面上"x₁ 取任何值都一样可能"。
+
+完成！已创建 103-7.py，可交互复刻 d=100, samples=10000 的直方图。
+
+实现要点
+
+1. 球面均匀采样（d 维）
+
+```python
+g = rng.standard_normal(size=(n, d))
+g /= np.linalg.norm(g, axis=1, keepdims=True)
+x0 = g[:, 0]   # 取第一个坐标
+```
+高斯向量归一化（Marsaglia 1972），对任意维度都成立。
+
+2. 精确 PDF 公式
+球面 $S^{d-1}$ 上 $x_0$ 的边缘分布（由 $x_0^2 \sim \text{Beta}(1/2, (d-1)/2)$ 推出）：
+
+$$
+f(x) = \frac{(1-x^2)^{(d-3)/2}}{B(1/2, (d-1)/2)}, \quad x \in [-1, 1]
+$$
+
+用 `gammaln` 在对数空间计算，避免 $(1-x^2)^{48.5}$ 在 $x$ 接近 ±1 时下溢到 0。
+
+ 关键数值（d=100）
+
+| 量 | 理论值 | 模拟值 |
+|---|--------|--------|
+| 峰值（精确 Beta）| 3.96 | — |
+| 峰值（高斯近似）| 3.99 | — |
+| 直方图最高柱 | — | ~4.0 |
+| $1/\sqrt{d}$ | 0.100 | std(x₀) = 0.1002 |
+
+→ **精确分布与高斯近似在 d=100 已几乎重合**（图中橙绿两线完全贴合）。
+
+4. 交互功能
+
+- **DIMENSION D 滑块** (2–300)：实时改变维度
+- **SAMPLES 滑块** (100–50000)：实时改变样本数
+- **RESAMPLE 按钮**：换随机种子重新采样（验证 d=30/256 等的渐近行为）
+
+5. 与 103-5.py / 103-6.py 对比
+
+| 文件 | d | x₀ 的分布 |
+|------|---|----------|
+| 103-5.py | 2 | arcsine (U 形) |
+| 103-6.py | 3 | uniform (平) |
+| 103-7.py | 100+ | 高斯-like（CLT 渐近） |
+
+三步合起来演示了 chapter_103.md 中的核心论点：
+> **d 越大，$x_0$ 越集中在 0 附近 $\pm 1/\sqrt{d}$，分布形状也越像高斯** —— 这就是 TurboQuant 不用 per-vector scale 的数学基础。
+
+Every coordinate of a rotated vector follows the same known density. The scalar quantization problem for that density can be solved once, and the solution can be reused for every coordinate of every vector. There are no per-block scale factors and no side information to store. Next: §5 builds the codebook with Lloyd–Max.
+
+**原文翻译：**
+
+旋转向量的每一个坐标都服从相同的已知分布。该分布的标量量化问题只需求解一次，求得的解就可以在**所有向量的每一个坐标**上重复使用。这里没有逐块（per-block）的缩放因子，也没有需要存储的边信息。下一节 [§5](https://arkaung.github.io/interactive-turboquant/#codebook) 将用 **Lloyd–Max 算法**来构造码本（codebook）。
+
+解释
+
+这段话是 **TurboQuant**（一种面向大语言模型权重的极低比特量化方法）核心思路的总结。逐句拆解如下：
+
+"Every coordinate of a rotated vector follows the same known density."
+- **旋转（rotated）**：指在线性代数层面用一个正交矩阵 $Q$（$Q^\top Q = I$）去乘权重矩阵 $W$，得到 $\tilde W = WQ$。
+- **同一已知分布（the same known density）**：旋转不会改变向量的几何形状，但因为原始权重 $W$ 的每一行/列**通常都被建模为同一种分布**（如高斯、Student-t），所以旋转后所有坐标的边缘分布**完全一致**，并且**分布形式是已知的**（不是要估计的）。
+
+"The scalar quantization problem for that density can be solved once, and the solution can be reused for every coordinate of every vector."
+- 因为分布相同且已知，对"把这个分布量化到 $b$ 比特"这件事**只需要做一次**——求出最优的 $2^b$ 个重建点（reconstruction levels）和量化边界。
+- 得到的码本（codebook）$C = \{c_1, \dots, c_{2^b}\}$ 就可以**全模型共享**，适用于所有权重矩阵、所有位置。
+- 这就是所谓 **outlier-free / scale-free** 的设计：不需要为每一行、每一块重新学一个码本。
+
+"There are no per-block scale factors and no side information to store."
+- 传统量化（如 GPTQ、AWQ、KV-cache 量化）通常要为每个 block 存一个 `scale`（甚至 `zero-point`），这些是**必须随权重一起存盘的"边信息"（side information）**。
+- TurboQuant 不存这些：旋转后所有坐标尺度（方差）已经统一，所以**一个全局码本就够**，完全没有逐块缩放因子。
+- 边信息为 0 → **有效比特率 ≈ 命名比特率**，是它能压到 2-bit、3-bit 还保持高质量的关键原因。
+
+"Next: §5 builds the codebook with Lloyd–Max."
+- Lloyd–Max 算法：在**已知概率密度 $p(x)$** 的前提下，迭代优化量化边界与重建点，使均方量化误差最小（即 MSE 最优）。
+- 它的两个交替步骤：
+  1. 给定重建点，求最优划分边界（最近邻）。
+  2. 给定边界，求最优重建点（条件均值 $\mathbb E[x \mid x \in \text{cell}]$）。
+- 收敛后得到的 $2^b$ 个重建点就是 TurboQuant 的**全局码本**。
+
+一句话总结
+
+> **旋转让所有权重坐标的分布统一且已知，于是可以用 Lloyd–Max 求一次最优标量码本，全模型复用，不存任何 scale / side information。** ——这就是 TurboQuant 能用极低比特率做高精度量化的根本原因。
