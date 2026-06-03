@@ -11,8 +11,6 @@ Reference: chapter_103.md §3.5 — "The rotation step is shared. The decoder is
 """
 
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')   # non-interactive, no blocking
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 

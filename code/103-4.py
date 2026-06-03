@@ -13,8 +13,6 @@ Reference: chapter_103.md §3.5 — EDEN (Vargaftik et al., ICML 2022),
 """
 
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')   # non-interactive, no blocking
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
