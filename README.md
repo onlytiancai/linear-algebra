@@ -11,3 +11,4 @@ A concise, beginner-friendly introduction to the core ideas of linear algebra.
 ## 命令
 
     mdbook build
+    open book/index.html    
