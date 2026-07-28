@@ -3050,3 +3050,383 @@ $$
 5. 一句话总结
 
 > **Lloyd–Max 在每个 $b$ 上都给出了"已知分布下最优"的标量量化**；和 Shannon 下界相比，**最坏情况差 $\sqrt{3}\pi/2 \approx 2.72$ 倍**，**$b=1$ 时只差 1.45 倍**——这两数字就是 TurboQuant 标题里 "provably near-optimal distortion" 的具体含义。**§6** 把"旋转 + 码本"组装起来，就得到完整的 **TurboQuant-MSE** 算法。
+
+##  Lloyd–Max
+
+Lloyd–Max 量化（Lloyd–Max Quantization）是**标量量化（scalar quantization）**领域最经典的理论之一，也是现代信号处理、图像压缩、语音编码以及向量量化（Vector Quantization）的基础。
+
+不过，历史上它实际上来源于两篇论文（准确地说是**一篇内部报告 + 一篇公开论文**）：
+
+1. **S. P. Lloyd (1957)**：《Least Squares Quantization in PCM》（Bell Labs 内部技术备忘录，1982 年正式发表）
+2. **Joel Max (1960)**：《Quantizing for Minimum Distortion》（IEEE Transactions on Information Theory）
+
+由于 Lloyd 的工作完成更早但长期未公开发表，而 Max 首先公开发表，因此今天通常统称为 **Lloyd–Max Algorithm**。([科学直接][1])
+
+---
+
+一、研究背景
+
+20 世纪 50 年代，PCM（Pulse Code Modulation，脉冲编码调制）开始广泛应用。
+
+核心问题是：
+
+> **如何把连续信号量化成有限个离散值，使失真最小？**
+
+假设：
+
+* 输入随机变量$X\sim p(x)$ 只有$M$个输出等级（levels）。
+
+目标：
+
+寻找
+
+* 决策边界（decision boundaries）
+* 重建值（reconstruction values）
+
+使均方误差（MSE）$D=E[(X-\hat X)^2]$
+最小。
+
+这就是论文讨论的问题。
+
+---
+
+二、量化器模型
+
+论文采用最经典的标量量化模型：
+
+```
+输入
+
+------|------|------|------>
+
+     b1     b2     b3
+
+      ↓      ↓      ↓
+
+     y1     y2     y3
+```
+
+其中
+
+* $b_i$：决策边界
+* $y_i$：输出值（representation level）
+
+如果$b_{i-1}<x<b_i$
+
+则输出 $y_i$
+
+---
+
+三、失真函数
+
+采用平方误差：
+
+$$
+D=\sum_i
+\int_{b_{i-1}}^{b_i}
+(x-y_i)^2p(x),dx
+$$
+
+这是 Lloyd 与 Max 都研究的目标函数。
+
+---
+
+四、Max (1960) 的核心推导
+
+Max 从微积分出发，对失真分别对
+
+* 边界
+* 重建值
+
+求偏导。
+
+最终得到两个必要条件。
+
+---
+
+（1）Nearest Neighbor Condition（最近邻条件）
+
+固定输出值 $y_i$。
+
+边界必须位于两个输出值中点：
+
+$$
+b_i=\frac{y_i+y_{i+1}}2
+$$
+
+意思是：
+
+左边区域归左边中心，
+
+右边区域归右边中心。
+
+这是今天所有 Voronoi 分区的基础。
+
+---
+
+（2）Centroid Condition（质心条件）
+
+固定边界。
+
+输出值必须等于该区间条件均值：
+
+$$
+y_i=
+\frac{
+\int_{b_{i-1}}^{b_i}
+xp(x),dx
+}{
+\int_{b_{i-1}}^{b_i}
+p(x),dx
+}
+$$
+
+即：
+
+**每个量化值就是该区域的概率质心。**
+
+---
+
+这两个条件构成了 Lloyd–Max 理论的核心。
+
+---
+
+五、为什么不能直接求解？
+
+注意：
+
+边界依赖输出值
+
+$
+b_i
+\leftarrow
+y_i
+$
+
+而输出值又依赖边界
+
+$
+y_i
+\leftarrow
+b_i
+$
+
+因此形成耦合方程：
+
+```
+boundary
+     ↑
+     │
+     │
+centroid
+```
+
+没有解析解。
+
+因此只能：
+
+**交替迭代（Alternating Optimization）。**
+
+---
+
+六、Lloyd Algorithm（1957）
+
+Lloyd 比 Max 更早提出了完整算法。
+
+算法如下：
+
+---
+
+Step1 初始化
+
+任选
+
+$
+M
+$
+
+个重建值
+
+例如
+
+```
+-3
+-1
+1
+3
+```
+
+---
+
+Step2 更新边界
+
+利用
+
+$
+b_i=\frac{y_i+y_{i+1}}2
+$
+
+得到新的划分。
+
+---
+
+Step3 更新重建值
+
+计算条件均值：
+
+$
+y_i=
+E[X\mid
+b_{i-1}<X<b_i]
+$
+
+---
+
+### Step4
+
+重复
+
+```
+更新边界
+
+↓
+
+更新中心
+
+↓
+
+更新边界
+
+↓
+
+更新中心
+```
+
+直到变化足够小。
+
+---
+
+七、为什么一定收敛？
+
+每一步都不会增加 MSE。
+
+原因：
+
+第一步：
+
+固定中心，
+
+边界取最近邻，
+
+MSE 最小。
+
+第二步：
+
+固定边界，
+
+中心取质心，
+
+MSE 最小。
+
+因此：
+
+$$
+D^{(0)}
+
+>
+
+D^{(1)}
+
+>
+
+D^{(2)}
+
+>
+
+\cdots
+$$
+
+所以一定收敛。
+
+但：
+
+**只能保证收敛到局部最优（local optimum），不能保证全局最优。**([斯坦福大学电气工程系][4])
+
+---
+
+八、与 K-Means 的关系
+
+今天很多机器学习教材都会提到：
+
+**K-Means 就是 Lloyd Algorithm 在离散样本上的形式。**
+
+两者对应关系如下：
+
+| Lloyd–Max | K-Means        |
+| --------- | -------------- |
+| pdf       | 数据集            |
+| 区间        | Voronoi 区域     |
+| centroid  | cluster center |
+| MSE       | SSE            |
+| 最近邻划分     | Assignment     |
+| 条件均值      | Update Center  |
+
+事实上：
+
+```
+Lloyd Quantization
+
+↓
+
+Vector Quantization
+
+↓
+
+LBG Algorithm
+
+↓
+
+K-Means
+```
+
+因此 Lloyd 算法可以视为 K-Means 的重要理论来源之一。([维基百科][5])
+
+---
+
+九、论文贡献
+
+Lloyd（1957/1982）的贡献：
+
+* 首次提出最小均方误差量化问题；
+* 给出了交替优化算法（后称 Lloyd 算法）；
+* 为后续向量量化奠定理论基础。([科学直接][1])
+
+Max（1960）的贡献：
+
+* 首次公开发表最优标量量化理论；
+* 推导了最优量化器的两个必要条件（最近邻条件与质心条件）；
+* 给出了可实现的迭代求解方法，使理论能够直接用于工程设计。([国立国会図書館サーチ（NDLサーチ）][2])
+
+---
+
+十、影响
+
+Lloyd–Max 理论后来直接催生了大量经典工作，包括：
+
+* **LBG（Linde–Buzo–Gray）向量量化算法**
+* JPEG 中非均匀量化思想
+* 语音编码（PCM、ADPCM）
+* 图像压缩
+* 聚类算法（K-Means）
+* 神经网络权重量化（Weight Quantization）
+* 深度学习模型压缩
+
+直到今天，设计**最优标量量化器**时，Lloyd–Max 仍然是最经典、最常用的基准算法。
+
+[1]: https://www.sciencedirect.com/topics/computer-science/adaptive-quantization?utm_source=chatgpt.com "Adaptive Quantization - an overview | ScienceDirect Topics"
+[2]: https://ndlsearch.ndl.go.jp/books/R100000136-I1362825893407500032?utm_source=chatgpt.com "Quantizing for minimum distortion | NDLサーチ | 国立国会図書館"
+[3]: https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/926689aaa62a0315473fa9b982de1b07_book_3.pdf?utm_source=chatgpt.com "Chapter 3 
+Quantization 
+3.1 Introduction to quant"
+[4]: https://ee.stanford.edu/~gray/fundcom.pdf?utm_source=chatgpt.com "International Conference on"
+[5]: https://en.wikipedia.org/wiki/Lloyd%27s_algorithm?utm_source=chatgpt.com "Lloyd's algorithm"
