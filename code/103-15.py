@@ -1,3 +1,12 @@
+'''
+相比前三个视图，这里新增了一个 Quantization Map（量化映射）：
+
+- 横轴：输入 x
+- 纵轴：输出 x^
+- 每轮都会画出当前的阶梯函数（piecewise constant mapping）
+
+随着迭代，你可以看到这条阶梯函数逐渐调整：高概率区域的台阶变得更密、低概率区域更稀。这实际上就是 Lloyd–Max 算法最终学习到的量化器，也是很多信号处理教材和论文最经典的展示方式。
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
@@ -45,17 +54,25 @@ class LloydMaxAnimation:
             self.history.append({
                 "levels": new_levels.copy(),
                 "boundaries": boundaries.copy(),
-                "labels": labels.copy(),  
-                "mse": mse
+                "labels": labels.copy(),
+                "x_hat": x_hat.copy(),
+                "mse": mse,
             })
+            # 保存完整状态，这样以后想画 reconstruction error, quantization error, mapping, Voronoi partition 都不用重新计算。
 
             if np.max(np.abs(new_levels - levels)) < 1e-6:
                 break
 
             levels = new_levels
 
+        # 最后收敛结果也可以直接使用，而不用从 history[-1] 中取。
         self.data = x
         self.mse_history = mse_history
+        self.levels = new_levels.copy()
+        self.boundaries = boundaries.copy()
+        self.labels = labels.copy()
+        self.x_hat = x_hat.copy()
+        
 
 
 def animate_quantizer(
@@ -81,27 +98,23 @@ def animate_quantizer(
         np.linspace(0, 1, demo.n_levels)
     )
 
-    fig = plt.figure(figsize=(15, 10))
-
-    # ------------------------------------
-    # layout
-    # ------------------------------------
+    fig = plt.figure(figsize=(10, 8))
 
     gs = fig.add_gridspec(
-        3,
         2,
-        height_ratios=[1.2, 1, 1],
-        hspace=0.35,
+        2,
+        left=0.06,
+        right=0.98,
+        bottom=0.06,
+        top=0.93,
         wspace=0.25,
+        hspace=0.30,
     )
 
-    ax_hist = fig.add_subplot(gs[0, :])
-
-    ax_assign = fig.add_subplot(gs[1, 0])
-
-    ax_map = fig.add_subplot(gs[1, 1])
-
-    ax_mse = fig.add_subplot(gs[2, :])
+    ax_hist = fig.add_subplot(gs[0, 0])
+    ax_assign = fig.add_subplot(gs[0, 1])
+    ax_map = fig.add_subplot(gs[1, 0])
+    ax_mse = fig.add_subplot(gs[1, 1])
 
     # ==========================================
     def update(frame):
