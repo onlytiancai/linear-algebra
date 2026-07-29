@@ -72,12 +72,13 @@ class LloydMaxAnimation:
         self.boundaries = boundaries.copy()
         self.labels = labels.copy()
         self.x_hat = x_hat.copy()
-        
+
 
 
 def animate_quantizer(
     demo,
     interval=800,
+    dist_type=None,
 ):
     """
     Four-panel Lloyd-Max animation
@@ -86,6 +87,8 @@ def animate_quantizer(
     demo.history
     demo.mse_history
     demo.n_levels
+    dist_type : "uniform" | "gaussian" | None
+        用于在左上子图中叠加真实 PDF 参考曲线。
     """
 
     x = demo.data
@@ -94,21 +97,40 @@ def animate_quantizer(
     xmin = np.min(x)
     xmax = np.max(x)
 
+    # 用于 Sample Assignment 子图的轻微 y 抖动，避免点全部落在 y=0
+    rng = np.random.default_rng(0)
+    y_jitter = rng.uniform(-0.05, 0.05, size=len(x))
+
     colors = plt.cm.tab10(
         np.linspace(0, 1, demo.n_levels)
     )
 
-    fig = plt.figure(figsize=(10, 8))
+    # ==========================================================
+    # 真实 PDF（仅在知道分布类型时叠加）
+    # ==========================================================
+    xx_pdf = np.linspace(xmin, xmax, 400)
+    if dist_type == "uniform":
+        true_pdf = np.ones_like(xx_pdf) / (xmax - xmin)
+    elif dist_type == "gaussian":
+        true_pdf = (
+            1.0 / np.sqrt(2.0 * np.pi)
+            * np.exp(-0.5 * xx_pdf ** 2)
+        )
+    else:
+        true_pdf = None
+
+    # 16:9 横向，适合手机横屏观看；尺寸足够大以避免 suptitle 与子图标题重叠
+    fig = plt.figure(figsize=(16, 9))
 
     gs = fig.add_gridspec(
         2,
         2,
-        left=0.06,
+        left=0.05,
         right=0.98,
-        bottom=0.06,
-        top=0.93,
-        wspace=0.25,
-        hspace=0.30,
+        bottom=0.07,
+        top=0.88,
+        wspace=0.18,
+        hspace=0.40,
     )
 
     ax_hist = fig.add_subplot(gs[0, 0])
@@ -144,7 +166,18 @@ def animate_quantizer(
             density=True,
             color="lightgray",
             edgecolor="white",
+            label="Histogram"
         )
+
+        # 真实 PDF 参考曲线
+        if true_pdf is not None:
+            ax_hist.plot(
+                xx_pdf,
+                true_pdf,
+                color="blue",
+                linewidth=2,
+                label="True PDF",
+            )
 
         for b in boundaries[1:-1]:
 
@@ -171,13 +204,12 @@ def animate_quantizer(
             f"Histogram + Decision Boundaries\nIteration {frame+1}/{len(history)}"
         )
 
+        ax_hist.legend(loc="upper right", fontsize=8)
         ax_hist.grid(alpha=.3)
 
         # ==========================================================
         # 2 Sample Assignment
         # ==========================================================
-
-        y = np.zeros_like(x)
 
         for k in range(demo.n_levels):
 
@@ -185,7 +217,7 @@ def animate_quantizer(
 
             ax_assign.scatter(
                 x[idx],
-                y[idx],
+                y_jitter[idx],
                 s=8,
                 color=colors[k],
                 alpha=.7,
@@ -225,12 +257,24 @@ def animate_quantizer(
 
             yy[mask] = levels[k]
 
+        # y = x 参考线（无量化时的理想映射）
+        ax_map.plot(
+            [xmin, xmax],
+            [xmin, xmax],
+            "--",
+            color="gray",
+            linewidth=1.5,
+            label="y = x",
+        )
+
+        # 当前阶梯函数
         ax_map.step(
             xx,
             yy,
             where="post",
             linewidth=3,
             color="royalblue",
+            label="Quantizer",
         )
 
         ax_map.scatter(
@@ -238,6 +282,8 @@ def animate_quantizer(
             levels,
             color="red",
             s=50,
+            zorder=20,
+            label="Levels",
         )
 
         ax_map.set_xlim(xmin, xmax)
@@ -251,6 +297,7 @@ def animate_quantizer(
         ax_map.set_title("Quantization Mapping")
 
         ax_map.grid(alpha=.3)
+        ax_map.legend(loc="upper left", fontsize=8)
 
         # ==========================================================
         # 4 MSE
@@ -293,10 +340,27 @@ def animate_quantizer(
 
         ax_mse.grid(alpha=.3)
 
+        # 子图内文本框：当前迭代与 MSE
+        ax_mse.text(
+            0.03,
+            0.92,
+            f"Iteration : {frame+1}\n"
+            f"MSE : {mse:.6f}",
+            transform=ax_mse.transAxes,
+            fontsize=11,
+            verticalalignment="top",
+            bbox=dict(
+                facecolor="white",
+                alpha=0.85,
+                edgecolor="lightgray",
+            ),
+        )
+
         fig.suptitle(
             "Lloyd-Max Quantization",
-            fontsize=18,
+            fontsize=22,
             fontweight="bold",
+            y=0.965,
         )
 
         return []
@@ -334,7 +398,7 @@ else:
 
 lm = LloydMaxAnimation(8, 20)
 lm.fit(data)
-ani = animate_quantizer(lm)
+ani = animate_quantizer(lm, dist_type=args.type)
 
 if args.save_gif:
     print('save gif ...')
@@ -349,4 +413,4 @@ if args.save_mp4:
         f"lloyd_max_{args.type}.mp4",
         writer="ffmpeg",
         fps=1
-    )    
+    )
